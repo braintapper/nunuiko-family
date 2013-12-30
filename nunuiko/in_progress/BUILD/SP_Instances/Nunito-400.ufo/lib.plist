@@ -7,6 +7,9 @@
 		<key>EBB1D39D-5A31-45B3-B44F-04CD128BFFB4</key>
 		<dict>
 		</dict>
+		<key>F10CBA7B-FAF3-4DDE-A14D-E99DB7E222CB</key>
+		<dict>
+		</dict>
 	</dict>
 	<key>com.schriftgestaltung.fontMasterID</key>
 	<string>F10CBA7B-FAF3-4DDE-A14D-E99DB7E222CB</string>
@@ -18,103 +21,103 @@
 	<string>Generated with LTR Superpolator version 131028_2106_developer_</string>
 	<key>com.typemytype.robofont.b.layerStrokeColor</key>
 	<array>
-		<string>0.5</string>
-		<string>1</string>
-		<string>0</string>
-		<string>0.7</string>
+		<real>0.5</real>
+		<integer>1</integer>
+		<integer>0</integer>
+		<real>0.7</real>
 	</array>
 	<key>com.typemytype.robofont.foreground.layerStrokeColor</key>
 	<array>
-		<string>0.5</string>
-		<string>0</string>
-		<string>0.5</string>
-		<string>0.7</string>
+		<real>0.5</real>
+		<integer>0</integer>
+		<real>0.5</real>
+		<real>0.7</real>
 	</array>
 	<key>com.typemytype.robofont.guides</key>
 	<array>
 		<dict>
 			<key>angle</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>isGlobal</key>
-			<string>1</string>
+			<integer>1</integer>
 			<key>magnetic</key>
-			<string>5</string>
+			<integer>5</integer>
 			<key>name</key>
 			<string></string>
 			<key>x</key>
-			<string>587</string>
+			<integer>587</integer>
 			<key>y</key>
-			<string>1013</string>
+			<integer>1013</integer>
 		</dict>
 		<dict>
 			<key>angle</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>isGlobal</key>
-			<string>1</string>
+			<integer>1</integer>
 			<key>magnetic</key>
-			<string>5</string>
+			<integer>5</integer>
 			<key>name</key>
 			<string></string>
 			<key>x</key>
-			<string>595</string>
+			<integer>595</integer>
 			<key>y</key>
-			<string>903</string>
+			<integer>903</integer>
 		</dict>
 		<dict>
 			<key>angle</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>isGlobal</key>
-			<string>1</string>
+			<integer>1</integer>
 			<key>magnetic</key>
-			<string>5</string>
+			<integer>5</integer>
 			<key>name</key>
 			<string></string>
 			<key>x</key>
-			<string>780</string>
+			<integer>780</integer>
 			<key>y</key>
-			<string>120</string>
+			<integer>120</integer>
 		</dict>
 		<dict>
 			<key>angle</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>isGlobal</key>
-			<string>1</string>
+			<integer>1</integer>
 			<key>magnetic</key>
-			<string>5</string>
+			<integer>5</integer>
 			<key>name</key>
 			<string></string>
 			<key>x</key>
-			<string>907</string>
+			<integer>907</integer>
 			<key>y</key>
 			<string>-22</string>
 		</dict>
 		<dict>
 			<key>angle</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>isGlobal</key>
-			<string>1</string>
+			<integer>1</integer>
 			<key>magnetic</key>
-			<string>5</string>
+			<integer>5</integer>
 			<key>name</key>
 			<string></string>
 			<key>x</key>
-			<string>786</string>
+			<integer>786</integer>
 			<key>y</key>
-			<string>1296</string>
+			<integer>1296</integer>
 		</dict>
 		<dict>
 			<key>angle</key>
-			<string>0</string>
+			<integer>0</integer>
 			<key>isGlobal</key>
-			<string>1</string>
+			<integer>1</integer>
 			<key>magnetic</key>
-			<string>5</string>
+			<integer>5</integer>
 			<key>name</key>
 			<string></string>
 			<key>x</key>
-			<string>772</string>
+			<integer>772</integer>
 			<key>y</key>
-			<string>1438</string>
+			<integer>1438</integer>
 		</dict>
 	</array>
 	<key>com.typemytype.robofont.layerOrder</key>
@@ -528,268 +531,6 @@
 			<string>glyphList</string>
 		</dict>
 	</array>
-	<key>com.typesupply.MetricsMachine4.groupColors</key>
-	<dict>
-		<key>@MMK_L_A_Left</key>
-		<array>
-			<string>1</string>
-			<string>0</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_B_Left</key>
-		<array>
-			<string>0</string>
-			<string>1</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_H_Left</key>
-		<array>
-			<string>1</string>
-			<string>0.5</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_O_Left</key>
-		<array>
-			<string>1</string>
-			<string>0</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_P_Left</key>
-		<array>
-			<string>1</string>
-			<string>0</string>
-			<string>0.5</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_R_Left</key>
-		<array>
-			<string>1</string>
-			<string>0</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_S_Left</key>
-		<array>
-			<string>1</string>
-			<string>0</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_T_Left</key>
-		<array>
-			<string>0</string>
-			<string>1</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_U_Left</key>
-		<array>
-			<string>0</string>
-			<string>0.5</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_V_Left</key>
-		<array>
-			<string>0</string>
-			<string>0</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_W_Left</key>
-		<array>
-			<string>0.5</string>
-			<string>0</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_X_Left</key>
-		<array>
-			<string>1</string>
-			<string>1</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_Y_Left</key>
-		<array>
-			<string>1</string>
-			<string>0.5</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_k_Left</key>
-		<array>
-			<string>1</string>
-			<string>0</string>
-			<string>0.5</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_n_Left</key>
-		<array>
-			<string>0</string>
-			<string>1</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_o_Left</key>
-		<array>
-			<string>1</string>
-			<string>1</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_r_Left</key>
-		<array>
-			<string>0</string>
-			<string>1</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_t_Left</key>
-		<array>
-			<string>0</string>
-			<string>0.5</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_v_Left</key>
-		<array>
-			<string>0</string>
-			<string>0</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_w_Left</key>
-		<array>
-			<string>0.5</string>
-			<string>0</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_L_y_Left</key>
-		<array>
-			<string>1</string>
-			<string>0</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_A_Right</key>
-		<array>
-			<string>0</string>
-			<string>1</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_H_Right</key>
-		<array>
-			<string>1</string>
-			<string>0</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_O_Right</key>
-		<array>
-			<string>1</string>
-			<string>0.5</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_S_Right</key>
-		<array>
-			<string>0</string>
-			<string>0.5</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_T_Right</key>
-		<array>
-			<string>0</string>
-			<string>0</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_U_Right</key>
-		<array>
-			<string>0</string>
-			<string>0.5</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_V_Right</key>
-		<array>
-			<string>0.5</string>
-			<string>0</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_W_Right</key>
-		<array>
-			<string>1</string>
-			<string>0</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_Y_Right</key>
-		<array>
-			<string>1</string>
-			<string>0</string>
-			<string>0.5</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_a_Right</key>
-		<array>
-			<string>1</string>
-			<string>0</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_n_Right</key>
-		<array>
-			<string>0</string>
-			<string>1</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_o_Right</key>
-		<array>
-			<string>1</string>
-			<string>1</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_u_Left</key>
-		<array>
-			<string>1</string>
-			<string>0.5</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_v_Left</key>
-		<array>
-			<string>1</string>
-			<string>1</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_w_Left</key>
-		<array>
-			<string>0</string>
-			<string>1</string>
-			<string>0</string>
-			<string>0.25</string>
-		</array>
-		<key>@MMK_R_y_Left</key>
-		<array>
-			<string>0</string>
-			<string>1</string>
-			<string>1</string>
-			<string>0.25</string>
-		</array>
-	</dict>
 	<key>org.robofab.glyphOrder</key>
 	<array>
 		<string>.notdef</string>
@@ -1293,7 +1034,6 @@
 		<string>quotedblright</string>
 		<string>Zcaron</string>
 		<string>quotesinglbase</string>
-		<string>uniF8FF</string>
 		<string>quotedblleft</string>
 		<string>uni0209</string>
 		<string>uni0208</string>
@@ -1315,13 +1055,10 @@
 		<string>uni0211</string>
 		<string>uni0212</string>
 		<string>uni0213</string>
-		<string>afii61289</string>
 		<string>ellipsis</string>
 		<string>zcaron</string>
 		<string>uni02C9</string>
 		<string>uni03A9</string>
-		<string>uni021A</string>
-		<string>uni021B</string>
 		<string>oe</string>
 		<string>guilsinglleft</string>
 		<string>uni03BC</string>
@@ -1340,19 +1077,14 @@
 		<string>uni2215</string>
 		<string>uni00AD</string>
 		<string>quotedblbase</string>
-		<string>uni0219</string>
 		<string>Ydieresis</string>
 		<string>fl</string>
 		<string>greaterequal</string>
-		<string>uni0326</string>
 		<string>scaron</string>
 		<string>lessequal</string>
-		<string>increment</string>
 		<string>Lslash</string>
-		<string>uni030F</string>
 		<string>florin</string>
 		<string>estimated</string>
-		<string>uni0311</string>
 		<string>foursuperior</string>
 		<string>pi</string>
 		<string>Omega</string>
@@ -1360,7 +1092,6 @@
 		<string>product</string>
 		<string>approxequal</string>
 		<string>emdash</string>
-		<string>uni0218</string>
 		<string>fi</string>
 		<string>bullet</string>
 		<string>guilsinglright</string>
@@ -1474,10 +1205,126 @@
 		<string>ygrave</string>
 		<string>zacute</string>
 		<string>zdotaccent</string>
-		<string>guillemetleft</string>
-		<string>guillemetright</string>
-		<string>euro</string>
 		<string>emptyset</string>
+		<string>AEacute</string>
+		<string>AEmacron</string>
+		<string>Ccircumflex</string>
+		<string>Ebreve</string>
+		<string>Gcaron</string>
+		<string>Gcircumflex</string>
+		<string>Hcircumflex</string>
+		<string>Ibreve</string>
+		<string>Itilde</string>
+		<string>Jcircumflex</string>
+		<string>Obreve</string>
+		<string>Oslashacute</string>
+		<string>Scircumflex</string>
+		<string>Ubreve</string>
+		<string>Utilde</string>
+		<string>uni01C4</string>
+		<string>uni01C5</string>
+		<string>uni01CD</string>
+		<string>uni01CF</string>
+		<string>uni01D1</string>
+		<string>uni01D3</string>
+		<string>uni01E8</string>
+		<string>uni01EA</string>
+		<string>uni01F1</string>
+		<string>uni01F2</string>
+		<string>uni01F4</string>
+		<string>uni01F8</string>
+		<string>uni01c7</string>
+		<string>uni01c8</string>
+		<string>uni01ca</string>
+		<string>uni01cb</string>
+		<string>uni021E</string>
+		<string>uni0226</string>
+		<string>uni0228</string>
+		<string>uni0232</string>
+		<string>uni1E02</string>
+		<string>uni1E0A</string>
+		<string>uni1E1E</string>
+		<string>uni1E40</string>
+		<string>uni1E56</string>
+		<string>uni1E60</string>
+		<string>uni1E6A</string>
+		<string>uni1EBC</string>
+		<string>uni1EF8</string>
+		<string>aeacute</string>
+		<string>aemacron</string>
+		<string>ccircumflex</string>
+		<string>ebreve</string>
+		<string>gcaron</string>
+		<string>gcircumflex</string>
+		<string>hcircumflex</string>
+		<string>ibreve</string>
+		<string>itilde</string>
+		<string>dotlessj</string>
+		<string>jcircumflex</string>
+		<string>kgreenlandic</string>
+		<string>napostrophe</string>
+		<string>obreve</string>
+		<string>oslashacute</string>
+		<string>scircumflex</string>
+		<string>ubreve</string>
+		<string>uni01C6</string>
+		<string>uni01C9</string>
+		<string>uni01CC</string>
+		<string>uni01CE</string>
+		<string>uni01D0</string>
+		<string>uni01D2</string>
+		<string>uni01D4</string>
+		<string>uni01E9</string>
+		<string>uni01EB</string>
+		<string>uni01F0</string>
+		<string>uni01F3</string>
+		<string>uni01F5</string>
+		<string>uni01F9</string>
+		<string>uni021F</string>
+		<string>uni0227</string>
+		<string>uni0229</string>
+		<string>uni0233</string>
+		<string>uni1E03</string>
+		<string>uni1E0B</string>
+		<string>uni1E1F</string>
+		<string>uni1E41</string>
+		<string>uni1E57</string>
+		<string>uni1E61</string>
+		<string>uni1E6B</string>
+		<string>uni1EBD</string>
+		<string>uni1EF9</string>
+		<string>utilde</string>
+		<string>uniFB00</string>
+		<string>uniFB03</string>
+		<string>uniFB04</string>
+		<string>Delta</string>
+		<string>Sigma</string>
+		<string>uni022E</string>
+		<string>uni022F</string>
+		<string>guillemotleft</string>
+		<string>guillemotright</string>
+		<string>uni000D</string>
+		<string>Euro</string>
+		<string>uni2113</string>
+		<string>caron.alt</string>
+		<string>breveinvertedcomb</string>
+		<string>commaaccent</string>
+		<string>commaturnedabovecomb</string>
+		<string>dblgravecmb</string>
+		<string>uni0307</string>
+		<string>apostrophemod</string>
+		<string>NULL</string>
+		<string>dotaccentcmb</string>
+		<string>ff</string>
+		<string>ffi</string>
+		<string>ffl</string>
+		<string>fj</string>
+		<string>foundryicon</string>
+		<string>middot</string>
+		<string>slashbar</string>
+		<string>uni0002</string>
+		<string>uni0009</string>
+		<string>uni000A</string>
 	</array>
 </dict>
 </plist>
