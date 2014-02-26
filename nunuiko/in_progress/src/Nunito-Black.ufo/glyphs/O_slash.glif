@@ -8,7 +8,7 @@
       <point x="316" y="-231" type="curve" smooth="yes"/>
       <point x="358" y="-231"/>
       <point x="380" y="-192"/>
-      <point x="408" y="-145" type="curve"/>
+      <point x="408" y="-145" type="curve" smooth="yes"/>
       <point x="1413" y="1464" type="line" smooth="yes"/>
       <point x="1430" y="1491"/>
       <point x="1443" y="1523"/>
@@ -29,6 +29,35 @@
   </outline>
   <lib>
     <dict>
+      <key>com.fontlab.hintData</key>
+      <dict>
+	<key>hhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>	    <integer>-38</integer>
+	    <key>width</key>	    <integer>269</integer>
+	  </dict>
+	  <dict>
+	    <key>position</key>	    <integer>1219</integer>
+	    <key>width</key>	    <integer>268</integer>
+	  </dict>
+	</array>
+	<key>vhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>
+	    <integer>102</integer>
+	    <key>width</key>
+	    <integer>387</integer>
+	  </dict>
+	  <dict>
+	    <key>position</key>
+	    <integer>1146</integer>
+	    <key>width</key>
+	    <integer>385</integer>
+	  </dict>
+	</array>
+      </dict>
     <key>com.typemytype.robofont.layerData</key>
       <dict>
     <key>b</key>

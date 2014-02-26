@@ -7,19 +7,17 @@
       <point x="583" y="1030" type="move" name="top"/>
     </contour>
     <contour>
-      <point x="507" y="6" type="line"/>
-      <point x="663" y="306" type="line"/>
-      <point x="330" y="928" type="line" smooth="yes"/>
-      <point x="243" y="1098"/>
-      <point x="-16" y="977"/>
-      <point x="75" y="799" type="curve"/>
-    </contour>
-    <contour>
       <point x="490" y="-342" type="curve"/>
       <point x="1059" y="802" type="line"/>
       <point x="1151" y="1002"/>
       <point x="903" y="1115"/>
       <point x="809" y="916" type="curve"/>
+      <point x="580.993" y="459.179" type="line"/>
+      <point x="330" y="928" type="line" smooth="yes"/>
+      <point x="243" y="1098"/>
+      <point x="-16" y="977"/>
+      <point x="75" y="799" type="curve"/>
+      <point x="427.574" y="151.798" type="line"/>
       <point x="244" y="-216" type="line"/>
       <point x="157" y="-404"/>
       <point x="402" y="-529"/>

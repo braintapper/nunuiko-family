@@ -4,13 +4,13 @@
   <unicode hex="0054"/>
   <outline>
     <contour>
-      <point x="617" y="738" type="move" name="mid"/>
+      <point x="624" y="1454" type="move" name="top"/>
     </contour>
     <contour>
       <point x="608" y="0" type="move" name="bot"/>
     </contour>
     <contour>
-      <point x="624" y="1454" type="move" name="top"/>
+      <point x="617" y="738" type="move" name="mid"/>
     </contour>
     <contour>
       <point x="612" y="0" type="curve" smooth="yes"/>
@@ -40,6 +40,16 @@
   </outline>
   <lib>
     <dict>
+      <key>com.fontlab.hintData</key>
+      <dict>
+	<key>hhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>	    <integer>1180</integer>
+	    <key>width</key>	    <integer>276</integer>
+	  </dict>
+	</array>
+      </dict>
     <key>b</key>
       <dict>
       </dict>

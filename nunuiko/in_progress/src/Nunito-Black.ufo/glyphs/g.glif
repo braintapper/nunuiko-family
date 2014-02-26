@@ -7,6 +7,20 @@
       <point x="597" y="991" type="move" name="top"/>
     </contour>
     <contour>
+      <point x="624" y="208" type="curve" smooth="yes"/>
+      <point x="487" y="208"/>
+      <point x="412" y="311"/>
+      <point x="412" y="507" type="curve" smooth="yes"/>
+      <point x="412" y="686"/>
+      <point x="458" y="824"/>
+      <point x="623" y="824" type="curve" smooth="yes"/>
+      <point x="792" y="824"/>
+      <point x="842" y="698"/>
+      <point x="842" y="505" type="curve" smooth="yes"/>
+      <point x="842" y="298"/>
+      <point x="752" y="211"/>
+    </contour>
+    <contour>
       <point x="602" y="-441" type="curve" smooth="yes"/>
       <point x="970" y="-441"/>
       <point x="1143" y="-213"/>
@@ -44,23 +58,38 @@
       <point x="331" y="-419"/>
       <point x="475" y="-441"/>
     </contour>
-    <contour>
-      <point x="624" y="208" type="curve"/>
-      <point x="487" y="208"/>
-      <point x="412" y="311"/>
-      <point x="412" y="507" type="curve" smooth="yes"/>
-      <point x="412" y="686"/>
-      <point x="458" y="824"/>
-      <point x="623" y="824" type="curve" smooth="yes"/>
-      <point x="792" y="824"/>
-      <point x="842" y="698"/>
-      <point x="842" y="505" type="curve" smooth="yes"/>
-      <point x="842" y="298"/>
-      <point x="752" y="211"/>
-    </contour>
   </outline>
   <lib>
     <dict>
+      <key>com.fontlab.hintData</key>
+      <dict>
+	<key>hhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>	    <integer>-441</integer>
+	    <key>width</key>	    <integer>649</integer>
+	  </dict>
+	  <dict>
+	    <key>position</key>	    <integer>-390</integer>
+	    <key>width</key>	    <integer>210</integer>
+	  </dict>
+	</array>
+	<key>vhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>
+	    <integer>72</integer>
+	    <key>width</key>
+	    <integer>340</integer>
+	  </dict>
+	  <dict>
+	    <key>position</key>
+	    <integer>842</integer>
+	    <key>width</key>
+	    <integer>301</integer>
+	  </dict>
+	</array>
+      </dict>
     <key>b</key>
       <dict>
       </dict>

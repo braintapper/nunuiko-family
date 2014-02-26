@@ -4,10 +4,21 @@
   <unicode hex="0052"/>
   <outline>
     <contour>
+      <point x="735" y="1438" type="move" name="top"/>
+    </contour>
+    <contour>
       <point x="762" y="0" type="move" name="bot"/>
     </contour>
     <contour>
-      <point x="735" y="1438" type="move" name="top"/>
+      <point x="513" y="830" type="line"/>
+      <point x="513" y="1228" type="line"/>
+      <point x="667" y="1228" type="line" smooth="yes"/>
+      <point x="825" y="1228"/>
+      <point x="979" y="1222"/>
+      <point x="979" y="1027" type="curve" smooth="yes"/>
+      <point x="979" y="857"/>
+      <point x="819" y="830"/>
+      <point x="675" y="830" type="curve" smooth="yes"/>
     </contour>
     <contour>
       <point x="334" y="0" type="curve" smooth="yes"/>
@@ -45,20 +56,32 @@
       <point x="150" y="74"/>
       <point x="232" y="0"/>
     </contour>
-    <contour>
-      <point x="513" y="830" type="line"/>
-      <point x="513" y="1228" type="line"/>
-      <point x="667" y="1228" type="line" smooth="yes"/>
-      <point x="825" y="1228"/>
-      <point x="979" y="1222"/>
-      <point x="979" y="1027" type="curve" smooth="yes"/>
-      <point x="979" y="857"/>
-      <point x="819" y="830"/>
-      <point x="675" y="830" type="curve" smooth="yes"/>
-    </contour>
   </outline>
   <lib>
     <dict>
+      <key>com.fontlab.hintData</key>
+      <dict>
+	<key>hhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>	    <integer>592</integer>
+	    <key>width</key>	    <integer>238</integer>
+	  </dict>
+	  <dict>
+	    <key>position</key>	    <integer>1228</integer>
+	    <key>width</key>	    <integer>228</integer>
+	  </dict>
+	</array>
+	<key>vhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>
+	    <integer>979</integer>
+	    <key>width</key>
+	    <integer>362</integer>
+	  </dict>
+	</array>
+      </dict>
     <key>b</key>
       <dict>
       </dict>
@@ -355,8 +378,9 @@
     <key>unicodes</key>
       <array>
       </array>
-    <key>name</key>
-      <string>R</string>
+    <key>com.typemytype.robofont.guides</key>
+      <array>
+      </array>
     <key>width</key>
       <integer>1408</integer>
     <key>contours</key>
@@ -368,9 +392,8 @@
     <key>lib</key>
       <dict>
       </dict>
-    <key>com.typemytype.robofont.guides</key>
-      <array>
-      </array>
+    <key>name</key>
+      <string>R</string>
     </dict>
   </lib>
 </glyph>

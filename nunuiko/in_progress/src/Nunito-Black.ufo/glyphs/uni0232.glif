@@ -6,4 +6,18 @@
     <component base="Y"/>
     <component base="macron" xOffset="392" yOffset="447"/>
   </outline>
+  <lib>
+    <dict>
+      <key>com.fontlab.hintData</key>
+      <dict>
+	<key>hhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>	    <integer>1619</integer>
+	    <key>width</key>	    <integer>191</integer>
+	  </dict>
+	</array>
+      </dict>
+    </dict>
+  </lib>
 </glyph>

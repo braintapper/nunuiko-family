@@ -4,10 +4,10 @@
   <unicode hex="00AF"/>
   <outline>
     <contour>
-      <point x="293" y="1301" type="move" name="_mid"/>
+      <point x="287" y="992" type="move" name="_top"/>
     </contour>
     <contour>
-      <point x="287" y="992" type="move" name="_top"/>
+      <point x="293" y="1301" type="move" name="_mid"/>
     </contour>
     <contour>
       <point x="-14" y="1172" type="curve" smooth="yes"/>
@@ -26,4 +26,18 @@
       <point x="-67" y="1172"/>
     </contour>
   </outline>
+  <lib>
+    <dict>
+      <key>com.fontlab.hintData</key>
+      <dict>
+	<key>hhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>	    <integer>1172</integer>
+	    <key>width</key>	    <integer>191</integer>
+	  </dict>
+	</array>
+      </dict>
+    </dict>
+  </lib>
 </glyph>

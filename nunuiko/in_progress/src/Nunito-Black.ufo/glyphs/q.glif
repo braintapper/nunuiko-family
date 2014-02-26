@@ -4,6 +4,20 @@
   <unicode hex="0071"/>
   <outline>
     <contour>
+      <point x="612" y="194" type="curve" smooth="yes"/>
+      <point x="456" y="194"/>
+      <point x="384" y="324"/>
+      <point x="384" y="512" type="curve" smooth="yes"/>
+      <point x="384" y="658"/>
+      <point x="440" y="829"/>
+      <point x="607" y="829" type="curve" smooth="yes"/>
+      <point x="778" y="829"/>
+      <point x="844" y="701"/>
+      <point x="844" y="508" type="curve" smooth="yes"/>
+      <point x="844" y="296"/>
+      <point x="756" y="194"/>
+    </contour>
+    <contour>
       <point x="1010" y="-369" type="curve" smooth="yes"/>
       <point x="1121" y="-369"/>
       <point x="1162" y="-292"/>
@@ -32,23 +46,38 @@
       <point x="845" y="-292"/>
       <point x="892" y="-369"/>
     </contour>
-    <contour>
-      <point x="612" y="194" type="curve" smooth="yes"/>
-      <point x="456" y="194"/>
-      <point x="384" y="324"/>
-      <point x="384" y="512" type="curve" smooth="yes"/>
-      <point x="384" y="658"/>
-      <point x="440" y="829"/>
-      <point x="607" y="829" type="curve" smooth="yes"/>
-      <point x="778" y="829"/>
-      <point x="844" y="701"/>
-      <point x="844" y="508" type="curve" smooth="yes"/>
-      <point x="844" y="296"/>
-      <point x="756" y="194"/>
-    </contour>
   </outline>
   <lib>
     <dict>
+      <key>com.fontlab.hintData</key>
+      <dict>
+	<key>hhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>	    <integer>-12</integer>
+	    <key>width</key>	    <integer>206</integer>
+	  </dict>
+	  <dict>
+	    <key>position</key>	    <integer>829</integer>
+	    <key>width</key>	    <integer>198</integer>
+	  </dict>
+	</array>
+	<key>vhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>
+	    <integer>80</integer>
+	    <key>width</key>
+	    <integer>304</integer>
+	  </dict>
+	  <dict>
+	    <key>position</key>
+	    <integer>845</integer>
+	    <key>width</key>
+	    <integer>317</integer>
+	  </dict>
+	</array>
+      </dict>
     <key>b</key>
       <dict>
       </dict>

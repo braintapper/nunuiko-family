@@ -4,10 +4,10 @@
   <unicode hex="0074"/>
   <outline>
     <contour>
-      <point x="488" y="-1" type="move" name="bot"/>
+      <point x="332" y="1290" type="move" name="caron.alt"/>
     </contour>
     <contour>
-      <point x="332" y="1290" type="move" name="caron.alt"/>
+      <point x="488" y="-1" type="move" name="bot"/>
     </contour>
     <contour>
       <point x="504" y="-13" type="curve" smooth="yes"/>
@@ -53,6 +53,41 @@
   </outline>
   <lib>
     <dict>
+      <key>com.fontlab.hintData</key>
+      <dict>
+	<key>hhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>	    <integer>-13</integer>
+	    <key>width</key>	    <integer>232</integer>
+	  </dict>
+	  <dict>
+	    <key>position</key>	    <integer>794</integer>
+	    <key>width</key>	    <integer>220</integer>
+	  </dict>
+	</array>
+	<key>vhints</key>
+	<array>
+	  <dict>
+	    <key>position</key>
+	    <integer>19</integer>
+	    <key>width</key>
+	    <integer>718</integer>
+	  </dict>
+	  <dict>
+	    <key>position</key>
+	    <integer>191</integer>
+	    <key>width</key>
+	    <integer>319</integer>
+	  </dict>
+	  <dict>
+	    <key>position</key>
+	    <integer>234</integer>
+	    <key>width</key>
+	    <integer>276</integer>
+	  </dict>
+	</array>
+      </dict>
     <key>b</key>
       <dict>
       </dict>
