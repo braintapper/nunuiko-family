@@ -15,12 +15,13 @@ UFODescent: -675
 LayerCount: 2
 Layer: 0 0 "Back"  1
 Layer: 1 0 "Fore"  0
+FSType: 0
 OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
-OS2_UseTypoMetrics: 0
-CreationTime: 1393442690
-ModificationTime: 1393442921
-PfmFamily: 0
+OS2_UseTypoMetrics: 1
+CreationTime: 1393442940
+ModificationTime: 1393444092
+PfmFamily: 17
 TTFWeight: 800
 TTFWidth: 5
 LineGap: 0
@@ -34,13 +35,14 @@ OS2WinAscent: 1999
 OS2WinAOffset: 0
 OS2WinDescent: -572
 OS2WinDOffset: 0
-HheadAscent: 0
-HheadAOffset: 1
-HheadDescent: 0
-HheadDOffset: 1
+HheadAscent: 1999
+HheadAOffset: 0
+HheadDescent: -572
+HheadDOffset: 0
 OS2Vendor: 'NeWT'
 Lookup: 258 0 0 "kernHorizontalKerninglookup0"  {"kernHorizontalKerninglookup0 subtable"  } ['kern' ('DFLT' <'dflt' > ) ]
 Lookup: 258 0 0 "kernHorizontalKerninginLatinloo"  {"kernHorizontalKerninginLatinloo subtable"  } ['kern' ('latn' <'dflt' > ) ]
+MarkAttachClasses: 1
 DEI: 91125
 LangName: 1033 "" "" "" "" "" "Version 2.0" "" "Nunito is a trademark of Vernon Adams and may be registered in certain jurisdictions." "newtypography" "Vernon Adams" "" "newtypography.co.uk" "newtypography.co.uk" "Copyright (c) 2013, vernon adams.+AAoACgAA-This Font Software is licensed under the SIL Open Font License, Version 1.1.+AAoA-This license is copied below, and is also available with a FAQ at:+AAoA-http://scripts.sil.org/OFL+AAoA" "http://scripts.sil.org/OFL" "" "" "" "Nunito-ExtraBold" 
 PickledData: "(dp1
@@ -1380,7 +1382,9 @@ DisplaySize: -96
 AntiAlias: 1
 FitToEm: 1
 WinInfo: 384 16 7
-AnchorClass2: "top.2" "caron.alt" "mid" "bot" "ogonek" "top" 
+BeginPrivate: 0
+EndPrivate
+AnchorClass2: "top.2" "mid" "ogonek" 
 BeginChars: 65545 493
 
 StartChar: A
@@ -1390,32 +1394,32 @@ VWidth: 0
 GlyphClass: 2
 Flags: W
 PickledData: "(dp1
-S'b'
-(dp2
-sS'anchors'
+S'segmentType'
+p2
+S'line'
 p3
+sS'b'
+(dp4
+sS'anchors'
+p5
 (tsS'lib'
-p4
-(dp5
-sS'unicodes'
 p6
-(tsS'y'
-I1232
-sS'width'
-p7
+(dp7
+sS'unicodes'
+p8
+(tsS'width'
+p9
 I1445
 sS'points'
-p8
-(dp9
-sS'contours'
 p10
 (dp11
-sS'components'
+sS'contours'
 p12
-(tsS'segmentType'
-p13
-S'line'
+(dp13
+sS'components'
 p14
+(tsS'y'
+I1232
 sS'x'
 I718
 sS'com.typemytype.robofont.layerData'
@@ -1426,16 +1430,16 @@ S'b'
 S'name'
 p18
 S'A'
-sg4
-(dp19
 sg6
-(tsg7
+(dp19
+sg8
+(tsg9
 I1414
-sg10
+sg12
 ((dp20
-g8
+g10
 ((dp21
-g13
+g2
 S'line'
 p22
 sS'x'
@@ -1446,7 +1450,7 @@ I0
 sS'y'
 I502
 s(dp24
-g13
+g2
 S'line'
 p25
 sS'x'
@@ -1456,7 +1460,7 @@ I0
 sS'y'
 I1275
 s(dp26
-g13
+g2
 S'line'
 p27
 sS'x'
@@ -1466,7 +1470,7 @@ I0
 sS'y'
 I1275
 s(dp28
-g13
+g2
 S'line'
 p29
 sS'x'
@@ -1477,9 +1481,9 @@ sS'y'
 I502
 stp30
 s(dp31
-g8
+g10
 ((dp32
-g13
+g2
 S'curve'
 p33
 sS'x'
@@ -1503,7 +1507,7 @@ I214
 sg23
 I0
 s(dp36
-g13
+g2
 S'curve'
 p37
 sS'x'
@@ -1513,7 +1517,7 @@ I1
 sS'y'
 I53
 s(dp38
-g13
+g2
 S'line'
 p39
 sS'x'
@@ -1523,7 +1527,7 @@ I0
 sS'y'
 I373
 s(dp40
-g13
+g2
 S'line'
 p41
 sS'x'
@@ -1533,7 +1537,7 @@ I0
 sS'y'
 I373
 s(dp42
-g13
+g2
 S'line'
 p43
 sS'x'
@@ -1557,7 +1561,7 @@ I1228
 sg23
 I0
 s(dp46
-g13
+g2
 S'curve'
 p47
 sS'x'
@@ -1581,7 +1585,7 @@ I1354
 sg23
 I0
 s(dp50
-g13
+g2
 S'curve'
 p51
 sS'x'
@@ -1605,7 +1609,7 @@ I1352
 sg23
 I0
 s(dp54
-g13
+g2
 S'curve'
 p55
 sS'x'
@@ -1615,7 +1619,7 @@ I0
 sS'y'
 I108
 s(dp56
-g13
+g2
 S'line'
 p57
 sS'x'
@@ -1639,7 +1643,7 @@ I777
 sg23
 I0
 s(dp60
-g13
+g2
 S'curve'
 p61
 sS'x'
@@ -1663,7 +1667,7 @@ I596
 sg23
 I0
 s(dp64
-g13
+g2
 S'curve'
 p65
 sS'x'
@@ -1673,7 +1677,7 @@ I1
 sS'y'
 I1280
 s(dp66
-g13
+g2
 S'line'
 p67
 sS'x'
@@ -1697,7 +1701,7 @@ I60
 sg23
 I0
 s(dp70
-g13
+g2
 S'curve'
 p71
 sS'x'
@@ -1722,13 +1726,12 @@ sg23
 I0
 stp74
 stp75
-sg12
-(tsg3
+sg14
+(tsg5
 (tsssg18
 S'A'
 s."
 AnchorPoint: "ogonek" 1265 19 basechar 0
-AnchorPoint: "top" 737 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -1784,7 +1787,6 @@ p12
 (tsS'anchors'
 p13
 (tsss."
-AnchorPoint: "top" 1295 1446 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -2262,32 +2264,32 @@ VWidth: 0
 GlyphClass: 2
 Flags: W
 PickledData: "(dp1
-S'b'
-(dp2
-sS'anchors'
+S'segmentType'
+p2
+S'curve'
 p3
+sS'b'
+(dp4
+sS'anchors'
+p5
 (tsS'lib'
-p4
-(dp5
-sS'unicodes'
 p6
-(tsS'y'
-I1260
-sS'width'
-p7
+(dp7
+sS'unicodes'
+p8
+(tsS'width'
+p9
 I1395
 sS'points'
-p8
-(dp9
-sS'contours'
 p10
 (dp11
-sS'components'
+sS'contours'
 p12
-(tsS'segmentType'
-p13
-S'curve'
+(dp13
+sS'components'
 p14
+(tsS'y'
+I1260
 sS'x'
 I676
 sS'com.typemytype.robofont.layerData'
@@ -2298,16 +2300,16 @@ S'b'
 S'name'
 p18
 S'B'
-sg4
-(dp19
 sg6
-(tsg7
+(dp19
+sg8
+(tsg9
 I1292
-sg10
+sg12
 ((dp20
-g8
+g10
 ((dp21
-g13
+g2
 S'curve'
 p22
 sS'x'
@@ -2318,7 +2320,7 @@ I1
 sS'y'
 I0
 s(dp24
-g13
+g2
 S'line'
 p25
 sS'x'
@@ -2342,7 +2344,7 @@ I1108
 sg23
 I0
 s(dp28
-g13
+g2
 S'curve'
 p29
 sS'x'
@@ -2366,7 +2368,7 @@ I1084
 sg23
 I0
 s(dp32
-g13
+g2
 S'curve'
 p33
 sS'x'
@@ -2376,7 +2378,7 @@ I1
 sS'y'
 I145
 s(dp34
-g13
+g2
 S'line'
 p35
 sS'x'
@@ -2386,7 +2388,7 @@ I0
 sS'y'
 I145
 s(dp36
-g13
+g2
 S'line'
 p37
 sS'x'
@@ -2396,7 +2398,7 @@ I0
 sS'y'
 I662
 s(dp38
-g13
+g2
 S'line'
 p39
 sS'x'
@@ -2420,7 +2422,7 @@ I1049
 sg23
 I0
 s(dp42
-g13
+g2
 S'curve'
 p43
 sS'x'
@@ -2444,7 +2446,7 @@ I1026
 sg23
 I0
 s(dp46
-g13
+g2
 S'curve'
 p47
 sS'x'
@@ -2454,7 +2456,7 @@ I1
 sS'y'
 I806
 s(dp48
-g13
+g2
 S'line'
 p49
 sS'x'
@@ -2464,7 +2466,7 @@ I0
 sS'y'
 I806
 s(dp50
-g13
+g2
 S'line'
 p51
 sS'x'
@@ -2474,7 +2476,7 @@ I0
 sS'y'
 I1281
 s(dp52
-g13
+g2
 S'line'
 p53
 sS'x'
@@ -2498,7 +2500,7 @@ I1080
 sg23
 I0
 s(dp56
-g13
+g2
 S'curve'
 p57
 sS'x'
@@ -2522,7 +2524,7 @@ I1056
 sg23
 I0
 s(dp60
-g13
+g2
 S'curve'
 p61
 sS'x'
@@ -2532,7 +2534,7 @@ I1
 sS'y'
 I1426
 s(dp62
-g13
+g2
 S'line'
 p63
 sS'x'
@@ -2556,7 +2558,7 @@ I178
 sg23
 I0
 s(dp66
-g13
+g2
 S'curve'
 p67
 sS'x'
@@ -2566,7 +2568,7 @@ I1
 sS'y'
 I1340
 s(dp68
-g13
+g2
 S'line'
 p69
 sS'x'
@@ -2591,12 +2593,11 @@ sg23
 I0
 stp72
 stp73
-sg12
-(tsg3
+sg14
+(tsg5
 (tsssg18
 S'B'
 s."
-AnchorPoint: "top" 687 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -2668,8 +2669,6 @@ sg8
 (tsssg13
 S'C'
 s."
-AnchorPoint: "bot" 789 0 basechar 0
-AnchorPoint: "top" 805 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -3196,7 +3195,6 @@ sg9
 S'D'
 s."
 AnchorPoint: "mid" 324 744 basechar 0
-AnchorPoint: "top" 746 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -3339,9 +3337,7 @@ sg8
 (tsssg13
 S'E'
 s."
-AnchorPoint: "bot" 682 0 basechar 0
 AnchorPoint: "ogonek" 835 9 basechar 0
-AnchorPoint: "top" 666 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -4487,8 +4483,6 @@ sg9
 (tsssg13
 S'G'
 s."
-AnchorPoint: "bot" 851 0 basechar 0
-AnchorPoint: "top" 819 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -4692,7 +4686,6 @@ sg8
 (tsssg13
 S'H'
 s."
-AnchorPoint: "top" 777 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -4817,7 +4810,6 @@ sg8
 S'I'
 s."
 AnchorPoint: "ogonek" 337 23 basechar 0
-AnchorPoint: "top" 332 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -5145,7 +5137,6 @@ sg8
 (tsssg13
 S'J'
 s."
-AnchorPoint: "top" 817 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -5218,8 +5209,6 @@ sg8
 (tsssg13
 S'K'
 s."
-AnchorPoint: "bot" 694 0 basechar 0
-AnchorPoint: "top" 677 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -5613,9 +5602,6 @@ sg9
 S'L'
 s."
 AnchorPoint: "mid" 322 743 basechar 0
-AnchorPoint: "bot" 674 0 basechar 0
-AnchorPoint: "caron.alt" 373 1015 basechar 0
-AnchorPoint: "top" 513 1446 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -5857,7 +5843,6 @@ sg8
 (tsssg13
 S'M'
 s."
-AnchorPoint: "top" 1000 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -5925,8 +5910,6 @@ sg8
 (tsssg13
 S'N'
 s."
-AnchorPoint: "bot" 820 0 basechar 0
-AnchorPoint: "top" 841 1445 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -6129,18 +6112,17 @@ p12
 p13
 (tsg3
 (tsssg10
-(tsg7
-S'O'
-sg11
+(tsS'com.typemytype.robofont.guides'
+p14
+(tsg11
 I1604
 sg12
 (tsg13
 (tsg8
-(dp14
-sS'com.typemytype.robofont.guides'
-p15
-(ts."
-AnchorPoint: "top" 811 1445 basechar 0
+(dp15
+sg7
+S'O'
+s."
 LayerCount: 2
 Fore
 SplineSet
@@ -6966,7 +6948,6 @@ sg9
 (tsssg13
 S'P'
 s."
-AnchorPoint: "top" 702 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -7326,19 +7307,17 @@ sS'components'
 p63
 (tsg3
 (tsssg10
-(tsg7
-S'R'
-sg11
+(tsS'com.typemytype.robofont.guides'
+p64
+(tsg11
 I1408
 sg12
 (tsg63
 (tsg8
-(dp64
-sS'com.typemytype.robofont.guides'
-p65
-(ts."
-AnchorPoint: "bot" 761 0 basechar 0
-AnchorPoint: "top" 707 1438 basechar 0
+(dp65
+sg7
+S'R'
+s."
 LayerCount: 2
 Fore
 SplineSet
@@ -7523,8 +7502,6 @@ sg8
 (tsssg13
 S'S'
 s."
-AnchorPoint: "bot" 664 0 basechar 0
-AnchorPoint: "top" 670 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -8062,8 +8039,6 @@ sg9
 S'T'
 s."
 AnchorPoint: "mid" 611 720 basechar 0
-AnchorPoint: "bot" 604 0 basechar 0
-AnchorPoint: "top" 619 1446 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -8303,7 +8278,6 @@ sg8
 S'U'
 s."
 AnchorPoint: "ogonek" 921 9 basechar 0
-AnchorPoint: "top" 774 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -8980,17 +8954,17 @@ sS'components'
 p64
 (tsg3
 (tsssg10
-(tsg7
-S'V'
-sg11
+(tsS'com.typemytype.robofont.guides'
+p65
+(tsg11
 I1365
 sg12
 (tsg64
 (tsg8
-(dp65
-sS'com.typemytype.robofont.guides'
-p66
-(ts."
+(dp66
+sg7
+S'V'
+s."
 LayerCount: 2
 Fore
 SplineSet
@@ -9052,7 +9026,6 @@ sg8
 (tsssg13
 S'W'
 s."
-AnchorPoint: "top" 1065 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -9909,18 +9882,17 @@ sS'components'
 p53
 (tsg3
 (tsssg10
-(tsg7
-S'Y'
-sg11
+(tsS'com.typemytype.robofont.guides'
+p54
+(tsg11
 I1321
 sg12
 (tsg53
 (tsg8
-(dp54
-sS'com.typemytype.robofont.guides'
-p55
-(ts."
-AnchorPoint: "top" 670 1438 basechar 0
+(dp55
+sg7
+S'Y'
+s."
 LayerCount: 2
 Fore
 SplineSet
@@ -10447,7 +10419,6 @@ sg9
 (tsssg13
 S'Z'
 s."
-AnchorPoint: "top" 646 1438 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -10623,7 +10594,6 @@ sg8
 S'a'
 s."
 AnchorPoint: "ogonek" 829 30 basechar 0
-AnchorPoint: "top" 565 1001 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -10794,7 +10764,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 116 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -10891,7 +10860,6 @@ p12
 (tsS'anchors'
 p13
 (tsss."
-AnchorPoint: "top" 879 1002 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -11973,7 +11941,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 286 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -11997,7 +11964,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 286 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -12100,8 +12066,6 @@ sg8
 (tsssg13
 S'c'
 s."
-AnchorPoint: "bot" 558 0 basechar 0
-AnchorPoint: "top" 592 1021 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -12167,7 +12131,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 282 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -12193,7 +12156,6 @@ Width: 646
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "caron.alt" -68 302 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -12354,7 +12316,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "bot" 281 0 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -12433,7 +12394,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 294 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -12581,7 +12541,6 @@ sg8
 S'uni0326'
 p16
 s."
-AnchorPoint: "bot" 347 0 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -12606,7 +12565,6 @@ Width: 600
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 291 991 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -12749,7 +12707,6 @@ sg8
 S'd'
 s."
 AnchorPoint: "mid" 949 1176 basechar 0
-AnchorPoint: "caron.alt" 952 1014 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -12847,7 +12804,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 486 1086 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -12974,7 +12930,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 287 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -13092,7 +13047,6 @@ Width: 633
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 317 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -13110,7 +13064,6 @@ Width: 533
 VWidth: 0
 GlyphClass: 2
 Flags: W
-AnchorPoint: "top" 268 991 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -13130,7 +13083,6 @@ Width: 546
 VWidth: 0
 GlyphClass: 2
 Flags: W
-AnchorPoint: "top" 280 991 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -13189,7 +13141,6 @@ sg8
 S'e'
 s."
 AnchorPoint: "ogonek" 791 39 basechar 0
-AnchorPoint: "top" 592 1001 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -14400,7 +14351,6 @@ sg8
 (tsssg13
 S'g'
 s."
-AnchorPoint: "top" 592 996 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -14602,7 +14552,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 446 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -14822,32 +14771,32 @@ VWidth: 0
 GlyphClass: 2
 Flags: W
 PickledData: "(dp1
-S'b'
-(dp2
-sS'anchors'
+S'segmentType'
+p2
+S'curve'
 p3
+sS'b'
+(dp4
+sS'anchors'
+p5
 (tsS'lib'
-p4
-(dp5
-sS'unicodes'
 p6
-(tsS'y'
-I113
-sS'width'
-p7
+(dp7
+sS'unicodes'
+p8
+(tsS'width'
+p9
 I1195
 sS'points'
-p8
-(dp9
-sS'contours'
 p10
 (dp11
-sS'components'
+sS'contours'
 p12
-(tsS'segmentType'
-p13
-S'curve'
+(dp13
+sS'components'
 p14
+(tsS'y'
+I113
 sS'x'
 I137
 sS'com.typemytype.robofont.layerData'
@@ -14858,14 +14807,14 @@ S'b'
 S'name'
 p18
 S'h'
-sg4
-(dp19
 sg6
-(tsg7
+(dp19
+sg8
+(tsg9
 I1148
-sg10
-(tsg12
-(tsg3
+sg12
+(tsg14
+(tsg5
 (tsssg18
 S'h'
 s."
@@ -14945,7 +14894,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 174 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -15460,7 +15408,6 @@ p51
 (tsS'anchors'
 p52
 (tsss."
-AnchorPoint: "bot" 569 0 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -15607,9 +15554,6 @@ p11
 (tsS'anchors'
 p12
 (tsss."
-AnchorPoint: "bot" 272 0 basechar 0
-AnchorPoint: "caron.alt" 279 1015 basechar 0
-AnchorPoint: "top" 255 1445 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -15890,7 +15834,6 @@ sg8
 (tsssg13
 S'm'
 s."
-AnchorPoint: "top" 974 1009 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -15928,7 +15871,6 @@ VWidth: 0
 GlyphClass: 4
 Flags: W
 AnchorPoint: "mid" 293 1330 mark 0
-AnchorPoint: "top" 290 1015 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -16044,32 +15986,32 @@ VWidth: 0
 GlyphClass: 2
 Flags: W
 PickledData: "(dp1
-S'b'
-(dp2
-sS'anchors'
+S'segmentType'
+p2
+S'curve'
 p3
+sS'b'
+(dp4
+sS'anchors'
+p5
 (tsS'lib'
-p4
-(dp5
-sS'unicodes'
 p6
-(tsS'y'
-I113
-sS'width'
-p7
+(dp7
+sS'unicodes'
+p8
+(tsS'width'
+p9
 I1195
 sS'points'
-p8
-(dp9
-sS'contours'
 p10
 (dp11
-sS'components'
+sS'contours'
 p12
-(tsS'segmentType'
-p13
-S'curve'
+(dp13
+sS'components'
 p14
+(tsS'y'
+I113
 sS'x'
 I137
 sS'com.typemytype.robofont.layerData'
@@ -16080,19 +16022,17 @@ S'b'
 S'name'
 p18
 S'n'
-sg4
-(dp19
 sg6
-(tsg7
+(dp19
+sg8
+(tsg9
 I1152
-sg10
-(tsg12
-(tsg3
+sg12
+(tsg14
+(tsg5
 (tsssg18
 S'n'
 s."
-AnchorPoint: "bot" 616 0 basechar 0
-AnchorPoint: "top" 631 991 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -16500,18 +16440,17 @@ p12
 p13
 (tsg3
 (tsssg10
-(tsg7
-S'o'
-sg11
+(tsS'com.typemytype.robofont.guides'
+p14
+(tsg11
 I1199
 sg12
 (tsg13
 (tsg8
-(dp14
-sS'com.typemytype.robofont.guides'
-p15
-(ts."
-AnchorPoint: "top" 614 991 basechar 0
+(dp15
+sg7
+S'o'
+s."
 LayerCount: 2
 Fore
 SplineSet
@@ -17134,7 +17073,6 @@ Width: 1234
 VWidth: 0
 GlyphClass: 2
 Flags: W
-AnchorPoint: "top" 582 991 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -18283,8 +18221,6 @@ sg8
 (tsssg13
 S'r'
 s."
-AnchorPoint: "bot" 265 0 basechar 0
-AnchorPoint: "top" 368 1001 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -18490,7 +18426,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 285 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -18549,8 +18484,6 @@ sg8
 (tsssg13
 S's'
 s."
-AnchorPoint: "bot" 504 0 basechar 0
-AnchorPoint: "top" 515 1005 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -19433,8 +19366,6 @@ sg9
 (tsssg13
 S't'
 s."
-AnchorPoint: "bot" 482 2 basechar 0
-AnchorPoint: "caron.alt" 362 1262 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -19849,7 +19780,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 293 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -20336,7 +20266,6 @@ sg9
 S'u'
 s."
 AnchorPoint: "ogonek" 939 22 basechar 0
-AnchorPoint: "top" 600 991 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -22293,7 +22222,6 @@ Width: 569
 VWidth: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "top" 289 1040 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -23474,7 +23402,6 @@ sg9
 (tsssg13
 S'w'
 s."
-AnchorPoint: "top" 874 1013 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -23973,7 +23900,6 @@ p64
 (tsS'anchors'
 p65
 (tsss."
-AnchorPoint: "top" 579 1030 basechar 0
 LayerCount: 2
 Fore
 SplineSet
@@ -24176,7 +24102,6 @@ Width: 987
 VWidth: 0
 GlyphClass: 2
 Flags: W
-AnchorPoint: "top" 517 1001 basechar 0
 LayerCount: 2
 Fore
 SplineSet
