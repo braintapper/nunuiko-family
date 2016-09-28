@@ -113523,8 +113523,8 @@ name = compatibleFullName;
 value = "Nunito Heavy Italic";
 },
 {
-name = weightClass;
-value = "950";
+name = familyName;
+value = "Nunito Heavy";
 }
 );
 interpolationWeight = 208;
@@ -113534,8 +113534,7 @@ instanceInterpolations = {
 };
 isItalic = 1;
 linkStyle = Heavy;
-name = "Heavy Italic";
-weightClass = Heavy;
+name = Italic;
 }
 );
 kerning = {
