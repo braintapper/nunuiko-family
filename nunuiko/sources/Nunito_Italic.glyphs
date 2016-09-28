@@ -1,5 +1,5 @@
 {
-.appVersion = "923";
+.appVersion = "919";
 classes = (
 {
 automatic = 1;
@@ -7,7 +7,7 @@ code = "A Aacute Abreve Abreveacute Abrevedotbelow Abrevegrave Abrevehookabove A
 name = Uppercase;
 }
 );
-copyright = "Nunito Font, Copyright (c) 2014, Vernon Adams (vern@newtypography.co.uk)";
+copyright = "Copyright 2014 The Nunito Project Authors";
 customParameters = (
 {
 name = license;
@@ -24,6 +24,14 @@ value = 0;
 {
 name = "Use Typo Metrics";
 value = 1;
+},
+{
+name = vendorID;
+value = NeWT;
+},
+{
+name = trademark;
+value = "Nunito is a trademark of Vernon Adams and may be registered in certain jurisdictions.";
 }
 );
 date = "2016-09-26 20:06:44 +0000";
@@ -121,36 +129,36 @@ ascender = 705;
 capHeight = 705;
 customParameters = (
 {
-name = typoAscender;
-value = 976;
+name = winDescent;
+value = 281;
 },
 {
-name = typoDescender;
-value = 279;
+name = winAscent;
+value = 1092;
 },
 {
 name = typoLineGap;
 value = 0;
 },
 {
-name = winAscent;
-value = 976;
-},
-{
-name = winDescent;
+name = typoDescender;
 value = -279;
 },
 {
-name = underlineThickness;
-value = 0;
-},
-{
-name = underlinePosition;
-value = 0;
+name = typoAscender;
+value = 976;
 },
 {
 name = hheaLineGap;
 value = 0;
+},
+{
+name = hheaDescender;
+value = -279;
+},
+{
+name = hheaAscender;
+value = 976;
 }
 );
 descender = -180;
@@ -190,44 +198,36 @@ ascender = 705;
 capHeight = 705;
 customParameters = (
 {
-name = typoAscender;
-value = 976;
+name = winDescent;
+value = 281;
 },
 {
-name = typoDescender;
-value = -279;
+name = winAscent;
+value = 1092;
 },
 {
 name = typoLineGap;
 value = 0;
 },
 {
-name = winAscent;
+name = typoDescender;
+value = -279;
+},
+{
+name = typoAscender;
 value = 976;
 },
 {
-name = winDescent;
-value = 279;
-},
-{
-name = underlineThickness;
+name = hheaLineGap;
 value = 0;
-},
-{
-name = underlinePosition;
-value = 0;
-},
-{
-name = hheaAscender;
-value = 976;
 },
 {
 name = hheaDescender;
 value = -279;
 },
 {
-name = hheaLineGap;
-value = 0;
+name = hheaAscender;
+value = 976;
 }
 );
 descender = -180;
@@ -113196,6 +113196,35 @@ width = 300;
 );
 leftKerningGroup = circumflexcomb;
 rightKerningGroup = tildecomb;
+},
+{
+glyphname = CR;
+lastChange = "2016-09-27 11:04:48 +0000";
+layers = (
+{
+layerId = "9E718F8A-2CEA-4931-B05D-987794BD97DA";
+width = 250;
+},
+{
+layerId = "E1B555A7-F4E1-459C-9C1A-AE952106EEF9";
+width = 280;
+}
+);
+unicode = 000D;
+},
+{
+glyphname = NULL;
+lastChange = "2016-09-27 11:04:48 +0000";
+layers = (
+{
+layerId = "9E718F8A-2CEA-4931-B05D-987794BD97DA";
+width = 0;
+},
+{
+layerId = "E1B555A7-F4E1-459C-9C1A-AE952106EEF9";
+width = 0;
+}
+);
 }
 );
 disablesNiceNames = 1;
@@ -113205,6 +113234,14 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
+},
+{
+name = compatibleFullName;
+value = "Nunito ExtraLight Italic";
+},
+{
+name = weightClass;
+value = 275;
 }
 );
 interpolationWeight = 42;
@@ -113222,6 +113259,10 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
+},
+{
+name = compatibleFullName;
+value = "Nunito Light Italic";
 }
 );
 interpolationWeight = 61;
@@ -113239,6 +113280,10 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
+},
+{
+name = compatibleFullName;
+value = "Nunito Italic";
 }
 );
 interpolationWeight = 81;
@@ -113257,8 +113302,8 @@ name = Filter;
 value = AddExtremes;
 },
 {
-name = weightClass;
-value = "500";
+name = compatibleFullName;
+value = "Nunito SemiBold Italic";
 }
 );
 interpolationWeight = 101;
@@ -113278,8 +113323,8 @@ name = Filter;
 value = AddExtremes;
 },
 {
-name = weightClass;
-value = "600";
+name = compatibleFullName;
+value = "Nunito Bold Italic";
 }
 );
 interpolationWeight = 125;
@@ -113287,6 +113332,7 @@ instanceInterpolations = {
 "E1B555A7-F4E1-459C-9C1A-AE952106EEF9" = 0.696078;
 "9E718F8A-2CEA-4931-B05D-987794BD97DA" = 0.303922;
 };
+isBold = 1;
 isItalic = 1;
 linkStyle = Bold;
 name = "Bold Italic";
@@ -113299,8 +113345,8 @@ name = Filter;
 value = AddExtremes;
 },
 {
-name = weightClass;
-value = "700";
+name = compatibleFullName;
+value = "Nunito ExtraBold Italic";
 }
 );
 interpolationWeight = 151;
@@ -113320,8 +113366,8 @@ name = Filter;
 value = AddExtremes;
 },
 {
-name = weightClass;
-value = "800";
+name = compatibleFullName;
+value = "Nunito Black Italic";
 }
 );
 interpolationWeight = 178;
@@ -113473,8 +113519,12 @@ value = (
 );
 },
 {
-name = Filter;
-value = AddExtremes;
+name = compatibleFullName;
+value = "Nunito Heavy Italic";
+},
+{
+name = weightClass;
+value = "950";
 }
 );
 interpolationWeight = 208;
@@ -115658,6 +115708,6 @@ jdotless = 40;
 manufacturer = newtypography;
 manufacturerURL = "http://newtypography.co.uk";
 unitsPerEm = 1000;
-versionMajor = 2;
+versionMajor = 3;
 versionMinor = 0;
 }
