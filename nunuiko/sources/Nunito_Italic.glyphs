@@ -113236,10 +113236,6 @@ name = Filter;
 value = AddExtremes;
 },
 {
-name = compatibleFullName;
-value = "Nunito ExtraLight Italic";
-},
-{
 name = weightClass;
 value = 275;
 }
@@ -113259,10 +113255,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito Light Italic";
 }
 );
 interpolationWeight = 61;
@@ -113280,10 +113272,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito Italic";
 }
 );
 interpolationWeight = 81;
@@ -113300,10 +113288,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito SemiBold Italic";
 }
 );
 interpolationWeight = 101;
@@ -113321,10 +113305,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito Bold Italic";
 }
 );
 interpolationWeight = 125;
@@ -113343,10 +113323,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito ExtraBold Italic";
 }
 );
 interpolationWeight = 151;
@@ -113364,10 +113340,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito Black Italic";
 }
 );
 interpolationWeight = 178;
@@ -113517,10 +113489,6 @@ value = (
 "copyright.bold=copyright",
 "registered.bold=registered "
 );
-},
-{
-name = compatibleFullName;
-value = "Nunito Heavy Italic";
 },
 {
 name = familyName;

@@ -120084,10 +120084,6 @@ name = Filter;
 value = AddExtremes;
 },
 {
-name = compatibleFullName;
-value = "Nunito ExtraLight";
-},
-{
 name = weightClass;
 value = 275;
 }
@@ -120105,10 +120101,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito Light";
 }
 );
 interpolationWeight = 61;
@@ -120124,10 +120116,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito Regular";
 }
 );
 interpolationWeight = 81;
@@ -120142,10 +120130,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito SemiBold";
 }
 );
 interpolationWeight = 101;
@@ -120161,10 +120145,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito Bold";
 }
 );
 interpolationWeight = 125;
@@ -120181,10 +120161,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito ExtraBold";
 }
 );
 interpolationWeight = 151;
@@ -120200,10 +120176,6 @@ customParameters = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito Black";
 }
 );
 interpolationWeight = 178;
@@ -120355,10 +120327,6 @@ value = (
 {
 name = Filter;
 value = AddExtremes;
-},
-{
-name = compatibleFullName;
-value = "Nunito Heavy Regular";
 },
 {
 name = familyName;
