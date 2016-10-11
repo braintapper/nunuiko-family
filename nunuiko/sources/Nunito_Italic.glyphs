@@ -1,5 +1,5 @@
 {
-.appVersion = "919";
+.appVersion = "926";
 classes = (
 {
 automatic = 1;
@@ -37,6 +37,7 @@ value = "Nunito is a trademark of Vernon Adams and may be registered in certain 
 date = "2016-09-26 20:06:44 +0000";
 designer = "Vernon Adams";
 designerURL = "http://newtypography.co.uk";
+disablesNiceNames = 1;
 familyName = Nunito;
 featurePrefixes = (
 {
@@ -129,36 +130,36 @@ ascender = 705;
 capHeight = 705;
 customParameters = (
 {
-name = winDescent;
-value = 281;
-},
-{
-name = winAscent;
-value = 1092;
-},
-{
-name = typoLineGap;
-value = 0;
-},
-{
-name = typoDescender;
-value = -279;
-},
-{
-name = typoAscender;
+name = hheaAscender;
 value = 976;
-},
-{
-name = hheaLineGap;
-value = 0;
 },
 {
 name = hheaDescender;
 value = -279;
 },
 {
-name = hheaAscender;
+name = hheaLineGap;
+value = 0;
+},
+{
+name = typoAscender;
 value = 976;
+},
+{
+name = typoDescender;
+value = -279;
+},
+{
+name = typoLineGap;
+value = 0;
+},
+{
+name = winAscent;
+value = 1092;
+},
+{
+name = winDescent;
+value = 281;
 }
 );
 descender = -180;
@@ -198,36 +199,36 @@ ascender = 705;
 capHeight = 705;
 customParameters = (
 {
-name = winDescent;
-value = 281;
+name = hheaAscender;
+value = 973;
 },
 {
-name = winAscent;
-value = 1092;
+name = hheaDescender;
+value = -309;
+},
+{
+name = typoAscender;
+value = 973;
+},
+{
+name = typoDescender;
+value = -309;
 },
 {
 name = typoLineGap;
 value = 0;
 },
 {
-name = typoDescender;
-value = -279;
+name = winAscent;
+value = 973;
 },
 {
-name = typoAscender;
-value = 976;
+name = winDescent;
+value = 309;
 },
 {
 name = hheaLineGap;
 value = 0;
-},
-{
-name = hheaDescender;
-value = -279;
-},
-{
-name = hheaAscender;
-value = 976;
 }
 );
 descender = -180;
@@ -113227,7 +113228,6 @@ width = 0;
 );
 }
 );
-disablesNiceNames = 1;
 instances = (
 {
 customParameters = (
