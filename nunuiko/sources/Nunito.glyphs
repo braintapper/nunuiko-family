@@ -135,11 +135,11 @@ capHeight = 705;
 customParameters = (
 {
 name = winDescent;
-value = 281;
+value = 275;
 },
 {
 name = winAscent;
-value = 1092;
+value = 1088;
 },
 {
 name = typoLineGap;
@@ -222,11 +222,11 @@ value = 0;
 },
 {
 name = winAscent;
-value = 973;
+value = 1088;
 },
 {
 name = winDescent;
-value = 309;
+value = 275;
 },
 {
 name = hheaAscender;
