@@ -27,7 +27,8 @@ value = "Nunito is a trademark of Vernon Adams and may be registered in certain 
 },
 {
 name = fsType;
-value = 0;
+value = (
+);
 },
 {
 name = "Use Typo Metrics";
@@ -134,36 +135,44 @@ ascender = 705;
 capHeight = 705;
 customParameters = (
 {
-name = winDescent;
-value = 275;
+name = typoAscender;
+value = 1011;
 },
 {
-name = winAscent;
-value = 1088;
+name = typoDescender;
+value = -353;
 },
 {
 name = typoLineGap;
 value = 0;
 },
 {
-name = typoDescender;
-value = -279;
+name = winAscent;
+value = 1087;
 },
 {
-name = typoAscender;
-value = 976;
+name = winDescent;
+value = 275;
+},
+{
+name = hheaAscender;
+value = 1011;
+},
+{
+name = hheaDescender;
+value = -353;
+},
+{
+name = underlinePosition;
+value = -100;
+},
+{
+name = underlineThickness;
+value = 50;
 },
 {
 name = hheaLineGap;
 value = 0;
-},
-{
-name = hheaDescender;
-value = -279;
-},
-{
-name = hheaAscender;
-value = 976;
 }
 );
 descender = -180;
@@ -210,11 +219,11 @@ capHeight = 705;
 customParameters = (
 {
 name = typoAscender;
-value = 973;
+value = 1011;
 },
 {
 name = typoDescender;
-value = -309;
+value = -353;
 },
 {
 name = typoLineGap;
@@ -222,7 +231,7 @@ value = 0;
 },
 {
 name = winAscent;
-value = 1088;
+value = 1087;
 },
 {
 name = winDescent;
@@ -230,11 +239,19 @@ value = 275;
 },
 {
 name = hheaAscender;
-value = 973;
+value = 1011;
 },
 {
 name = hheaDescender;
-value = -309;
+value = -353;
+},
+{
+name = underlinePosition;
+value = -100;
+},
+{
+name = underlineThickness;
+value = 50;
 },
 {
 name = hheaLineGap;
@@ -79026,6 +79043,21 @@ rightKerningGroup = zerowidthspace;
 unicode = 200B;
 },
 {
+glyphname = CR;
+lastChange = "2016-09-27 11:04:35 +0000";
+layers = (
+{
+layerId = "9E718F8A-2CEA-4931-B05D-987794BD97DA";
+width = 250;
+},
+{
+layerId = "E1B555A7-F4E1-459C-9C1A-AE952106EEF9";
+width = 280;
+}
+);
+unicode = 000D;
+},
+{
 glyphname = cedi;
 lastChange = "2016-09-26 12:25:33 +0000";
 layers = (
@@ -120051,23 +120083,8 @@ leftKerningGroup = circumflexcomb;
 rightKerningGroup = tildecomb;
 },
 {
-glyphname = CR;
-lastChange = "2016-09-27 11:04:35 +0000";
-layers = (
-{
-layerId = "9E718F8A-2CEA-4931-B05D-987794BD97DA";
-width = 250;
-},
-{
-layerId = "E1B555A7-F4E1-459C-9C1A-AE952106EEF9";
-width = 280;
-}
-);
-unicode = 000D;
-},
-{
 glyphname = NULL;
-lastChange = "2016-09-27 11:04:35 +0000";
+lastChange = "2016-10-13 14:18:54 +0000";
 layers = (
 {
 layerId = "9E718F8A-2CEA-4931-B05D-987794BD97DA";
@@ -120078,6 +120095,7 @@ layerId = "E1B555A7-F4E1-459C-9C1A-AE952106EEF9";
 width = 0;
 }
 );
+unicode = 0000;
 }
 );
 instances = (

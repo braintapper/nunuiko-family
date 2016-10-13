@@ -19,7 +19,8 @@ value = "http://scripts.sil.org/OFL";
 },
 {
 name = fsType;
-value = 0;
+value = (
+);
 },
 {
 name = "Use Typo Metrics";
@@ -125,36 +126,44 @@ ascender = 705;
 capHeight = 705;
 customParameters = (
 {
-name = hheaAscender;
-value = 976;
-},
-{
-name = hheaDescender;
-value = -279;
-},
-{
-name = hheaLineGap;
-value = 0;
-},
-{
 name = typoAscender;
-value = 976;
+value = 1011;
 },
 {
 name = typoDescender;
-value = -279;
+value = -353;
 },
 {
 name = typoLineGap;
 value = 0;
 },
 {
+name = winAscent;
+value = 1087;
+},
+{
 name = winDescent;
 value = 275;
 },
 {
-name = winAscent;
-value = 1088;
+name = hheaAscender;
+value = 1011;
+},
+{
+name = hheaDescender;
+value = -353;
+},
+{
+name = underlinePosition;
+value = -100;
+},
+{
+name = underlineThickness;
+value = 50;
+},
+{
+name = hheaLineGap;
+value = 0;
 }
 );
 descender = -180;
@@ -194,36 +203,44 @@ ascender = 705;
 capHeight = 705;
 customParameters = (
 {
-name = hheaAscender;
-value = 973;
-},
-{
-name = hheaDescender;
-value = -309;
-},
-{
 name = typoAscender;
-value = 973;
+value = 1011;
 },
 {
 name = typoDescender;
-value = -309;
+value = -353;
 },
 {
 name = typoLineGap;
 value = 0;
 },
 {
-name = hheaLineGap;
-value = 0;
+name = winAscent;
+value = 1087;
 },
 {
 name = winDescent;
 value = 275;
 },
 {
-name = winAscent;
-value = 1088;
+name = hheaAscender;
+value = 1011;
+},
+{
+name = hheaDescender;
+value = -353;
+},
+{
+name = underlinePosition;
+value = -100;
+},
+{
+name = underlineThickness;
+value = 50;
+},
+{
+name = hheaLineGap;
+value = 0;
 }
 );
 descender = -180;
@@ -74698,6 +74715,21 @@ rightKerningGroup = zerowidthspace;
 unicode = 200B;
 },
 {
+glyphname = CR;
+lastChange = "2016-09-27 11:04:48 +0000";
+layers = (
+{
+layerId = "9E718F8A-2CEA-4931-B05D-987794BD97DA";
+width = 250;
+},
+{
+layerId = "E1B555A7-F4E1-459C-9C1A-AE952106EEF9";
+width = 280;
+}
+);
+unicode = 000D;
+},
+{
 glyphname = cedi;
 lastChange = "2016-09-26 13:30:47 +0000";
 layers = (
@@ -113194,23 +113226,8 @@ leftKerningGroup = circumflexcomb;
 rightKerningGroup = tildecomb;
 },
 {
-glyphname = CR;
-lastChange = "2016-09-27 11:04:48 +0000";
-layers = (
-{
-layerId = "9E718F8A-2CEA-4931-B05D-987794BD97DA";
-width = 250;
-},
-{
-layerId = "E1B555A7-F4E1-459C-9C1A-AE952106EEF9";
-width = 280;
-}
-);
-unicode = 000D;
-},
-{
 glyphname = NULL;
-lastChange = "2016-09-27 11:04:48 +0000";
+lastChange = "2016-10-13 14:18:35 +0000";
 layers = (
 {
 layerId = "9E718F8A-2CEA-4931-B05D-987794BD97DA";
@@ -113221,6 +113238,7 @@ layerId = "E1B555A7-F4E1-459C-9C1A-AE952106EEF9";
 width = 0;
 }
 );
+unicode = 0000;
 }
 );
 instances = (
@@ -113496,7 +113514,7 @@ instanceInterpolations = {
 "9E718F8A-2CEA-4931-B05D-987794BD97DA" = -0.509804;
 };
 isItalic = 1;
-linkStyle = Heavy;
+linkStyle = Regular;
 name = Italic;
 }
 );
