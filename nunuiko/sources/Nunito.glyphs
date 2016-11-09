@@ -1,5 +1,5 @@
 {
-.appVersion = "926";
+.appVersion = "930";
 classes = (
 {
 automatic = 1;
@@ -7,7 +7,7 @@ code = "A Aacute Abreve Abreveacute Abrevedotbelow Abrevegrave Abrevehookabove A
 name = Uppercase;
 }
 );
-copyright = "Copyright 2014 The Nunito Project Authors";
+copyright = "Copyright 2014 The Nunito Project Authors (contact@sansoxygen.com)";
 customParameters = (
 {
 name = license;
