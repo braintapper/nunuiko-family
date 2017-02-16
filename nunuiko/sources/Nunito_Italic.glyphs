@@ -1,5 +1,8 @@
 {
-.appVersion = "930";
+.appVersion = "976";
+DisplayStrings = (
+/peseta
+);
 classes = (
 {
 automatic = 1;
@@ -354,11 +357,11 @@ value = 0;
 },
 {
 name = winAscent;
-value = 1087;
+value = 1084;
 },
 {
 name = winDescent;
-value = 275;
+value = 313;
 },
 {
 name = hheaAscender;
@@ -431,11 +434,11 @@ value = 0;
 },
 {
 name = winAscent;
-value = 1087;
+value = 1084;
 },
 {
 name = winDescent;
-value = 275;
+value = 313;
 },
 {
 name = hheaAscender;
@@ -70281,25 +70284,6 @@ nodes = (
 {
 closed = 1;
 nodes = (
-"540 188 LINE SMOOTH",
-"554 188 OFFCURVE",
-"565 197 OFFCURVE",
-"565 209 CURVE SMOOTH",
-"565 223 OFFCURVE",
-"554 234 OFFCURVE",
-"540 234 CURVE SMOOTH",
-"58 234 LINE SMOOTH",
-"44 234 OFFCURVE",
-"33 225 OFFCURVE",
-"33 213 CURVE SMOOTH",
-"33 199 OFFCURVE",
-"44 188 OFFCURVE",
-"58 188 CURVE SMOOTH"
-);
-},
-{
-closed = 1;
-nodes = (
 "372 -5 OFFCURVE",
 "382 3 OFFCURVE",
 "384 14 CURVE SMOOTH",
@@ -70333,6 +70317,25 @@ nodes = (
 "53 490 OFFCURVE",
 "64 479 OFFCURVE",
 "78 479 CURVE SMOOTH"
+);
+},
+{
+closed = 1;
+nodes = (
+"540 188 LINE SMOOTH",
+"554 188 OFFCURVE",
+"565 197 OFFCURVE",
+"565 209 CURVE SMOOTH",
+"565 223 OFFCURVE",
+"554 234 OFFCURVE",
+"540 234 CURVE SMOOTH",
+"58 234 LINE SMOOTH",
+"44 234 OFFCURVE",
+"33 225 OFFCURVE",
+"33 213 CURVE SMOOTH",
+"33 199 OFFCURVE",
+"44 188 OFFCURVE",
+"58 188 CURVE SMOOTH"
 );
 }
 );
@@ -70424,44 +70427,6 @@ paths = (
 {
 closed = 1;
 nodes = (
-"371 -5 OFFCURVE",
-"389 10 OFFCURVE",
-"393 32 CURVE SMOOTH",
-"514 651 LINE SMOOTH",
-"521 686 OFFCURVE",
-"498 713 OFFCURVE",
-"463 713 CURVE SMOOTH",
-"438 713 OFFCURVE",
-"420 698 OFFCURVE",
-"416 676 CURVE SMOOTH",
-"295 57 LINE SMOOTH",
-"288 22 OFFCURVE",
-"311 -5 OFFCURVE",
-"346 -5 CURVE SMOOTH"
-);
-},
-{
-closed = 1;
-nodes = (
-"495 164 LINE SMOOTH",
-"523 164 OFFCURVE",
-"544 184 OFFCURVE",
-"544 211 CURVE SMOOTH",
-"544 239 OFFCURVE",
-"523 260 OFFCURVE",
-"495 260 CURVE SMOOTH",
-"85 260 LINE SMOOTH",
-"57 260 OFFCURVE",
-"36 240 OFFCURVE",
-"36 213 CURVE SMOOTH",
-"36 185 OFFCURVE",
-"57 164 OFFCURVE",
-"85 164 CURVE SMOOTH"
-);
-},
-{
-closed = 1;
-nodes = (
 "162 -5 OFFCURVE",
 "181 10 OFFCURVE",
 "185 32 CURVE SMOOTH",
@@ -70481,6 +70446,25 @@ nodes = (
 {
 closed = 1;
 nodes = (
+"371 -5 OFFCURVE",
+"389 10 OFFCURVE",
+"393 32 CURVE SMOOTH",
+"514 651 LINE SMOOTH",
+"521 686 OFFCURVE",
+"498 713 OFFCURVE",
+"463 713 CURVE SMOOTH",
+"438 713 OFFCURVE",
+"420 698 OFFCURVE",
+"416 676 CURVE SMOOTH",
+"295 57 LINE SMOOTH",
+"288 22 OFFCURVE",
+"311 -5 OFFCURVE",
+"346 -5 CURVE SMOOTH"
+);
+},
+{
+closed = 1;
+nodes = (
 "515 453 LINE SMOOTH",
 "543 453 OFFCURVE",
 "564 473 OFFCURVE",
@@ -70495,6 +70479,25 @@ nodes = (
 "56 474 OFFCURVE",
 "77 453 OFFCURVE",
 "105 453 CURVE SMOOTH"
+);
+},
+{
+closed = 1;
+nodes = (
+"495 164 LINE SMOOTH",
+"523 164 OFFCURVE",
+"544 184 OFFCURVE",
+"544 211 CURVE SMOOTH",
+"544 239 OFFCURVE",
+"523 260 OFFCURVE",
+"495 260 CURVE SMOOTH",
+"85 260 LINE SMOOTH",
+"57 260 OFFCURVE",
+"36 240 OFFCURVE",
+"36 213 CURVE SMOOTH",
+"36 185 OFFCURVE",
+"57 164 OFFCURVE",
+"85 164 CURVE SMOOTH"
 );
 }
 );
@@ -81698,23 +81701,6 @@ nodes = (
 {
 closed = 1;
 nodes = (
-"305 38 OFFCURVE",
-"324 56 OFFCURVE",
-"324 83 CURVE SMOOTH",
-"324 110 OFFCURVE",
-"305 128 OFFCURVE",
-"281 128 CURVE SMOOTH",
-"256 128 OFFCURVE",
-"237 110 OFFCURVE",
-"237 83 CURVE SMOOTH",
-"237 56 OFFCURVE",
-"256 38 OFFCURVE",
-"281 38 CURVE SMOOTH"
-);
-},
-{
-closed = 1;
-nodes = (
 "338 440 OFFCURVE",
 "357 458 OFFCURVE",
 "357 485 CURVE SMOOTH",
@@ -81727,6 +81713,23 @@ nodes = (
 "270 458 OFFCURVE",
 "289 440 OFFCURVE",
 "314 440 CURVE SMOOTH"
+);
+},
+{
+closed = 1;
+nodes = (
+"305 38 OFFCURVE",
+"324 56 OFFCURVE",
+"324 83 CURVE SMOOTH",
+"324 110 OFFCURVE",
+"305 128 OFFCURVE",
+"281 128 CURVE SMOOTH",
+"256 128 OFFCURVE",
+"237 110 OFFCURVE",
+"237 83 CURVE SMOOTH",
+"237 56 OFFCURVE",
+"256 38 OFFCURVE",
+"281 38 CURVE SMOOTH"
 );
 }
 );
@@ -114992,5 +114995,5 @@ manufacturer = newtypography;
 manufacturerURL = "http://newtypography.co.uk";
 unitsPerEm = 1000;
 versionMajor = 3;
-versionMinor = 0;
+versionMinor = 1;
 }

@@ -1,5 +1,5 @@
 {
-.appVersion = "930";
+.appVersion = "976";
 classes = (
 {
 automatic = 1;
@@ -148,11 +148,11 @@ value = 0;
 },
 {
 name = winAscent;
-value = 1087;
+value = 1084;
 },
 {
 name = winDescent;
-value = 275;
+value = 313;
 },
 {
 name = hheaAscender;
@@ -231,11 +231,11 @@ value = 0;
 },
 {
 name = winAscent;
-value = 1087;
+value = 1084;
 },
 {
 name = winDescent;
-value = 275;
+value = 313;
 },
 {
 name = hheaAscender;
@@ -8679,7 +8679,7 @@ unicode = 1E20;
 },
 {
 glyphname = H;
-lastChange = "2016-09-26 12:25:33 +0000";
+lastChange = "2017-02-16 11:33:42 +0000";
 layers = (
 {
 anchors = (
@@ -8812,8 +8812,8 @@ nodes = (
 {
 closed = 1;
 nodes = (
-"615 334 LINE",
-"615 382 LINE",
+"635 334 LINE",
+"635 382 LINE",
 "127 382 LINE",
 "127 334 LINE"
 );
@@ -9000,7 +9000,7 @@ width = 1524;
 },
 {
 glyphname = Hbar;
-lastChange = "2016-09-26 12:25:33 +0000";
+lastChange = "2017-02-16 11:34:05 +0000";
 layers = (
 {
 background = {
@@ -9116,8 +9116,8 @@ nodes = (
 {
 closed = 1;
 nodes = (
-"622 334 LINE",
-"622 382 LINE",
+"642 334 LINE",
+"642 382 LINE",
 "134 382 LINE",
 "134 334 LINE"
 );
@@ -122534,5 +122534,5 @@ manufacturer = newtypography;
 manufacturerURL = "http://newtypography.co.uk";
 unitsPerEm = 1000;
 versionMajor = 3;
-versionMinor = 0;
+versionMinor = 1;
 }
