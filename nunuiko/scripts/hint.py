@@ -51,6 +51,7 @@ else:
 if not os.path.exists(export_dir):
     os.makedirs(export_dir)
     print 'Created export directory %s' % export_dir
+    hint(filenames)
 
 elif len(os.listdir(export_dir)) == 0:
    print 'Export directory [fonts/TTF] exists.'
