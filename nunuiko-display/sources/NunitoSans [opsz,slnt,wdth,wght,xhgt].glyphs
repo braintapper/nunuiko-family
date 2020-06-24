@@ -1414664,6 +1414664,7 @@ name = Black;
 weightClass = Black;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = weightClass;
@@ -1414991,6 +1414992,7 @@ name = "Black Italic";
 weightClass = Black;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = weightClass;
@@ -1415037,6 +1415039,7 @@ linkStyle = Heavy;
 name = Italic;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415083,6 +1415086,7 @@ weightClass = ExtraLight;
 widthClass = Expanded;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415126,6 +1415130,7 @@ weightClass = Light;
 widthClass = Expanded;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415168,6 +1415173,7 @@ name = "Expanded Regular";
 widthClass = Expanded;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415211,6 +1415217,7 @@ weightClass = SemiBold;
 widthClass = Expanded;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = weightClass;
@@ -1415259,6 +1415266,7 @@ weightClass = Bold;
 widthClass = Expanded;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415302,6 +1415310,7 @@ weightClass = ExtraBold;
 widthClass = Expanded;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415345,6 +1415354,7 @@ weightClass = Black;
 widthClass = Expanded;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = weightClass;
@@ -1415390,6 +1415400,7 @@ name = "Expanded Regular";
 widthClass = Expanded;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415436,6 +1415447,7 @@ weightClass = ExtraLight;
 widthClass = Condensed;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415479,6 +1415491,7 @@ weightClass = Light;
 widthClass = Condensed;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415521,6 +1415534,7 @@ name = "Condensed Regular";
 widthClass = Condensed;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415564,6 +1415578,7 @@ weightClass = SemiBold;
 widthClass = Condensed;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415612,6 +1415627,7 @@ weightClass = Bold;
 widthClass = Condensed;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415655,6 +1415671,7 @@ weightClass = ExtraBold;
 widthClass = Condensed;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415698,6 +1415715,7 @@ weightClass = Black;
 widthClass = Condensed;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = weightClass;
@@ -1415743,6 +1415761,7 @@ name = "Condensed Regular";
 widthClass = Condensed;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415783,6 +1415802,7 @@ name = "Opsz ExtraLight";
 weightClass = ExtraLight;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415820,6 +1415840,7 @@ name = "Opsz Light";
 weightClass = Light;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415856,6 +1415877,7 @@ instanceInterpolations = {
 name = "Opsz Regular";
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415893,6 +1415915,7 @@ name = "Opsz SemiBold";
 weightClass = SemiBold;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = weightClass;
@@ -1415934,6 +1415957,7 @@ name = "Opsz Bold";
 weightClass = Bold;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1415971,6 +1415995,7 @@ name = "Opsz ExtraBold";
 weightClass = ExtraBold;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416008,6 +1416033,7 @@ name = "Opsz Black";
 weightClass = Black;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = weightClass;
@@ -1416051,6 +1416077,7 @@ instanceInterpolations = {
 name = "Opsz Regular";
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416092,6 +1416119,7 @@ name = "Xmin ExtraLight";
 weightClass = ExtraLight;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416130,6 +1416158,7 @@ name = "Xmin Light";
 weightClass = Light;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416167,6 +1416196,7 @@ instanceInterpolations = {
 name = "Xmin Regular";
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416205,6 +1416235,7 @@ name = "Xmin SemiBold";
 weightClass = SemiBold;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = weightClass;
@@ -1416248,6 +1416279,7 @@ name = "Xmin Bold";
 weightClass = Bold;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416286,6 +1416318,7 @@ name = "Xmin ExtraBold";
 weightClass = ExtraBold;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416324,6 +1416357,7 @@ name = "Xmin Black";
 weightClass = Black;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = weightClass;
@@ -1416368,6 +1416402,7 @@ instanceInterpolations = {
 name = "Xmin Regular";
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416409,6 +1416444,7 @@ name = "Xmax ExtraLight";
 weightClass = ExtraLight;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416447,6 +1416483,7 @@ name = "Xmax Light";
 weightClass = Light;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416484,6 +1416521,7 @@ instanceInterpolations = {
 name = "Xmax Regular";
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416522,6 +1416560,7 @@ name = "Xmax SemiBold";
 weightClass = SemiBold;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = weightClass;
@@ -1416565,6 +1416604,7 @@ name = "Xmax Bold";
 weightClass = Bold;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416603,6 +1416643,7 @@ name = "Xmax ExtraBold";
 weightClass = ExtraBold;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = "Axis Location";
@@ -1416641,6 +1416682,7 @@ name = "Xmax Black";
 weightClass = Black;
 },
 {
+exports = 0;
 customParameters = (
 {
 name = weightClass;
