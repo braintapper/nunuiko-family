@@ -532,7 +532,7 @@ value = 1077;
 },
 {
 name = winDescent;
-value = 298;
+value = 300;
 },
 {
 name = hheaAscender;
@@ -612,10 +612,6 @@ name = winAscent;
 value = 1077;
 },
 {
-name = winDescent;
-value = 298;
-},
-{
 name = hheaAscender;
 value = 1011;
 },
@@ -634,6 +630,10 @@ value = 44;
 {
 name = hheaLineGap;
 value = 0;
+},
+{
+name = winDescent;
+value = 300;
 }
 );
 descender = -180;
@@ -720,7 +720,7 @@ value = 1077;
 },
 {
 name = winDescent;
-value = 298;
+value = 300;
 },
 {
 name = hheaAscender;
@@ -802,7 +802,7 @@ value = 1077;
 },
 {
 name = winDescent;
-value = 298;
+value = 300;
 },
 {
 name = hheaAscender;
@@ -898,7 +898,7 @@ value = 1077;
 },
 {
 name = winDescent;
-value = 298;
+value = 300;
 },
 {
 name = hheaAscender;
@@ -985,7 +985,7 @@ value = 1077;
 },
 {
 name = winDescent;
-value = 298;
+value = 300;
 },
 {
 name = hheaAscender;
