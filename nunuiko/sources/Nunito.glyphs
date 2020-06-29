@@ -369160,7 +369160,6 @@ name = Black;
 weightClass = Black;
 },
 {
-exports = 0;
 customParameters = (
 {
 name = weightClass;
@@ -369381,7 +369380,6 @@ name = "Black Italic";
 weightClass = Black;
 },
 {
-exports = 0;
 customParameters = (
 {
 name = weightClass;
