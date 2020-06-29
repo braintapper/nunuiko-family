@@ -800106,10 +800106,6 @@ Axis = "X-height";
 Location = 0;
 }
 );
-},
-{
-name = weightClass;
-value = 275;
 }
 );
 interpolationCustom1 = 13;
@@ -800414,10 +800410,6 @@ Axis = "X-height";
 Location = 0;
 }
 );
-},
-{
-name = weightClass;
-value = 275;
 }
 );
 interpolationCustom = 9;
@@ -800748,10 +800740,6 @@ Location = 0;
 {
 name = familyName;
 value = "Nunito Sans Expanded";
-},
-{
-name = weightClass;
-value = 275;
 }
 );
 interpolationCustom1 = 13;
@@ -801101,10 +801089,6 @@ Location = 0;
 {
 name = familyName;
 value = "Nunito Sans Condensed";
-},
-{
-name = weightClass;
-value = 275;
 }
 );
 interpolationCustom1 = 13;
@@ -801450,10 +801434,6 @@ Axis = "X-height";
 Location = 0;
 }
 );
-},
-{
-name = weightClass;
-value = 275;
 }
 );
 interpolationCustom1 = 6;
@@ -801758,10 +801738,6 @@ Axis = "X-height";
 Location = -250;
 }
 );
-},
-{
-name = weightClass;
-value = 275;
 }
 );
 interpolationCustom1 = 13;
@@ -802075,10 +802051,6 @@ Axis = "X-height";
 Location = 250;
 }
 );
-},
-{
-name = weightClass;
-value = 275;
 }
 );
 interpolationCustom1 = 13;
