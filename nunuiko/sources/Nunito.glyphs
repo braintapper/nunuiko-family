@@ -10,7 +10,7 @@ code = "A Aacute Abreve Abreveacute Abrevedotbelow Abrevegrave Abrevehookabove A
 name = Uppercase;
 }
 );
-copyright = "Copyright 2016 The Nunito Project Authors (https://github.com/googlefonts/NunitoFont)";
+copyright = "Copyright 2016 The Nunito Project Authors (https://github.com/googlefonts/nunito)";
 customParameters = (
 {
 name = license;
@@ -532,7 +532,7 @@ value = 1077;
 },
 {
 name = winDescent;
-value = 300;
+value = 298;
 },
 {
 name = hheaAscender;
@@ -613,7 +613,7 @@ value = 1077;
 },
 {
 name = winDescent;
-value = 300;
+value = 298;
 },
 {
 name = hheaAscender;
@@ -720,7 +720,7 @@ value = 1077;
 },
 {
 name = winDescent;
-value = 300;
+value = 298;
 },
 {
 name = hheaAscender;
@@ -802,7 +802,7 @@ value = 1077;
 },
 {
 name = winDescent;
-value = 300;
+value = 298;
 },
 {
 name = hheaAscender;
@@ -898,7 +898,7 @@ value = 1077;
 },
 {
 name = winDescent;
-value = 300;
+value = 298;
 },
 {
 name = hheaAscender;
@@ -985,7 +985,7 @@ value = 1077;
 },
 {
 name = winDescent;
-value = 300;
+value = 298;
 },
 {
 name = hheaAscender;
@@ -369411,7 +369411,6 @@ instanceInterpolations = {
 "C92D7C27-2246-4784-91DF-7F4E0C5E615D" = 1;
 };
 isItalic = 1;
-linkStyle = Heavy;
 name = Italic;
 }
 );
