@@ -1,5 +1,5 @@
 {
-.appVersion = "1286";
+.appVersion = "1342";
 DisplayStrings = (
 ""
 );
@@ -10,7 +10,7 @@ code = "A Aacute Abreve Abreveacute Abrevedotbelow Abrevegrave Abrevehookabove A
 name = Uppercase;
 }
 );
-copyright = "Copyright 2016 The Nunito Project Authors (https://github.com/googlefonts/nunito)";
+copyright = "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)";
 customParameters = (
 {
 name = license;
