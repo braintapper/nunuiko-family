@@ -1,7 +1,7 @@
 {
-.appVersion = "1342";
+.appVersion = "1286";
 DisplayStrings = (
-""
+")"
 );
 classes = (
 {
@@ -256537,6 +256537,12 @@ paths = (
 {
 closed = 1;
 nodes = (
+"191 -19 OFFCURVE",
+"268 180 OFFCURVE",
+"268 387 CURVE SMOOTH",
+"268 478 OFFCURVE",
+"252 573 OFFCURVE",
+"218 674 CURVE SMOOTH",
 "198 734 OFFCURVE",
 "103 718 OFFCURVE",
 "115 640 CURVE SMOOTH",
@@ -256548,13 +256554,7 @@ nodes = (
 "-5 -110 CURVE SMOOTH",
 "-38 -173 OFFCURVE",
 "46 -210 OFFCURVE",
-"85 -158 CURVE SMOOTH",
-"191 -19 OFFCURVE",
-"268 180 OFFCURVE",
-"268 387 CURVE SMOOTH",
-"268 478 OFFCURVE",
-"252 573 OFFCURVE",
-"218 674 CURVE SMOOTH"
+"85 -158 CURVE SMOOTH"
 );
 }
 );
@@ -382467,5 +382467,5 @@ userData = {
 UFOFormat = 2;
 };
 versionMajor = 3;
-versionMinor = 600;
+versionMinor = 601;
 }
