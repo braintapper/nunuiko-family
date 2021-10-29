@@ -1,7 +1,7 @@
 {
-.appVersion = "1286";
+.appVersion = "1352";
 DisplayStrings = (
-")"
+"/caroncomb.alt.t/tcaron"
 );
 classes = (
 {
@@ -109926,7 +109926,7 @@ name = t;
 },
 {
 name = caroncomb.alt.t;
-transform = "{0.97647, 0, 0, 0.9, 298, 71}";
+transform = "{1, 0, 0, 1, 298, 0}";
 }
 );
 layerId = "D8D4984A-F5A5-43C0-BF2B-5708C10C5E92";
@@ -109998,7 +109998,7 @@ name = t;
 },
 {
 name = caroncomb.alt.t;
-transform = "{0.98823, 0, 0, 0.95, 353, 35}";
+transform = "{1, 0, 0, 1, 353, 0}";
 }
 );
 layerId = "8FF16B21-C988-4EC9-A448-39B9B4A4BD78";
