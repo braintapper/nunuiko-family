@@ -11,8 +11,8 @@ name = Width;
 tag = wdth;
 },
 {
-name = Slant;
-tag = slnt;
+name = Italic;
+tag = ital;
 },
 {
 name = "Optical size";
@@ -66,10 +66,6 @@ name = "Use Line Breaks";
 value = 1;
 },
 {
-name = "Variable Font Origin";
-value = "14DEE64B-87DD-405D-B642-B63FD93B442F";
-},
-{
 name = "Axis Mappings";
 value = {
 YTLC = {
@@ -77,13 +73,13 @@ YTLC = {
 500 = 500;
 1000 = 1000;
 };
+ital = {
+0 = 0;
+1 = 9;
+};
 opsz = {
 6 = 6;
 12 = 12;
-};
-slnt = {
--9 = -9;
-0 = 0;
 };
 wdth = {
 75 = 80;
@@ -104,6 +100,10 @@ wght = {
 1000 = 208;
 };
 };
+},
+{
+name = "Variable Font Origin";
+value = "F1F93986-3ED8-4AAE-84C4-CA3EEECDDFA0";
 }
 );
 date = "2020-06-26 13:15:20 +0000";
@@ -894,7 +894,7 @@ pos = -180;
 {
 }
 );
-name = ExtraBlack;
+name = Heavy;
 stemValues = (
 178,
 179,
@@ -1123,7 +1123,7 @@ pos = -180;
 {
 }
 );
-name = "Condensed ExtraBlack";
+name = "Condensed Heavy";
 stemValues = (
 164,
 165,
@@ -1862,7 +1862,7 @@ pos = -180;
 {
 }
 );
-name = "6pt ExtraBlack";
+name = "6pt Heavy";
 stemValues = (
 163,
 183,
@@ -2126,7 +2126,7 @@ pos = -180;
 {
 }
 );
-name = "ExtraBlack YTLC Min";
+name = "Heavy YTLC Min";
 stemValues = (
 0,
 0,
@@ -2383,7 +2383,7 @@ pos = -180;
 {
 }
 );
-name = "ExtraBlack YTLC Max";
+name = "Heavy YTLC Max";
 stemValues = (
 0,
 0,
@@ -2399,7 +2399,7 @@ stemValues = (
 axesValues = (
 42,
 100,
--9,
+9,
 12,
 500
 );
@@ -2525,7 +2525,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Slant ExtraLight";
+name = "ExtraLight Italic";
 stemValues = (
 39,
 41,
@@ -2546,7 +2546,7 @@ GSOffsetVertical = 10;
 axesValues = (
 125,
 100,
--9,
+9,
 12,
 500
 );
@@ -2664,7 +2664,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Slant Bold";
+name = "Bold Italic";
 stemValues = (
 96,
 99,
@@ -2680,7 +2680,7 @@ stemValues = (
 axesValues = (
 208,
 100,
--9,
+9,
 12,
 500
 );
@@ -2792,7 +2792,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Slant ExtraBlack";
+name = "Heavy Italic";
 stemValues = (
 178,
 179,
@@ -2808,7 +2808,7 @@ stemValues = (
 axesValues = (
 42,
 80,
--9,
+9,
 12,
 500
 );
@@ -2906,7 +2906,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Slant Condensed ExtraLight";
+name = "Condensed ExtraLight Italic";
 stemValues = (
 35,
 36,
@@ -2922,7 +2922,7 @@ stemValues = (
 axesValues = (
 208,
 80,
--9,
+9,
 12,
 500
 );
@@ -3020,7 +3020,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Slant Condensed ExtraBlack";
+name = "Condensed Heavy Italic";
 stemValues = (
 164,
 165,
@@ -3036,7 +3036,7 @@ stemValues = (
 axesValues = (
 42,
 125,
--9,
+9,
 12,
 500
 );
@@ -3131,7 +3131,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Slant Expanded ExtraLight";
+name = "Expanded ExtraLight Italic";
 stemValues = (
 42,
 44,
@@ -3147,7 +3147,7 @@ stemValues = (
 axesValues = (
 208,
 125,
--9,
+9,
 12,
 500
 );
@@ -3244,7 +3244,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Slant Expanded ExtraBlack";
+name = "Expanded Heavy Italic";
 stemValues = (
 0,
 0,
@@ -3260,7 +3260,7 @@ stemValues = (
 axesValues = (
 42,
 100,
--9,
+9,
 6,
 500
 );
@@ -3415,7 +3415,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "6pt Slant ExtraLight";
+name = "6pt ExtraLight Italic";
 stemValues = (
 49,
 0,
@@ -3431,7 +3431,7 @@ stemValues = (
 axesValues = (
 208,
 100,
--9,
+9,
 6,
 500
 );
@@ -3586,7 +3586,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "6pt Slant ExtraBlack";
+name = "6pt Heavy Italic";
 stemValues = (
 163,
 183,
@@ -3602,7 +3602,7 @@ stemValues = (
 axesValues = (
 42,
 100,
--9,
+9,
 12,
 0
 );
@@ -3712,7 +3712,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Slant ExtraLight YTLC Min";
+name = "ExtraLight YTLC Min Italic";
 stemValues = (
 0,
 0,
@@ -3728,7 +3728,7 @@ stemValues = (
 axesValues = (
 208,
 100,
--9,
+9,
 12,
 0
 );
@@ -3852,7 +3852,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Slant ExtraBlack YTLC Min";
+name = "Heavy YTLC Min Italic";
 stemValues = (
 0,
 0,
@@ -3868,7 +3868,7 @@ stemValues = (
 axesValues = (
 42,
 100,
--9,
+9,
 12,
 1000
 );
@@ -3978,7 +3978,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Slant ExtraLight YTLC Max";
+name = "ExtraLight YTLC Max Italic";
 stemValues = (
 0,
 0,
@@ -3994,7 +3994,7 @@ stemValues = (
 axesValues = (
 208,
 100,
--9,
+9,
 12,
 1000
 );
@@ -4111,7 +4111,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Slant ExtraBlack YTLC Max";
+name = "Heavy YTLC Max Italic";
 stemValues = (
 0,
 0,
@@ -799874,74 +799874,6 @@ axesValues = (
 instanceInterpolations = {
 "4121B50C-FD42-45C5-8FBE-41E76D98F91E" = 1;
 };
-name = ExtraBlack;
-weightClass = 1000;
-},
-{
-axesValues = (
-42,
-80,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 1;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Condensed";
-}
-);
-}
-);
-weightClass = 200;
-widthClass = 3;
-},
-{
-axesValues = (
-61,
-80,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.11446;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.88554;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Condensed";
-}
-);
-}
-);
-weightClass = 300;
-widthClass = 3;
-},
-{
-axesValues = (
-81,
-80,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.23494;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.76506;
-};
 name = Regular;
 properties = (
 {
@@ -799949,1153 +799881,7 @@ key = familyNames;
 values = (
 {
 language = dflt;
-value = "Nunito Sans Condensed";
-}
-);
-}
-);
-widthClass = 3;
-},
-{
-axesValues = (
-91,
-80,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.29518;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.70482;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Condensed";
-}
-);
-}
-);
-weightClass = 500;
-widthClass = 3;
-},
-{
-axesValues = (
-101,
-80,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.35542;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.64458;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Condensed";
-}
-);
-}
-);
-weightClass = 600;
-widthClass = 3;
-},
-{
-axesValues = (
-125,
-80,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.5;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.5;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Condensed";
-}
-);
-}
-);
-weightClass = 700;
-widthClass = 3;
-},
-{
-axesValues = (
-151,
-80,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.65663;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.34337;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Condensed";
-}
-);
-}
-);
-weightClass = 800;
-widthClass = 3;
-},
-{
-axesValues = (
-178,
-80,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.81928;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.18072;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Condensed";
-}
-);
-}
-);
-weightClass = 900;
-widthClass = 3;
-},
-{
-axesValues = (
-208,
-80,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 1;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Condensed";
-}
-);
-}
-);
-weightClass = 1000;
-widthClass = 3;
-},
-{
-axesValues = (
-42,
-90,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"F1F93986-3ED8-4AAE-84C4-CA3EEECDDFA0" = 0.5;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.5;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiCondensed";
-}
-);
-}
-);
-weightClass = 200;
-widthClass = 4;
-},
-{
-axesValues = (
-61,
-90,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.10174;
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.06359;
-"F1F93986-3ED8-4AAE-84C4-CA3EEECDDFA0" = 0.39826;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.43641;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiCondensed";
-}
-);
-}
-);
-weightClass = 300;
-widthClass = 4;
-},
-{
-axesValues = (
-81,
-90,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.20884;
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.13052;
-"F1F93986-3ED8-4AAE-84C4-CA3EEECDDFA0" = 0.29116;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.36948;
-};
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiCondensed";
-}
-);
-}
-);
-widthClass = 4;
-},
-{
-axesValues = (
-91,
-90,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.27661;
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.15688;
-"F1F93986-3ED8-4AAE-84C4-CA3EEECDDFA0" = 0.22339;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.34312;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiCondensed";
-}
-);
-}
-);
-weightClass = 500;
-widthClass = 4;
-},
-{
-axesValues = (
-101,
-90,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.25653;
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.22716;
-"F1F93986-3ED8-4AAE-84C4-CA3EEECDDFA0" = 0.24347;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.27284;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiCondensed";
-}
-);
-}
-);
-weightClass = 600;
-widthClass = 4;
-},
-{
-axesValues = (
-125,
-90,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.5;
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.25;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.25;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiCondensed";
-}
-);
-}
-);
-weightClass = 700;
-widthClass = 4;
-},
-{
-axesValues = (
-151,
-90,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.26054;
-"4121B50C-FD42-45C5-8FBE-41E76D98F91E" = 0.23946;
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.2869;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.2131;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiCondensed";
-}
-);
-}
-);
-weightClass = 800;
-widthClass = 4;
-},
-{
-axesValues = (
-178,
-90,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.16064;
-"4121B50C-FD42-45C5-8FBE-41E76D98F91E" = 0.33936;
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.3996;
-"FC176D90-014F-40F7-A58E-7609D0382D29" = 0.1004;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiCondensed";
-}
-);
-}
-);
-weightClass = 900;
-widthClass = 4;
-},
-{
-axesValues = (
-208,
-90,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"4121B50C-FD42-45C5-8FBE-41E76D98F91E" = 0.5;
-"A5242C42-85C8-4A4A-A6FE-802A6842ED99" = 0.5;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiCondensed";
-}
-);
-}
-);
-weightClass = 1000;
-widthClass = 4;
-},
-{
-axesValues = (
-42,
-112,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.48;
-"F1F93986-3ED8-4AAE-84C4-CA3EEECDDFA0" = 0.52;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiExpanded";
-}
-);
-}
-);
-weightClass = 200;
-widthClass = 6;
-},
-{
-axesValues = (
-61,
-112,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.10312;
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.4171;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.0629;
-"F1F93986-3ED8-4AAE-84C4-CA3EEECDDFA0" = 0.41688;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiExpanded";
-}
-);
-}
-);
-weightClass = 300;
-widthClass = 6;
-},
-{
-axesValues = (
-81,
-112,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.21166;
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.35089;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.12911;
-"F1F93986-3ED8-4AAE-84C4-CA3EEECDDFA0" = 0.30834;
-};
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiExpanded";
-}
-);
-}
-);
-widthClass = 6;
-},
-{
-axesValues = (
-91,
-112,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.29107;
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.33035;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.14965;
-"F1F93986-3ED8-4AAE-84C4-CA3EEECDDFA0" = 0.22893;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiExpanded";
-}
-);
-}
-);
-weightClass = 500;
-widthClass = 6;
-},
-{
-axesValues = (
-101,
-112,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.26605;
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.25761;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.22239;
-"F1F93986-3ED8-4AAE-84C4-CA3EEECDDFA0" = 0.25395;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiExpanded";
-}
-);
-}
-);
-weightClass = 600;
-widthClass = 6;
-},
-{
-axesValues = (
-125,
-112,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.52;
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.24;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.24;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiExpanded";
-}
-);
-}
-);
-weightClass = 700;
-widthClass = 6;
-},
-{
-axesValues = (
-151,
-112,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.27106;
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.20785;
-"4121B50C-FD42-45C5-8FBE-41E76D98F91E" = 0.24894;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.27215;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiExpanded";
-}
-);
-}
-);
-weightClass = 800;
-widthClass = 6;
-},
-{
-axesValues = (
-178,
-112,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"14DEE64B-87DD-405D-B642-B63FD93B442F" = 0.16281;
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.09932;
-"4121B50C-FD42-45C5-8FBE-41E76D98F91E" = 0.35719;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.38068;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiExpanded";
-}
-);
-}
-);
-weightClass = 900;
-widthClass = 6;
-},
-{
-axesValues = (
-208,
-112,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"4121B50C-FD42-45C5-8FBE-41E76D98F91E" = 0.52;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.48;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans SemiExpanded";
-}
-);
-}
-);
-weightClass = 1000;
-widthClass = 6;
-},
-{
-axesValues = (
-42,
-125,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 1;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Expanded";
-}
-);
-}
-);
-weightClass = 200;
-widthClass = 7;
-},
-{
-axesValues = (
-61,
-125,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.88554;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.11446;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Expanded";
-}
-);
-}
-);
-weightClass = 300;
-widthClass = 7;
-},
-{
-axesValues = (
-81,
-125,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.76506;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.23494;
-};
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Expanded";
-}
-);
-}
-);
-widthClass = 7;
-},
-{
-axesValues = (
-91,
-125,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.70482;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.29518;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Expanded";
-}
-);
-}
-);
-weightClass = 500;
-widthClass = 7;
-},
-{
-axesValues = (
-101,
-125,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.64458;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.35542;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Expanded";
-}
-);
-}
-);
-weightClass = 600;
-widthClass = 7;
-},
-{
-axesValues = (
-125,
-125,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.5;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.5;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Expanded";
-}
-);
-}
-);
-weightClass = 700;
-widthClass = 7;
-},
-{
-axesValues = (
-151,
-125,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.34337;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.65663;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Expanded";
-}
-);
-}
-);
-weightClass = 800;
-widthClass = 7;
-},
-{
-axesValues = (
-178,
-125,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"315C3544-7711-4CE4-82CD-1ED80F9BE3AE" = 0.18072;
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 0.81928;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Expanded";
-}
-);
-}
-);
-weightClass = 900;
-widthClass = 7;
-},
-{
-axesValues = (
-208,
-125,
-0,
-12,
-500
-);
-instanceInterpolations = {
-"89B9FAAE-9D47-49CF-AC77-D424D95D2318" = 1;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Expanded";
-}
-);
-}
-);
-weightClass = 1000;
-widthClass = 7;
-},
-{
-axesValues = (
-42,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"B0DFB0A8-5D2F-4351-A1F8-6629D0DA694C" = 1;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 6pt";
-}
-);
-}
-);
-weightClass = 200;
-},
-{
-axesValues = (
-61,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.22892;
-"B0DFB0A8-5D2F-4351-A1F8-6629D0DA694C" = 0.77108;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 6pt";
-}
-);
-}
-);
-weightClass = 300;
-},
-{
-axesValues = (
-81,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.46988;
-"B0DFB0A8-5D2F-4351-A1F8-6629D0DA694C" = 0.53012;
-};
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 6pt";
-}
-);
-}
-);
-},
-{
-axesValues = (
-91,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.59036;
-"B0DFB0A8-5D2F-4351-A1F8-6629D0DA694C" = 0.40964;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 6pt";
-}
-);
-}
-);
-weightClass = 500;
-},
-{
-axesValues = (
-101,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.71084;
-"B0DFB0A8-5D2F-4351-A1F8-6629D0DA694C" = 0.28916;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 6pt";
-}
-);
-}
-);
-weightClass = 600;
-},
-{
-axesValues = (
-125,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 1;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 6pt";
-}
-);
-}
-);
-weightClass = 700;
-},
-{
-axesValues = (
-151,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"443F1CD3-8514-4C65-8D84-A41CDF68FD19" = 0.31325;
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.68675;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 6pt";
-}
-);
-}
-);
-weightClass = 800;
-},
-{
-axesValues = (
-178,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"443F1CD3-8514-4C65-8D84-A41CDF68FD19" = 0.63855;
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.36145;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 6pt";
-}
-);
-}
-);
-weightClass = 900;
-},
-{
-axesValues = (
-208,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"443F1CD3-8514-4C65-8D84-A41CDF68FD19" = 1;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 6pt";
+value = "Nunito Sans Heavy";
 }
 );
 }
@@ -801106,1866 +799892,202 @@ weightClass = 1000;
 axesValues = (
 42,
 100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"B0DFB0A8-5D2F-4351-A1F8-6629D0DA694C" = 1;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 12pt";
-}
-);
-}
-);
-weightClass = 200;
-},
-{
-axesValues = (
-61,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.22892;
-"B0DFB0A8-5D2F-4351-A1F8-6629D0DA694C" = 0.77108;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 12pt";
-}
-);
-}
-);
-weightClass = 300;
-},
-{
-axesValues = (
-81,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.46988;
-"B0DFB0A8-5D2F-4351-A1F8-6629D0DA694C" = 0.53012;
-};
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 12pt";
-}
-);
-}
-);
-},
-{
-axesValues = (
-91,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.59036;
-"B0DFB0A8-5D2F-4351-A1F8-6629D0DA694C" = 0.40964;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 12pt";
-}
-);
-}
-);
-weightClass = 500;
-},
-{
-axesValues = (
-101,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.71084;
-"B0DFB0A8-5D2F-4351-A1F8-6629D0DA694C" = 0.28916;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 12pt";
-}
-);
-}
-);
-weightClass = 600;
-},
-{
-axesValues = (
-125,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 1;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 12pt";
-}
-);
-}
-);
-weightClass = 700;
-},
-{
-axesValues = (
-151,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"443F1CD3-8514-4C65-8D84-A41CDF68FD19" = 0.31325;
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.68675;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 12pt";
-}
-);
-}
-);
-weightClass = 800;
-},
-{
-axesValues = (
-178,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"443F1CD3-8514-4C65-8D84-A41CDF68FD19" = 0.63855;
-"5E43180E-8E46-410F-A347-F15A5FC4FC81" = 0.36145;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 12pt";
-}
-);
-}
-);
-weightClass = 900;
-},
-{
-axesValues = (
-208,
-100,
-0,
-6,
-500
-);
-instanceInterpolations = {
-"443F1CD3-8514-4C65-8D84-A41CDF68FD19" = 1;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans 12pt";
-}
-);
-}
-);
-weightClass = 1000;
-},
-{
-axesValues = (
-42,
-100,
-0,
-12,
-0
-);
-instanceInterpolations = {
-"ADF8E4AF-5B19-47E2-9285-49770E9041A0" = 1;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Min";
-}
-);
-}
-);
-weightClass = 200;
-},
-{
-axesValues = (
-61,
-100,
-0,
-12,
-0
-);
-instanceInterpolations = {
-"93A7C857-3D70-4AD5-932A-3A5F50A0AE57" = 0.11446;
-"ADF8E4AF-5B19-47E2-9285-49770E9041A0" = 0.88554;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Min";
-}
-);
-}
-);
-weightClass = 300;
-},
-{
-axesValues = (
-81,
-100,
-0,
-12,
-0
-);
-instanceInterpolations = {
-"93A7C857-3D70-4AD5-932A-3A5F50A0AE57" = 0.23494;
-"ADF8E4AF-5B19-47E2-9285-49770E9041A0" = 0.76506;
-};
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Min";
-}
-);
-}
-);
-},
-{
-axesValues = (
-91,
-100,
-0,
-12,
-0
-);
-instanceInterpolations = {
-"93A7C857-3D70-4AD5-932A-3A5F50A0AE57" = 0.29518;
-"ADF8E4AF-5B19-47E2-9285-49770E9041A0" = 0.70482;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Min";
-}
-);
-}
-);
-weightClass = 500;
-},
-{
-axesValues = (
-101,
-100,
-0,
-12,
-0
-);
-instanceInterpolations = {
-"93A7C857-3D70-4AD5-932A-3A5F50A0AE57" = 0.35542;
-"ADF8E4AF-5B19-47E2-9285-49770E9041A0" = 0.64458;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Min";
-}
-);
-}
-);
-weightClass = 600;
-},
-{
-axesValues = (
-125,
-100,
-0,
-12,
-0
-);
-instanceInterpolations = {
-"93A7C857-3D70-4AD5-932A-3A5F50A0AE57" = 0.5;
-"ADF8E4AF-5B19-47E2-9285-49770E9041A0" = 0.5;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Min";
-}
-);
-}
-);
-weightClass = 700;
-},
-{
-axesValues = (
-151,
-100,
-0,
-12,
-0
-);
-instanceInterpolations = {
-"93A7C857-3D70-4AD5-932A-3A5F50A0AE57" = 0.65663;
-"ADF8E4AF-5B19-47E2-9285-49770E9041A0" = 0.34337;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Min";
-}
-);
-}
-);
-weightClass = 800;
-},
-{
-axesValues = (
-178,
-100,
-0,
-12,
-0
-);
-instanceInterpolations = {
-"93A7C857-3D70-4AD5-932A-3A5F50A0AE57" = 0.81928;
-"ADF8E4AF-5B19-47E2-9285-49770E9041A0" = 0.18072;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Min";
-}
-);
-}
-);
-weightClass = 900;
-},
-{
-axesValues = (
-208,
-100,
-0,
-12,
-0
-);
-instanceInterpolations = {
-"93A7C857-3D70-4AD5-932A-3A5F50A0AE57" = 1;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Min";
-}
-);
-}
-);
-weightClass = 1000;
-},
-{
-axesValues = (
-42,
-100,
-0,
-12,
-1000
-);
-instanceInterpolations = {
-"2C33A992-75C9-4AE5-82DF-DD8887974930" = 1;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Max";
-}
-);
-}
-);
-weightClass = 200;
-},
-{
-axesValues = (
-61,
-100,
-0,
-12,
-1000
-);
-instanceInterpolations = {
-"2C33A992-75C9-4AE5-82DF-DD8887974930" = 0.88554;
-"30140849-DEAB-427F-A7E1-C52A32D1338D" = 0.11446;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Max";
-}
-);
-}
-);
-weightClass = 300;
-},
-{
-axesValues = (
-81,
-100,
-0,
-12,
-1000
-);
-instanceInterpolations = {
-"2C33A992-75C9-4AE5-82DF-DD8887974930" = 0.76506;
-"30140849-DEAB-427F-A7E1-C52A32D1338D" = 0.23494;
-};
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Max";
-}
-);
-}
-);
-},
-{
-axesValues = (
-91,
-100,
-0,
-12,
-1000
-);
-instanceInterpolations = {
-"2C33A992-75C9-4AE5-82DF-DD8887974930" = 0.70482;
-"30140849-DEAB-427F-A7E1-C52A32D1338D" = 0.29518;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Max";
-}
-);
-}
-);
-weightClass = 500;
-},
-{
-axesValues = (
-101,
-100,
-0,
-12,
-1000
-);
-instanceInterpolations = {
-"2C33A992-75C9-4AE5-82DF-DD8887974930" = 0.64458;
-"30140849-DEAB-427F-A7E1-C52A32D1338D" = 0.35542;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Max";
-}
-);
-}
-);
-weightClass = 600;
-},
-{
-axesValues = (
-125,
-100,
-0,
-12,
-1000
-);
-instanceInterpolations = {
-"2C33A992-75C9-4AE5-82DF-DD8887974930" = 0.5;
-"30140849-DEAB-427F-A7E1-C52A32D1338D" = 0.5;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Max";
-}
-);
-}
-);
-weightClass = 700;
-},
-{
-axesValues = (
-151,
-100,
-0,
-12,
-1000
-);
-instanceInterpolations = {
-"2C33A992-75C9-4AE5-82DF-DD8887974930" = 0.34337;
-"30140849-DEAB-427F-A7E1-C52A32D1338D" = 0.65663;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Max";
-}
-);
-}
-);
-weightClass = 800;
-},
-{
-axesValues = (
-178,
-100,
-0,
-12,
-1000
-);
-instanceInterpolations = {
-"2C33A992-75C9-4AE5-82DF-DD8887974930" = 0.18072;
-"30140849-DEAB-427F-A7E1-C52A32D1338D" = 0.81928;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Max";
-}
-);
-}
-);
-weightClass = 900;
-},
-{
-axesValues = (
-208,
-100,
-0,
-12,
-1000
-);
-instanceInterpolations = {
-"30140849-DEAB-427F-A7E1-C52A32D1338D" = 1;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans YTLC Max";
-}
-);
-}
-);
-weightClass = 1000;
-},
-{
-axesValues = (
-42,
-100,
--9,
-12,
-0
-);
-instanceInterpolations = {
-"373D7DDC-A0EA-4287-B95D-87361DC306B3" = 1;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Min";
-}
-);
-}
-);
-weightClass = 200;
-},
-{
-axesValues = (
-61,
-100,
--9,
-12,
-0
-);
-instanceInterpolations = {
-"373D7DDC-A0EA-4287-B95D-87361DC306B3" = 0.88554;
-"4306FA85-3578-4B61-861B-3CA6921E8382" = 0.11446;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Min";
-}
-);
-}
-);
-weightClass = 300;
-},
-{
-axesValues = (
-81,
-100,
--9,
-12,
-0
-);
-instanceInterpolations = {
-"373D7DDC-A0EA-4287-B95D-87361DC306B3" = 0.76506;
-"4306FA85-3578-4B61-861B-3CA6921E8382" = 0.23494;
-};
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Min";
-}
-);
-}
-);
-},
-{
-axesValues = (
-91,
-100,
--9,
-12,
-0
-);
-instanceInterpolations = {
-"373D7DDC-A0EA-4287-B95D-87361DC306B3" = 0.70482;
-"4306FA85-3578-4B61-861B-3CA6921E8382" = 0.29518;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Min";
-}
-);
-}
-);
-weightClass = 500;
-},
-{
-axesValues = (
-101,
-100,
--9,
-12,
-0
-);
-instanceInterpolations = {
-"373D7DDC-A0EA-4287-B95D-87361DC306B3" = 0.64458;
-"4306FA85-3578-4B61-861B-3CA6921E8382" = 0.35542;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Min";
-}
-);
-}
-);
-weightClass = 600;
-},
-{
-axesValues = (
-125,
-100,
--9,
-12,
-0
-);
-instanceInterpolations = {
-"373D7DDC-A0EA-4287-B95D-87361DC306B3" = 0.5;
-"4306FA85-3578-4B61-861B-3CA6921E8382" = 0.5;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Min";
-}
-);
-}
-);
-weightClass = 700;
-},
-{
-axesValues = (
-151,
-100,
--9,
-12,
-0
-);
-instanceInterpolations = {
-"373D7DDC-A0EA-4287-B95D-87361DC306B3" = 0.34337;
-"4306FA85-3578-4B61-861B-3CA6921E8382" = 0.65663;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Min";
-}
-);
-}
-);
-weightClass = 800;
-},
-{
-axesValues = (
-178,
-100,
--9,
-12,
-0
-);
-instanceInterpolations = {
-"373D7DDC-A0EA-4287-B95D-87361DC306B3" = 0.18072;
-"4306FA85-3578-4B61-861B-3CA6921E8382" = 0.81928;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Min";
-}
-);
-}
-);
-weightClass = 900;
-},
-{
-axesValues = (
-208,
-100,
--9,
-12,
-0
-);
-instanceInterpolations = {
-"4306FA85-3578-4B61-861B-3CA6921E8382" = 1;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Min";
-}
-);
-}
-);
-weightClass = 1000;
-},
-{
-axesValues = (
-42,
-100,
--9,
-12,
-1000
-);
-instanceInterpolations = {
-"83AE6F9A-C24F-44C8-A4AE-2C710D23C9AB" = 1;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Max";
-}
-);
-}
-);
-weightClass = 200;
-},
-{
-axesValues = (
-61,
-100,
--9,
-12,
-1000
-);
-instanceInterpolations = {
-"83AE6F9A-C24F-44C8-A4AE-2C710D23C9AB" = 0.88554;
-"FC1D3D00-22A6-40CF-9068-DF99253F9BF3" = 0.11446;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Max";
-}
-);
-}
-);
-weightClass = 300;
-},
-{
-axesValues = (
-81,
-100,
--9,
-12,
-1000
-);
-instanceInterpolations = {
-"83AE6F9A-C24F-44C8-A4AE-2C710D23C9AB" = 0.76506;
-"FC1D3D00-22A6-40CF-9068-DF99253F9BF3" = 0.23494;
-};
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Max";
-}
-);
-}
-);
-},
-{
-axesValues = (
-91,
-100,
--9,
-12,
-1000
-);
-instanceInterpolations = {
-"83AE6F9A-C24F-44C8-A4AE-2C710D23C9AB" = 0.70482;
-"FC1D3D00-22A6-40CF-9068-DF99253F9BF3" = 0.29518;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Max";
-}
-);
-}
-);
-weightClass = 500;
-},
-{
-axesValues = (
-101,
-100,
--9,
-12,
-1000
-);
-instanceInterpolations = {
-"83AE6F9A-C24F-44C8-A4AE-2C710D23C9AB" = 0.64458;
-"FC1D3D00-22A6-40CF-9068-DF99253F9BF3" = 0.35542;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Max";
-}
-);
-}
-);
-weightClass = 600;
-},
-{
-axesValues = (
-125,
-100,
--9,
-12,
-1000
-);
-instanceInterpolations = {
-"83AE6F9A-C24F-44C8-A4AE-2C710D23C9AB" = 0.5;
-"FC1D3D00-22A6-40CF-9068-DF99253F9BF3" = 0.5;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Max";
-}
-);
-}
-);
-weightClass = 700;
-},
-{
-axesValues = (
-151,
-100,
--9,
-12,
-1000
-);
-instanceInterpolations = {
-"83AE6F9A-C24F-44C8-A4AE-2C710D23C9AB" = 0.34337;
-"FC1D3D00-22A6-40CF-9068-DF99253F9BF3" = 0.65663;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Max";
-}
-);
-}
-);
-weightClass = 800;
-},
-{
-axesValues = (
-178,
-100,
--9,
-12,
-1000
-);
-instanceInterpolations = {
-"83AE6F9A-C24F-44C8-A4AE-2C710D23C9AB" = 0.18072;
-"FC1D3D00-22A6-40CF-9068-DF99253F9BF3" = 0.81928;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Max";
-}
-);
-}
-);
-weightClass = 900;
-},
-{
-axesValues = (
-208,
-100,
--9,
-12,
-1000
-);
-instanceInterpolations = {
-"FC1D3D00-22A6-40CF-9068-DF99253F9BF3" = 1;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant YTLC Max";
-}
-);
-}
-);
-weightClass = 1000;
-},
-{
-axesValues = (
-42,
-100,
--9,
+9,
 12,
 500
+);
+customParameters = (
+{
+name = italicAngle;
+value = "9";
+}
 );
 instanceInterpolations = {
 "D350EA46-CA02-4D8C-9F00-38F5B78EA963" = 1;
 };
 isItalic = 1;
-linkStyle = ExtraLight;
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant";
-}
-);
-}
-);
+name = "ExtraLight Italic";
 weightClass = 200;
 },
 {
 axesValues = (
 61,
 100,
--9,
+9,
 12,
 500
+);
+customParameters = (
+{
+name = italicAngle;
+value = "9";
+}
 );
 instanceInterpolations = {
 "D350EA46-CA02-4D8C-9F00-38F5B78EA963" = 0.77108;
 "F8E755D4-897D-491B-8E40-1D9265510348" = 0.22892;
 };
 isItalic = 1;
-linkStyle = Light;
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant";
-}
-);
-}
-);
+name = "Light Italic";
 weightClass = 300;
 },
 {
 axesValues = (
 81,
 100,
--9,
+9,
 12,
 500
+);
+customParameters = (
+{
+name = italicAngle;
+value = "9";
+}
 );
 instanceInterpolations = {
 "D350EA46-CA02-4D8C-9F00-38F5B78EA963" = 0.53012;
 "F8E755D4-897D-491B-8E40-1D9265510348" = 0.46988;
 };
 isItalic = 1;
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant";
-}
-);
-}
-);
+name = Italic;
 },
 {
 axesValues = (
 91,
 100,
--9,
+9,
 12,
 500
+);
+customParameters = (
+{
+name = italicAngle;
+value = "9";
+}
 );
 instanceInterpolations = {
 "D350EA46-CA02-4D8C-9F00-38F5B78EA963" = 0.40964;
 "F8E755D4-897D-491B-8E40-1D9265510348" = 0.59036;
 };
 isItalic = 1;
-linkStyle = Medium;
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant";
-}
-);
-}
-);
+name = "Medium Italic";
 weightClass = 500;
 },
 {
 axesValues = (
 101,
 100,
--9,
+9,
 12,
 500
+);
+customParameters = (
+{
+name = italicAngle;
+value = "9";
+}
 );
 instanceInterpolations = {
 "D350EA46-CA02-4D8C-9F00-38F5B78EA963" = 0.28916;
 "F8E755D4-897D-491B-8E40-1D9265510348" = 0.71084;
 };
 isItalic = 1;
-linkStyle = SemiBold;
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant";
-}
-);
-}
-);
+name = "SemiBold Italic";
 weightClass = 600;
 },
 {
 axesValues = (
 125,
 100,
--9,
+9,
 12,
 500
+);
+customParameters = (
+{
+name = italicAngle;
+value = "9";
+}
 );
 instanceInterpolations = {
 "F8E755D4-897D-491B-8E40-1D9265510348" = 1;
 };
 isBold = 1;
 isItalic = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant";
-}
-);
-}
-);
+name = "Bold Italic";
 weightClass = 700;
 },
 {
 axesValues = (
 151,
 100,
--9,
+9,
 12,
 500
+);
+customParameters = (
+{
+name = italicAngle;
+value = "9";
+}
 );
 instanceInterpolations = {
 "0A668572-1266-4D11-A4F8-D5AD7C3E1FF7" = 0.31325;
 "F8E755D4-897D-491B-8E40-1D9265510348" = 0.68675;
 };
 isItalic = 1;
-linkStyle = ExtraBold;
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant";
-}
-);
-}
-);
+name = "ExtraBold Italic";
 weightClass = 800;
 },
 {
 axesValues = (
 178,
 100,
--9,
+9,
 12,
 500
+);
+customParameters = (
+{
+name = italicAngle;
+value = "9";
+}
 );
 instanceInterpolations = {
 "0A668572-1266-4D11-A4F8-D5AD7C3E1FF7" = 0.63855;
 "F8E755D4-897D-491B-8E40-1D9265510348" = 0.36145;
 };
 isItalic = 1;
-linkStyle = Black;
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant";
-}
-);
-}
-);
+name = "Black Italic";
 weightClass = 900;
 },
 {
 axesValues = (
 208,
 100,
--9,
+9,
 12,
 500
+);
+customParameters = (
+{
+name = italicAngle;
+value = "9";
+}
 );
 instanceInterpolations = {
 "0A668572-1266-4D11-A4F8-D5AD7C3E1FF7" = 1;
 };
 isItalic = 1;
-linkStyle = ExtraBlack;
-name = ExtraBlack;
+name = Italic;
 properties = (
 {
 key = familyNames;
 values = (
 {
 language = dflt;
-value = "Nunito Sans Slant";
-}
-);
-}
-);
-weightClass = 1000;
-},
-{
-axesValues = (
-42,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 1;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 6pt";
-}
-);
-}
-);
-weightClass = 200;
-},
-{
-axesValues = (
-61,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.11446;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.88554;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 6pt";
-}
-);
-}
-);
-weightClass = 300;
-},
-{
-axesValues = (
-81,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.23494;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.76506;
-};
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 6pt";
-}
-);
-}
-);
-},
-{
-axesValues = (
-91,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.29518;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.70482;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 6pt";
-}
-);
-}
-);
-weightClass = 500;
-},
-{
-axesValues = (
-101,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.35542;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.64458;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 6pt";
-}
-);
-}
-);
-weightClass = 600;
-},
-{
-axesValues = (
-125,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.5;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.5;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 6pt";
-}
-);
-}
-);
-weightClass = 700;
-},
-{
-axesValues = (
-151,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.65663;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.34337;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 6pt";
-}
-);
-}
-);
-weightClass = 800;
-},
-{
-axesValues = (
-178,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.81928;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.18072;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 6pt";
-}
-);
-}
-);
-weightClass = 900;
-},
-{
-axesValues = (
-208,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 1;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 6pt";
-}
-);
-}
-);
-weightClass = 1000;
-},
-{
-axesValues = (
-42,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 1;
-};
-name = ExtraLight;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 12pt";
-}
-);
-}
-);
-weightClass = 200;
-},
-{
-axesValues = (
-61,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.11446;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.88554;
-};
-name = Light;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 12pt";
-}
-);
-}
-);
-weightClass = 300;
-},
-{
-axesValues = (
-81,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.23494;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.76506;
-};
-name = Regular;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 12pt";
-}
-);
-}
-);
-},
-{
-axesValues = (
-91,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.29518;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.70482;
-};
-name = Medium;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 12pt";
-}
-);
-}
-);
-weightClass = 500;
-},
-{
-axesValues = (
-101,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.35542;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.64458;
-};
-name = SemiBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 12pt";
-}
-);
-}
-);
-weightClass = 600;
-},
-{
-axesValues = (
-125,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.5;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.5;
-};
-isBold = 1;
-name = Bold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 12pt";
-}
-);
-}
-);
-weightClass = 700;
-},
-{
-axesValues = (
-151,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.65663;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.34337;
-};
-name = ExtraBold;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 12pt";
-}
-);
-}
-);
-weightClass = 800;
-},
-{
-axesValues = (
-178,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 0.81928;
-"F6197A72-EB1C-4935-BA38-5B70AD979713" = 0.18072;
-};
-name = Black;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 12pt";
-}
-);
-}
-);
-weightClass = 900;
-},
-{
-axesValues = (
-208,
-100,
--9,
-6,
-500
-);
-instanceInterpolations = {
-"56532273-34DC-405E-B31E-AB9CC9034574" = 1;
-};
-name = ExtraBlack;
-properties = (
-{
-key = familyNames;
-values = (
-{
-language = dflt;
-value = "Nunito Sans Slant 12pt";
+value = "Nunito Sans Heavy";
 }
 );
 }
