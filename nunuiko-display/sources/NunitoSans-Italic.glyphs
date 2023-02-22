@@ -665,7 +665,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "ExtraLight Italic";
+name = "12pt ExtraLight Italic";
 stemValues = (
 39,
 41,
@@ -803,7 +803,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Bold Italic";
+name = "12pt Bold Italic";
 stemValues = (
 96,
 99,
@@ -930,7 +930,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Heavy Italic";
+name = "12pt Heavy Italic";
 stemValues = (
 178,
 179,
@@ -1043,7 +1043,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Condensed ExtraLight Italic";
+name = "12pt Condensed ExtraLight Italic";
 stemValues = (
 35,
 36,
@@ -1156,7 +1156,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Condensed Heavy Italic";
+name = "12pt Condensed Heavy Italic";
 stemValues = (
 164,
 165,
@@ -1266,7 +1266,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Expanded ExtraLight Italic";
+name = "12pt Expanded ExtraLight Italic";
 stemValues = (
 42,
 44,
@@ -1378,7 +1378,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Expanded Heavy Italic";
+name = "12pt Expanded Heavy Italic";
 stemValues = (
 0,
 0,
@@ -1843,7 +1843,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "ExtraLight YTLC Min Italic";
+name = "12pt ExtraLight YTLC Min Italic";
 stemValues = (
 0,
 0,
@@ -1982,7 +1982,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Heavy YTLC Min Italic";
+name = "12pt Heavy YTLC Min Italic";
 stemValues = (
 0,
 0,
@@ -2107,7 +2107,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "ExtraLight YTLC Max Italic";
+name = "12pt ExtraLight YTLC Max Italic";
 stemValues = (
 0,
 0,
@@ -2239,7 +2239,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "Heavy YTLC Max Italic";
+name = "12pt Heavy YTLC Max Italic";
 stemValues = (
 0,
 0,

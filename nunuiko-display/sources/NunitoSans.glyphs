@@ -641,7 +641,7 @@ pos = -180;
 {
 }
 );
-name = ExtraLight;
+name = "12pt ExtraLight";
 stemValues = (
 39,
 41,
@@ -763,7 +763,7 @@ pos = -180;
 {
 }
 );
-name = Bold;
+name = "12pt Bold";
 stemValues = (
 109,
 110,
@@ -883,7 +883,7 @@ pos = -180;
 {
 }
 );
-name = Heavy;
+name = "12pt Heavy";
 stemValues = (
 178,
 179,
@@ -998,7 +998,7 @@ pos = -180;
 {
 }
 );
-name = "Condensed ExtraLight";
+name = "12pt Condensed ExtraLight";
 stemValues = (
 35,
 36,
@@ -1110,7 +1110,7 @@ pos = -180;
 {
 }
 );
-name = "Condensed Heavy";
+name = "12pt Condensed Heavy";
 stemValues = (
 164,
 165,
@@ -1219,7 +1219,7 @@ pos = -180;
 {
 }
 );
-name = "Expanded ExtraLight";
+name = "12pt Expanded ExtraLight";
 stemValues = (
 42,
 44,
@@ -1331,7 +1331,7 @@ pos = -180;
 {
 }
 );
-name = "Expanded Heavy ";
+name = "12pt Expanded Heavy ";
 stemValues = (
 0,
 0,
@@ -1968,7 +1968,7 @@ pos = -180;
 {
 }
 );
-name = "ExtraLight YTLC Min";
+name = "12pt ExtraLight YTLC Min";
 stemValues = (
 0,
 0,
@@ -2106,7 +2106,7 @@ pos = -180;
 {
 }
 );
-name = "Heavy YTLC Min";
+name = "12pt Heavy YTLC Min";
 stemValues = (
 0,
 0,
@@ -2230,7 +2230,7 @@ pos = -180;
 {
 }
 );
-name = "ExtraLight YTLC Max";
+name = "12pt ExtraLight YTLC Max";
 stemValues = (
 0,
 0,
@@ -2361,7 +2361,7 @@ pos = -180;
 {
 }
 );
-name = "Heavy YTLC Max";
+name = "12pt Heavy YTLC Max";
 stemValues = (
 0,
 0,
