@@ -1,9 +1,6 @@
 {
 .appVersion = "3151";
 .formatVersion = 3;
-DisplayStrings = (
-"ďľť"
-);
 axes = (
 {
 name = Weight;
@@ -938,7 +935,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "12pt Heavy Italic";
+name = "12pt ExtraBlack Italic";
 stemValues = (
 178,
 179,
@@ -1164,7 +1161,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "12pt Condensed Heavy Italic";
+name = "12pt Condensed ExtraBlack Italic";
 stemValues = (
 164,
 165,
@@ -1386,7 +1383,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "12pt Expanded Heavy Italic";
+name = "12pt Expanded ExtraBlack Italic";
 stemValues = (
 0,
 0,
@@ -1726,7 +1723,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "6pt Heavy Italic";
+name = "6pt ExtraBlack Italic";
 stemValues = (
 163,
 183,
@@ -1990,7 +1987,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "12pt Heavy YTLC Min Italic";
+name = "12pt ExtraBlack YTLC Min Italic";
 stemValues = (
 0,
 0,
@@ -2247,7 +2244,7 @@ pos = -180;
 pos = 9;
 }
 );
-name = "12pt Heavy YTLC Max Italic";
+name = "12pt ExtraBlack YTLC Max Italic";
 stemValues = (
 0,
 0,
@@ -397624,7 +397621,7 @@ key = familyNames;
 values = (
 {
 language = dflt;
-value = "Nunito Sans Heavy";
+value = "Nunito Sans ExtraBlack";
 }
 );
 }
