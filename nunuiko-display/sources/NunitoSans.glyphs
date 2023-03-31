@@ -65,9 +65,9 @@ value = 1;
 name = "Axis Mappings";
 value = {
 YTLC = {
-0 = 0;
+440 = 440;
 500 = 500;
-1000 = 1000;
+540 = 540;
 };
 opsz = {
 6 = 6;
@@ -1866,7 +1866,7 @@ axesValues = (
 42,
 100,
 12,
-0
+440
 );
 customParameters = (
 {
@@ -1990,7 +1990,7 @@ axesValues = (
 208,
 100,
 12,
-0
+440
 );
 customParameters = (
 {
@@ -2128,7 +2128,7 @@ axesValues = (
 42,
 100,
 12,
-1000
+540
 );
 customParameters = (
 {
@@ -2252,7 +2252,7 @@ axesValues = (
 208,
 100,
 12,
-1000
+540
 );
 customParameters = (
 {
@@ -449377,5 +449377,5 @@ name = vStem3;
 );
 unitsPerEm = 1000;
 versionMajor = 3;
-versionMinor = 100;
+versionMinor = 101;
 }
