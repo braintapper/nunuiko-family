@@ -151,28 +151,44 @@ Heavy (381,564) 478→509 · same pattern italics. fi within 1–2 units of f.
 
 ---
 
-## 3. J (capital) — upturned bottom terminal ☐ NEXT UP
+## 3. J (capital) — upturned hooked foot ✅ (2026-07-07, done 5th)
 
-**Intent:** bottom curves back **up** (hooked foot), not a plain straight
-descender. **Lowercase `j` is CANCELLED** (user decision 2026-07-06: the
-stock j is fine — do not touch it, here or in the Nunito Sans replay).
-Capital J is still planned, along with K/k (last two remaining edits).
+**Intent:** U-hook foot per **Google Sans Flex** reference — stem down,
+around the bowl, back **up** the left side, ending in a rounded cap.
+**Lowercase `j` is CANCELLED** (user decision: stock j is fine — do not
+touch it, here or in the Nunito Sans replay).
 
-**Related glyphs to check:** Jcircumflex, IJ (check if composite or
-drawn), and `uni01F0`-style forms if any.
+**Composites (inherit automatically):** IJ, I_J.loclNLD,
+Iacute_J.loclNLD, Jcircumflex, Je-cy, LJ, NJ.
 
-### Before (per master)
-
+**Script:** `sources/edits/05_J_hook.py` (22 → 26 nodes).
 
 ### Operation / rule
 
+Full reconstruction of the foot; stem + top cap (old nodes 3–11) kept
+verbatim. All geometry from the J's own landmarks per master:
 
-### After (per master)
-
+- Hook outer-left = old leftmost extent (−11/−14/−16; italics −51ish
+  deslanted) → **LSB and width unchanged**.
+- Inner bottom y = old inner-bottom y (36/100/164) → keeps Nunito's
+  existing bottom taper.
+- Outer bottom = old overshoot (−2/−5/−7).
+- **Hook weight = min(stem weight, 0.55 × left span)** — Heavy can't fit
+  a full-weight U (2×215 > 370 span): EL 42 (=stem), Bold 128→90,
+  Heavy 215→85. Same counter-protection idea as the Q slash.
+- **Terminal height H = 0.9 × stem curve-start y** (EL 159 / Bold 179 /
+  Heavy 199); rounded terminal cap = same construction as the stem's own
+  top cap (rise = hook weight / 2, kappa 0.5523 quarter arcs) — corners
+  stay in Nunito's rounded vocabulary (user requirement).
+- Italics: landmarks deslanted by tan 9°, built upright, reslanted
+  (verified: reslanted verticals land exactly on the italic stem lines).
 
 ### Compatibility & size-ramp check
-- [ ] Same point count/order in all masters
-- [ ] Nunito Sans replay notes:
+- [x] 26 nodes, same order/types, all 6 masters; fontmake clean
+- [x] Counters open at Heavy + Heavy Italic; context Jump/Justice/
+      IJssel/JOJO/NJ verified
+- [ ] Nunito Sans replay notes: same landmark-based construction should
+      port directly; re-judge H_FRAC and HOOK_MAX_FRAC by eye.
 
 ---
 
