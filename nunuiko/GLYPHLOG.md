@@ -198,27 +198,57 @@ rather than sitting outside/below it.
 
 ---
 
-## 5. G — wider, more curve before the horizontal stroke ☐
+## 5. G — rebuilt on O's bowl ✅ (2026-07-06, done 3rd)
 
-**Intent:** widen G with more of a curve before the horizontal bar.
+**Intent (refined by user):** G is based on **O** — full round bowl — with
+the horizontal bar at the same height as the original G and the upper-arm
+terminal (top overhang) ending in the same place as the original G.
 
-**Related glyphs to check:** Gbreve, Gcircumflex, Gcommaaccent, Gdotaccent;
-spacing/kerning against O/C classes (widening may change sidebearings —
-record kerning class changes too).
+**Composites (inherit automatically):** Gbreve, Gcaron, Gcircumflex,
+Gcommaaccent, Gdotaccent, Gmacron.
 
-### Before (per master)
+**Script:** `sources/edits/03_G_bowl.py`.
 
+### Key insight enabling the graft
 
-### Operation / rule
+Nunito's G and O **share a skeleton**: G's outer top/left is O's outer
+top/left within ≤9 units (exact in ExtraLight). So the new G can be
+assembled from verbatim pieces with only two computed joins.
 
+### Assembly (44 → 35 nodes, single path, original traversal order)
 
-### After (per master)
+1. **G bar left-end U** (G nodes 10–16) — verbatim; bar height and left
+   end unchanged by construction.
+2. Bar underside LINE right to **corner B** = O's *inner* right arc split
+   (de Casteljau) at the bar's underside y.
+3. Down O's inner right (split remainder) → O inner bottom/left/top
+   nodes verbatim.
+4. **G arm inner + terminal cap + outer top** (G nodes 29–37) — verbatim;
+   terminal ends where it always did. Junction at inner top works because
+   both curves are horizontal (y=672) there.
+5. Outer left grafted **at O's node** (G's ≤9 units away, tangent shared)
+   → O outer bottom verbatim → rising right arc to **corner A** at the
+   bar's *top* edge y. Upright quirk: O's right extremum sits ~1 unit
+   below the bar top → A is the extremum nudged up, no split. Italics:
+   real split (their extremum is higher, y≈416).
+6. LINE left along the bar top back to start. A and B are true corners
+   (non-smooth); every other joint keeps SMOOTH exactly.
 
+### Metrics & classes
+
+- Width := O's width per master (718→751 / 736→785 / 754→820; italics
+  same). LSB unchanged; RSB now O's.
+- Anchors top/bottom := O's (bowl recentered) — composites follow.
+- **rightKerningGroup G → O** (right side is now O's round bowl; left was
+  already O).
 
 ### Compatibility & size-ramp check
-- [ ] Same point count/order in all masters
-- [ ] Kerning classes still correct after width change
-- [ ] Nunito Sans replay notes:
+- [x] Same 35-node structure in all masters; fontmake clean
+- [x] Overlay + EL/Regular/Heavy @200px + Google/GIGA/OGRE context +
+      italics all verified visually
+- [ ] Nunito Sans replay notes: verify its G/O also share the skeleton
+      (assert tolerances in the script will tell); bar-node indices may
+      differ — the script's semantic asserts locate drift immediately.
 
 ---
 

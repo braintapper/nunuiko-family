@@ -27,6 +27,8 @@ def apply_edit(glyphs_path, glyph_name, edit_fn):
     edit_fn(master_name, layer, nodes) -> dict with optional keys:
       'nodes':   {global_node_index: (new_x, new_y)}  (index across all
                  paths, concatenated in order)
+      'replace_nodes': full replacement outline for a SINGLE-path glyph:
+                 list of (x, y, type, smooth) tuples — may change count
       'width':   new advance width (int)
       'anchors': {anchor_name: (new_x, new_y)}
     Coordinates are rounded to int. Returns True if the file changed.
@@ -50,8 +52,22 @@ def apply_edit(glyphs_path, glyph_name, edit_fn):
         wmatch = WIDTH_RE.search(block, lstart)
         region = block[lstart : wmatch.end()]
 
+        if result.get("replace_nodes") is not None:
+            assert len(layer.paths) == 1, (mname, "replace_nodes needs 1 path")
+            assert region.count("nodes = (") == 1, mname
+            ns = region.index("nodes = (")
+            ne = region.index(");", ns) + 2
+            lines = ",\n".join(
+                fmt_node(round(x), round(y), t, sm)
+                for x, y, t, sm in result["replace_nodes"]
+            )
+            new_region = region[:ns] + "nodes = (\n" + lines + "\n);" + region[ne:]
+            region_replaced = True
+        else:
+            region_replaced = False
+
         new_coords = result.get("nodes", {})
-        if new_coords:
+        if new_coords and not region_replaced:
             spans = [m.span() for m in NODE_RE.finditer(region)]
             assert len(spans) == len(nodes), (mname, len(spans), len(nodes))
             pieces, prev = [], 0
@@ -65,7 +81,7 @@ def apply_edit(glyphs_path, glyph_name, edit_fn):
                 prev = e
             pieces.append(region[prev:])
             new_region = "".join(pieces)
-        else:
+        elif not region_replaced:
             new_region = region
 
         if result.get("width") is not None:
@@ -74,18 +90,27 @@ def apply_edit(glyphs_path, glyph_name, edit_fn):
             new_region = new_region.replace(
                 f"width = {old_width};", f"width = {result['width']};"
             )
-        block = block.replace(region, new_region)
 
-        # anchors mirror in the background copy: expect exactly 2 occurrences
+        # this layer's full dict (anchors live BEFORE layerId): spans from
+        # the previous layer's width line to this layer's width line
+        prev_widths = [m for m in WIDTH_RE.finditer(block) if m.start() < lstart]
+        scope_start = prev_widths[-1].end() if prev_widths else 0
+        scope = block[scope_start : wmatch.end()]
+        new_scope = scope.replace(region, new_region)
+
+        # anchors mirror in the background copy: 1-2 occurrences per layer
         for a in layer.anchors:
             if a.name not in result.get("anchors", {}):
                 continue
             nx, ny = result["anchors"][a.name]
             old = f'position = "{{{a.position.x:g}, {a.position.y:g}}}";'
             new = f'position = "{{{round(nx):g}, {round(ny):g}}}";'
-            count = block.count(old)
+            count = new_scope.count(old)
             assert count in (1, 2), (mname, a.name, count)
-            block = block.replace(old, new)
+            new_scope = new_scope.replace(old, new)
+
+        assert block.count(scope) == 1
+        block = block.replace(scope, new_scope)
 
     new_text = text[:block_start] + block + text[block_end:]
     if new_text == text:
