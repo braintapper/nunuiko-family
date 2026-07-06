@@ -56,6 +56,7 @@ glyphsLib 6.13.1, protobuf 3.20.3.
 | `FileNotFoundError: builder.yaml` | Upstream renamed the config to `config.yaml` but `build.sh` wasn't updated | `build.sh`: `gftools builder config.yaml` |
 | `gen-stat: unrecognized arguments: --axis-order` | CLI flag removed in newer gftools; axis order is now inferred | `build.sh`: drop `--axis-order 'wght' 'ital'`, keep `--inplace` |
 | `ModuleNotFoundError: fontbakery` (in `fix.py`) | Never listed in requirements | `pip install fontbakery` (now in requirements.txt) |
+| `varLib.instancer: No such file 'X[ital,wght].ttf'` | gftools 0.9.996 builder **splits Roman/Italic itself** and never writes the combined `[ital,wght]` file; it also sets STAT and the italic head/OS/2/post bits | Delete the instancer / `gen-stat` / `fix.py` steps from `build.sh` entirely — the builder output is already final. (Beware: with the *old* build.sh, the instancer silently read the **committed** combined binary, so the "build" wasn't fully from source.) |
 
 ### 1c. Build
 
@@ -101,21 +102,30 @@ print(w, '— tabular:' , len(set(w.values())) == 1)
 EOF
 ```
 
-## Step 3 — rename (Nunito → Nunuiko) — TODO
+## Step 3 — rename (Nunito → Nunuiko) — DONE (2026-07-06)
 
-Do this as its own commit, **before** any glyph edits, so test installs
+Done as its own commit, **before** any glyph edits, so test installs
 coexist with real Nunito for side-by-side comparison.
 
-- Mechanical rename in `sources/Nunito.glyphs`: `familyName`, instance/style
-  names (e.g. "Nunito Heavy"), then the filenames referenced in `build.sh` and
-  `config.yaml`, and the source filename itself.
-- **Keep everything ASCII internally** (`Nunuiko`): PostScript names,
-  filenames, family name. The display form `Nunuïko` (diaeresis) can be added
-  later as a name-table nicety if wanted.
-- Naming scheme (two-font route, from fonts.md): this repo → **`Nunuiko`**
-  (rounded text cut); the nunito-sans fork → **`Nunuiko Display`**
-  (straight display cut).
-- Update `OFL.txt` copyright line to note the derivative; OFL terms carry over.
+- The Glyphs source had only **four** name strings to touch (grep for the
+  family name, excluding `glyphname`/`unicode` lines): `copyright`,
+  `familyName`, and 2× a `"Nunito Heavy"` per-instance familyName override
+  (the Heavy instance ships as its own family for legacy weight-class apps).
+  `sed` on the .glyphs file is fine — but **keep the file pure ASCII**
+  (it contains no non-ASCII bytes; don't introduce the diaeresis or plist
+  `\U` escapes there).
+- `git mv` the source to `Nunuiko.glyphs`; update `config.yaml` and
+  `build.sh`; `git rm` the old committed binaries (recoverable from history).
+- **Split naming:** internal/PostScript names (IDs 6, 25) and filenames stay
+  ASCII `Nunuiko`; the **public** name records (IDs 1, 4, 16, 21) get the
+  diaeresis `Nunuïko`, applied post-build by `sources/display_name.py`
+  (last step in `build.sh`). Copy that script to the Nunito Sans fork —
+  for the display cut set `ASCII_NAME`/`DISPLAY_NAME` to
+  `Nunuiko Display` / `Nunuïko Display`.
+- Verify with `fc-scan --format '%{family}\n' <ttf>` → must print `Nunuïko`,
+  and name ID 6 must stay ASCII.
+- Copyright string keeps the original Nunito Project notice appended after
+  the new one (OFL requires retaining it).
 
 ## Step 4 — the six glyph edits — TODO
 
