@@ -6,7 +6,8 @@ The slash's LOWEST corner sits exactly on the baseline (y = 0) — the new
 Q has no descender.
 
 Q = O component + _part.Qtail component, so only _part.Qtail changes
-(12 curved nodes -> 4-corner rotated rectangle, flat Jost ends).
+(12 curved nodes -> rotated rectangle with lightly rounded corners:
+r = CORNER_R_FRAC * slash weight, matching the font's soft vocabulary).
 
 All geometry is derived from O's own outlines per master:
   - M     = midpoint between the outer and inner bottom-right arc
@@ -35,6 +36,8 @@ ANGLE_DEG = 45          # slash angle below horizontal, upright masters
 ITALIC_SHEAR = math.tan(math.radians(9))
 K_IN_FRAC = 0.35        # inner tip: fraction of counter radius past the ring
 MAX_COUNTER_FRAC = 0.6  # slash weight cap, as fraction of counter radius
+CORNER_R_FRAC = 0.18    # corner fillet radius, as fraction of slash weight
+FILLET_TENSION = 0.5523 # circle-approximation control distance
 
 
 def cubic_point(p0, c1, c2, p3, t):
@@ -107,11 +110,31 @@ def edit_factory(font):
         if signed_area(rect) * signed_area([xy(p) for p in outer]) < 0:
             rect.reverse()
 
+        # round each corner (r before/after, circle-approx tension) — the
+        # font rounds everything; flat Jost cuts looked out of place
+        r = CORNER_R_FRAC * w
+        lerp = lambda p, q, k: (p[0] + (q[0] - p[0]) * k, p[1] + (q[1] - p[1]) * k)
+        nodes_out = []
+        for i, P in enumerate(rect):
+            A = lerp(P, rect[i - 1], r / math.dist(P, rect[i - 1]))
+            B = lerp(P, rect[(i + 1) % 4], r / math.dist(P, rect[(i + 1) % 4]))
+            nodes_out.append((A[0], A[1], "line", True))
+            for ctrl in (lerp(A, P, FILLET_TENSION), lerp(B, P, FILLET_TENSION)):
+                nodes_out.append((ctrl[0], ctrl[1], "offcurve", False))
+            nodes_out.append((B[0], B[1], "curve", True))
+
+        # the fillet lifts the lowest ink ~0.41r above the baseline; shift
+        # the whole slash down so the rounded corner touches y=0 exactly
+        min_y = min(
+            cubic_point(nodes_out[k][:2], nodes_out[k + 1][:2],
+                        nodes_out[k + 2][:2], nodes_out[k + 3][:2], t / 20)[1]
+            for k in range(0, 16, 4) for t in range(21)
+        )
         ox, oy = q_offsets[layer.layerId]
-        rect = [(x - ox, y - oy) for x, y in rect]
-        print(f"{mname:20s} w_ring={w_ring:.0f} w_slash={w:.0f} "
+        nodes_out = [(x - ox, y - min_y - oy, t, sm) for x, y, t, sm in nodes_out]
+        print(f"{mname:20s} w_slash={w:.0f} r={r:.0f} drop={min_y:.1f} "
               f"tips in=({E_in[0]:.0f},{E_in[1]:.0f}) out=({E_out[0]:.0f},{E_out[1]:.0f})")
-        return {"replace_nodes": [(x, y, "line", False) for x, y in rect]}
+        return {"replace_nodes": nodes_out}
 
     return edit
 

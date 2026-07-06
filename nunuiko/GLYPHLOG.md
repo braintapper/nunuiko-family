@@ -168,7 +168,13 @@ fitting in UI.
 
 **Structure discovery:** Q = `O` component + `_part.Qtail` component
 (used only by Q) — the entire edit lives in `_part.Qtail`
-(12 curved nodes → 4-corner rotated rectangle, flat Jost ends).
+(12 curved nodes → rotated rectangle, 16 nodes after corner rounding).
+
+**Refinement 4b (user feedback):** flat Jost corners looked out of place —
+all four corners filleted with r = 0.18 × slash weight (tension 0.5523).
+The fillet lifts the lowest ink ~0.41r off the baseline, so the whole
+slash is shifted down by the measured lift (3–9 units per master) to
+keep the rounded corner touching y = 0 exactly.
 
 **Script:** `sources/edits/04_Q_slash.py`. All geometry derived from O's
 outlines per master:
