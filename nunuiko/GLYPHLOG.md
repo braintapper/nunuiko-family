@@ -214,13 +214,19 @@ fitting in UI.
 
 **Structure discovery:** Q = `O` component + `_part.Qtail` component
 (used only by Q) — the entire edit lives in `_part.Qtail`
-(12 curved nodes → rotated rectangle, 16 nodes after corner rounding).
+(12 curved nodes → capsule, 14 nodes).
 
 **Refinement 4b (user feedback):** flat Jost corners looked out of place —
-all four corners filleted with r = 0.18 × slash weight (tension 0.5523).
-The fillet lifts the lowest ink ~0.41r off the baseline, so the whole
-slash is shifted down by the measured lift (3–9 units per master) to
-keep the rounded corner touching y = 0 exactly.
+corners filleted with r = 0.18 × slash weight. **Superseded by 4c.**
+
+**Refinement 4c (user feedback):** slash ends made **fully round** —
+semicircular caps like the font's other terminals, so the slash is a
+capsule/stadium (two quarter-arc cubics per cap, tension 0.5523; 14
+nodes). Ink extents preserved from 4a/4b: the outer cap's *center* is
+solved so the circle is tangent to y = 0 exactly (no post-shift needed),
+and the inner cap center is pulled back by w/2 so the round tip's ink
+ends where the flat end used to. Folded into the main script — a single
+run of 04 produces the round-cap slash.
 
 **Script:** `sources/edits/04_Q_slash.py`. All geometry derived from O's
 outlines per master:
@@ -233,8 +239,10 @@ outlines per master:
   barely poked out. EL/Bold use ring weight (42/123); Heavy capped
   204→104, Heavy Italic 204→96. NB slash weight is non-monotonic
   Bold→Heavy — visually fine, interpolation clean.
-- **Outer tip** solved so the lowest corner has y = 0 exactly.
-- **Inner tip** = inner-arc midpoint + 0.35 × counter radius along −d.
+- **Outer cap** center on the slash midline at y = w/2 (circle tangent
+  to the baseline).
+- **Inner ink tip** = inner-arc midpoint + 0.35 × counter radius along
+  −d (cap center w/2 short of that).
 - Winding matched to O's outer ring (else nonzero fill cancels the
   overlap); rect corners converted to part-local space via Q's
   per-master component offset. Same node order in all masters
@@ -242,7 +250,7 @@ outlines per master:
   everywhere when replaying).
 
 ### Compatibility & size-ramp check
-- [x] 4 identical corner nodes, same order, all masters
+- [x] Same 14-node capsule structure, same order, all masters
 - [x] Counter stays open at all weights incl. Heavy/Heavy Italic
 - [x] Baseline alignment verified against guide at 200/400/700/1000
 - [ ] Nunito Sans replay notes: check whether its Q is also
