@@ -133,6 +133,12 @@ Applies identically to BOTH cuts (this repo and the nunito-sans fork).
 Order (easiest first): **l → f → J → Q → G → K/k**. Full design specs in
 `fonts.md` § "The actual changes are small".
 
+**Every edit is logged in `GLYPHLOG.md`** — per master, with before/after
+coordinates and (more importantly) the *rule* used, so the Nunito Sans run
+replays the rule against its own outlines instead of re-deriving the design.
+Fill it in as each glyph lands; copy it to the Nunito Sans fork alongside
+this playbook.
+
 Linux workflow (Glyphs.app is Mac-only):
 
 1. Convert source to per-master UFOs + designspace:
