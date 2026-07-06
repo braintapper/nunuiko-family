@@ -118,7 +118,7 @@
 
 <div class="wrap">
   <header>
-    <p class="eyebrow">Type proof · edit 01 — lowercase l, shorter tail</p>
+    <p class="eyebrow">Type proof · edits 01–02 — l tail · f terminal</p>
     <h1>Nunuïko</h1>
     <p class="sub">A Nunito derivative, proofed live against its source. Both columns render real
       variable fonts — original Nunito v3.602 and the current Nunuïko build — so what you see is
@@ -136,7 +136,7 @@
     <div class="controls">
       <div class="ctl ctl-text">
         <label for="txt">Sample text</label>
-        <input type="text" id="txt" value="Il1 lIl — small talk will fall" spellcheck="false">
+        <input type="text" id="txt" value="Il1 fluff — small talk will fall" spellcheck="false">
       </div>
       <div class="ctl">
         <div class="lab-row"><label for="size">Size</label><output id="size-out">40px</output></div>
@@ -183,9 +183,10 @@
   </section>
 
   <section>
-    <h2>Glyph focus — l and its composites</h2>
-    <p class="note">Everything that inherits the l outline: bare l, the fl ligature, lacute,
-      lcaron, ldot, lslash. Bottom pair overlays the two at the same origin.</p>
+    <h2>Glyph focus — edited glyphs and their composites</h2>
+    <p class="note">Edit 01: the l outline and everything that inherits it. Edit 02: the f
+      hook, its separately-drawn fi, and the fl ligature. Each group ends with an overlay
+      at the same origin.</p>
     <div class="focusrow">
       <p class="pane-label" style="color: var(--c-orig)">Nunito</p>
       <div class="big orig">l fl lá ľ ŀl ł Il1</div>
@@ -196,11 +197,21 @@
         <div class="big new">l fl lá ľ ŀl ł Il1</div>
       </div>
     </div>
+    <div class="focusrow" style="margin-top: 18px">
+      <p class="pane-label" style="color: var(--c-orig)">Nunito</p>
+      <div class="big orig">f fi fl ff fjord</div>
+      <p class="pane-label" style="color: var(--c-new)">Nunuïko</p>
+      <div class="big new">f fi fl ff fjord</div>
+      <div class="overlap">
+        <div class="big orig">f fi fl ff fjord</div>
+        <div class="big new">f fi fl ff fjord</div>
+      </div>
+    </div>
   </section>
 
   <footer>
     <span>braintapper/nunuiko</span>
-    <span>edit 01: l tail ×0.6 · all 6 masters</span>
+    <span>edit 01: l tail ×0.6 · edit 02: f terminal −12° · all 6 masters</span>
     <span>rule log: GLYPHLOG.md</span>
   </footer>
 </div>

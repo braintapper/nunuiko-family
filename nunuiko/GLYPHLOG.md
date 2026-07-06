@@ -98,26 +98,56 @@ Tail extent beyond stem: EL 142→85 · Bold 128→77 · Heavy 111→67 units.
 
 ---
 
-## 2. f — downturned top terminal ☐
+## 2. f — downturned top terminal ✅ (2026-07-06)
 
 **Intent:** top curves back **down**, but slightly.
 
-**Related glyphs to check:** f_f/fi/fl/ffi/ffl ligatures, florin,
-f-composites; `longs` if present.
+**Related glyphs — IMPORTANT finding:** `fl` and `fl.ss02` are components
+of `f` (inherit automatically), but **`fi` is drawn separately** and
+carries its own copy of the hook — it must be edited too. `florin` (ƒ)
+has a *different* terminal construction (flat ball cap) and was left
+stock. No `longs`/`ffi`/`ffl` in the font.
 
-### Before (per master)
+**Script:** `sources/edits/02_f_terminal.py` (+ shared
+`sources/edits/lib.py`). Run once; locates the terminal by pattern.
 
+### Structure / locator (works in both f and fi)
+
+The terminal is a 7-node motif; find every match, keep the one whose cap
+control sits highest (abs. y-max is unreliable — fi's i-dot can be the
+tallest point in heavy masters):
+
+| offset | type | role |
+|---|---|---|
+| p | curve smooth | **pivot** — hook-underside neck |
+| p+1 | line smooth | underside end of terminal |
+| p+2, p+3 | offcurve | cap controls (p+3 ≈ tip) |
+| p+4 | curve smooth | topside end of cap |
+| p+5 | line smooth | topside neck |
+| p+6 | offcurve | first handle of the long top curve |
+
+In `f`: p = node 16 (all 6 masters). In `fi`: p = node 21.
 
 ### Operation / rule
 
+**Rotate nodes p+1 … p+6 clockwise by 12° about node p.** Rotation is an
+isometry with the pivot on the incoming smooth chain, so every SMOOTH
+joint survives exactly; the long top curve reshapes smoothly via the
+rotated p+6 handle. No width or anchor changes (the f terminal already
+overhangs the advance; the overhang grows a little — checked in
+fluff/offer/fjord strings, no collisions).
 
-### After (per master)
-
+Pivots / tip-x drift (f): EL (269,670) 324→331 · Bold (332,615) 402→421 ·
+Heavy (381,564) 478→509 · same pattern italics. fi within 1–2 units of f.
 
 ### Compatibility & size-ramp check
-- [ ] Same point count/order in all masters
-- [ ] Ligatures updated to match
-- [ ] Nunito Sans replay notes:
+- [x] Same point count/order in all masters — rotation only
+- [x] fi edited to match; fl/fl.ss02 inherit via components; florin
+      deliberately stock
+- [x] No collision in fluff / offer / fjord at Regular, Heavy, Italic
+- [ ] Nunito Sans replay notes: check whether its fi is also drawn
+      separately; its straight-cut terminal may need the angle re-judged
+      by eye (12° chosen against Nunito's round terminal).
 
 ---
 
