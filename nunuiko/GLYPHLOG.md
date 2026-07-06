@@ -37,32 +37,64 @@ l → f → J → Q → G → K/k
 
 ---
 
-## 1. l (lowercase L) — shorter tail ☐
+## 1. l (lowercase L) — shorter tail ✅ (2026-07-06)
 
 **Intent:** reduce the foot/tail. ⚠️ The tail is Nunito's main
 `l` / `I` / `1` disambiguator — shorten, don't remove; test `Il1` adjacent
 at ~10px before committing.
 
-**Related glyphs to check:** lacute, lcaron, lcommaaccent, ldot, lslash,
-and any composites using `l` as a component; also `iota`-like Cyrillic/
-Greek forms if they share the tail.
+**Composites using `l` (all verified OK, they reference the component so
+they picked the edit up automatically):** fl, lacute, lcaron,
+lcommaaccent, ldot, ldotbelow, lj, llinebelow, lslash.
 
-### Before (per master)
-- Master 1 (Light):
-- Master 2 (Regular):
-- Master 3 (Heavy):
-- Masters 4–6 (Italics):
+**Script:** `sources/edits/01_l_tail.py` (run once; asserts structure).
+
+### Structure (identical in all 6 masters)
+
+One closed path, 26 nodes. Node 14 = stem bottom-right junction
+(x = stem right edge at tail height) — the **pivot**. Tail region =
+nodes 0–13 (terminal cap + inner sweep) + 23–25 (outer bottom curve).
+Nodes 15–22 = stem sides + rounded top cap.
 
 ### Operation / rule
 
+**Compress the tail region horizontally toward the pivot by FACTOR = 0.6**
+(`x' = pivot + 0.6·(x − pivot)`, applied only to tail nodes with
+x > pivot; y untouched). Shrink advance width by the tail tip's retreat
+(`width' = width − (tip − tip')`). Move anchors `bottom` and `dot` by the
+same rule (they sit in the tail zone / right sidebearing); leave `top`,
+`topright`, `center`.
 
-### After (per master)
+Why this works: the map is affine in x, so collinearity — and therefore
+every SMOOTH joint — is preserved exactly. The terminal cap gets ~40%
+narrower horizontally but keeps its full stroke height, which reads as
+"same terminal, shorter tail".
 
+### Per-master numbers (pivot / tip old→new / width old→new)
+
+| Master | pivot | tip | width |
+|---|---|---|---|
+| ExtraLight | 127 | 269→212 | 275→218 |
+| Bold | 190 | 318→267 | 319→268 |
+| Heavy | 252 | 363→319 | 364→320 |
+| ExtraLight Italic | 111 | 233→184 | 275→226 |
+| Bold Italic | 179 | 287→244 | 319→276 |
+| Heavy Italic | 247 | 340→303 | 364→327 |
+
+Tail extent beyond stem: EL 142→85 · Bold 128→77 · Heavy 111→67 units.
 
 ### Compatibility & size-ramp check
-- [ ] Same point count/order in all masters (fontmake interpolation clean)
-- [ ] `Il1` distinct at ~10px
-- [ ] Nunito Sans replay notes:
+- [x] Same point count/order in all masters — only coordinates changed;
+      fontmake build clean
+- [x] `Il1` distinct at 10px (proof sheets: Regular + Bold ramp 10–28px,
+      Heavy @72, Italic @84 + 12px)
+- [x] lcaron: caron offset is baked (x=177 EL), NOT anchor-driven — checked
+      visually, still sits correctly; no edit needed
+- [ ] Nunito Sans replay notes: find the same stem-junction pivot node in
+      its `l`; if its node structure differs, only the pivot/indices need
+      re-deriving — FACTOR 0.6 and the width/anchor rules carry over.
+      NB Nunito Sans's l tail may already be shorter/straighter — compare
+      before applying blindly.
 
 ---
 
