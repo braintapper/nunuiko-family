@@ -151,50 +151,51 @@ Heavy (381,564) 478→509 · same pattern italics. fi within 1–2 units of f.
 
 ---
 
-## 3. J — upturned bottom terminal ☐
+## 3. J — CANCELLED (2026-07-06)
 
-**Intent:** bottom curves back **up** (hooked foot), not a plain straight
-descender.
-
-**Related glyphs to check:** Jcircumflex, IJ, and lowercase `j` (decide:
-matching hook or leave as-is — record the decision here).
-
-### Before (per master)
-
-
-### Operation / rule
-
-
-### After (per master)
-
-
-### Compatibility & size-ramp check
-- [ ] Same point count/order in all masters
-- [ ] Nunito Sans replay notes:
+User decision: the stock J/j are fine as they are. No edit. (Do not
+replay on Nunito Sans either.)
 
 ---
 
-## 4. Q — slashed tail ☐
+## 4. Q — Jost-style slash, baseline-aligned ✅ (2026-07-06, done 4th)
 
-**Intent:** tail crosses *through* the bowl (slashed/crossing-tail Q)
-rather than sitting outside/below it.
+**Intent (refined by user):** straight slash crossing the bowl at the
+bottom right, reference **Jost**; the bottom of the slash stroke sits
+**level with the baseline** (y = 0). Consequence: the new Q has **no
+descender** (the old swash reached −276 in Heavy Italic) — better line
+fitting in UI.
 
-**Related glyphs to check:** none expected (Q has few composites); check
-`Qsmall`/small-cap forms if present.
+**Structure discovery:** Q = `O` component + `_part.Qtail` component
+(used only by Q) — the entire edit lives in `_part.Qtail`
+(12 curved nodes → 4-corner rotated rectangle, flat Jost ends).
 
-### Before (per master)
+**Script:** `sources/edits/04_Q_slash.py`. All geometry derived from O's
+outlines per master:
 
-
-### Operation / rule
-
-
-### After (per master)
-
+- **M** = midpoint of the outer & inner bottom-right arc midpoints
+  (ring midline at ~4:30); **w_ring** = distance between them.
+- **Direction** 45° down-right; sheared by tan 9° for italic masters.
+- **Slash weight** = min(w_ring, 0.6 × counter radius) — the cap is the
+  key Heavy fix: at full ring weight the slash swallowed the counter and
+  barely poked out. EL/Bold use ring weight (42/123); Heavy capped
+  204→104, Heavy Italic 204→96. NB slash weight is non-monotonic
+  Bold→Heavy — visually fine, interpolation clean.
+- **Outer tip** solved so the lowest corner has y = 0 exactly.
+- **Inner tip** = inner-arc midpoint + 0.35 × counter radius along −d.
+- Winding matched to O's outer ring (else nonzero fill cancels the
+  overlap); rect corners converted to part-local space via Q's
+  per-master component offset. Same node order in all masters
+  (interpolation-safe — verify the orientation flip decides identically
+  everywhere when replaying).
 
 ### Compatibility & size-ramp check
-- [ ] Same point count/order in all masters
-- [ ] Counter stays open at ~10px (tail must not clog the bowl)
-- [ ] Nunito Sans replay notes:
+- [x] 4 identical corner nodes, same order, all masters
+- [x] Counter stays open at all weights incl. Heavy/Heavy Italic
+- [x] Baseline alignment verified against guide at 200/400/700/1000
+- [ ] Nunito Sans replay notes: check whether its Q is also
+      O + _part composite; re-judge MAX_COUNTER_FRAC by eye (its
+      counters differ).
 
 ---
 
