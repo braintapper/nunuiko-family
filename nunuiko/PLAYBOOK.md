@@ -139,6 +139,14 @@ replays the rule against its own outlines instead of re-deriving the design.
 Fill it in as each glyph lands; copy it to the Nunito Sans fork alongside
 this playbook.
 
+> ⚠️ **glyphsLib is READ-ONLY for us.** `GSFont.save()` does not round-trip
+> this file: it drops kerning groups, feature `code` lines, and even a glyph
+> (verified by diffing a load+save against the original). Parse with
+> glyphsLib to *compute* edits, then apply them as targeted text surgery on
+> the raw .glyphs (see `sources/edits/01_l_tail.py` for the pattern — incl.
+> positional node replacement, since content-matching can collide when a
+> compressed coordinate equals a later node's line).
+
 Linux workflow (Glyphs.app is Mac-only):
 
 1. Convert source to per-master UFOs + designspace:
