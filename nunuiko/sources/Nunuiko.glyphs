@@ -7,7 +7,7 @@ code = "A Aacute Abreve Abreveacute Abrevedotbelow Abrevegrave Abrevehookabove A
 name = Uppercase;
 }
 );
-copyright = "Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)";
+copyright = "Copyright 2026 Steven Ng (https://github.com/braintapper/nunuiko). Nunuiko is derived from Nunito: Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)";
 customParameters = (
 {
 name = fsType;
@@ -88,7 +88,7 @@ date = "2020-06-23 12:28:05 +0000";
 designer = "Vernon Adams";
 designerURL = "http://www.sansoxygen.com";
 disablesNiceNames = 1;
-familyName = Nunito;
+familyName = Nunuiko;
 featurePrefixes = (
 {
 automatic = 1;
@@ -369347,7 +369347,7 @@ value = 1;
 },
 {
 name = familyName;
-value = "Nunito Heavy";
+value = "Nunuiko Heavy";
 }
 );
 interpolationWeight = 208;
@@ -369507,7 +369507,7 @@ value = 1000;
 },
 {
 name = familyName;
-value = "Nunito Heavy";
+value = "Nunuiko Heavy";
 }
 );
 interpolationWeight = 208;
