@@ -109,7 +109,9 @@ def edit_factory(font):
                 (C_out[0] - half[0], C_out[1] - half[1]),
                 (C_out[0] + half[0], C_out[1] + half[1]),
                 (C_in[0] + half[0], C_in[1] + half[1])]
-        s = 1 if signed_area(rect) * signed_area([xy(p) for p in outer]) > 0 else -1
+        # NB the capsule below traverses this cycle in REVERSE (out_hi ->
+        # out_lo -> in_lo -> in_hi), so flip n when the areas AGREE
+        s = -1 if signed_area(rect) * signed_area([xy(p) for p in outer]) > 0 else 1
         n = (s * n[0], s * n[1])
 
         # capsule: two semicircular caps (two quarter-arc cubics each,
