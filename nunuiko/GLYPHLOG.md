@@ -314,30 +314,67 @@ it reads as the bar tucking into the bowl. **Replay order: 03 then 03b.**
 
 ---
 
-## 6. K / k — notched joint, not a chevron ☐
+## 6. K / k — notched joint, not a chevron ✅ (2026-07-06, done 6th)
 
 **Intent:** Nunito's K is single-junction (arm and leg meet the stem at one
 point — a chevron). Change to a **notched joint**: arm meets the stem, leg
 branches off the **arm** a short distance out from the stem, opening the
-crotch. Tune branch distance to taste. Apply identically to `k`.
+crotch. Apply identically to `k`.
 
-**Related glyphs to check:** Kcommaaccent, kcommaaccent, kgreenlandic;
-Cyrillic К/к if drawn (they often reuse the same joint construction).
+**Related glyphs:** Kcommaaccent/kcommaaccent are composites of K/k —
+inherit automatically. **kgreenlandic** shares k's exact 34-node topology —
+edited by the same script (added to its glyph loop). **Ka-cy/ka-cy have a
+different construction** (35/34 nodes, different type sequence — curled
+leg) — left stock; would need their own rule if desired.
 
-### Before (per master)
-
+**Script:** `sources/edits/06_K_notch.py` (K, k, kgreenlandic in one run).
 
 ### Operation / rule
-- Branch distance chosen: ___ units (record as % of arm length too, for
-  the Nunito Sans replay)
 
-### After (per master)
+Key discovery: the **heavy masters are already notched** (fat strokes can't
+converge at one point) — Bold sits at frac 0.25–0.39, Heavy at 0.45–0.67.
+So the rule is a *floor*, not an offset: move the crotch vertex out along
+the arm-bottom line to **max(current, 0.25) of the arm's horizontal run**
+(measured from the stem-right ∩ arm-bottom intersection S to the arm tip).
+Masters already at/past the floor are untouched — the light masters simply
+catch up to the design logic the heavy ones already had.
 
+Per glyph, per master (34-node topology, K and k and kgreenlandic
+identical): crotch vertex = node 13; leg foot cap = nodes 5–11; notch face
+= edge 12→13 (Nunito's little perpendicular cut, preserved verbatim but
+rotated with the leg).
+1. node 13 → floor position on the arm-bottom line.
+2. Leg pivots **rigidly about its foot-cap center**; rotation angle solved
+   by fixed-point iteration so the leg's top edge passes through the new
+   node 12 — stroke width and cap shape preserved exactly.
+3. node 12 = new 13 + rotated original face vector.
+4. node 4 = rotated leg bottom edge ∩ arm-bottom line.
+5. node 3 = stem right edge ∩ arm-bottom line (S).
+Pure line/intersection/rotation geometry — works unchanged in slanted
+(italic) space.
+
+### Changed masters (others already ≥ 0.25)
+
+| Glyph | Master | frac | crotch (13) | leg rotation |
+|---|---|---|---|---|
+| K | ExtraLight | 0.05→0.25 | (158,342)→(239,414) | −12.5° |
+| K | ExtraLight Italic | 0.06→0.25 | (178,339)→(266,408) | −13.9° |
+| k | ExtraLight | 0.10→0.25 | (154,231)→(198,270) | −10.1° |
+| k | ExtraLight Italic | 0.09→0.25 | (149,225)→(200,266) | −12.2° |
+| ĸ | ExtraLight | 0.10→0.25 | (154,231)→(198,270) | −10.1° |
+| ĸ | ExtraLight Italic | 0.09→0.25 | (149,225)→(200,266) | −12.2° |
+
+Unchanged fracs — K: Bold 0.25, Heavy 0.45, Bold It 0.27, Heavy It 0.48;
+k/ĸ: Bold 0.37, Heavy 0.63, Bold It 0.39, Heavy It 0.67.
 
 ### Compatibility & size-ramp check
-- [ ] Same point count/order in all masters
-- [ ] K and k joints visually matched
-- [ ] Nunito Sans replay notes:
+- [x] Same 34-node count/order in all masters; fontmake clean
+- [x] K, k, ĸ joints visually matched at 200/1000, upright + italic
+- [x] 10px legibility strip (Kick KLERK kayak) at 200/400/1000
+- [ ] Nunito Sans replay notes: run the script as-is (asserts will catch
+      topology drift); re-check whether its heavy masters are also
+      pre-notched — if not, the max() floor still just works. Check its
+      Cyrillic К construction separately.
 
 ---
 
