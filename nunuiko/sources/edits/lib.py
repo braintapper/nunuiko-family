@@ -37,7 +37,11 @@ def apply_edit(glyphs_path, glyph_name, edit_fn):
     font = GSFont(glyphs_path)
     masters = {m.id: m.name for m in font.masters}
 
-    block_start = text.index(f"glyphname = {glyph_name};")
+    # names with specials (e.g. "Je-cy") are quoted in the file
+    marker = f"glyphname = {glyph_name};"
+    if marker not in text:
+        marker = f'glyphname = "{glyph_name}";'
+    block_start = text.index(marker)
     block_end = text.index("glyphname = ", block_start + 1)
     block = text[block_start:block_end]
 

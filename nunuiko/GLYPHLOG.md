@@ -166,29 +166,41 @@ Iacute_J.loclNLD, Jcircumflex, Je-cy, LJ, NJ.
 ### Operation / rule
 
 Full reconstruction of the foot; stem + top cap (old nodes 3–11) kept
-verbatim. All geometry from the J's own landmarks per master:
+verbatim but **shifted right by δ** — because the J is also **widened**:
 
-- Hook outer-left = old leftmost extent (−11/−14/−16; italics −51ish
-  deslanted) → **LSB and width unchanged**.
+- **Advance width = 0.66 × U's width** (user spec — the original bowl
+  was far too narrow for the font's proportions): 297→475 (δ=178) /
+  354→487 (δ=133) / 411→498 (δ=87); italics identical. All growth is
+  bowl-side: hook outer-left keeps the old leftmost extent
+  (−11/−14/−16; italics ≈−51 deslanted) → LSB and RSB both preserved.
 - Inner bottom y = old inner-bottom y (36/100/164) → keeps Nunito's
-  existing bottom taper.
-- Outer bottom = old overshoot (−2/−5/−7).
-- **Hook weight = min(stem weight, 0.55 × left span)** — Heavy can't fit
-  a full-weight U (2×215 > 370 span): EL 42 (=stem), Bold 128→90,
-  Heavy 215→85. Same counter-protection idea as the Q slash.
+  existing bottom taper. Outer bottom = old overshoot (−2/−5/−7).
+- **Hook weight = min(stem weight, 0.55 × left span)** — with the wider
+  bowl, EL and Bold now fit the full stem weight (42/128); Heavy is
+  capped 215→133.
 - **Terminal height H = 0.9 × stem curve-start y** (EL 159 / Bold 179 /
   Heavy 199); rounded terminal cap = same construction as the stem's own
   top cap (rise = hook weight / 2, kappa 0.5523 quarter arcs) — corners
   stay in Nunito's rounded vocabulary (user requirement).
-- Italics: landmarks deslanted by tan 9°, built upright, reslanted
-  (verified: reslanted verticals land exactly on the italic stem lines).
+- Italics: landmarks deslanted by tan 9°, built upright, reslanted.
+- Anchors: top follows the stem (+δ); bottom recentered on the bowl.
+
+### Composites (widening propagation — replay this too!)
+
+IJ, I_J.loclNLD, Iacute_J.loclNLD, Je-cy, LJ, NJ: **width += δ** (their
+J component offsets stay — growth is inside J's box, left of the stem).
+Jcircumflex: width += δ **and** its circumflexcomb.case transform
+tx += δ (the accent must track the shifted stem; some layers carry the
+transform once, some twice incl. background).
 
 ### Compatibility & size-ramp check
 - [x] 26 nodes, same order/types, all 6 masters; fontmake clean
-- [x] Counters open at Heavy + Heavy Italic; context Jump/Justice/
-      IJssel/JOJO/NJ verified
+- [x] JU proportion pairs at 200/400/1000; Ĵ accent centered; context
+      Jump/Justice/IJssel/JOJO/NJ verified upright + italic
 - [ ] Nunito Sans replay notes: same landmark-based construction should
-      port directly; re-judge H_FRAC and HOOK_MAX_FRAC by eye.
+      port directly; re-judge H_FRAC / HOOK_MAX_FRAC / WIDTH_FRAC_OF_U
+      by eye; hyphenated glyph names are quoted in the .glyphs file
+      (lib.py handles both).
 
 ---
 
