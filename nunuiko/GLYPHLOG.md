@@ -70,6 +70,19 @@ every SMOOTH joint — is preserved exactly. The terminal cap gets ~40%
 narrower horizontally but keeps its full stroke height, which reads as
 "same terminal, shorter tail".
 
+**Refinement 1b (user feedback):** the compression squashed the tip's
+top-right corner arc (nodes 5→6,7→8) to 0.6 of its x-extent — visibly
+sharp. After compressing, restore that arc's x-extent to
+**min(original, 0.65 × the new cap-top span 5→11)** — the cap keeps the
+top edge from degenerating in the heavy masters, whose corner is too big
+to fit whole (Heavy 40→29, Heavy It 33→23; EL/EL It get their full
+original 17/11 back). Control 7 keeps its original x-offset from node 8
+scaled by the same ratio, control 6 stays on node 5's vertical, and
+top-edge controls 9,10 sit at their original fractions of the 8→11 span.
+y never changes; the 4-5-6 vertical and 7-8-9 / 10-11-12 horizontal
+collinearities survive exactly. Folded into the main script — a single
+run of 01 produces the final tail.
+
 ### Per-master numbers (pivot / tip old→new / width old→new)
 
 | Master | pivot | tip | width |
