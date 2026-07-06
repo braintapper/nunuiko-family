@@ -234,6 +234,15 @@ assembled from verbatim pieces with only two computed joins.
 6. LINE left along the bar top back to start. A and B are true corners
    (non-smooth); every other joint keeps SMOOTH exactly.
 
+**Refinement 3b (user feedback: corner A too sharp):**
+`sources/edits/03b_G_corner.py` replaces corner A with a fillet whose
+radius = the bar left-end's own corner rounding (r = barTopY − leftU
+cornerY, read per master: EL 19 · Bold 47 · Heavy 74 · italics 22/54/86),
+so it matches the font's corner vocabulary and scales with weight
+automatically. Fillet controls at 55% tension toward the old corner.
+35 → 38 nodes. Corner B (inside the counter, underside) left sharp —
+it reads as the bar tucking into the bowl. **Replay order: 03 then 03b.**
+
 ### Metrics & classes
 
 - Width := O's width per master (718→751 / 736→785 / 754→820; italics
