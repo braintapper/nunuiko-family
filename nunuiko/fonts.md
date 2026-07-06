@@ -178,12 +178,12 @@ This is a light-touch derivative, not an alphabet redraw:
    Q) rather than sitting outside/below it.
 2. **J — upturned terminal.** Bottom curves back **up** (hooked foot), not a plain
    straight descender.
-3. **l (lowercase) — shorter tail.** Reduce the foot/tail.
+3. ~~**l (lowercase) — shorter tail.**~~ Reduce the foot/tail.
    ⚠️ **Caution:** that tail is Nunito's main disambiguator between `l` / `I` / `1`.
    Shorten it, but test `Il1` adjacent at ~10px before committing so they don't
    collapse into each other.
 4. **f - downturned terminal.** Top curves back **down**, but slightly
-5. **G - wider with more of a curve before the horizontal stroke**
+5. **G - more of a curve before the horizontal stroke** Use the O as an example and do the horizontal stroke at the same point as the original G, and the overhead stroke ending at the same place as the original G
 6. **K — sligth notched joint, not a chevron.** Nunito uses a *single-junction* K: arm and
    leg meet the stem at one point, forming a chevron/arrowhead (disliked). Change to
    a **notched joint** — arm meets the stem, **leg branches off the arm** a short
