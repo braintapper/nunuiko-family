@@ -81,7 +81,6 @@
   .pane-orig .sample { font-family: 'Nunito Orig', sans-serif; }
   .pane-new .sample { font-family: 'Nunuiko', sans-serif; }
 
-  .stage.side { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
   .stage.stack { display: grid; grid-template-columns: 1fr; gap: 26px; }
   .stage.overlay { position: relative; }
   .stage.overlay .pane { position: relative; }
@@ -153,13 +152,12 @@
       <div class="ctl">
         <label>View</label>
         <div class="seg" id="mode">
-          <button data-mode="side" class="on">Side by side</button>
-          <button data-mode="stack">Stacked</button>
+          <button data-mode="stack" class="on">Stacked</button>
           <button data-mode="overlay">Overlay</button>
         </div>
       </div>
     </div>
-    <div class="stage side" id="stage">
+    <div class="stage stack" id="stage">
       <div class="pane pane-orig">
         <p class="pane-label">Nunito</p>
         <div class="sample" id="s-orig">Il1 lIl — small talk will fall</div>
