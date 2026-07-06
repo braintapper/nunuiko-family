@@ -19,6 +19,9 @@ All geometry is derived from O's own outlines per master:
   - inner cap: ink reaches K_IN_FRAC of the counter radius past the
             inner arc midpoint along -d (cap center pulled back by w/2
             so the round tip ends where the flat end used to)
+  - both caps are then pushed outward by EXTEND_FRAC of the slash's
+            tip-to-tip length, lengthening it past the baseline (outer)
+            and deeper into the counter (inner)
 Coordinates are converted from O-space to part-local space via Q's
 per-master component offset. Winding matched to O's outer ring so the
 overlap unions (not cancels) under nonzero fill.
@@ -36,6 +39,7 @@ ANGLE_DEG = 45          # slash angle below horizontal, upright masters
 ITALIC_SHEAR = math.tan(math.radians(9))
 K_IN_FRAC = 0.35        # inner ink tip: fraction of counter radius past the ring
 MAX_COUNTER_FRAC = 0.6  # slash weight cap, as fraction of counter radius
+EXTEND_FRAC = 0.10      # lengthen the slash this fraction of its length per end
 CAP_TENSION = 0.5523    # circle-approximation control distance
 
 
@@ -93,14 +97,25 @@ def edit_factory(font):
         w = min(w_ring, MAX_COUNTER_FRAC * counter_r)
 
         R = w / 2
-        # outer cap center: circle bottom (center_y - R) tangent to y = 0
+        # base outer cap center: circle bottom (center_y - R) tangent to y = 0
         t_out = (R - M[1]) / d[1]
         assert t_out > 0, (mname, t_out)
-        C_out = (M[0] + t_out * d[0], M[1] + t_out * d[1])
-        assert abs(C_out[1] - R) < 1e-6, (mname, C_out)
-        # inner cap center: round tip's ink ends where the flat end did
+        C_out0 = (M[0] + t_out * d[0], M[1] + t_out * d[1])
+        assert abs(C_out0[1] - R) < 1e-6, (mname, C_out0)
+        # base inner cap center: round tip's ink ends where the flat end did
         p_in = K_IN_FRAC * counter_r
-        C_in = (im[0] - (p_in - R) * d[0], im[1] - (p_in - R) * d[1])
+        C_in0 = (im[0] - (p_in - R) * d[0], im[1] - (p_in - R) * d[1])
+
+        # 4d: lengthen the slash by EXTEND_FRAC of its tip-to-tip length at
+        # EACH end — the outer tip then dips below the baseline (+d) and the
+        # inner tip reaches deeper into the counter (-d)
+        ext = EXTEND_FRAC * (math.dist(C_out0, C_in0) + 2 * R)
+        C_out = (C_out0[0] + ext * d[0], C_out0[1] + ext * d[1])
+        C_in = (C_in0[0] - ext * d[0], C_in0[1] - ext * d[1])
+        # keep the counter open: inner tip must stay on the ring side of the
+        # counter center (not spear across it)
+        T_in = (C_in[0] - R * d[0], C_in[1] - R * d[1])
+        assert (T_in[0] - c_inner[0]) * d[0] + (T_in[1] - c_inner[1]) * d[1] > 0, mname
 
         # winding must match O's outer ring (else nonzero fill cancels);
         # flipping the normal mirrors the traversal orientation

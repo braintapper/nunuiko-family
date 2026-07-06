@@ -217,13 +217,13 @@ transform once, some twice incl. background).
 
 ---
 
-## 4. Q — Jost-style slash, baseline-aligned ✅ (2026-07-06, done 4th)
+## 4. Q — Jost-style slash ✅ (2026-07-06, done 4th)
 
 **Intent (refined by user):** straight slash crossing the bowl at the
-bottom right, reference **Jost**; the bottom of the slash stroke sits
-**level with the baseline** (y = 0). Consequence: the new Q has **no
-descender** (the old swash reached −276 in Heavy Italic) — better line
-fitting in UI.
+bottom right, reference **Jost**. Originally baseline-aligned (slash
+bottom at y = 0, no descender); **refinement 4d lengthened it so it now
+dips slightly below the baseline** — see 4d. Still far short of the old
+swash's −276 (Heavy Italic), so line fitting stays tight.
 
 **Structure discovery:** Q = `O` component + `_part.Qtail` component
 (used only by Q) — the entire edit lives in `_part.Qtail`
@@ -241,6 +241,14 @@ and the inner cap center is pulled back by w/2 so the round tip's ink
 ends where the flat end used to. Folded into the main script — a single
 run of 04 produces the round-cap slash.
 
+**Refinement 4d (user feedback):** slash lengthened **10% at each end** —
+after the 4c caps are placed, both cap centers are pushed outward along
+±d by `EXTEND_FRAC (0.10) × tip-to-tip length`. The outer tip now dips
+below the baseline (EL ~13 units, more at heavier weights) and the inner
+tip reaches deeper into the counter. Guard asserts the inner tip stays on
+the ring side of the counter center so the counter never closes. Folded
+into the script (single run of 04 produces the final slash).
+
 **Script:** `sources/edits/04_Q_slash.py`. All geometry derived from O's
 outlines per master:
 
@@ -252,10 +260,11 @@ outlines per master:
   barely poked out. EL/Bold use ring weight (42/123); Heavy capped
   204→104, Heavy Italic 204→96. NB slash weight is non-monotonic
   Bold→Heavy — visually fine, interpolation clean.
-- **Outer cap** center on the slash midline at y = w/2 (circle tangent
-  to the baseline).
+- **Outer cap** center starts on the slash midline at y = w/2 (tangent
+  to the baseline), then pushed out by 4d.
 - **Inner ink tip** = inner-arc midpoint + 0.35 × counter radius along
-  −d (cap center w/2 short of that).
+  −d (cap center w/2 short of that), then pushed in by 4d.
+- **4d extension** = 0.10 × tip-to-tip length added at each end.
 - Winding matched to O's outer ring (else nonzero fill cancels the
   overlap); rect corners converted to part-local space via Q's
   per-master component offset. Same node order in all masters
@@ -264,8 +273,10 @@ outlines per master:
 
 ### Compatibility & size-ramp check
 - [x] Same 14-node capsule structure, same order, all masters
-- [x] Counter stays open at all weights incl. Heavy/Heavy Italic
-- [x] Baseline alignment verified against guide at 200/400/700/1000
+- [x] Counter stays open at all weights incl. Heavy/Heavy Italic (incl.
+      the deeper 4d inner tip; guard assert in the script)
+- [x] 4d slash length/dip verified against baseline guide at 200/700/1000
+      upright + italic (outer tip dips below, inner reaches deeper)
 - [ ] Nunito Sans replay notes: check whether its Q is also
       O + _part composite; re-judge MAX_COUNTER_FRAC by eye (its
       counters differ).
