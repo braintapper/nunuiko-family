@@ -151,10 +151,28 @@ Heavy (381,564) 478→509 · same pattern italics. fi within 1–2 units of f.
 
 ---
 
-## 3. J — CANCELLED (2026-07-06)
+## 3. J (capital) — upturned bottom terminal ☐ NEXT UP
 
-User decision: the stock J/j are fine as they are. No edit. (Do not
-replay on Nunito Sans either.)
+**Intent:** bottom curves back **up** (hooked foot), not a plain straight
+descender. **Lowercase `j` is CANCELLED** (user decision 2026-07-06: the
+stock j is fine — do not touch it, here or in the Nunito Sans replay).
+Capital J is still planned, along with K/k (last two remaining edits).
+
+**Related glyphs to check:** Jcircumflex, IJ (check if composite or
+drawn), and `uni01F0`-style forms if any.
+
+### Before (per master)
+
+
+### Operation / rule
+
+
+### After (per master)
+
+
+### Compatibility & size-ramp check
+- [ ] Same point count/order in all masters
+- [ ] Nunito Sans replay notes:
 
 ---
 
