@@ -5,38 +5,22 @@
   @font-face { font-family: 'Nunuiko'; src: url(data:font/woff2;base64,%%NR%%) format('woff2'); font-weight: 200 1000; font-style: normal; }
   @font-face { font-family: 'Nunuiko'; src: url(data:font/woff2;base64,%%NI%%) format('woff2'); font-weight: 200 1000; font-style: italic; }
 
+  /* neutral light palette, forced regardless of OS dark mode */
   :root {
-    --bg: #FAF9F7;
+    --bg: #FFFFFF;
     --surface: #FFFFFF;
-    --ink: #232128;
-    --muted: #756F6A;
-    --line: #E5E1DA;
+    --ink: #1E1E20;
+    --muted: #6B6B70;
+    --line: #E4E4E7;
     --c-orig: #4A6FA5;
     --c-new: #C93A3F;
     --accent: #C93A3F;
     --blend: multiply;
     --mono: ui-monospace, 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, monospace;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1A191D; --surface: #232127; --ink: #ECE9E6; --muted: #97918D;
-      --line: #38343B; --c-orig: #82A7DA; --c-new: #E97B80; --accent: #E97B80;
-      --blend: screen;
-    }
-  }
-  :root[data-theme="light"] {
-    --bg: #FAF9F7; --surface: #FFFFFF; --ink: #232128; --muted: #756F6A;
-    --line: #E5E1DA; --c-orig: #4A6FA5; --c-new: #C93A3F; --accent: #C93A3F;
-    --blend: multiply;
-  }
-  :root[data-theme="dark"] {
-    --bg: #1A191D; --surface: #232127; --ink: #ECE9E6; --muted: #97918D;
-    --line: #38343B; --c-orig: #82A7DA; --c-new: #E97B80; --accent: #E97B80;
-    --blend: screen;
-  }
 
   * { box-sizing: border-box; }
-  body { background: var(--bg); color: var(--ink); font-family: 'Nunuiko', sans-serif; margin: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Nunuiko', sans-serif; margin: 0; color-scheme: light; }
   .wrap { max-width: 1060px; margin: 0 auto; padding: 40px 24px 80px; }
 
   .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
