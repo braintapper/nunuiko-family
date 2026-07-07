@@ -39,6 +39,15 @@ l → f → J → Q → G → K/k
 
 ## 1. l (lowercase L) — shorter tail ✅ (2026-07-06)
 
+**Follow-up 1c (2026-07-07):** shortening l reduced its advance, but the `fl`
+composite (f + l) kept its old advance — ~44-57u of dead space after the l
+(seen in `fl` and typed `ffl`, which has no glyph and renders as f + fl liga).
+Fixed fl advance to (l offset + l advance) per upright master: EL 581→524,
+Bold 683→632, Heavy 787→743. Script `sources/edits/01c_fl_width.py`. fl.ss02
+(uses l.ss02, untouched) and fi (outlines) were already fine.
+**⚠️ Italic fl has the SAME stale width — fix when building italics: EL-I
+581→532, Bold-I 683→640, Heavy-I 787→750.**
+
 **Intent:** reduce the foot/tail. ⚠️ The tail is Nunito's main
 `l` / `I` / `1` disambiguator — shorten, don't remove; test `Il1` adjacent
 at ~10px before committing.
@@ -219,6 +228,17 @@ transform once, some twice incl. background).
 
 ## 4. Q — Jost-style slash ✅ (2026-07-06, done 4th)
 
+**Refinement 4e (user feedback, 2026-07-07, accepted):** lengthened the slash
+a further ~13u each end at **ExtraLight only**, matching the user's SFD — a
+rigid translation of each rounded cap along the slash axis (bottom-right cap
+nodes 0-6 += (11,-7); top-left cap nodes 7-13 += (-9,10)), so every corner
+matches the SFD and the capsule stays perfect. Script
+`sources/edits/04e_Q_slash_lengthen.py`. Bold/Heavy left at 4d length; slash
+reads thinner above 700 but that range is out of scope (UI font, ≤700). The
+Q **bowl** is the shared `O` component — the user's SFD also fattened it ~14u
+but that was NOT applied (same untractable bowl reshape reverted on G; would
+change O everywhere).
+
 **Intent (refined by user):** straight slash crossing the bowl at the
 bottom right, reference **Jost**. Originally baseline-aligned (slash
 bottom at y = 0, no descender); **refinement 4d lengthened it so it now
@@ -283,7 +303,16 @@ outlines per master:
 
 ---
 
-## 5. G — rebuilt on O's bowl ✅ (2026-07-06, done 3rd)
+## 5. G — rebuilt on O's bowl ❌ REVERTED to stock (2026-07-07)
+
+**Reverted to stock Nunito.** Edits 3 + 3b (O-bowl rebuild, bar fillet) and a
+later attempt 3c (fuller right bowl from the SFD) were all dropped — the SFD's
+bowl reshape is drawn with more nodes than the source topology holds, so it
+couldn't be reproduced without junction kinks or a large residual, and the
+user judged it not worth it. G restored by splicing its glyph block from
+pre-edit-3 commit `104bb3b0`; scripts `03_G_bowl.py`, `03b_G_corner.py`,
+`03c_G_bowl_right.py` deleted (recoverable from git). Original intent below,
+kept for the record.
 
 **Intent (refined by user):** G is based on **O** — full round bowl — with
 the horizontal bar at the same height as the original G and the upper-arm
@@ -346,7 +375,15 @@ it reads as the bar tucking into the bowl. **Replay order: 03 then 03b.**
 
 ---
 
-## 6. K / k — notched joint, not a chevron ✅ (2026-07-06, done 6th)
+## 6. K / k — notched joint, not a chevron ❌ REVERTED (2026-07-07)
+
+**Reverted to stock Nunito.** The notch (edit 6) plus a later crotch-collapse
+attempt (edit 7) proved fiddly across the weight axis and not worth it. K, k,
+and kgreenlandic were restored to their original Nunito outlines by splicing
+those three glyph blocks from commit `8772e0d6` (pre-edit-6); edits 1–5
+(l/f/G/J/Q) were untouched. Scripts `06_K_notch.py` and `07_K_crotch.py`
+deleted (recoverable from git history). Original design intent below, kept
+for the record.
 
 **Intent:** Nunito's K is single-junction (arm and leg meet the stem at one
 point — a chevron). Change to a **notched joint**: arm meets the stem, leg
