@@ -10,10 +10,10 @@
    `sources/proof/nunuiko-proof.html` reflects the new build. A rebuilt TTF
    without a refreshed proof is an incomplete step.
 
-2. **Don't look at or touch the Italic masters/fonts for now.** Work only on the
-   upright masters (ExtraLight / Bold / Heavy) and `Nunuiko[wght].ttf`. Leave the
-   Italic masters, `Nunuiko-Italic[wght].ttf`, and any `*Italic*` layers alone.
-   We'll address italics later.
+2. **Italics are now in scope (unfrozen 2026-07-07).** Edits 01/02/04/05 were
+   already applied to the italic masters by their all-master scripts; the fl
+   width fix (01c) was extended to italic. When adding new edits, apply them to
+   the italic masters too (see "When we do address italics" below for how).
 
 3. **Weights over 700 are unlikely to ever be used.** The user works in the
    ExtraLight–Bold range (200–700). When judging trade-offs or where a fix has

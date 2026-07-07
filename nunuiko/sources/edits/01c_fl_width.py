@@ -11,17 +11,19 @@ space after fl matches the space after a standalone l:
     ExtraLight 581 -> 524   Bold 683 -> 632   Heavy 787 -> 743
 
 fl.ss02 references l.ss02 (untouched by edit 1) and is already correct — left
-alone. fi is outlines, unaffected. Upright masters only (Italic left per
-CLAUDE.md; the italic fl has the same stale width and must be fixed when we
-build italics).
+alone. fi is outlines, unaffected. Applied to all masters (upright + italic;
+italic added 2026-07-07 when building italics).
 
 Run once from sources/: python3 edits/01c_fl_width.py
 """
 from lib import apply_edit
 
 GLYPHS_FILE = "Nunuiko.glyphs"
-# corrected advance per upright master = l offset + l advance
-WIDTH = {"ExtraLight": 524, "Bold": 632, "Heavy": 743}
+# corrected advance per master = l offset + l advance
+WIDTH = {
+    "ExtraLight": 524, "Bold": 632, "Heavy": 743,
+    "ExtraLight Italic": 532, "Bold Italic": 640, "Heavy Italic": 750,
+}
 
 
 def edit(mname, layer, nodes):

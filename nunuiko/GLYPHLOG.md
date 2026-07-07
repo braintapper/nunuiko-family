@@ -229,12 +229,16 @@ transform once, some twice incl. background).
 ## 4. Q — Jost-style slash ✅ (2026-07-06, done 4th)
 
 **Refinement 4e (user feedback, 2026-07-07, accepted):** lengthened the slash
-a further ~13u each end at **ExtraLight only**, matching the user's SFD — a
-rigid translation of each rounded cap along the slash axis (bottom-right cap
-nodes 0-6 += (11,-7); top-left cap nodes 7-13 += (-9,10)), so every corner
-matches the SFD and the capsule stays perfect. Script
-`sources/edits/04e_Q_slash_lengthen.py`. Bold/Heavy left at 4d length; slash
-reads thinner above 700 but that range is out of scope (UI font, ≤700). The
+a further ~13u each end. First applied at ExtraLight only from the user's SFD
+(cap deltas (11,-7)/(-9,10)); then **reformulated as a geometric rule**
+(2026-07-07, when building italics) so it applies in every master, upright and
+slanted: slide each rounded cap (nodes 0-6 / 7-13) rigidly outward along the
+slash's own axis by EXTEND_FRAC (0.05) of its length. ExtraLight upright is
+skipped (keeps the exact accepted SFD values); the fraction is calibrated to
+reproduce that same ~13u, so Bold/Heavy upright + all 3 italics come out
+consistent (slash bbox diag now 367/453/518 upright, 394/470/517 italic).
+Script `sources/edits/04e_Q_slash_lengthen.py`. Rigid cap translation, no node
+count change -> interpolation-safe. The
 Q **bowl** is the shared `O` component — the user's SFD also fattened it ~14u
 but that was NOT applied (same untractable bowl reshape reverted on G; would
 change O everywhere).
