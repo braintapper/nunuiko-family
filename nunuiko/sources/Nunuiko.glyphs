@@ -7,7 +7,7 @@ code = "A Aacute Abreve Abreveacute Abrevedotbelow Abrevegrave Abrevehookabove A
 name = Uppercase;
 }
 );
-copyright = "Copyright 2026 Steven Ng (https://github.com/braintapper/nunuiko). Nunuiko is derived from Nunito: Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)";
+copyright = "Copyright 2026 Steven Ng (https://github.com/braintapper/nunuiko), with Reserved Font Name \"Nunuiko\". Nunuiko is derived from Nunito: Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)";
 customParameters = (
 {
 name = fsType;

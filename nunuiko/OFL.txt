@@ -1,3 +1,5 @@
+Copyright 2026 Steven Ng (https://github.com/braintapper/nunuiko), with Reserved Font Name "Nunuiko".
+Nunuiko is derived from Nunito.
 Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
