@@ -13,9 +13,15 @@ reads as a sharp corner. After compressing, restore that arc's original
 x-extent: node 8 moves left to newx5 - (origx5 - origx8), control 7
 keeps its original x-offset from node 8, control 6 stays on node 5's
 vertical, and the top-edge controls 9,10 are redistributed at their
-original fractions of the 8 -> 11 span. y is never touched, and every
-junction (4-5-6 vertical, 7-8-9 and 10-11-12 horizontal) stays exactly
-collinear, so all SMOOTH joints survive. A rigid (untranslated) cap was
+original fractions of the 8 -> 11 span, capped at MAX_CORNER_FRAC of
+the cap top.
+
+Refinement 1d (user feedback: corner still a little sharp next to
+Nunito's): the top edge's small dip from node 8 down to node 11, squeezed
+into the shorter span, left node 8 as a raised nub. The drop is scaled by
+the span ratio (11 and its handle 12 lift by 1-3 units), 9 sits on the
+7 -> 8 tangent so node 8 stays smooth, and the cap was raised from 0.65
+to 0.8 so every master but Heavy Italic gets Nunito's full corner. A rigid (untranslated) cap was
 considered instead but does not fit: Heavy's cap is deeper (72 units)
 than the whole shortened tail extent (67).
 
@@ -41,7 +47,7 @@ TAIL_NODES = list(range(0, 14)) + [23, 24, 25]
 # top-right corner arc of the tip: node 5 (right edge) -> 6,7 -> 8 (top
 # edge), then controls 9,10 into node 11 (top edge inner end)
 CORNER = (5, 6, 7, 8, 9, 10, 11)
-MAX_CORNER_FRAC = 0.65  # corner arc's max share of the cap-top x-span
+MAX_CORNER_FRAC = 0.8  # corner arc's max share of the cap-top x-span
 EXPECTED_NODE_COUNT = 26
 MOVE_ANCHORS = {"bottom", "dot"}
 
@@ -84,8 +90,8 @@ def main():
                 for i, x in enumerate(ox)]
 
         # 1b: restore the top-right corner arc's x-extent toward the
-        # original, capped so the remaining top edge keeps >= 35% of the
-        # cap-top span (the heavy masters' corners are too big to fit)
+        # original, capped so the remaining top edge keeps >= 20% of the
+        # cap-top span (only Heavy Italic's corner is too big to fit)
         n5, n6, n7, n8, n9, n10, n11 = CORNER
         assert ox[n6] == ox[n5], (mname, "corner entry not vertical")
         rx_orig = ox[n5] - ox[n8]
@@ -98,6 +104,23 @@ def main():
         assert newx[n11] < newx[n10] < newx[n9] < newx[n8] < newx[n7], mname
         print(f"{mname:20s} corner rx {rx_orig:g} -> {rx:.0f}"
               f" (bare compression would give {FACTOR * rx_orig:.0f})")
+
+        # 1d: the top edge 8 -> 11 dips a little from the corner. Squeezed
+        # into the shorter span, that dip leaves node 8 standing proud as a
+        # nub. Keep the original slope instead: scale the drop by the span
+        # ratio and lift 11 (and 12, its horizontal handle) to match. 9
+        # stays on the 7 -> 8 tangent, 10 level with 11.
+        oy = [n.position.y for n in nodes]
+        newy = list(oy)
+        n12 = n11 + 1
+        assert oy[n12] == oy[n11] and oy[n10] == oy[n11], mname
+        ratio = (newx[n8] - newx[n11]) / (ox[n8] - ox[n11])
+        newy[n11] = oy[n8] - round((oy[n8] - oy[n11]) * ratio)
+        newy[n12] = newy[n10] = newy[n11]
+        slope = (oy[n8] - oy[n7]) / (ox[n8] - ox[n7])
+        newy[n9] = round(oy[n8] + slope * (newx[n9] - newx[n8]))
+        print(f"{'':20s} top-edge drop {oy[n8] - oy[n11]:g}"
+              f" -> {oy[n8] - newy[n11]:g}")
 
         # active outline region: from this layerId line to its width line
         lstart = block.index(f'layerId = "{layer.layerId}";')
@@ -116,7 +139,7 @@ def main():
             x, y = n.position.x, n.position.y
             old = fmt_node(x, y, n.type, n.smooth)
             assert region[s:e] == old, (mname, i, region[s:e], old)
-            x = newx[i]
+            x, y = newx[i], newy[i]
             pieces.append(region[prev:s])
             pieces.append(fmt_node(x, y, n.type, n.smooth))
             prev = e

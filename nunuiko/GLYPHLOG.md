@@ -45,8 +45,8 @@ composite (f + l) kept its old advance — ~44-57u of dead space after the l
 Fixed fl advance to (l offset + l advance) per upright master: EL 581→524,
 Bold 683→632, Heavy 787→743. Script `sources/edits/01c_fl_width.py`. fl.ss02
 (uses l.ss02, untouched) and fi (outlines) were already fine.
-**⚠️ Italic fl has the SAME stale width — fix when building italics: EL-I
-581→532, Bold-I 683→640, Heavy-I 787→750.**
+Italic fl got the same fix once italics were unfrozen: EL-I 581→532,
+Bold-I 683→640, Heavy-I 787→750.
 
 **Intent:** reduce the foot/tail. ⚠️ The tail is Nunito's main
 `l` / `I` / `1` disambiguator — shorten, don't remove; test `Il1` adjacent
@@ -85,12 +85,28 @@ sharp. After compressing, restore that arc's x-extent to
 **min(original, 0.65 × the new cap-top span 5→11)** — the cap keeps the
 top edge from degenerating in the heavy masters, whose corner is too big
 to fit whole (Heavy 40→29, Heavy It 33→23; EL/EL It get their full
-original 17/11 back). Control 7 keeps its original x-offset from node 8
+original 17/11 back; superseded by 1d's 0.8 cap). Control 7 keeps its original x-offset from node 8
 scaled by the same ratio, control 6 stays on node 5's vertical, and
 top-edge controls 9,10 sit at their original fractions of the 8→11 span.
-y never changes; the 4-5-6 vertical and 7-8-9 / 10-11-12 horizontal
-collinearities survive exactly. Folded into the main script — a single
+In 1b, y never changed (1d now lifts 10–12 by 1–3 units); the 4-5-6
+vertical and 10-11-12 horizontal collinearities survive exactly. Folded into the main script — a single
 run of 01 produces the final tail.
+
+**Refinement 1d (2026-10-15, user feedback: the corner was still a little
+sharp next to Nunito's):** two causes, both fixed in the same script.
+(1) The 1b cap (0.65) still clipped Bold's corner (24→21, tightest radius
+11.2 vs Nunito's 12.8). The cap is now **0.8**, so every master gets
+Nunito's full corner except Heavy (40→35) and Heavy Italic (33→28), both
+above 700. (2) Nunito's top edge dips 2–4 units from the corner end (node 8)
+to node 11 over ~30 units. Squeezed into the shortened 8–12-unit span, the
+dip left node 8 standing proud as a small nub. Rule: **scale the drop by
+the span ratio** `(x8'−x11')/(x8−x11)` and lift node 11 and its horizontal
+handle 12 (and control 10, level with 11) to `y8 − round(drop × ratio)`.
+Drops are now EL 2→1, Bold 2→1, Heavy 4→1, EL It 4→2, Bold It 3→1,
+Heavy It 2→1. Control 9 sits on the 7→8 tangent so node 8 stays smooth.
+In Bold, integer rounding still leaves a ~6° tangent break across a
+2-unit handle there, as before. Tightest corner radius now matches Nunito
+in EL, Bold, EL It and Bold It.
 
 ### Per-master numbers (pivot / tip old→new / width old→new)
 
@@ -448,6 +464,134 @@ k/ĸ: Bold 0.37, Heavy 0.63, Bold It 0.39, Heavy It 0.67.
       topology drift); re-check whether its heavy masters are also
       pre-notched — if not, the max() floor still just works. Check its
       Cyrillic К construction separately.
+
+---
+
+## 8. ff / ffi / ffl — ligatures with a joined crossbar ✅ (2026-10-15)
+
+**Intent (user feedback):** in "ff" the crossbars should join, but their
+round caps met as two rounded ends. Stock Nunito has no ff ligature. Typed
+"ff" is two f's pulled together by the f–f kern (−10 / −23 / −35), which
+leaves a 3-unit gap at ExtraLight and an overlap with a pinched waist from
+Regular up.
+
+**Script:** `sources/edits/08_ff_ligatures.py` (run once; adds glyphs,
+refuses to run if they already exist).
+
+### Rule (per master, upright and italic alike)
+
+- `offset = width(f) + kern(@MMK_L_f, @MMK_R_f)` (where the kerned second f
+  sits: 296 / 341 / 388).
+- Each glyph is a component `f` at 0, plus the second glyph as a component
+  at `offset`, plus a **bridge** path: a quad from the first f's flat-bar
+  right ends (f nodes 4 bottom, 10 top) to the second f's flat-bar left
+  ends (f nodes 33 bottom, 27 top, + offset). Both round caps sit inside
+  it, so the union is one flat bar. On italic masters the quad follows
+  the slanted cap starts.
+- `width = offset + width(second)`. Carets go at `offset` and at
+  `offset + the second glyph's caret_1`. The left kerning group is `f`;
+  the right group comes from the second glyph.
+
+| Glyph | Second | Unicode | Right group |
+|---|---|---|---|
+| f_f | f | FB00 | f |
+| f_f_i | fi | FB03 | i |
+| f_f_l | fl | FB04 | ltail |
+| f_f_l.ss02 | fl.ss02 | — | l |
+
+Bridge x (first → second bar end): EL 275→322, Bold 308→393, Heavy
+341→465, EL It 306→359, Bold It 333→422, Heavy It 359→486.
+
+**Features:** liga gains `sub f f i by f_f_i; sub f f l by f_f_l; sub f f
+by f_f;` (ahead of fi/fl), and ss02 gains `sub f_f_l by f_f_l.ss02;`. Both
+features are flagged `automatic` in the source, so Glyphs.app would
+regenerate the same lines from the glyph names.
+
+`fi` is drawn, not built from `f`, so the script asserts that its bar's
+left ends match f's nodes 27/33. Because `f` stays a component in all four
+glyphs, later f edits carry over.
+
+### Checks
+- [x] Shaping (Regular, upright + italic): ff→f_f, office→f_f_i,
+      waffle→f_f_l, waffle+ss02→f_f_l.ss02, U+FB00→f_f; liga off → f f
+- [x] Build clean; proof f row now shows `ff ffi ffl`
+- [ ] Visual check of the joined bar (user)
+
+---
+
+## 9–13. Ported from Nunuïko Display: K/k, dots, a, 1 ◐ (2026-10-16)
+
+**Intent (user):** repeat Display's K/k, dots, a and 1 changes here. The
+l stays disambiguated in Nunuïko (the UI family); only Display swapped to
+the plain l (its edit 14). Rules and rationale are in
+`../nunuiko-sans/sources/GLYPHLOG.md` §9–13; this entry records where
+Nunito's rounded construction differs. Edit numbers match Display's.
+
+### 9. K / k / ĸ — leg grows out of the arm (`sources/edits/09_K_leg_from_arm.py`)
+
+The glyphs are 34-node paths: 2→3 stem right, 4→5 leg lower edge, 5–11
+rounded foot cap, 11→12 leg upper edge, 12→13 notch face, 13→14 arm bottom,
+14–20 rounded arm tip.
+
+- **The leg pivots rigidly.** The foot cap rotates about its centre
+  (midpoint of 5 and 11) toward a point on the arm, then shifts vertically
+  so its lowest node keeps its height (overshoot). The leg edges continue
+  the rotated cap ends, so 5 and 11 stay smooth.
+- **Gap:** as in Display, GAP_FRAC is 0.15 (the lower edge meets the arm
+  15% of the way from the stem to the tip).
+- **New knob, `MAX_TURN` 12°.** A round foot can't swing far. If the full
+  gap would swing the leg more than 12°, the script takes the position
+  within 12° whose gap comes closest. This affects only Heavy Italic K and
+  Heavy / Heavy Italic k and ĸ (they would need 33–44°), where the leg
+  lands further out (gap 0.24–0.29).
+- **Result, 12pt ExtraLight–Bold:** gaps of 81–84 on K and 57–61 on k; the
+  leg turns 1–8°; feet move 3 units or less.
+
+### 10. Dots — nothing to do
+
+Nunito's dots are already circles (12-node round contours). The only
+square 4-node contours in the font are edit 8's ff bridges.
+
+### 11. a — rounder, 10% taller bowl (`sources/edits/11_a_round_bowl.py`)
+
+Nunito's a is Nunito Sans's construction plus 7 nodes (rounded stem foot
+4–10, rounded terminal 17–20), so every bowl index is Display's + 7. The
+same knobs apply: BOWL_RISE 0.10, INNER_DROP 0.40, OUTER_DROP 0.22, TILT 15°.
+The italic masters borrow the matching upright master's o from this file.
+The numbers come out identical to Display's (the same base metrics):
+
+| | ExtraLight | Bold | Heavy |
+|---|---|---|---|
+| bowl top | 303 | 320 | — |
+| opening under the arch | 150 | 85 | 28 |
+
+### 12. 1 — footless (`sources/edits/12_one_footless.py`)
+
+- The default and ss01 outlines swap, as in Display: `one` ↔ `one.ss01`,
+  `one.tosf` ↔ `one.tosf.ss01`.
+- **`one.dnom`** (29 nodes, one's structure): nodes 8–20 are kept (stem
+  edges, top, flag). The foot is replaced by a round stem end copied from
+  the footless 1 of the same master, scaled by the stem-width ratio and
+  built unslanted, giving 20 nodes like one.ss01. It is then centred with
+  equal sidebearings.
+
+### 13. 1 — proportional, footed tabular 1 (`sources/edits/13_one_proportional.py`)
+
+Same as Display:
+- RSB = I's sidebearing, LSB = 0.75 × that. Widths 600 → 392 (ExtraLight)
+  and 481 (Bold).
+- `one.tf` and `one.tosf.tf` are components of the footed `one.ss01` /
+  `one.tosf.ss01`, 600 wide.
+- A new `tnum` feature goes after onum, and ss01 maps the .tf forms to the
+  footed 1.
+- The Glyphs 2 format gets its own feature anchors (`name = ...`).
+
+### Checks
+- [x] All 6 masters; build clean
+- [x] Shaping ("2011½"): default one 392; tnum → one.tf 600; onum+tnum →
+      one.tosf.tf; ss01+tnum → one.ss01
+- [x] Proof gains K, a and 1 rows (the 1 row with a tnum line)
+- [ ] Visual check (user)
 
 ---
 
