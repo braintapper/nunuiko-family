@@ -1,7 +1,8 @@
 """Build the Nunuïkode code proof (self-contained HTML).
 
 Embeds the current Roman and Italic variable fonts as base64 woff2 into
-template.html. Run from the repo root after every build:
+template.html, plus Nunuïko's (read from the sibling ../nunuiko checkout,
+for the side-by-side comparison). Run from the repo root after every build:
   .venv/bin/python sources/proof/make_proof.py
 Output: sources/proof/nunuikode-proof.html (gitignored; regenerate at will)
 """
@@ -16,6 +17,8 @@ ROOT = HERE.parent.parent
 FONTS = {
     "%%NR%%": "fonts/variable/Nunuikode[wght].ttf",
     "%%NI%%": "fonts/variable/Nunuikode-Italic[wght].ttf",
+    "%%PR%%": "../nunuiko/fonts/variable/Nunuiko[wght].ttf",
+    "%%PI%%": "../nunuiko/fonts/variable/Nunuiko-Italic[wght].ttf",
 }
 
 

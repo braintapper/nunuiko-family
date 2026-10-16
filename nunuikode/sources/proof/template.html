@@ -4,6 +4,9 @@
      installed Nunuïkode or a sibling proof's face. */
   @font-face { font-family: 'NKC'; src: url(data:font/woff2;base64,%%NR%%) format('woff2'); font-weight: 200 1000; font-style: normal; }
   @font-face { font-family: 'NKC'; src: url(data:font/woff2;base64,%%NI%%) format('woff2'); font-weight: 200 1000; font-style: italic; }
+  /* Nunuïko (proportional), for the side-by-side comparison */
+  @font-face { font-family: 'NUN'; src: url(data:font/woff2;base64,%%PR%%) format('woff2'); font-weight: 200 1000; font-style: normal; }
+  @font-face { font-family: 'NUN'; src: url(data:font/woff2;base64,%%PI%%) format('woff2'); font-weight: 200 1000; font-style: italic; }
 
   /* Single light theme, like the Nunuïko proofs: a proofing sheet. */
   :root {
@@ -73,6 +76,18 @@
   .ramp div { display: flex; gap: 18px; align-items: baseline; border-bottom: 1px solid var(--line); padding: 8px 0; }
   .ramp span:first-child { width: 48px; flex: none; font-size: 11px; color: var(--muted); font-style: normal; }
   .charset { word-break: break-all; white-space: normal; line-height: 1.7; }
+
+  /* side by side: every sample is paired with a copy; the copy shows only
+     while comparing, set in Nunuïko or with calt (texture healing) off */
+  :root.cmp .wrap { max-width: 1680px; }
+  .pair { display: grid; gap: 12px; }
+  :root.cmp .pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .pair > .alt, .pair .col-lab { display: none; }
+  :root.cmp .pair > .alt, :root.cmp .pair .col-lab { display: block; }
+  .col-lab { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+  :root.cmp-nun .alt .kode { font-family: 'NUN', sans-serif; }
+  :root.cmp-calt .alt .kode { font-feature-settings: 'calt' 0; }
+  @media (max-width: 720px) { :root.cmp .pair { grid-template-columns: minmax(0, 1fr); } }
 </style>
 
 <div class="wrap">
@@ -97,6 +112,14 @@
       <div class="seg" role="group" aria-label="Style">
         <button type="button" id="rom" aria-pressed="true">Roman</button>
         <button type="button" id="ita" aria-pressed="false">Italic</button>
+      </div>
+    </div>
+    <div class="ctl">
+      <label>Side by side</label>
+      <div class="seg" role="group" aria-label="Side by side">
+        <button type="button" data-cmp="" aria-pressed="true">Off</button>
+        <button type="button" data-cmp="nun" aria-pressed="false">Nunuïko</button>
+        <button type="button" data-cmp="calt" aria-pressed="false">Healing off</button>
       </div>
     </div>
   </div>
@@ -139,6 +162,20 @@ if (rn != m && cl != d) return "fine";</textarea>
     <div class="panel"><pre class="kode">-&gt;  =&gt;  ==  ===  !=  !==  &lt;=  &gt;=  &lt;&gt;  &lt;=&gt;  &amp;&amp;  ||  ??  ?.  ::
 ++  --  **  //  /*  */  &lt;!--  --&gt;  |&gt;  &lt;|  ...  ..=  :=  +=  -=  %=  ^=
 #{}  ${}  @()  [::]  &lt;/&gt;  0x1F  0b1010  0o777  1_000_000  3.14e-10  #FF00AA</pre></div>
+  </section>
+
+  <section>
+    <h2>Texture healing</h2>
+    <p class="note">Next to a narrow letter (i j l r t f I), a wide letter (m w M W A O Q V)
+      borrows up to 60 units of its space, and the narrow letter steps aside. Cells stay
+      600 wide, so columns still line up. It is the <b>calt</b> feature; top row on, bottom row off.</p>
+    <div class="panel"><pre class="kode">minimum William will limit Wilma mime iMac Will.MIT
+<span style="font-feature-settings: 'calt' 0">minimum William will limit Wilma mime iMac Will.MIT</span>
+
+<span class="com">// on</span>
+<span class="kw">if</span> (limit &gt; maxItems) { Wiki.mirror(milestone, items.slim()); }
+<span class="com">// off</span>
+<span style="font-feature-settings: 'calt' 0"><span class="kw">if</span> (limit &gt; maxItems) { Wiki.mirror(milestone, items.slim()); }</span></pre></div>
   </section>
 
   <section>
@@ -251,5 +288,44 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   let ascii = '';
   for (let c = 33; c < 127; c++) ascii += String.fromCharCode(c);
   $('ascii').textContent = ascii;
+
+  // side by side: pair every sample with a copy (built once, shown by CSS)
+  const ALT = { nun: 'Nunuïko (proportional)', calt: 'Nunuïkode, healing off' };
+  const altLabs = [];
+  const pairUp = (el, copy) => {
+    const pair = document.createElement('div'); pair.className = 'pair';
+    el.replaceWith(pair);
+    const col = (node, text) => {
+      const wrap = document.createElement('div');
+      const lab = document.createElement('p'); lab.className = 'col-lab'; lab.textContent = text;
+      wrap.append(lab, node); pair.append(wrap);
+      return lab;
+    };
+    col(el, 'Nunuïkode');
+    altLabs.push(col(copy, ''));
+    copy.parentElement.classList.add('alt');
+  };
+  for (const el of document.querySelectorAll('.wrap section > .panel, .wrap section > .conf')) {
+    const copy = el.cloneNode(true);
+    copy.removeAttribute('id');
+    copy.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
+    pairUp(el, copy);
+  }
+  // the editable box: the copy mirrors what is typed
+  const ta = document.querySelector('textarea.kode');
+  const mirror = document.createElement('pre'); mirror.className = 'kode panel';
+  const echo = () => { mirror.textContent = ta.value + '\n'; };
+  ta.addEventListener('input', echo); echo();
+  pairUp(ta, mirror);
+  const compare = (mode) => {
+    root.classList.toggle('cmp', !!mode);
+    root.classList.toggle('cmp-nun', mode === 'nun');
+    root.classList.toggle('cmp-calt', mode === 'calt');
+    for (const lab of altLabs) lab.textContent = ALT[mode] || '';
+    document.querySelectorAll('[data-cmp]').forEach((b) =>
+      b.setAttribute('aria-pressed', String(b.dataset.cmp === mode)));
+  };
+  document.querySelectorAll('[data-cmp]').forEach((b) =>
+    b.addEventListener('click', () => compare(b.dataset.cmp)));
   sync();
 </script>
