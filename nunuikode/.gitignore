@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.ninja_log
+build.ninja
+sources/build/
+sources/instance_ufos/
+sources/proof/nunuikode-proof.html

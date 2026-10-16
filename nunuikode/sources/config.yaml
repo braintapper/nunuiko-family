@@ -1,0 +1,7 @@
+sources:
+  - build/Nunuikode.designspace
+outputDir: "../fonts"
+buildStatic: false
+axisOrder:
+  - wght
+  - ital
