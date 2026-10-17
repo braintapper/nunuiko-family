@@ -1,0 +1,353 @@
+<title>Nunuïkode — code proof</title>
+<style>
+  /* Proof-local family name (NKC) so the sheet can never resolve to an
+     installed Nunuïkode or a sibling proof's face. */
+  @font-face { font-family: 'NKC'; src: url(data:font/woff2;base64,%%NR%%) format('woff2'); font-weight: 200 1000; font-style: normal; }
+  @font-face { font-family: 'NKC'; src: url(data:font/woff2;base64,%%NI%%) format('woff2'); font-weight: 200 1000; font-style: italic; }
+  /* Nunuïko (proportional), for the side-by-side comparison */
+  @font-face { font-family: 'NUN'; src: url(data:font/woff2;base64,%%PR%%) format('woff2'); font-weight: 200 1000; font-style: normal; }
+  @font-face { font-family: 'NUN'; src: url(data:font/woff2;base64,%%PI%%) format('woff2'); font-weight: 200 1000; font-style: italic; }
+  /* Cascadia Code (Latin + Latin Extended, as two families in a stack) */
+  @font-face { font-family: 'CAS'; src: url(data:font/woff2;base64,%%CR%%) format('woff2'); font-weight: 200 700; font-style: normal; }
+  @font-face { font-family: 'CAS'; src: url(data:font/woff2;base64,%%CI%%) format('woff2'); font-weight: 200 700; font-style: italic; }
+  @font-face { font-family: 'CASX'; src: url(data:font/woff2;base64,%%CXR%%) format('woff2'); font-weight: 200 700; font-style: normal; }
+  @font-face { font-family: 'CASX'; src: url(data:font/woff2;base64,%%CXI%%) format('woff2'); font-weight: 200 700; font-style: italic; }
+
+  /* Single light theme, like the Nunuïko proofs: a proofing sheet. */
+  :root {
+    --bg: #FBFBFA;
+    --surface: #FFFFFF;
+    --ink: #1C1C1E;
+    --muted: #6B6B70;
+    --faint: #A3A3A8;
+    --line: #E6E6E4;
+    --accent: #C63A38;
+    --kw: #8A3FB5;      /* keyword */
+    --str: #2F7D4F;     /* string */
+    --num: #B3561D;     /* number */
+    --com: #7A7A80;     /* comment */
+    --fn: #2F62A6;      /* function / type */
+    --wght: 400;
+    --size: 17px;
+    --fstyle: normal;
+  }
+  :root.italic { --fstyle: italic; }
+
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); margin: 0; color-scheme: light;
+    font-family: 'NKC', monospace; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 44px 24px 90px; }
+  .kode { font-family: 'NKC', monospace; font-style: var(--fstyle);
+    font-variation-settings: "wght" var(--wght); font-size: var(--size); }
+
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+  h1 { font-size: clamp(48px, 9vw, 96px); line-height: 1; margin: 0 0 12px; letter-spacing: -.01em;
+    font-weight: 800; font-variation-settings: "wght" 800; }
+  .sub { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0 0 22px; max-width: 70ch; }
+  section { margin-top: 52px; }
+  h2 { font-size: 18px; margin: 0 0 4px; font-weight: 800; font-variation-settings: "wght" 800; }
+  .note { font-size: 13.5px; line-height: 1.55; color: var(--muted); margin: 0 0 16px; max-width: 74ch; }
+  .note b { color: var(--ink); }
+
+  .controls { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: end;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .ctl { display: flex; flex-direction: column; gap: 6px; }
+  .ctl label { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .ctl output { font-size: 11px; color: var(--ink); }
+  .lab-row { display: flex; justify-content: space-between; gap: 12px; }
+  input[type="range"] { accent-color: var(--accent); width: 140px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .seg button { font: inherit; font-size: 13px; background: var(--bg); color: var(--muted); border: 0; padding: 6px 12px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+  button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; overflow-x: auto; }
+  pre { margin: 0; line-height: 1.55; tab-size: 4; white-space: pre; }
+  pre[contenteditable] { outline: none; caret-color: var(--accent); }
+  .panel:focus-within { border-color: var(--accent); }
+  textarea.kode { width: 100%; min-height: 9em; resize: vertical; line-height: 1.55; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; white-space: pre; }
+
+  .kw { color: var(--kw); } .str { color: var(--str); } .num { color: var(--num); }
+  .com { color: var(--com); font-style: italic; } .fn { color: var(--fn); }
+
+  /* confusables: each set in its own cell so pairs sit side by side */
+  .conf { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .conf div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .conf .big { font-size: calc(var(--size) * 2.2); line-height: 1.15; }
+  .conf .cap { font-size: 11px; color: var(--muted); margin-top: 6px; letter-spacing: .02em; }
+
+  /* column grid: one ch per column, so any width drift shows */
+  .grid { background-image: repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px 1ch);
+    background-color: var(--surface); }
+  .ramp div { display: flex; gap: 18px; align-items: baseline; border-bottom: 1px solid var(--line); padding: 8px 0; }
+  .ramp span:first-child { width: 48px; flex: none; font-size: 11px; color: var(--muted); font-style: normal; }
+  .charset { word-break: break-all; white-space: normal; line-height: 1.7; }
+
+  /* side by side: every sample is paired with a copy; the copy shows only
+     while comparing, set in Nunuïko or with calt (texture healing) off */
+  :root.cmp .wrap { max-width: 1680px; }
+  .pair { display: grid; gap: 12px; }
+  :root.cmp .pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .pair > .alt, .pair .col-lab { display: none; }
+  :root.cmp .pair > .alt, :root.cmp .pair .col-lab { display: block; }
+  .col-lab { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+  :root.cmp-nun .alt .kode { font-family: 'NUN', sans-serif; }
+  :root.cmp-calt .alt .kode { font-feature-settings: 'calt' 0; }
+  :root.cmp-cas .alt .kode { font-family: 'CAS', 'CASX', monospace; }
+  @media (max-width: 720px) { :root.cmp .pair { grid-template-columns: minmax(0, 1fr); } }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Proof · monospaced Nunuïko for code</p>
+  <h1 class="kode">Nunuïkode</h1>
+  <p class="sub">Every glyph sits in a 600-unit cell. Narrow letters are moved, not
+    reshaped; wide ones (m w M W, ligatures) are condensed with their stems
+    thickened back so their weight holds. No kerning, no f-ligatures. Code
+    changes are logged in GLYPHLOG.md. Click any code sample to edit it.</p>
+
+  <div class="controls" role="group" aria-label="Proof controls">
+    <div class="ctl">
+      <div class="lab-row"><label for="w">Weight</label><output id="wo">400</output></div>
+      <input id="w" type="range" min="200" max="1000" step="1" value="400">
+    </div>
+    <div class="ctl">
+      <div class="lab-row"><label for="s">Size</label><output id="so">17px</output></div>
+      <input id="s" type="range" min="10" max="40" step="1" value="17">
+    </div>
+    <div class="ctl">
+      <label>Style</label>
+      <div class="seg" role="group" aria-label="Style">
+        <button type="button" id="rom" aria-pressed="true">Roman</button>
+        <button type="button" id="ita" aria-pressed="false">Italic</button>
+      </div>
+    </div>
+    <div class="ctl">
+      <label>Side by side</label>
+      <div class="seg" role="group" aria-label="Side by side">
+        <button type="button" data-cmp="" aria-pressed="true">Off</button>
+        <button type="button" data-cmp="nun" aria-pressed="false">Nunuïko</button>
+        <button type="button" data-cmp="calt" aria-pressed="false">Healing off</button>
+        <button type="button" data-cmp="cas" aria-pressed="false">Cascadia Code</button>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Try your own</h2>
+    <p class="note">Editable. Paste anything.</p>
+    <textarea class="kode" spellcheck="false" aria-label="Sample code">const O0 = { id: 0x0F, list: [1, l, I, |] };   // 0 vs O, 1 l I |
+if (rn != m && cl != d) return "fine";</textarea>
+  </section>
+
+  <section>
+    <h2>Confusables</h2>
+    <p class="note">The pairs code fonts have to keep apart. <b>0 / O</b> is the
+      first change (dotted zero). The i has a foot and a top-left flag, the tailed l
+      the same flag, the I equal top and bottom bars and the 1 a foot, so <b>Il1|</b> stays distinct.</p>
+    <div class="conf kode">
+      <div><div class="big">0O0o</div><div class="cap">zero · O · o</div></div>
+      <div><div class="big">Il1|</div><div class="cap">I · l · one · bar</div></div>
+      <div><div class="big">i!j¡</div><div class="cap">i · ! · j · ¡</div></div>
+      <div><div class="big">rn m</div><div class="cap">r n · m</div></div>
+      <div><div class="big">cl d</div><div class="cap">c l · d</div></div>
+      <div><div class="big">vv w</div><div class="cap">v v · w</div></div>
+      <div><div class="big">5S 2Z</div><div class="cap">5 S · 2 Z</div></div>
+      <div><div class="big">8B 6G</div><div class="cap">8 B · 6 G</div></div>
+      <div><div class="big">9g q</div><div class="cap">9 · g · q</div></div>
+      <div><div class="big">'`"´</div><div class="cap">quote · backtick · dquote · acute</div></div>
+      <div><div class="big">,.;:</div><div class="cap">comma · period · semi · colon</div></div>
+      <div><div class="big">-_–—</div><div class="cap">hyphen · underscore · en · em</div></div>
+      <div><div class="big">{}[]()</div><div class="cap">braces · brackets · parens</div></div>
+      <div><div class="big">&lt;&gt;^~</div><div class="cap">angles · caret · tilde</div></div>
+      <div><div class="big">\/|¦</div><div class="cap">backslash · slash · bars</div></div>
+      <div><div class="big">#$%&amp;@*</div><div class="cap">symbols</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Operators</h2>
+    <p class="note">No ligatures: each operator is its individual characters, one per cell.</p>
+    <div class="panel"><pre class="kode">-&gt;  =&gt;  ==  ===  !=  !==  &lt;=  &gt;=  &lt;&gt;  &lt;=&gt;  &amp;&amp;  ||  ??  ?.  ::
+++  --  **  //  /*  */  &lt;!--  --&gt;  |&gt;  &lt;|  ...  ..=  :=  +=  -=  %=  ^=
+#{}  ${}  @()  [::]  &lt;/&gt;  0x1F  0b1010  0o777  1_000_000  3.14e-10  #FF00AA</pre></div>
+  </section>
+
+  <section>
+    <h2>Texture healing</h2>
+    <p class="note">Next to a narrow letter (i j l r t f I), a wide letter (m w M W A O Q V)
+      borrows up to 60 units of its space, and the narrow letter steps aside. Cells stay
+      600 wide, so columns still line up. It is the <b>calt</b> feature; top row on, bottom row off.</p>
+    <div class="panel"><pre class="kode">minimum William will limit Wilma mime iMac Will.MIT
+<span style="font-feature-settings: 'calt' 0">minimum William will limit Wilma mime iMac Will.MIT</span>
+
+<span class="com">// on</span>
+<span class="kw">if</span> (limit &gt; maxItems) { Wiki.mirror(milestone, items.slim()); }
+<span class="com">// off</span>
+<span style="font-feature-settings: 'calt' 0"><span class="kw">if</span> (limit &gt; maxItems) { Wiki.mirror(milestone, items.slim()); }</span></pre></div>
+  </section>
+
+  <section>
+    <h2>Column grid</h2>
+    <p class="note">One vertical line per character cell. Every row must end on the same line.</p>
+    <div class="panel grid"><pre class="kode">iiiiiiiiiiiiiiiiiiiiiiiiiiiiii|
+mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm|
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW|
+llllllllllllllllllllllllllllll|
+0123456789012345678901234567890|
+.:,;'"`!?()[]{}&lt;&gt;/\|-_=+*&amp;^%$#@~|
+ÀÉÎÕÜàéîõüçñßøæœ ŁłŚśŹźŻżĞğİı|</pre></div>
+  </section>
+
+  <section>
+    <h2>TypeScript</h2>
+    <div class="panel"><pre class="kode"><span class="kw">import</span> { readFile } <span class="kw">from</span> <span class="str">"node:fs/promises"</span>;
+
+<span class="com">// Parse a config file; fall back to defaults on any error.</span>
+<span class="kw">export async function</span> <span class="fn">loadConfig</span>(path: <span class="fn">string</span>): <span class="fn">Promise</span>&lt;<span class="fn">Config</span>&gt; {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> raw = <span class="kw">await</span> <span class="fn">readFile</span>(path, <span class="str">"utf8"</span>);
+    <span class="kw">const</span> cfg = <span class="fn">JSON</span>.<span class="fn">parse</span>(raw) <span class="kw">as</span> <span class="fn">Partial</span>&lt;<span class="fn">Config</span>&gt;;
+    <span class="kw">return</span> { ...defaults, ...cfg, retries: cfg.retries ?? <span class="num">3</span> };
+  } <span class="kw">catch</span> (err) {
+    console.<span class="fn">warn</span>(<span class="str">`config: ${</span>path<span class="str">} unreadable (${</span>err<span class="str">})`</span>);
+    <span class="kw">return</span> defaults;
+  }
+}</pre></div>
+  </section>
+
+  <section>
+    <h2>Python</h2>
+    <div class="panel"><pre class="kode"><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+
+
+<span class="kw">@</span><span class="fn">dataclass</span>(frozen=<span class="kw">True</span>)
+<span class="kw">class</span> <span class="fn">Reading</span>:
+    sensor: <span class="fn">str</span>
+    value: <span class="fn">float</span>
+    ok: <span class="fn">bool</span> = <span class="kw">True</span>
+
+
+<span class="kw">def</span> <span class="fn">average</span>(readings: <span class="fn">list</span>[<span class="fn">Reading</span>], floor: <span class="fn">float</span> = <span class="num">0.0</span>) -&gt; <span class="fn">float</span> | <span class="kw">None</span>:
+    <span class="str">"""Mean of the good readings at or above floor, or None."""</span>
+    good = [r.value <span class="kw">for</span> r <span class="kw">in</span> readings <span class="kw">if</span> r.ok <span class="kw">and</span> r.value &gt;= floor]
+    <span class="kw">return</span> <span class="fn">sum</span>(good) / <span class="fn">len</span>(good) <span class="kw">if</span> good <span class="kw">else</span> <span class="kw">None</span>  <span class="com"># 0 readings -&gt; None</span></pre></div>
+  </section>
+
+  <section>
+    <h2>Shell</h2>
+    <div class="panel"><pre class="kode"><span class="com"># rebuild, then copy the fonts into every consumer</span>
+<span class="kw">set</span> -euo pipefail
+<span class="kw">for</span> app <span class="kw">in</span> planner fe2 braintapper-app; <span class="kw">do</span>
+  cp -v fonts/variable/*.ttf <span class="str">"../$app/public/fonts/"</span> &amp;&amp; echo <span class="str">"ok: $app"</span> || echo <span class="str">"FAILED: $app"</span> &gt;&amp;<span class="num">2</span>
+<span class="kw">done</span>
+git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[0-9a-f]{7,} (fix|feat):'</span></pre></div>
+  </section>
+
+  <section>
+    <h2>CSS, JSON, SQL</h2>
+    <div class="panel"><pre class="kode">.btn:hover { color: <span class="num">#1C1C1E</span>; padding: <span class="num">0.5rem</span> <span class="num">1rem</span>; border-radius: <span class="num">8px</span>; }
+
+{ <span class="str">"id"</span>: <span class="num">1001</span>, <span class="str">"name"</span>: <span class="str">"O'Neil"</span>, <span class="str">"tags"</span>: [<span class="str">"0O"</span>, <span class="str">"Il1"</span>], <span class="str">"active"</span>: <span class="kw">true</span>, <span class="str">"ratio"</span>: <span class="num">0.01</span> }
+
+<span class="kw">SELECT</span> u.id, <span class="fn">COUNT</span>(o.id) <span class="kw">AS</span> orders
+<span class="kw">FROM</span> users u <span class="kw">LEFT JOIN</span> orders o <span class="kw">ON</span> o.user_id = u.id
+<span class="kw">WHERE</span> u.created_at &gt;= <span class="str">'2026-01-01'</span> <span class="kw">GROUP BY</span> u.id <span class="kw">HAVING</span> <span class="fn">COUNT</span>(o.id) &gt; <span class="num">0</span>;</pre></div>
+  </section>
+
+  <section>
+    <h2>Weight ramp</h2>
+    <p class="note">Same line at each named weight (the style switch still applies).</p>
+    <div class="panel ramp" id="ramp"></div>
+  </section>
+
+  <section>
+    <h2>ASCII</h2>
+    <div class="panel"><p class="kode charset" id="ascii"></p></div>
+  </section>
+</div>
+
+<script>
+  const $ = (id) => document.getElementById(id);
+  const root = document.documentElement;
+  const sync = () => {
+    root.style.setProperty('--wght', $('w').value);
+    root.style.setProperty('--size', $('s').value + 'px');
+    $('wo').textContent = $('w').value;
+    $('so').textContent = $('s').value + 'px';
+  };
+  $('w').addEventListener('input', sync);
+  $('s').addEventListener('input', sync);
+  const style = (italic) => {
+    root.classList.toggle('italic', italic);
+    $('rom').setAttribute('aria-pressed', String(!italic));
+    $('ita').setAttribute('aria-pressed', String(italic));
+  };
+  $('rom').addEventListener('click', () => style(false));
+  $('ita').addEventListener('click', () => style(true));
+
+  const line = 'if (x0 != O && l1 >= 10) { return items.map((m) => m.id * 2); }';
+  for (const w of [200, 300, 400, 500, 600, 700, 800, 900, 1000]) {
+    const row = document.createElement('div');
+    const lab = document.createElement('span'); lab.textContent = w;
+    const txt = document.createElement('span'); txt.className = 'kode';
+    txt.style.fontVariationSettings = `"wght" ${w}`; txt.textContent = line;
+    row.append(lab, txt); $('ramp').append(row);
+  }
+  let ascii = '';
+  for (let c = 33; c < 127; c++) ascii += String.fromCharCode(c);
+  $('ascii').textContent = ascii;
+
+  // every code sample is editable in place (highlighting stays on the text
+  // that isn't retyped); its side-by-side copy follows what is typed
+  const editable = document.querySelectorAll('.wrap section > .panel > pre.kode');
+  editable.forEach((pre) => { pre.contentEditable = 'plaintext-only'; pre.spellcheck = false; });
+
+  // side by side: pair every sample with a copy (built once, shown by CSS)
+  const ALT = { nun: 'Nunuïko (proportional)', calt: 'Nunuïkode, healing off',
+    cas: 'Cascadia Code (weights 200–700)' };
+  const altLabs = [];
+  const pairUp = (el, copy) => {
+    const pair = document.createElement('div'); pair.className = 'pair';
+    el.replaceWith(pair);
+    const col = (node, text) => {
+      const wrap = document.createElement('div');
+      const lab = document.createElement('p'); lab.className = 'col-lab'; lab.textContent = text;
+      wrap.append(lab, node); pair.append(wrap);
+      return lab;
+    };
+    col(el, 'Nunuïkode');
+    altLabs.push(col(copy, ''));
+    copy.parentElement.classList.add('alt');
+  };
+  for (const el of document.querySelectorAll('.wrap section > .panel, .wrap section > .conf')) {
+    const copy = el.cloneNode(true);
+    copy.removeAttribute('id');
+    copy.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
+    const pre = el.querySelector(':scope > pre[contenteditable]');
+    if (pre) {
+      const twin = copy.querySelector(':scope > pre');
+      twin.removeAttribute('contenteditable');
+      pre.addEventListener('input', () => { twin.innerHTML = pre.innerHTML; });
+    }
+    pairUp(el, copy);
+  }
+  // the editable box: the copy mirrors what is typed
+  const ta = document.querySelector('textarea.kode');
+  const mirror = document.createElement('pre'); mirror.className = 'kode panel';
+  const echo = () => { mirror.textContent = ta.value + '\n'; };
+  ta.addEventListener('input', echo); echo();
+  pairUp(ta, mirror);
+  const compare = (mode) => {
+    root.classList.toggle('cmp', !!mode);
+    root.classList.toggle('cmp-nun', mode === 'nun');
+    root.classList.toggle('cmp-calt', mode === 'calt');
+    root.classList.toggle('cmp-cas', mode === 'cas');
+    for (const lab of altLabs) lab.textContent = ALT[mode] || '';
+    document.querySelectorAll('[data-cmp]').forEach((b) =>
+      b.setAttribute('aria-pressed', String(b.dataset.cmp === mode)));
+  };
+  document.querySelectorAll('[data-cmp]').forEach((b) =>
+    b.addEventListener('click', () => compare(b.dataset.cmp)));
+  sync();
+</script>
