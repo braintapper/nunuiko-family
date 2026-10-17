@@ -106,6 +106,14 @@
   .rows > div:last-child { border-bottom: 0; }
   .rows .k { width: 44px; flex: none; font-size: 11px; color: var(--muted); font-family: 'NK', sans-serif; font-style: normal; }
 
+  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin: 0 0 14px; }
+  .tabs button { font: inherit; font-size: 15px; font-weight: 700; font-variation-settings: "wght" 700;
+    background: none; border: 0; border-bottom: 3px solid transparent; color: var(--muted);
+    padding: 8px 14px 9px; margin-bottom: -1px; cursor: pointer; }
+  .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+  .tab-note { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
+  :root:not(.t-family) [data-tab="family"], :root:not(.t-stock) [data-tab="stock"] { display: none !important; }
+
   /* sections for one family only */
   [data-only] { display: none; }
   :root.f-nk [data-only~="nk"], :root.f-nd [data-only~="nd"], :root.f-kd [data-only~="kd"] { display: block; }
@@ -144,8 +152,17 @@
   <h1>Nunuïko Family</h1>
   <p class="sub">Three families built on Nunito: <b>Nunuïko</b>, a rounded sans from Nunito;
     <b>Nunuïko Display</b>, from Nunito Sans, with width, optical size and x-height axes; and
-    <b>Nunuïkode</b>, Nunuïko made monospaced for code. Switch any of them on to set every sample
-    in each, side by side or overlaid, and compare them with the sources or Cascadia Code.</p>
+    <b>Nunuïkode</b>, Nunuïko made monospaced for code.</p>
+
+  <div class="tabs" role="tablist" aria-label="Comparison">
+    <button role="tab" data-tab="family" aria-selected="true">Family</button>
+    <button role="tab" data-tab="stock" aria-selected="false">Stock</button>
+  </div>
+  <p class="tab-note" data-tab="family">Compare the families with each other. Switch any of them
+    on; every sample shows them one above the next.</p>
+  <p class="tab-note" data-tab="stock">Compare each family with the stock font it is derived from:
+    Nunuïko and Nunuïkode with Nunito, Nunuïko Display with Nunito Sans. Each family sits right above
+    its stock font.</p>
 
   <div class="controls" role="group" aria-label="Proof controls">
     <div class="ctl">
@@ -156,11 +173,9 @@
         <button data-face="kd" aria-pressed="true">Nunuïkode</button>
       </div>
     </div>
-    <div class="ctl">
-      <span class="lab" id="ref-lab">Compare with</span>
+    <div class="ctl" data-tab="family">
+      <span class="lab" id="ref-lab">Also show</span>
       <div class="seg" role="group" aria-labelledby="ref-lab">
-        <button data-face="no" aria-pressed="false">Nunito</button>
-        <button data-face="ns" aria-pressed="false">Nunito Sans</button>
         <button data-face="cas" aria-pressed="false">Cascadia Code</button>
       </div>
     </div>
@@ -216,10 +231,10 @@ const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
     <div class="chars" id="chars"></div>
   </section>
 
-  <section>
+  <section data-tab="stock">
     <h2>What changed</h2>
-    <p class="note">Every change from the source, newest last, for each family switched on. The
-      full record is in each family’s GLYPHLOG.md; switch the source on to compare.</p>
+    <p class="note">Every change from the stock font, newest last, for each family switched on;
+      the full record is in each family’s GLYPHLOG.md.</p>
     <div id="changes"></div>
   </section>
 
@@ -373,7 +388,9 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     cas: { fam: "'CAS', 'CASX'", name: 'Cascadia Code (200–700)', c: '#6B6B70', hash: 'cascadia' },
   };
   const FAMILIES = ['nk', 'nd', 'kd'];
-  const SOURCE = { nk: 'no', nd: 'ns', kd: 'nk' };
+  const STOCK = { nk: 'no', nd: 'ns', kd: 'no' };
+  const CHANGES_FROM = { nk: 'changes from Nunito', nd: 'changes from Nunito Sans',
+    kd: 'its own changes, on top of Nunuïko’s' };
   // [title, caption, sample] per family, newest edits last (from each GLYPHLOG.md)
   const CHANGES = {
     nk: [
@@ -412,14 +429,31 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     ],
   };
 
-  // which faces are on: each button is its own true/false; the URL hash
-  // lists them (#nunuiko,nunuikode), so links can open the page on a set
-  const on = new Set(['nk', 'nd', 'kd']);
-  const fromHash = location.hash.slice(1).split(',')
-    .map((h) => Object.keys(FACES).find((k) => FACES[k].hash === h)).filter(Boolean);
-  if (fromHash.length) { on.clear(); fromHash.forEach((k) => on.add(k)); }
+  // two tabs, each with its own set of fonts on (each button its own
+  // true/false). Family: the families, plus Cascadia Code if on. Stock: each
+  // family on, followed by its stock font. The URL hash holds the tab and
+  // the fonts on (#family/nunuiko,nunuikode or #stock/nunuiko).
+  let tab = 'family';
+  const on = { family: new Set(['nk', 'nd', 'kd']), stock: new Set(['nk']) };
+  {
+    const [t, list] = location.hash.slice(1).split('/');
+    const keys = (list || '').split(',')
+      .map((h) => Object.keys(FACES).find((k) => FACES[k].hash === h)).filter(Boolean);
+    if (t === 'family' || t === 'stock') tab = t;
+    const fams = keys.filter((k) => FAMILIES.includes(k));
+    if (fams.length) { on[tab].clear(); keys.forEach((k) => on[tab].add(k)); }
+  }
   let view = 'side';
-  const shown = () => Object.keys(FACES).filter((k) => on.has(k));
+  const shown = () => {
+    const out = [];
+    for (const f of FAMILIES) {
+      if (!on[tab].has(f)) continue;
+      out.push(f);
+      if (tab === 'stock' && !out.includes(STOCK[f])) out.push(STOCK[f]);
+    }
+    if (tab === 'family' && on.family.has('cas')) out.push('cas');
+    return out;
+  };
 
   const set = (k, v) => root.style.setProperty(k, v);
   const sliders = [['w', '--wght', ''], ['sz', '--size', 'px'], ['wd', '--wdth', ''], ['op', '--opsz', ''], ['yt', '--ytlc', '']];
@@ -525,9 +559,10 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     const box = $('changes');
     box.textContent = '';
     changeSets.length = 0;
-    for (const f of FAMILIES.filter((k) => on.has(k))) {
+    if (tab !== 'stock') return;
+    for (const f of FAMILIES.filter((k) => on.stock.has(k))) {
       const h = document.createElement('h3'); h.className = 'group';
-      h.textContent = FACES[f].name + ' — changes from ' + FACES[SOURCE[f]].name;
+      h.textContent = FACES[f].name + ' — ' + CHANGES_FROM[f];
       box.append(h);
       for (const [title, cap, sample] of CHANGES[f]) {
         const row = document.createElement('div'); row.className = 'change';
@@ -546,12 +581,15 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
 
   const update = () => {
     const faces = shown();
-    for (const f of FAMILIES) root.classList.toggle('f-' + f, on.has(f));
+    for (const f of FAMILIES) root.classList.toggle('f-' + f, faces.includes(f));
+    root.classList.toggle('t-family', tab === 'family');
+    root.classList.toggle('t-stock', tab === 'stock');
     root.classList.toggle('solo', faces.length === 1);
     root.classList.toggle('overlay', view === 'overlay');
-    root.classList.toggle('axes-on', on.has('nd') || on.has('ns'));
+    root.classList.toggle('axes-on', faces.includes('nd') || faces.includes('ns'));
     set('--f', FACES[faces[0]].fam);
-    document.querySelectorAll('[data-face]').forEach((n) => n.setAttribute('aria-pressed', String(on.has(n.dataset.face))));
+    document.querySelectorAll('[data-face]').forEach((n) => n.setAttribute('aria-pressed', String(on[tab].has(n.dataset.face))));
+    document.querySelectorAll('[data-tab][role=tab]').forEach((n) => n.setAttribute('aria-selected', String(n.dataset.tab === tab)));
     document.querySelectorAll('[data-view]').forEach((n) => n.setAttribute('aria-pressed', String(n.dataset.view === view)));
     const lg = $('legend');
     lg.textContent = '';
@@ -562,14 +600,16 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     renderChanges();
     renderChars();
     [...sets, ...changeSets].forEach(fill);
-    history.replaceState(null, '', '#' + faces.map((k) => FACES[k].hash).join(','));
+    history.replaceState(null, '', '#' + tab + '/' + [...on[tab]].map((k) => FACES[k].hash).join(','));
   };
 
   document.querySelectorAll('[data-face]').forEach((n) => n.addEventListener('click', () => {
-    const k = n.dataset.face;
-    if (on.has(k)) { if (on.size > 1) on.delete(k); } else on.add(k);
+    const k = n.dataset.face, set_ = on[tab];
+    if (!set_.has(k)) set_.add(k);
+    else if (!FAMILIES.includes(k) || [...set_].filter((f) => FAMILIES.includes(f)).length > 1) set_.delete(k);
     update();
   }));
+  document.querySelectorAll('[data-tab][role=tab]').forEach((n) => n.addEventListener('click', () => { tab = n.dataset.tab; update(); }));
   document.querySelectorAll('[data-view]').forEach((n) => n.addEventListener('click', () => { view = n.dataset.view; update(); }));
   document.querySelectorAll('[data-style]').forEach((n) => n.addEventListener('click', () => {
     root.classList.toggle('italic', n.dataset.style === 'italic');
