@@ -8,7 +8,7 @@ the page has a Roman/Italic switch. The result is published as a Claude
 artifact (interactive proof + visual changelog).
 
 Run from the repo root:  .venv/bin/python sources/proof/make_proof.py
-Output: sources/proof/nunuiko-display-proof.html (gitignored).
+Output: docs/nunuiko-display/index.html at the repo root, committed and served by GitHub Pages.
 """
 import base64
 import pathlib
@@ -51,7 +51,8 @@ def main():
     html = (HERE / "template.html").read_text()
     for token, (commit, path) in FONTS.items():
         html = html.replace(token, font_b64(commit, path))
-    out = HERE / "nunuiko-display-proof.html"
+    out = ROOT.parent / "docs" / "nunuiko-display" / "index.html"  # served by GitHub Pages
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html)
     print(out, len(html) // 1024, "KB")
 

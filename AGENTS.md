@@ -43,7 +43,7 @@ Every family folder has the same shape:
   sources/
     build.sh  config.yaml  display_name.py the build
     edits/                                 glyph edits (NN_name.py)
-    proof/  make_proof.py  template.html   the proof; writes <family>-proof.html
+    proof/  make_proof.py  template.html   the proof; writes ../docs/<family>/index.html
   archive/                                 kept for reference, not built
 ```
 
@@ -51,7 +51,7 @@ plus what only some families have: `fonts/ttf/` (Display's static
 instances), `penpot-uploads/` and `sources/penpot/` (static font files
 for Penpot), and Nunuïkode's `sources/build.py` and `sources/upstream/`.
 
-At the repo root: `PLAYBOOK.md` (build process and troubleshooting) and
+At the repo root: `docs/`, the published proofs (below); `PLAYBOOK.md` (build process and troubleshooting) and
 `fonts.md` (design intent), shared by Nunuïko and Display, and `OFL.txt` with
 every family's copyright lines.
 
@@ -67,11 +67,10 @@ Then, from the family folder:
 
 ```sh
 cd sources && PATH=../.venv/bin:$PATH sh build.sh && cd ..   # fonts/variable/
-.venv/bin/python sources/proof/make_proof.py                  # sources/proof/<family>-proof.html
+.venv/bin/python sources/proof/make_proof.py                  # ../docs/<family>/index.html
 ```
 
-Proofs are generated (gitignored) and embed the fonts, so they open
-anywhere.
+Each proof embeds its fonts, so it opens anywhere, from disk or the web.
 
 ## Italics
 
@@ -108,6 +107,7 @@ name (e.g. in `@font-face`) and size text against the current metrics.
 
 ## Publishing the proofs
 
-`.github/workflows/proofs.yml` builds every family's proof from the
-committed fonts on each push to `main` and publishes them to GitHub Pages,
-with `proof/index.html` as the landing page.
+The proofs are generated locally, not in CI, and committed: `docs/` is
+served by GitHub Pages (from `main`, folder `/docs`). `docs/index.html` is the
+landing page, linking each family's `docs/<family>/index.html`. Commit the
+regenerated proof together with the font build it shows.

@@ -6,7 +6,7 @@ from ../nunuiko in this repo) and Cascadia Code's (Latin and Latin
 Extended woff2 from the pinned fontsource package, OFL; downloaded once
 into sources/proof/.cache/, gitignored). Run from the repo root after every build:
   .venv/bin/python sources/proof/make_proof.py
-Output: sources/proof/nunuikode-proof.html (gitignored; regenerate at will)
+Output: docs/nunuikode/index.html at the repo root, committed and served by GitHub Pages.
 """
 import base64
 import pathlib
@@ -55,7 +55,8 @@ def main():
         html = html.replace(token, font_b64(path))
     for token, name in REMOTE.items():
         html = html.replace(token, remote_b64(name))
-    out = HERE / "nunuikode-proof.html"
+    out = ROOT.parent / "docs" / "nunuikode" / "index.html"  # served by GitHub Pages
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html)
     print(out, len(html) // 1024, "KB")
 

@@ -6,7 +6,7 @@ outputs. The result is published as a Claude artifact after each glyph
 edit — same URL each time, so it doubles as a visual changelog.
 
 Run from the repo root:  .venv/bin/python sources/proof/make_proof.py
-Output: sources/proof/nunuiko-proof.html (gitignored; regenerate at will)
+Output: docs/nunuiko/index.html at the repo root, committed and served by GitHub Pages.
 
 Nunito Sans fork: change ORIG_COMMIT/paths to that repo's originals and
 swap the display strings in template.html.
@@ -50,7 +50,8 @@ def main():
     html = (HERE / "template.html").read_text()
     for token, (commit, path) in FONTS.items():
         html = html.replace(token, font_b64(commit, path))
-    out = HERE / "nunuiko-proof.html"
+    out = ROOT.parent / "docs" / "nunuiko" / "index.html"  # served by GitHub Pages
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html)
     print(out, len(html) // 1024, "KB")
 

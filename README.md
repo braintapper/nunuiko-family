@@ -11,7 +11,7 @@ Each folder has its own build, proof, glyph change log and license files.
 
 ## Proofs
 
-Built from the fonts on `main` at every push and published with GitHub Pages:
+Regenerated with each font build and published with GitHub Pages:
 
 - [All proofs](https://braintapper.github.io/nunuiko-family/)
 - [Nunuïko](https://braintapper.github.io/nunuiko-family/nunuiko/), compared with the original Nunito
