@@ -9,7 +9,8 @@ A rounded sans derived from [Nunito](https://github.com/googlefonts/nunito).
 - Changes from Nunito so far: a shorter l tail; a downturned f terminal; a J
   with an upturned hooked foot; a Jost-style Q slash; ff / ffi / ffl ligatures
   with a joined crossbar; a K and k whose leg grows out of the arm; round dots;
-  a rounder a; and a footless 1, proportional by default. Every change is
+  a rounder a; a $ no taller than the S; and a footless 1, proportional by
+  default. Every change is
   logged per master in `GLYPHLOG.md`.
 
 ## Building

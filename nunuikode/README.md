@@ -19,8 +19,8 @@ derived from Nunito.
   footless 1 is in ss01); an i with a foot and a top-left flag; Nunuïko's tailed l
   with the same flag; an r arched like the n; wider t and f bars and an f whose top
   arches down; an I with equal top and bottom bars; dots on ï that clear the stem;
-  brackets and bars centred on the capitals; an @ on the baseline; round %
-  rings; a lower middle on W; and a $ no taller than the S.
+  brackets and bars centred on the capitals; round %
+  rings; a lower middle on W; a $ no taller than the S; and round © and ® and an @ centred on the capitals.
 
 ## Building
 

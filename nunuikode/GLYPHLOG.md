@@ -179,9 +179,11 @@ the slant on the italics. Ŵ Ẁ Ẃ Ẅ and the healing alternates follow.
 `sources/edits/06_at_percent_dollar.py`.
 
 - **@:** Nunuïko's @ hung 160 below the baseline (−162 at ExtraLight against
-  the O's −9). It is squashed vertically onto the O's height (0.82 at
+  the O's −9). It was squashed vertically onto the O's height (0.82 at
   ExtraLight, 0.79 at Bold), and each on-curve point moves out along its
   normal by half the thickness lost, so the strokes keep their weight.
+  *Superseded by §11: the squash left it to be condensed across into a narrow
+  oval; it is now fitted to the cell and centred like © and ®.*
 - **%:** the two rings were tall ovals (231 × 431 at ExtraLight). Each is
   redrawn as a circle 0.4 × the cap height across (282), with the old ring's
   side and top/bottom thickness: the upper one in the top-left corner, top on
@@ -227,3 +229,22 @@ in Cascadia Code. So mirror, array, remove and remote set with holes.
   the n's outer curve, then down to the stem on a quarter ellipse. The top stays
   at the old f's height. The terminal ends around 640–665 at ExtraLight and
   595–665 at Bold (top 720), where Nunuïko's ended flat.
+
+## 11. Round © and ®, and the @, centred on the capitals ◐ (2026-10-17)
+
+`sources/edits/08_copyright_registered.py`.
+
+- Both were circles wider than the cell, so the monospace step condensed them
+  across only, into tall ovals (540 × 725). They are now scaled down
+  uniformly to fit the cell, 538 wide (`WIDTH`), so the monospace step only
+  moves them. Stroke weight is kept as on the $ (edit 8). The scale is
+  0.73 / 0.69 / 0.63 (ExtraLight / Bold / Heavy) upright.
+- They are centred on half the cap height: 84..622 upright, a 538 circle.
+  The italic keeps Nunuïko's italic proportions, about 538 × 496 unslanted
+  (102..603).
+- **@** (same day): edit 6's vertical squash is removed and the @ gets the
+  same treatment, scaled uniformly to 538 wide (0.65 / 0.58 / 0.49 upright,
+  ExtraLight / Bold / Heavy), weight kept, and centred on half the cap height:
+  62..643 at ExtraLight, 81..624 at Heavy. It no longer drops below the
+  baseline and is no longer condensed. The edit would also cap the height at
+  the O's; the @ doesn't need it.

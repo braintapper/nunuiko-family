@@ -595,6 +595,31 @@ Same as Display:
 
 ---
 
+## 16. $ — no taller than the S ◐ (2026-10-17)
+
+**Intent (user):** the $ gets the same treatment as in Nunuïkode: shrunk to
+fit between the baseline and the cap height.
+
+**Script:** `sources/edits/16_dollar_cap_height.py` (the same file in
+Nunuïko and Display), run once per source.
+
+**Operation:** the $ (an S with the bar sticking out above and below) is
+scaled down uniformly until its full height, bar ends included, is the S's
+own, overshoots included. Stroke weight is kept: each on-curve point also
+moves out along its outward normal by (1 − s) × stem / 2, stem = the I's in
+that master, handles following their on-curve point. It stays centred where it
+was across, and its advance (600, tabular like the figures) doesn't change.
+Done unslanted in the italic. No composite uses the $.
+
+**Result:** −121..826 → −8..713 at ExtraLight (scale 0.750), 0.725 at Bold, 0.695 at
+Heavy; italics 0.755 / 0.728 / 0.695.
+
+### Checks
+- [x] All masters compatible; build clean
+- [ ] Visual check (user)
+
+---
+
 ## Replay procedure (Nunito Sans → Nunuïko Display)
 
 1. For each glyph above, read the **Operation / rule** — apply the rule to

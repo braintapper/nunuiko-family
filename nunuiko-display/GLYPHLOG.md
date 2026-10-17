@@ -960,6 +960,93 @@ ss02 alternates.
 
 ---
 
+## 15. Round heads on commas and quotes ◐ (2026-10-17)
+
+**Intent (user):** the comma, apostrophe and similar get a round head instead
+of a square one, as in Nunuïko.
+
+**Script:** `sources/edits/15_round_comma_heads.py`, run once per source;
+`--dry-run` lists what it would change.
+
+**Which contours:** a path has a square head when, in **every** master, it
+has this run of nodes: E, the end of the tail's outer curve on the head's
+side; C1 C2 C3, three line corners (C1–C2 horizontal, C2–C3 upright or at the
+italic angle, aspect 0.6–1.7); P, a line node on the next edge; and N, the
+notch where the tail's inner edge leaves the head. Turned forms are the same
+run rotated. Both sources find the same **11 contours in 11 glyphs:**
+comma, semicolon (its comma), quotesinglbase, quoteleft, quoteright,
+apostrophemod, commaturnedmod, commaaccentcomb (+ .alt),
+commaturnedabovecomb (+ .case). Composites follow: „ “ ” and every letter
+with a comma accent (ģ ķ ļ ņ ŗ ș ț …, ŉ).
+
+**Operation:** C1 C2 C3 P become a circle of the same size as edit 10's dots
+(equal area to a square of side √(w·h), capped at 1.128× the height),
+centred on the head's centre. E moves onto the circle at its side, and its
+incoming handle turns to the circle's tangent there (same length), so the
+tail flows into the head. Three quarter arcs go round to the point opposite
+C3 → P, which joins N by a line, as in Nunuïko's comma. Heads stay round in
+the italic. The path is rewritten starting at N in every master: 16 nodes
+(was 12). Example, 12pt ExtraLight comma: head 71..140 × 0..70 → circle
+66..145 × −4..74.
+
+The straight quote (' and ") is a tapered wedge, not a head with a tail, and
+is left as it was.
+
+### Checks
+- [x] 14 roman and 13 italic masters compatible; a re-run finds 0 heads;
+      build clean
+- [ ] Visual check (user)
+
+---
+
+## 16. $ — no taller than the S ◐ (2026-10-17)
+
+**Intent (user):** the $ gets the same treatment as in Nunuïkode: shrunk to
+fit between the baseline and the cap height.
+
+**Script:** `sources/edits/16_dollar_cap_height.py` (the same file in
+Nunuïko and Display), run once per source.
+
+**Operation:** the $ (an S with the bar sticking out above and below) is
+scaled down uniformly until its full height, bar ends included, is the S's
+own, overshoots included. Stroke weight is kept: each on-curve point also
+moves out along its outward normal by (1 − s) × stem / 2, stem = the I's in
+that master, handles following their on-curve point. It stays centred where it
+was across, and its advance (600, tabular like the figures) doesn't change.
+Done unslanted in the italic. No composite uses the $.
+
+**Result:** −115..820 → −8..713 at 12pt ExtraLight (scale 0.760), 0.740 at Bold,
+0.714 at ExtraBlack; the same in the italic.
+
+### Checks
+- [x] All masters compatible; build clean
+- [ ] Visual check (user)
+
+---
+
+## 17. J — the hook rises as high as Nunuïko's ◐ (2026-10-17)
+
+**Intent (user):** extend the J's tail to the same height as Nunuïko's J.
+
+**Script:** `sources/edits/17_J_tail_height.py`, run once per source.
+
+**Operation:** edit 5 ends Display's hook in a flat cut at H (0.9 × the stem's
+curve-start height); Nunuïko's rounded cap rises half the hook weight above H.
+The hook's left upright is extended straight up by half the hook weight w, so
+the cut sits where the top of Nunuïko's cap does. On edit 5's 16-node J, two
+line nodes are inserted between node 9 (inner end of the cut) and node 10
+(outer end) at H + w/2; node 10 becomes smooth. The rise follows the slant in
+the italic. 18 nodes in every master. Composites follow; no width changes.
+
+**Result:** cut at 180 / 243 / 264 (12pt ExtraLight / Bold / ExtraBlack;
+Nunuïko 180 / 243 / 265), italic 180 / 240 / 260.
+
+### Checks
+- [x] All masters compatible; build clean
+- [ ] Visual check (user)
+
+---
+
 ## Replay procedure (Nunito Sans → Nunuïko Display)
 
 1. For each glyph above, read the **Operation / rule** — apply the rule to

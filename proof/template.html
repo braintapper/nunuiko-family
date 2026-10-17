@@ -48,33 +48,50 @@
   * { box-sizing: border-box; }
   body { background: var(--bg); color: var(--ink); margin: 0; color-scheme: light;
     font-family: 'NK', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 40px 16px 90px; }
+  /* sticky header (title, tabs) across the top; sticky sidebar (controls) on the left */
+  :root { --head: 56px; --side: 260px; }
+  .top { position: sticky; top: 0; z-index: 3; height: var(--head); display: flex; align-items: stretch; gap: 28px;
+    background: var(--surface); border-bottom: 1px solid var(--line); padding: 0 16px; }
+  .layout { display: grid; grid-template-columns: var(--side) minmax(0, 1fr); align-items: start; }
+  .side { position: sticky; top: var(--head); max-height: calc(100vh - var(--head)); overflow-y: auto;
+    border-right: 1px solid var(--line); background: var(--surface); padding: 16px; }
+  .wrap { min-width: 0; padding: 4px 24px 90px; }
+  @media (max-width: 760px) {
+    .top { gap: 12px; padding: 0 8px; }
+    .layout { grid-template-columns: minmax(0, 1fr); }
+    .side { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); }
+    .wrap { padding: 4px 16px 90px; }
+  }
 
   /* every sample is set once per font switched on, each column with its own --f */
   .s { font-family: var(--f), sans-serif; font-style: var(--fstyle); font-size: var(--size);
     font-variation-settings: "wght" var(--w, var(--wght)), "wdth" var(--wdth), "opsz" var(--opsz), "YTLC" var(--ytlc); }
 
-  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
-  h1 { font-size: clamp(44px, 8vw, 88px); line-height: 1; margin: 0 0 12px; letter-spacing: -.01em;
+  h1 { align-self: center; font-size: 20px; line-height: 1; margin: 0; white-space: nowrap;
     font-weight: 800; font-variation-settings: "wght" 800; }
-  .sub { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0 0 22px; max-width: 72ch; }
-  section { margin-top: 48px; }
+  h1 small { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+    font-weight: 400; font-variation-settings: "wght" 400; margin-left: 8px; }
+  @media (max-width: 760px) { h1 small { display: none; } }
+  section { margin-top: 40px; }
   h2 { font-size: 18px; margin: 0 0 4px; font-weight: 800; font-variation-settings: "wght" 800; }
   .note { font-size: 13.5px; line-height: 1.55; color: var(--muted); margin: 0 0 16px; max-width: 76ch; }
   .note b { color: var(--ink); }
 
-  .controls { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: end;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .controls { display: flex; flex-direction: column; gap: 16px; }
   .ctl { display: flex; flex-direction: column; gap: 6px; }
   .ctl label, .ctl .lab { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
   .ctl output { font-size: 11px; color: var(--ink); }
   .lab-row { display: flex; justify-content: space-between; gap: 12px; }
-  .ctl input[type=range] { width: 150px; accent-color: var(--accent); }
+  .ctl input[type=range] { width: 100%; margin: 0; accent-color: var(--accent); }
   .ctl select { font: inherit; font-size: 13px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px;
     background: var(--bg); color: var(--ink); }
-  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-  .seg button { font: inherit; font-size: 13px; background: var(--bg); color: var(--muted); border: 0; padding: 6px 12px; cursor: pointer; }
+  .seg { display: flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .seg button { flex: 1; font: inherit; font-size: 13px; background: var(--bg); color: var(--muted); border: 0; padding: 6px 10px; cursor: pointer; }
   .seg button + button { border-left: 1px solid var(--line); }
+  /* the font toggles stack, one per line */
+  .seg.stack { flex-direction: column; }
+  .seg.stack button { text-align: left; }
+  .seg.stack button + button { border-left: 0; border-top: 1px solid var(--line); }
   .seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
   button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .axes { display: none; }
@@ -106,12 +123,11 @@
   .rows > div:last-child { border-bottom: 0; }
   .rows .k { width: 44px; flex: none; font-size: 11px; color: var(--muted); font-family: 'NK', sans-serif; font-style: normal; }
 
-  .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin: 0 0 14px; }
+  .tabs { display: flex; gap: 4px; align-self: stretch; }
   .tabs button { font: inherit; font-size: 15px; font-weight: 700; font-variation-settings: "wght" 700;
     background: none; border: 0; border-bottom: 3px solid transparent; color: var(--muted);
-    padding: 8px 14px 9px; margin-bottom: -1px; cursor: pointer; }
+    padding: 4px 12px 0; margin-bottom: -1px; cursor: pointer; }
   .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
-  .tab-note { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
   :root.t-family [data-in]:not([data-in~="family"]), :root.t-stock [data-in]:not([data-in~="stock"]),
   :root.t-code [data-in]:not([data-in~="code"]) { display: none !important; }
 
@@ -132,7 +148,7 @@
   :root.overlay .set > div + div .s { mix-blend-mode: multiply; }
   :root.overlay .set > div + div .panel, :root.overlay .set > div + div .conf > div,
   :root.overlay .set > div + div textarea { background: transparent; border-color: transparent; }
-  .legend { display: none; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-top: 10px; }
+  .legend { display: none; flex-direction: column; gap: 6px; font-size: 13px; color: var(--muted); margin-top: 16px; }
   :root.overlay:not(.solo) .legend { display: flex; }
   .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
   .group { margin: 24px 0 10px; font-size: 15px; font-weight: 800; font-variation-settings: "wght" 800; }
@@ -144,43 +160,35 @@
   .chars .u { font-size: 9px; color: var(--muted); font-family: 'NK', sans-serif; font-style: normal; justify-self: start; }
   .chars .g { font-size: calc(var(--size) * 2); line-height: 1.25; color: var(--c); }
   .chars .g.tnum { font-feature-settings: "tnum" 1; }
+  /* guides: each face's baseline and cap height, drawn in grey across the cell, under the glyph.
+     The guide is an empty inline-block on the baseline, 1cap tall in the face's own font. */
+  .chars > div { overflow: hidden; }
+  .chars .g { position: relative; z-index: 0; }
+  .chars .gl { display: inline-block; width: 0; height: 1cap; vertical-align: baseline; position: relative; }
+  .chars .gl::before { content: ""; position: absolute; left: -50em; right: -50em; top: 0; bottom: 0; z-index: -1;
+    border-top: 1px solid #C8C8CC; border-bottom: 1px solid #C8C8CC; }
   :root.solo .chars .g { color: var(--ink); }
   :root.overlay .chars .g { grid-area: 2 / 1; }
-  /* non-stock marks (Family tab): the cell is tinted and each changed glyph gets a dot */
+  /* non-stock marks (Family tab): the cell is tinted */
   .chars > div.has-mod { background: #FFF5DA; }
-  .chars .g.mod { position: relative; }
-  .chars .g.mod::after { content: ""; position: absolute; top: .2em; right: -.35em; width: 6px; height: 6px;
-    border-radius: 50%; background: var(--c); }
-  :root.solo .chars .g.mod::after { background: var(--accent); }
-  .mark-key { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-    vertical-align: middle; margin: 0 2px; }
   :root.overlay .chars .g + .g { mix-blend-mode: multiply; }
 </style>
 
-<div class="wrap">
-  <p class="eyebrow">Proof · Nunuïko Family</p>
-  <h1>Nunuïko Family</h1>
-  <p class="sub">Three families built on Nunito: <b>Nunuïko</b>, a rounded sans from Nunito;
-    <b>Nunuïko Display</b>, from Nunito Sans, with width, optical size and x-height axes; and
-    <b>Nunuïkode</b>, Nunuïko made monospaced for code.</p>
-
+<header class="top">
+  <h1>Nunuïko Family<small>Proof</small></h1>
   <div class="tabs" role="tablist" aria-label="Comparison">
     <button role="tab" data-tab="family" aria-selected="true">Family</button>
     <button role="tab" data-tab="stock" aria-selected="false">Stock</button>
     <button role="tab" data-tab="code" aria-selected="false">Code</button>
   </div>
-  <p class="tab-note" data-in="family">Compare the families with each other. Switch any of them
-    on; every sample shows them one above the next.</p>
-  <p class="tab-note" data-in="code">Compare Nunuïkode with Nunuïko, the font it is built from, and
-    with Cascadia Code, a monospaced font made for code (weights 200–700).</p>
-  <p class="tab-note" data-in="stock">Compare each family with the stock font it is derived from:
-    Nunuïko and Nunuïkode with Nunito, Nunuïko Display with Nunito Sans. Each family sits right above
-    its stock font.</p>
+</header>
 
+<div class="layout">
+<aside class="side">
   <div class="controls" role="group" aria-label="Proof controls">
     <div class="ctl" data-in="family stock">
       <span class="lab" id="font-lab">Fonts</span>
-      <div class="seg" role="group" aria-labelledby="font-lab">
+      <div class="seg stack" role="group" aria-labelledby="font-lab">
         <button data-face="nk" aria-pressed="true">Nunuïko</button>
         <button data-face="nd" aria-pressed="true">Nunuïko Display</button>
         <button data-face="kd" aria-pressed="true">Nunuïkode</button>
@@ -188,7 +196,7 @@
     </div>
     <div class="ctl" data-in="code">
       <span class="lab" id="code-lab">Fonts</span>
-      <div class="seg" role="group" aria-labelledby="code-lab">
+      <div class="seg stack" role="group" aria-labelledby="code-lab">
         <button data-face="kd" aria-pressed="true">Nunuïkode</button>
         <button data-face="nk" aria-pressed="true">Nunuïko</button>
         <button data-face="cas" aria-pressed="true">Cascadia Code</button>
@@ -230,7 +238,9 @@
     </div>
   </div>
   <div class="legend" id="legend"></div>
+</aside>
 
+<main class="wrap">
   <section>
     <h2>Try your own</h2>
     <p class="note">Editable. Paste anything; the comparison follows what you type.</p>
@@ -244,8 +254,8 @@ const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
     <p class="note">The most used characters, one cell each. With more than one font on, each cell
       stacks them in the order of the buttons, in the colours of the key (overlaid in Overlay).</p>
     <p class="note" data-in="family">Non-stock characters, drawn differently from the stock font
-      (Nunito, or Nunito Sans for Display), have a tinted cell and a dot <i class="mark-key"></i> by
-      each family that changed them. Nunuïkode counts Nunuïko’s changes and its own code edits, not
+      (Nunito, or Nunito Sans for Display), have a tinted cell; hover
+      a glyph to see which family changed it. Nunuïkode counts Nunuïko’s changes and its own code edits, not
       the moving and condensing every glyph gets to fit the cell.</p>
     <div class="chars" id="chars"></div>
     <h3 class="group">Tabular figures</h3>
@@ -396,6 +406,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     <div class="panel rows" id="ramp"></div>
   </section>
 
+</main>
 </div>
 
 <script>
@@ -429,6 +440,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       ['10 · dots', 'Every square dot becomes a circle of equal area.', 'i j ä Ö ż ŀ ! ? ¡ ¿ . : ; … · ÷'],
       ['11 · a', 'Bowl 10% taller, curves borrowed from the o, its top arching down into the stem.', 'a aa ao ad á ä ą banana'],
       ['12–13 · 1', 'No foot, proportional by default; tabular figures and ss01 give the footed 1.', '1 11 2011 1,111 Il1 ¹ ₁ ½ ¼'],
+      ['16 · $', 'Shrunk uniformly to the S’s height, between the baseline and the cap height.', '$ $5 $PATH S$S US$100'],
     ],
     nd: [
       ['14 · l', 'A plain stem like I by default; the tailed l (edit 01) is in ss02. Composites follow.', 'l fl lá ľ ŀl ł Il1'],
@@ -440,6 +452,9 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       ['10 · dots', 'Every square dot becomes a circle of equal area.', 'i j ä Ö ż ŀ ! ? ¡ ¿ . : ; … · ÷ ǘ ṡ'],
       ['11 · a', 'Rounder bowl whose top arches down into the stem; curves borrowed from the o.', 'a aa ao ad á ä ą banana'],
       ['12–13 · 1', 'No foot, proportional by default; tabular figures and ss01 give the footed 1.', '1 11 2011 1,111 Il1 ¹ ₁ ½ ¼'],
+      ['15 · , ’', 'Commas, quotes and comma accents get a round head, sized like the round dots.', ', ; ‘quote’ “quote” „low“ it’s ș ț ģ ķ ļ'],
+      ['16 · $', 'Shrunk uniformly to the S’s height, between the baseline and the cap height.', '$ $5 $PATH S$S US$100'],
+      ['17 · J', 'The hook rises as high as Nunuïko’s, half the hook weight higher.', 'J Jump IJ NJ Ĵ JUJU'],
     ],
     kd: [
       ['01 · 0', 'Dotted zero.', '0O0o 1000 0x0F 0.05'],
@@ -448,8 +463,9 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       ['03 · r', 'Drawn from the n’s arch, cut partway down with a round end, and placed exactly like the n.', 'r rn m mirror array error minnow'],
       ['04 · brackets', 'Brackets, braces, parentheses and bars centred on the capitals.', '(x) [0] {} |x| f(a[i]) H(I)'],
       ['05 · W', 'Middle peak lowered by 0.3 × the cap height.', 'W WWW Wiki WAVE w'],
-      ['06 · @ % $', '@ on the baseline; % with smaller round rings; $ no taller than the S.', '@user 50% $5 $PATH S$S'],
+      ['06 · % $', '% with smaller round rings; $ no taller than the S.', '50% $5 $PATH S$S'],
       ['07 · t f', 'Wider crossbars; the f’s top redrawn as the n’s arch.', 't f ft tft fifty after offset'],
+      ['08 · © ® @', 'Scaled down to keep their shape in the cell, and centred on the capitals.', '© ® @ ©2026 H®H @user user@host'],
       ['spacing', 'Capitals keep 60 units each side; lowercase letters that sit in too much white widen a little, and open-sided ones sit toward their open side.', 'FROM WHERE JOIN HAVING remove remote'],
     ],
   };
@@ -523,9 +539,10 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       cell.append(u);
       for (const k of faces) {
         const g = document.createElement('span'); g.className = 's g'; g.textContent = ch;
+        g.append(Object.assign(document.createElement('i'), { className: 'gl' }));
         if (tnum) g.classList.add('tnum');
         else if (tab === 'family' && NONSTOCK[k] && NONSTOCK[k].includes(ch)) {
-          g.classList.add('mod'); cell.classList.add('has-mod');
+          cell.classList.add('has-mod');
           g.title = FACES[k].name + ' (non-stock)';
         }
         g.style.setProperty('--f', FACES[k].fam); g.style.setProperty('--c', FACES[k].c);
