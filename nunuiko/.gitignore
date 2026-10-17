@@ -1,0 +1,5 @@
+.venv/
+*.ninja_log
+build.ninja
+sources/proof/nunuiko-proof.html
+__pycache__/
