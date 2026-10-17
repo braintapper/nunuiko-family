@@ -1,0 +1,6 @@
+.DS_Store
+*(Autosaved)*
+.venv/
+__pycache__/
+sources/proof/*-proof.html
+Screenshot_*.png
