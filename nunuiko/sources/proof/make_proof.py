@@ -22,7 +22,7 @@ HERE = pathlib.Path(__file__).parent
 ROOT = HERE.parent.parent
 
 # last upstream commit before the rename/edits — the pristine Nunito
-ORIG_COMMIT = "8c6a9bb9"
+ORIG_COMMIT = "7539f1e9"  # 8c6a9bb9 in the old nunuiko repo
 FONTS = {
     "%%OR%%": (ORIG_COMMIT, "fonts/variable/Nunito[wght].ttf"),
     "%%OI%%": (ORIG_COMMIT, "fonts/variable/Nunito-Italic[wght].ttf"),
@@ -36,7 +36,7 @@ def font_b64(commit, path):
          tempfile.NamedTemporaryFile(suffix=".woff2") as woff:
         if commit:
             ttf.write(subprocess.run(
-                ["git", "-C", ROOT, "show", f"{commit}:{path}"],
+                ["git", "-C", ROOT, "show", f"{commit}:./{path}"],
                 capture_output=True, check=True).stdout)
             ttf.flush()
             src = ttf.name

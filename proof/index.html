@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nunuïko Family proofs</title>
+<style>
+  :root { --bg: #FAFAF8; --surface: #FFFFFF; --ink: #1C1C1E; --muted: #6B6B70; --line: #E4E4E0; --accent: #2F62A6; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #161618; --surface: #1F1F22; --ink: #EDEDEA; --muted: #9A9AA0; --line: #2E2E33; --accent: #7AA5E0; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 16px; }
+  h1 { font-size: 28px; margin: 0 0 8px; }
+  p { color: var(--muted); margin: 0 0 32px; }
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  a { display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 16px 20px; color: var(--ink); text-decoration: none; }
+  a:hover, a:focus-visible { border-color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  b { display: block; font-size: 18px; }
+  span { color: var(--muted); font-size: 14px; }
+  footer { margin-top: 32px; font-size: 14px; color: var(--muted); }
+  footer a { display: inline; padding: 0; border: 0; background: none; color: var(--accent); }
+</style>
+<main>
+  <h1>Nunuïko Family proofs</h1>
+  <p>Built from the fonts on <code>main</code> at every push. Each proof embeds its fonts.</p>
+  <ul>
+    <li><a href="nunuiko/"><b>Nunuïko</b><span>Rounded sans from Nunito, compared with the original Nunito.</span></a></li>
+    <li><a href="nunuiko-display/"><b>Nunuïko Display</b><span>From Nunito Sans, compared with the original Nunito Sans.</span></a></li>
+    <li><a href="nunuikode/"><b>Nunuïkode</b><span>Monospaced for code, with Nunuïko and Cascadia Code side by side.</span></a></li>
+  </ul>
+  <footer>Source: <a href="https://github.com/braintapper/nunuiko-family">braintapper/nunuiko-family</a></footer>
+</main>

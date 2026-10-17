@@ -9,6 +9,15 @@ changes stay consistent across them:
 
 Each folder has its own build, proof, glyph change log and license files.
 
+## Proofs
+
+Built from the fonts on `main` at every push and published with GitHub Pages:
+
+- [All proofs](https://braintapper.github.io/nunuiko-family/)
+- [Nunuïko](https://braintapper.github.io/nunuiko-family/nunuiko/), compared with the original Nunito
+- [Nunuïko Display](https://braintapper.github.io/nunuiko-family/nunuiko-display/), compared with the original Nunito Sans
+- [Nunuïkode](https://braintapper.github.io/nunuiko-family/nunuikode/), beside Nunuïko or Cascadia Code
+
 ## Credits
 
 Nunuïko Family is by Steven Ng. It stands on the work of the Nunito and

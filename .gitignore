@@ -1,3 +1,15 @@
+# every family folder (nunuiko/, nunuiko-display/, nunuikode/)
 .venv/
 __pycache__/
 .DS_Store
+*(Autosaved)*
+Screenshot_*.png
+# build scratch
+build.ninja
+*.ninja_log
+/*/sources/build/
+/*/sources/instance_ufos/
+/*/sources/master_ufo/
+# proofs: generated (sources/proof/<family>-proof.html) and their font cache
+/*/sources/proof/*-proof.html
+/*/sources/proof/.cache/

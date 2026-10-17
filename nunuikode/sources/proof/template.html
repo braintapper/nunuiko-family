@@ -1,3 +1,7 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nunuïkode — code proof</title>
 <style>
   /* Proof-local family name (NKC) so the sheet can never resolve to an
@@ -238,7 +242,7 @@ llllllllllllllllllllllllllllll|
     <h2>Shell</h2>
     <div class="panel"><pre class="kode"><span class="com"># rebuild, then copy the fonts into every consumer</span>
 <span class="kw">set</span> -euo pipefail
-<span class="kw">for</span> app <span class="kw">in</span> planner fe2 braintapper-app; <span class="kw">do</span>
+<span class="kw">for</span> app <span class="kw">in</span> web docs admin; <span class="kw">do</span>
   cp -v fonts/variable/*.ttf <span class="str">"../$app/public/fonts/"</span> &amp;&amp; echo <span class="str">"ok: $app"</span> || echo <span class="str">"FAILED: $app"</span> &gt;&amp;<span class="num">2</span>
 <span class="kw">done</span>
 git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[0-9a-f]{7,} (fix|feat):'</span></pre></div>

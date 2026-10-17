@@ -1,6 +1,6 @@
 # Penpot uploads
 
-`../../penpot-uploads/` holds the Nunuiko Display font files that were uploaded to the owner's
+`../../penpot-uploads/` holds the Nunuiko Display font files that were uploaded to a
 self-hosted Penpot as a custom font, so the interface designs there use the same typeface as the
 apps. That folder contains font files only, so everything in it can be selected at once in the
 upload dialog.

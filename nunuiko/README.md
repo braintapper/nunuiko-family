@@ -1,6 +1,26 @@
-# Nunito Font Project
-by Vernon Adams
+# Nunuïko
 
-Nunito is a well balanced Sans Serif with rounded terminals. Nunito has been designed mainly to be used as a display font but is useable as a text font too. Nunito has been designed to be used freely across the internet by web browsers on desktop computers, laptops and mobile devices.
+A rounded sans derived from [Nunito](https://github.com/googlefonts/nunito).
 
-In November 2017 Nunito has been expanded to GF Cyrillic Pro by Manvel Shmavonyan, and Alexei Vanyashin.
+**Proof:** [https://braintapper.github.io/nunuiko-family/nunuiko/](https://braintapper.github.io/nunuiko-family/nunuiko/) (compared with the original Nunito)
+
+- Variable weight 200–1000, Roman and Italic
+  (`fonts/variable/Nunuiko[wght].ttf`, `Nunuiko-Italic[wght].ttf`).
+- Changes from Nunito so far: a shorter l tail; a downturned f terminal; a J
+  with an upturned hooked foot; a Jost-style Q slash; ff / ffi / ffl ligatures
+  with a joined crossbar; a K and k whose leg grows out of the arm; round dots;
+  a rounder a; and a footless 1, proportional by default. Every change is
+  logged per master in `GLYPHLOG.md`.
+
+## Building
+
+```sh
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+cd sources && PATH=../.venv/bin:$PATH sh build.sh
+cd .. && .venv/bin/python sources/proof/make_proof.py   # proof page
+```
+
+## License
+
+SIL Open Font License 1.1 — see `OFL.txt`. Credits for Nunito are in the
+[family README](../README.md#credits).

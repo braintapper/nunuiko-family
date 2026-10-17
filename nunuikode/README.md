@@ -3,6 +3,8 @@
 A monospaced cut of [Nunuïko](../nunuiko/) for code,
 derived from Nunito.
 
+**Proof:** [https://braintapper.github.io/nunuiko-family/nunuikode/](https://braintapper.github.io/nunuiko-family/nunuikode/) (beside Nunuïko or Cascadia Code)
+
 - Variable weight 200–1000, Roman and Italic
   (`fonts/variable/Nunuikode[wght].ttf`, `Nunuikode-Italic[wght].ttf`).
 - Every glyph is 600 units wide (combining marks: 0). Wide letters are condensed
@@ -33,4 +35,5 @@ The glyph source is a snapshot of Nunuïko's (`sources/upstream/`); see
 
 ## License
 
-SIL Open Font License 1.1 — see `OFL.txt`.
+SIL Open Font License 1.1 — see `OFL.txt`. Credits for Nunito are in the
+[family README](../README.md#credits).

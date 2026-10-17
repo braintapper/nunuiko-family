@@ -524,7 +524,7 @@ glyphs, later f edits carry over.
 **Intent (user):** repeat Display's K/k, dots, a and 1 changes here. The
 l stays disambiguated in Nunuïko (the UI family); only Display swapped to
 the plain l (its edit 14). Rules and rationale are in
-`../nunuiko-sans/sources/GLYPHLOG.md` §9–13; this entry records where
+`../nunuiko-display/GLYPHLOG.md` §9–13; this entry records where
 Nunito's rounded construction differs. Edit numbers match Display's.
 
 ### 9. K / k / ĸ — leg grows out of the arm (`sources/edits/09_K_leg_from_arm.py`)

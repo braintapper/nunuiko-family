@@ -1,0 +1,51 @@
+# Build every family's proof from the committed fonts and publish them,
+# with proof/index.html as the landing page, to GitHub Pages.
+name: Proofs
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # the Nunuiko and Display proofs read the original fonts from history
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install fonttools brotli
+      - name: Build proofs
+        run: |
+          mkdir -p _site
+          cp proof/index.html _site/
+          for family in nunuiko nunuiko-display nunuikode; do
+            (cd "$family" && python sources/proof/make_proof.py)
+            mkdir -p "_site/$family"
+            cp "$family/sources/proof/$family-proof.html" "_site/$family/index.html"
+          done
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
