@@ -121,6 +121,15 @@
   .grid { background-image: repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px 1ch); }
   .rows > div { display: flex; gap: 18px; align-items: baseline; border-bottom: 1px solid var(--line); padding: 6px 0; }
   .rows > div:last-child { border-bottom: 0; }
+  /* waterfall: one group per size, a row per font in it */
+  .wf > div { display: flex; gap: 18px; align-items: baseline; border-bottom: 1px solid var(--line); padding: 6px 0; }
+  .wf > div:last-child { border-bottom: 0; }
+  .wf .k { width: 44px; flex: none; font-size: 11px; color: var(--muted); font-family: 'NK', sans-serif; font-style: normal; }
+  .wf .fs { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .wf .s { white-space: nowrap; }
+  .wf .s i { display: inline-block; width: 7px; height: 7px; border-radius: 2px; margin-right: 8px; background: var(--c);
+    vertical-align: middle; }
+  :root.solo .wf .s i { display: none; }
   .rows .k { width: 44px; flex: none; font-size: 11px; color: var(--muted); font-family: 'NK', sans-serif; font-style: normal; }
 
   .tabs { display: flex; gap: 4px; align-self: stretch; }
@@ -129,7 +138,8 @@
     padding: 4px 12px 0; margin-bottom: -1px; cursor: pointer; }
   .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
   :root.t-family [data-in]:not([data-in~="family"]), :root.t-stock [data-in]:not([data-in~="stock"]),
-  :root.t-code [data-in]:not([data-in~="code"]) { display: none !important; }
+  :root.t-code [data-in]:not([data-in~="code"]), :root.t-test [data-in]:not([data-in~="test"]),
+  :root.t-test .wrap > section:not([data-in~="test"]) { display: none !important; }
 
   /* sections for one family only */
   [data-only] { display: none; }
@@ -149,8 +159,39 @@
   :root.overlay .set > div + div .panel, :root.overlay .set > div + div .conf > div,
   :root.overlay .set > div + div textarea { background: transparent; border-color: transparent; }
   .legend { display: none; flex-direction: column; gap: 6px; font-size: 13px; color: var(--muted); margin-top: 16px; }
-  :root.overlay:not(.solo) .legend { display: flex; }
+  /* the key: whenever more than one font is on, each in its colour */
+  :root:not(.solo) .legend { display: flex; }
+  .legend .lab { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
   .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
+  /* a heading with an info button; its text opens in a popover */
+  .head { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; }
+  .head h2, .head .group { margin: 0; }
+  .head:has(.group) { margin: 24px 0 10px; }
+  .info { display: inline-flex; padding: 2px; border: 0; border-radius: 50%; background: none;
+    color: var(--muted); cursor: pointer; }
+  .info:hover { color: var(--ink); }
+  .info svg { width: 18px; height: 18px; }
+  .pop { max-width: min(56ch, calc(100vw - 32px)); margin: auto; padding: 4px 18px; border: 1px solid var(--line);
+    border-radius: 12px; background: var(--surface); color: var(--ink); box-shadow: 0 8px 28px rgb(0 0 0 / .18);
+    font-size: 13.5px; line-height: 1.55; }
+  /* section tabs: headings that switch the pane below */
+  .ptabs { display: flex; gap: 14px; }
+  .ptabs button { font: inherit; font-size: 18px; font-weight: 800; font-variation-settings: "wght" 800; padding: 0 0 2px;
+    background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); cursor: pointer; }
+  .ptabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+  .pane[hidden] { display: none; }
+  /* hover explanation for a tinted (non-stock) cell */
+  .tip { position: fixed; z-index: 20; max-width: min(46ch, calc(100vw - 16px)); padding: 8px 14px;
+    border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink);
+    box-shadow: 0 8px 24px rgb(0 0 0 / .16); font-size: 13px; line-height: 1.5; pointer-events: none;
+    font-family: 'NK', sans-serif; font-style: normal; }
+  .tip[hidden] { display: none; }
+  .tip p { margin: 0 0 4px; }
+  .tip b { font-variation-settings: "wght" 800; }
+  .tip .tip-f { margin-top: 6px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .tip .tip-f:first-child { margin-top: 0; }
+  .tip .tip-f i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; }
+  .pop::backdrop { background: rgb(0 0 0 / .12); }
   .group { margin: 24px 0 10px; font-size: 15px; font-weight: 800; font-variation-settings: "wght" 800; }
   /* characters: one cell per character, the fonts on stacked inside it */
   .chars { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(var(--size) * 3.2), 1fr));
@@ -169,9 +210,9 @@
     border-top: 1px solid #C8C8CC; border-bottom: 1px solid #C8C8CC; }
   :root.solo .chars .g { color: var(--ink); }
   :root.overlay .chars .g { grid-area: 2 / 1; }
-  /* Nunuïkode: grey verticals on its cell's left and right edges (the 600-unit advance) */
+  /* the monospaced fonts (Nunuïkode, Cascadia Code): grey verticals on the left and right edges of the advance */
   .chars .g.cell { box-shadow: inset 1px 0 #C8C8CC, inset -1px 0 #C8C8CC; }
-  /* non-stock marks (Family tab): the cell is tinted */
+  /* non-stock marks (Family and Stock tabs): the cell is tinted */
   .chars > div.has-mod { background: #FFF5DA; }
   :root.overlay .chars .g + .g { mix-blend-mode: multiply; }
 </style>
@@ -182,6 +223,7 @@
     <button role="tab" data-tab="family" aria-selected="true">Family</button>
     <button role="tab" data-tab="stock" aria-selected="false">Stock</button>
     <button role="tab" data-tab="code" aria-selected="false">Code</button>
+    <button role="tab" data-tab="test" aria-selected="false">Test</button>
   </div>
 </header>
 
@@ -193,7 +235,7 @@
       <div class="seg stack" role="group" aria-labelledby="font-lab">
         <button data-face="nk" aria-pressed="true">Nunuïko</button>
         <button data-face="nd" aria-pressed="true">Nunuïko Display</button>
-        <button data-face="kd" aria-pressed="true">Nunuïkode</button>
+        <button data-face="kd" aria-pressed="true" data-in="family">Nunuïkode</button>
       </div>
     </div>
     <div class="ctl" data-in="code">
@@ -202,6 +244,17 @@
         <button data-face="kd" aria-pressed="true">Nunuïkode</button>
         <button data-face="nk" aria-pressed="true">Nunuïko</button>
         <button data-face="cas" aria-pressed="true">Cascadia Code</button>
+      </div>
+    </div>
+    <div class="ctl" data-in="test">
+      <span class="lab" id="test-lab">Fonts</span>
+      <div class="seg stack" role="group" aria-labelledby="test-lab">
+        <button data-face="nk" aria-pressed="true">Nunuïko</button>
+        <button data-face="nd" aria-pressed="true">Nunuïko Display</button>
+        <button data-face="kd" aria-pressed="true">Nunuïkode</button>
+        <button data-face="no" aria-pressed="false">Nunito</button>
+        <button data-face="ns" aria-pressed="false">Nunito Sans</button>
+        <button data-face="cas" aria-pressed="false">Cascadia Code</button>
       </div>
     </div>
     <div class="ctl">
@@ -244,27 +297,51 @@
 
 <main class="wrap">
   <section>
+    <div class="head"><h2>Characters</h2>
+      <button class="info" popovertarget="info-chars" aria-label="About the characters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><rect x="11" y="10.5" width="2" height="6.5" rx=".5" fill="currentColor" stroke="none"/></svg></button></div>
+    <div class="pop" id="info-chars" popover>
+      <p>The most used characters, one cell each. With more than one font on, each cell
+        stacks them in the order of the buttons (in the Code tab, Nunuïko first), in the colours of
+        the key (overlaid in Overlay). Grey guides mark each font’s baseline and cap height, and the
+        edges of the advance for the monospaced fonts.</p>
+      <p data-in="family stock">Non-stock characters, drawn differently from the stock font
+        (Nunito, or Nunito Sans for Display), have a tinted cell; hover
+        one to see what each family changed. Nunuïkode counts Nunuïko’s changes and its own code edits, not
+        the moving and condensing every glyph gets to fit the cell.</p>
+    </div>
+    <div class="chars" id="chars"></div>
+    <div class="tip" id="tip" role="tooltip" hidden></div>
+    <div class="head"><h3 class="group">Tabular figures</h3>
+      <button class="info" popovertarget="info-tnum" aria-label="About the tabular figures"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><rect x="11" y="10.5" width="2" height="6.5" rx=".5" fill="currentColor" stroke="none"/></svg></button></div>
+    <div class="pop" id="info-tnum" popover>
+      <p>Figures and the signs set with them, with tabular figures on (<b>tnum</b>), as in
+        tables and columns of numbers. Nunuïko and Display give the footed 1 here; Nunuïkode’s figures
+        are all one width anyway. No non-stock tint: these are separate glyphs.</p>
+    </div>
+    <div class="chars" id="chars-tnum"></div>
+  </section>
+
+  <section>
+    <div class="head"><div class="ptabs" role="tablist" aria-label="Sizes and weights">
+        <button role="tab" data-pane="wf" aria-selected="true">Waterfall</button>
+        <button role="tab" data-pane="ramp" aria-selected="false">Weight ramp</button>
+      </div>
+      <button class="info" popovertarget="info-wf" aria-label="About the waterfall and weight ramp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><rect x="11" y="10.5" width="2" height="6.5" rx=".5" fill="currentColor" stroke="none"/></svg></button></div>
+    <div class="pop" id="info-wf" popover>
+      <p><b>Waterfall:</b> the <b>l / I / 1</b> triplet leads each line: it has to stay readable down to 9&nbsp;px.
+        Each size sets every font on, one row each.</p>
+      <p><b>Weight ramp:</b> the same line at each named weight, every font on, one row each.</p>
+    </div>
+    <div class="pane" data-pane="wf"><div class="panel wf" id="wf"></div></div>
+    <div class="pane" data-pane="ramp" hidden><div class="panel wf" id="ramp"></div></div>
+  </section>
+
+  <section data-in="test">
     <h2>Try your own</h2>
     <p class="note">Editable. Paste anything; the comparison follows what you type.</p>
     <textarea class="s" id="play" spellcheck="false" aria-label="Sample text">Il1 0O fluff Quiz Jump fjord — kayak banana 2011
 The quick brown fox jumps over the lazy dog.
 const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
-  </section>
-
-  <section>
-    <h2>Characters</h2>
-    <p class="note">The most used characters, one cell each. With more than one font on, each cell
-      stacks them in the order of the buttons, in the colours of the key (overlaid in Overlay).</p>
-    <p class="note" data-in="family">Non-stock characters, drawn differently from the stock font
-      (Nunito, or Nunito Sans for Display), have a tinted cell; hover
-      a glyph to see which family changed it. Nunuïkode counts Nunuïko’s changes and its own code edits, not
-      the moving and condensing every glyph gets to fit the cell.</p>
-    <div class="chars" id="chars"></div>
-    <h3 class="group">Tabular figures</h3>
-    <p class="note">Figures and the signs set with them, with tabular figures on (<b>tnum</b>), as in
-      tables and columns of numbers. Nunuïko and Display give the footed 1 here; Nunuïkode’s figures
-      are all one width anyway. No non-stock marks: these are separate glyphs.</p>
-    <div class="chars" id="chars-tnum"></div>
   </section>
 
   <section data-in="stock">
@@ -282,12 +359,6 @@ const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
       <div><span class="k">G</span><span class="s big">G Gag GIGA Google ĞĢĠ OGC</span></div>
       <div><span class="k">ss03</span><span class="s big" style="font-feature-settings: 'ss03' 1">G Gag GIGA Google ĞĢĠ OGC</span></div>
     </div>
-  </section>
-
-  <section>
-    <h2>Waterfall</h2>
-    <p class="note">The <b>l / I / 1</b> triplet leads each line: it has to stay readable down to 9&nbsp;px.</p>
-    <div class="panel rows" id="wf"></div>
   </section>
 
   <section>
@@ -321,7 +392,7 @@ const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
     </div>
   </section>
 
-  <section>
+  <section data-in="code stock">
     <h2>Operators</h2>
     <p class="note">Nunuïkode has no ligatures: each operator is its own characters, one per cell.</p>
     <div class="panel"><pre class="s">-&gt;  =&gt;  ==  ===  !=  !==  &lt;=  &gt;=  &lt;&gt;  &lt;=&gt;  &amp;&amp;  ||  ??  ?.  ::
@@ -329,7 +400,7 @@ const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
 #{}  ${}  @()  [::]  &lt;/&gt;  0x1F  0b1010  0o777  1_000_000  3.14e-10  #FF00AA</pre></div>
   </section>
 
-  <section data-only="kd">
+  <section data-only="kd" data-in="code">
     <h2>Texture healing</h2>
     <p class="note">Next to a narrow letter (i j l r t f I), a wide letter (m w M W A O Q V …)
       borrows up to 60 units of its space, and the narrow letter steps aside. Cells stay 600 wide,
@@ -343,7 +414,7 @@ const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
 <span style="font-feature-settings: 'calt' 0"><span class="kw">if</span> (limit &gt; maxItems) { Wiki.mirror(milestone, items.slim()); }</span></pre></div>
   </section>
 
-  <section data-only="kd">
+  <section data-only="kd" data-in="code">
     <h2>Column grid</h2>
     <p class="note">One vertical line per character cell. Every row must end on the same line.</p>
     <div class="panel grid"><pre class="s">iiiiiiiiiiiiiiiiiiiiiiiiiiiiii|
@@ -356,7 +427,7 @@ rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr|
 ÀÉÎÕÜàéîõüçñßøæœ ŁłŚśŹźŻżĞğİı|</pre></div>
   </section>
 
-  <section>
+  <section data-in="code stock">
     <h2>TypeScript</h2>
     <div class="panel"><pre class="s"><span class="kw">import</span> { readFile } <span class="kw">from</span> <span class="str">"node:fs/promises"</span>;
 
@@ -373,7 +444,7 @@ rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr|
 }</pre></div>
   </section>
 
-  <section>
+  <section data-in="code stock">
     <h2>Python</h2>
     <div class="panel"><pre class="s"><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
 
@@ -391,7 +462,7 @@ rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr|
     <span class="kw">return</span> <span class="fn">sum</span>(good) / <span class="fn">len</span>(good) <span class="kw">if</span> good <span class="kw">else</span> <span class="kw">None</span>  <span class="com"># 0 readings -&gt; None</span></pre></div>
   </section>
 
-  <section>
+  <section data-in="code stock">
     <h2>Shell</h2>
     <div class="panel"><pre class="s"><span class="com"># rebuild, then copy the fonts into every consumer</span>
 <span class="kw">set</span> -euo pipefail
@@ -401,7 +472,7 @@ rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr|
 git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[0-9a-f]{7,} (fix|feat):'</span></pre></div>
   </section>
 
-  <section>
+  <section data-in="code stock">
     <h2>CSS, JSON, SQL</h2>
     <div class="panel"><pre class="s">.btn:hover { color: <span class="num">#1C1C1E</span>; padding: <span class="num">0.5rem</span> <span class="num">1rem</span>; border-radius: <span class="num">8px</span>; }
 
@@ -412,11 +483,6 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
 <span class="kw">WHERE</span> u.created_at &gt;= <span class="str">'2026-01-01'</span> <span class="kw">GROUP BY</span> u.id <span class="kw">HAVING</span> <span class="fn">COUNT</span>(o.id) &gt; <span class="num">0</span>;</pre></div>
   </section>
 
-  <section>
-    <h2>Weight ramp</h2>
-    <p class="note">The same line at each named weight.</p>
-    <div class="panel rows" id="ramp"></div>
-  </section>
 
 </main>
 </div>
@@ -440,79 +506,88 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   const STOCK = { nk: 'no', nd: 'ns', kd: 'no' };
   const CHANGES_FROM = { nk: 'changes from Nunito', nd: 'changes from Nunito Sans',
     kd: 'its own changes, on top of Nunuïko’s' };
-  // [title, caption, sample] per family, newest edits last (from each GLYPHLOG.md)
+  // [title, caption, sample, characters in the grid it changes] per family,
+  // newest edits last (from each GLYPHLOG.md)
   const CHANGES = {
     nk: [
-      ['01 · l', 'Tail compressed to 0.6 toward the stem; still tells l from I and 1 at UI sizes. fl, lá, ľ, ŀl, ł follow.', 'l fl lá ľ ŀl ł Il1'],
-      ['02 · f', 'Top terminal rotated 12° into a downturn. fi is edited too; fl follows.', 'f fi fl ff ffi ffl fjord'],
-      ['04 · Q', 'Jost-style straight slash at the baseline, crossing the bottom-right of the ring; the counter stays open at every weight.', 'Q QU Query IQ'],
-      ['05 · J', 'U-hook foot ending in a flat cut. IJ, NJ and Ĵ follow.', 'J Jump IJ NJ Ĵ'],
-      ['08 · ff', 'ff, ffi and ffl ligatures with a joined crossbar.', 'ff ffi ffl offline affix baffle'],
-      ['09 · K k', 'The leg grows out of the arm instead of the stem; the round foot pivots with it. Ķ ķ ĸ follow.', 'K k Kick kayak Ķ ķ ĸ'],
-      ['10 · dots', 'Every square dot becomes a circle of equal area.', 'i j ä Ö ż ŀ ! ? ¡ ¿ . : ; … · ÷'],
-      ['11 · a', 'Bowl 10% taller, curves borrowed from the o, its top arching down into the stem.', 'a aa ao ad á ä ą banana'],
-      ['12–13 · 1', 'No foot, proportional by default; tabular figures and ss01 give the footed 1.', '1 11 2011 1,111 Il1 ¹ ₁ ½ ¼'],
-      ['19 · $', 'A full-size S with one straight stroke right through it.', '$ $5 $PATH S$S US$100'],
-      ['20 · %', 'Round rings, as wide as before, with an even stroke.', '% 50% 100% ‰ 0%'],
-      ['21 · ¢', 'One straight stroke right through the c.', '¢ 50¢ 99¢ c¢c'],
-      ['22 · &', 'The right arm stops a little past the diagonal.', '& R&D AT&T Q&A rock&roll'],
-      ['23 · R', 'The leg leaves the bowl straight, with no curved transition (after Proxima Nova).', 'R RR Run RARE Ŕ Ř'],
-      ['24 · 6', 'A shorter tail.', '6 66 1960 ⁶ ₆ 6/6'],
-      ['25 · G', 'The right side drops straight from the bar halfway to the baseline (after Bryant); the round G (18) is now the alternate, in stylistic set 3.', 'G Gag GIGA Google ĞĢĠ'],
-      ['18 · G', 'The bottom-right follows the O’s bowl up to the bar (after Bryant): the G is now as wide as the O.', 'G GG Gag GOOGLE Ğ Ģ OGC'],
+      ['01 · l', 'Tail compressed to 0.6 toward the stem; still tells l from I and 1 at UI sizes. fl, lá, ľ, ŀl, ł follow.', 'l fl lá ľ ŀl ł Il1', 'lł'],
+      ['02 · f', 'Top terminal rotated 12° into a downturn. fi is edited too; fl follows.', 'f fi fl ff ffi ffl fjord', 'f'],
+      ['04 · Q', 'Jost-style straight slash with round caps, crossing the bottom-right of the ring and dipping just below the baseline; the counter stays open at every weight.', 'Q QU Query IQ', 'Q'],
+      ['05 · J', 'U-hook foot ending in a flat cut. IJ, NJ and Ĵ follow.', 'J Jump IJ NJ Ĵ', 'J'],
+      ['08 · ff', 'ff, ffi and ffl ligatures with a joined crossbar.', 'ff ffi ffl offline affix baffle', ''],
+      ['09 · K k', 'The leg grows out of the arm instead of the stem; the round foot pivots with it. Ķ ķ ĸ follow.', 'K k Kick kayak Ķ ķ ĸ', 'Kk'],
+      ['10 · dots', 'Every square dot becomes a circle of equal area.', 'i j ä Ö ż ŀ ! ? ¡ ¿ . : ; … · ÷', ''],
+      ['11 · a', 'Bowl 10% taller, curves borrowed from the o, its top arching down into the stem.', 'a aa ao ad á ä ą banana', 'aàáâäãå'],
+      ['12–13 · 1', 'No foot, proportional by default; tabular figures and ss01 give the footed 1.', '1 11 2011 1,111 Il1 ¹ ₁ ½ ¼', '1'],
+      ['19 · $', 'A full-size S with one straight stroke right through it.', '$ $5 $PATH S$S US$100', '$'],
+      ['20 · %', 'Round rings, as wide as before, with an even stroke.', '% 50% 100% ‰ 0%', '%'],
+      ['21 · ¢', 'One straight stroke right through the c.', '¢ 50¢ 99¢ c¢c', '¢'],
+      ['22 · &', 'The right arm stops a little past the diagonal.', '& R&D AT&T Q&A rock&roll', '&'],
+      ['23 · R', 'The leg leaves the bowl straight, with no curved transition (after Proxima Nova).', 'R RR Run RARE Ŕ Ř', 'R'],
+      ['24 · 6', 'A shorter tail.', '6 66 1960 ⁶ ₆ 6/6', '6'],
+      ['25 · G', 'The right side drops straight from the bar halfway to the baseline (after Bryant); the round G (18) is now the alternate, in stylistic set 3.', 'G Gag GIGA Google ĞĢĠ', 'G'],
+      ['18 · G', 'The bottom-right follows the O’s bowl up to the bar (after Bryant): the G is now as wide as the O.', 'G GG Gag GOOGLE Ğ Ģ OGC', 'G'],
     ],
     nd: [
-      ['14 · l', 'A plain stem like I by default; the tailed l (edit 01) is in ss02. Composites follow.', 'l fl lá ľ ŀl ł Il1'],
-      ['02 · f', 'Top terminal rotated 10° into a downturn. fi is edited too; fl follows.', 'f fi fl ff ffi ffl fjord'],
-      ['04 · Q', 'Jost-style straight slash with round caps, crossing the bottom-right of the ring.', 'Q QU Query IQ'],
-      ['05 · J', 'U-hook foot, widened to 0.66 × the U, ending in a flat cut. IJ, NJ and Ĵ follow.', 'J Jump IJ NJ Ĵ'],
-      ['08 · ff', 'ff, ffi and ffl ligatures with a joined crossbar.', 'ff ffi ffl offline affix baffle'],
-      ['09 · K k', 'The leg grows out of the arm instead of the stem. Ķ ķ ĸ follow.', 'K k Kick kayak Ķ ķ ĸ'],
-      ['10 · dots', 'Every square dot becomes a circle of equal area.', 'i j ä Ö ż ŀ ! ? ¡ ¿ . : ; … · ÷ ǘ ṡ'],
-      ['11 · a', 'Rounder bowl whose top arches down into the stem; curves borrowed from the o.', 'a aa ao ad á ä ą banana'],
-      ['12–13 · 1', 'No foot, proportional by default; tabular figures and ss01 give the footed 1.', '1 11 2011 1,111 Il1 ¹ ₁ ½ ¼'],
-      ['15 · , ’', 'Commas, quotes and comma accents get a round head, sized like the round dots.', ', ; ‘quote’ “quote” „low“ it’s ș ț ģ ķ ļ'],
-      ['19 · $', 'A full-size S with one straight stroke right through it.', '$ $5 $PATH S$S US$100'],
-      ['20 · %', 'Round rings, as wide as before, with an even stroke.', '% 50% 100% ‰ 0%'],
-      ['21 · ¢', 'One straight stroke right through the c.', '¢ 50¢ 99¢ c¢c'],
-      ['22 · &', 'The right arm stops a little past the diagonal.', '& R&D AT&T Q&A rock&roll'],
-      ['23 · R', 'The leg leaves the bowl straight, with no curved transition (after Proxima Nova).', 'R RR Run RARE Ŕ Ř'],
-      ['24 · 6', 'A shorter tail.', '6 66 1960 ⁶ ₆ 6/6'],
-      ['25 · G', 'The right side drops straight from the bar halfway to the baseline (after Bryant); the round G (18) is now the alternate, in stylistic set 3.', 'G Gag GIGA Google ĞĢĠ'],
-      ['17 · J', 'The hook rises as high as Nunuïko’s, half the hook weight higher.', 'J Jump IJ NJ Ĵ JUJU'],
-      ['18 · G', 'The bottom-right follows the O’s bowl up to the bar (after Bryant): the G is now as wide as the O.', 'G GG Gag GOOGLE Ğ Ģ OGC'],
+      ['14 · l', 'A plain stem like I by default; the tailed l (edit 01) is in ss02. Composites follow.', 'l fl lá ľ ŀl ł Il1', 'lł'],
+      ['02 · f', 'Top terminal rotated 10° into a downturn. fi is edited too; fl follows.', 'f fi fl ff ffi ffl fjord', 'f'],
+      ['04 · Q', 'Jost-style straight slash with round caps, crossing the bottom-right of the ring and dipping just below the baseline; the counter stays open at every weight.', 'Q QU Query IQ', 'Q'],
+      ['05 · J', 'U-hook foot, widened to 0.66 × the U, ending in a flat cut. IJ, NJ and Ĵ follow.', 'J Jump IJ NJ Ĵ', 'J'],
+      ['08 · ff', 'ff, ffi and ffl ligatures with a joined crossbar.', 'ff ffi ffl offline affix baffle', ''],
+      ['09 · K k', 'The leg grows out of the arm instead of the stem. Ķ ķ ĸ follow.', 'K k Kick kayak Ķ ķ ĸ', 'Kk'],
+      ['10 · dots', 'Every square dot becomes a circle of equal area.', 'i j ä Ö ż ŀ ! ? ¡ ¿ . : ; … · ÷ ǘ ṡ', 'ij.:;!?¡¿…·÷äëïöüÿÄËÏÖÜŸ'],
+      ['11 · a', 'Rounder bowl whose top arches down into the stem; curves borrowed from the o.', 'a aa ao ad á ä ą banana', 'aàáâäãå'],
+      ['12–13 · 1', 'No foot, proportional by default; tabular figures and ss01 give the footed 1.', '1 11 2011 1,111 Il1 ¹ ₁ ½ ¼', '1'],
+      ['15 · , ’', 'Commas, quotes and comma accents get a round head, sized like the round dots.', ', ; ‘quote’ “quote” „low“ it’s ș ț ģ ķ ļ', ',;‘’“”'],
+      ['19 · $', 'A full-size S with one straight stroke right through it.', '$ $5 $PATH S$S US$100', '$'],
+      ['20 · %', 'Round rings, as wide as before, with an even stroke.', '% 50% 100% ‰ 0%', '%'],
+      ['21 · ¢', 'One straight stroke right through the c.', '¢ 50¢ 99¢ c¢c', '¢'],
+      ['22 · &', 'The right arm stops a little past the diagonal.', '& R&D AT&T Q&A rock&roll', '&'],
+      ['23 · R', 'The leg leaves the bowl straight, with no curved transition (after Proxima Nova).', 'R RR Run RARE Ŕ Ř', 'R'],
+      ['24 · 6', 'A shorter tail.', '6 66 1960 ⁶ ₆ 6/6', '6'],
+      ['25 · G', 'The right side drops straight from the bar halfway to the baseline (after Bryant); the round G (18) is now the alternate, in stylistic set 3.', 'G Gag GIGA Google ĞĢĠ', 'G'],
+      ['17 · J', 'The hook rises as high as Nunuïko’s, half the hook weight higher.', 'J Jump IJ NJ Ĵ JUJU', 'J'],
+      ['18 · G', 'The bottom-right follows the O’s bowl up to the bar (after Bryant): the G is now as wide as the O.', 'G GG Gag GOOGLE Ğ Ģ OGC', 'G'],
     ],
     kd: [
-      ['01 · 0', 'Dotted zero.', '0O0o 1000 0x0F 0.05'],
-      ['02 · ï', 'The dieresis on a single stem clears the stem.', 'ï Ï ї Ї ḯ naïve'],
-      ['03 · 1 i l I', 'Footed 1; i with a foot and a top-left flag; Nunuïko’s tailed l with the same flag, flag and tail spanning the i’s foot; I with equal bars.', 'Il1| ill 1il i l I 11'],
-      ['03 · r', 'Drawn from the n’s arch, cut partway down with a round end, and placed exactly like the n.', 'r rn m mirror array error minnow'],
-      ['04 · brackets', 'Brackets, braces, parentheses and bars centred on the capitals.', '(x) [0] {} |x| f(a[i]) H(I)'],
-      ['05 · W', 'Middle peak lowered by 0.3 × the cap height.', 'W WWW Wiki WAVE w'],
-      ['06 · %', '% with smaller round rings, to fit the cell.', '50% 100% 0.5%'],
-      ['07 · t f', 'Wider crossbars; the f’s top redrawn as the n’s arch.', 't f ft tft fifty after offset'],
-      ['08 · © ® @', 'Scaled down to keep their shape in the cell, and centred on the capitals.', '© ® @ ©2026 H®H @user user@host'],
-      ['spacing', 'Capitals keep 60 units each side; lowercase letters that sit in too much white widen a little, and open-sided ones sit toward their open side.', 'FROM WHERE JOIN HAVING remove remote'],
+      ['01 · 0', 'Dotted zero.', '0O0o 1000 0x0F 0.05', '0'],
+      ['02 · ï', 'The dieresis on a single stem clears the stem.', 'ï Ï ї Ї ḯ naïve', 'ïÏ'],
+      ['03 · 1 i l I', 'Footed 1; i with a foot and a top-left flag; Nunuïko’s tailed l with the same flag, flag and tail spanning the i’s foot; I with equal bars.', 'Il1| ill 1il i l I 11', '1ilIìíîïÌÍÎÏıł'],
+      ['03 · r', 'Drawn from the n’s arch, cut partway down with a round end, and placed exactly like the n.', 'r rn m mirror array error minnow', 'r'],
+      ['04 · brackets', 'Brackets, braces, parentheses and bars centred on the capitals.', '(x) [0] {} |x| f(a[i]) H(I)', '()[]{}|¦'],
+      ['05 · W', 'Middle peak lowered by 0.3 × the cap height.', 'W WWW Wiki WAVE w', 'W'],
+      ['06 · %', '% with smaller round rings, to fit the cell.', '50% 100% 0.5%', '%'],
+      ['07 · t f', 'Wider crossbars; the f’s top redrawn as the n’s arch.', 't f ft tft fifty after offset', 'tf'],
+      ['08 · © ® @', 'Scaled down to keep their shape in the cell, and centred on the capitals.', '© ® @ ©2026 H®H @user user@host', '©®@'],
+      ['spacing', 'Capitals keep 60 units each side; lowercase letters that sit in too much white widen a little, and open-sided ones sit toward their open side.', 'FROM WHERE JOIN HAVING remove remote', ''],
     ],
   };
 
-  // three tabs, each with its own set of fonts on (each button its own
+  // four tabs, each with its own set of fonts on (each button its own
   // true/false). Family: the families. Stock: each family on, followed by
-  // its stock font. Code: Nunuïkode, Nunuïko and Cascadia Code. The URL hash
-  // holds the tab and the fonts on (#stock/nunuiko, #code/nunuikode,cascadia).
+  // its stock font (not Nunuïkode: it is derived from Nunuïko). Code:
+  // Nunuïkode and Cascadia Code (Nunuïko too in the character grid). Test:
+  // only the text box, in any of the six fonts. The URL hash holds the tab
+  // and the fonts on (#stock/nunuiko, #code/nunuikode,cascadia).
   let tab = 'family';
-  const on = { family: new Set(['nk', 'nd', 'kd']), stock: new Set(['nk']), code: new Set(['kd', 'nk', 'cas']) };
+  const on = { family: new Set(['nk', 'nd', 'kd']), stock: new Set(['nk']), code: new Set(['kd', 'nk', 'cas']),
+    test: new Set(['nk', 'nd', 'kd']) };
   const CODE_ORDER = ['kd', 'nk', 'cas'];
+  const TEST_ORDER = ['nk', 'nd', 'kd', 'no', 'ns', 'cas'];
   {
     const [t, list] = location.hash.slice(1).split('/');
     const keys = (list || '').split(',')
       .map((h) => Object.keys(FACES).find((k) => FACES[k].hash === h)).filter(Boolean);
     if (t in on) tab = t;
     if (keys.length) { on[tab].clear(); keys.forEach((k) => on[tab].add(k)); }
+    if (on.code.size === 1 && on.code.has('nk')) on.code.add('kd');
+    on.stock.delete('kd');
+    if (!on.stock.size) on.stock.add('nk');
   }
   let view = 'side';
   const shown = () => {
     if (tab === 'code') return CODE_ORDER.filter((k) => on.code.has(k));
+    if (tab === 'test') return TEST_ORDER.filter((k) => on.test.has(k));
     const out = [];
     for (const f of FAMILIES) {
       if (!on[tab].has(f)) continue;
@@ -521,6 +596,8 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     }
     return out;
   };
+  // the samples: in the Code tab Nunuïko is only in the character grid
+  const sampleFaces = () => shown().filter((k) => !(tab === 'code' && k === 'nk'));
 
   const set = (k, v) => root.style.setProperty(k, v);
   const sliders = [['w', '--wght', ''], ['sz', '--size', 'px'], ['wd', '--wdth', ''], ['op', '--opsz', ''], ['yt', '--ytlc', '']];
@@ -532,19 +609,31 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
 
   // generated content
   const line = 'Il1 fluff Quiz Jump fjord · kayak banana · 0O 2011 · {x}';
-  for (const px of [9, 10, 11, 12, 13, 14, 16, 18, 20, 24, 32]) {
-    const row = document.createElement('div');
-    const k = document.createElement('span'); k.className = 'k'; k.textContent = px + 'px';
-    const t = document.createElement('span'); t.className = 's'; t.style.fontSize = px + 'px'; t.textContent = line;
-    row.append(k, t); $('wf').append(row);
-  }
-  for (const w of [200, 300, 400, 500, 600, 700, 800, 900, 1000]) {
-    const row = document.createElement('div');
-    const k = document.createElement('span'); k.className = 'k'; k.textContent = w;
-    const t = document.createElement('span'); t.className = 's'; t.style.setProperty('--w', w);
-    t.textContent = 'Quiz Jump fjord Il1 0O {x} if (a != b) return items.map((m) => m.id * 2);';
-    row.append(k, t); $('ramp').append(row);
-  }
+  // waterfall and weight ramp: each size (or weight) sets every font shown,
+  // one row each (not a set per font)
+  const RAMP_LINE = 'Quiz Jump fjord Il1 0O {x} if (a != b) return items.map((m) => m.id * 2);';
+  const stepRows = (box, steps, label, style, text) => {
+    box.textContent = '';
+    for (const v of steps) {
+      const row = document.createElement('div');
+      const k = document.createElement('span'); k.className = 'k'; k.textContent = label(v);
+      const fs = document.createElement('div'); fs.className = 'fs';
+      for (const f of sampleFaces()) {
+        const t = document.createElement('div'); t.className = 's'; style(t, v);
+        t.style.setProperty('--f', FACES[f].fam); t.style.setProperty('--c', FACES[f].c);
+        t.title = FACES[f].name;
+        t.append(document.createElement('i'), text);
+        fs.append(t);
+      }
+      row.append(k, fs); box.append(row);
+    }
+  };
+  const renderWaterfall = () => {
+    stepRows($('wf'), [9, 10, 11, 12, 13, 14, 16, 18, 20, 24, 32], (px) => px + 'px',
+      (t, px) => { t.style.fontSize = px + 'px'; }, line);
+    stepRows($('ramp'), [200, 300, 400, 500, 600, 700, 800, 900, 1000], String,
+      (t, w) => t.style.setProperty('--w', w), RAMP_LINE);
+  };
   // the most used characters: Basic Latin, then common accents and symbols
   const CHARS = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
     ...'.,:;!?¡¿\'"‘’“”«»‹›()[]{}<>/\\|¦-–—_+=×÷±~^*&@#$%€£¥¢°§¶©®™…·•',
@@ -557,7 +646,8 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   };
   const gridOf = (box, list, tnum) => {
     box.textContent = '';
-    const faces = shown();
+    // in the Code tab the grid puts Nunuïko first, above the two code fonts
+    const faces = tab === 'code' ? ['nk', 'kd', 'cas'].filter((k) => on.code.has(k)) : shown();
     for (const ch of list) {
       const cell = document.createElement('div');
       const u = document.createElement('span'); u.className = 'u';
@@ -566,19 +656,61 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       for (const k of faces) {
         const g = document.createElement('span'); g.className = 's g'; g.textContent = ch;
         g.append(Object.assign(document.createElement('i'), { className: 'gl' }));
-        if (k === 'kd') g.classList.add('cell');
+        if (k === 'kd' || k === 'cas') g.classList.add('cell');
         if (tnum) g.classList.add('tnum');
-        else if (tab === 'family' && NONSTOCK[k] && NONSTOCK[k].includes(ch)) {
+        else if ((tab === 'family' || tab === 'stock') && NONSTOCK[k] && NONSTOCK[k].includes(ch)) {
           cell.classList.add('has-mod');
-          g.title = FACES[k].name + ' (non-stock)';
+          (cell.mods ||= []).push(k);
         }
         g.style.setProperty('--f', FACES[k].fam); g.style.setProperty('--c', FACES[k].c);
-        if (!g.title) g.title = FACES[k].name;
+        if (!cell.mods || !cell.mods.includes(k)) g.title = FACES[k].name;
         cell.append(g);
       }
       box.append(cell);
     }
   };
+  // hovering a tinted cell: what each family on did to that character,
+  // from CHANGES (Nunuïkode lists the Nunuïko changes it inherits, where it
+  // has none of its own)
+  const tip = $('tip');
+  const changesFor = (k, ch) => {
+    const own = CHANGES[k].filter((c) => c[3].includes(ch));
+    if (k !== 'kd' || own.length) return own.map((c) => [c[0], c[1]]);
+    // Kode's own change to a character replaces what it inherited
+    if (!NONSTOCK.nk.includes(ch)) return [];
+    return CHANGES.nk.filter((c) => c[3].includes(ch)).map((c) => ['Nunuïko ' + c[0], c[1]]);
+  };
+  const showTip = (cell) => {
+    const ch = cell.querySelector('.g').firstChild.textContent;
+    tip.textContent = '';
+    for (const k of cell.mods) {
+      const h = document.createElement('p'); h.className = 'tip-f';
+      const i = document.createElement('i'); i.style.background = FACES[k].c;
+      h.append(i, FACES[k].name); tip.append(h);
+      const list = changesFor(k, ch);
+      if (!list.length) list.push(['', 'Drawn differently from the stock font.']);
+      for (const [title, cap] of list) {
+        const p = document.createElement('p');
+        if (title) p.append(Object.assign(document.createElement('b'), { textContent: title }), ' — ');
+        p.append(cap); tip.append(p);
+      }
+    }
+    tip.hidden = false;
+    const r = cell.getBoundingClientRect(), t = tip.getBoundingClientRect();
+    const x = Math.max(8, Math.min(r.left, innerWidth - t.width - 8));
+    const below = r.bottom + 6 + t.height <= innerHeight;
+    tip.style.left = x + 'px';
+    tip.style.top = (below ? r.bottom + 6 : Math.max(8, r.top - 6 - t.height)) + 'px';
+  };
+  for (const box of [$('chars'), $('chars-tnum')]) {
+    box.addEventListener('pointerover', (e) => {
+      const cell = e.target.closest('.has-mod');
+      if (cell && cell.mods) showTip(cell); else tip.hidden = true;
+    });
+    box.addEventListener('pointerleave', () => { tip.hidden = true; });
+  }
+  addEventListener('scroll', () => { tip.hidden = true; }, { passive: true });
+
   document.querySelectorAll('.wrap section > .panel > pre.s').forEach((pre) => {
     pre.contentEditable = 'plaintext-only'; pre.spellcheck = false;
   });
@@ -594,7 +726,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     return it;
   };
   const fill = (it) => {
-    const faces = shown();
+    const faces = sampleFaces();
     it.box.textContent = '';
     const nodes = [];
     for (const k of faces) {
@@ -632,6 +764,13 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   for (const el of document.querySelectorAll('.wrap section > .panel, .wrap section > .conf, .wrap section > textarea')) makeSet(el);
 
   // what changed: a group per family on, each change set in every face on
+  // tabs inside a section (Waterfall / Weight ramp): one pane shown at a time
+  document.querySelectorAll('.ptabs [data-pane]').forEach((b) => b.addEventListener('click', () => {
+    const sec = b.closest('section');
+    sec.querySelectorAll('.ptabs [data-pane]').forEach((m) => m.setAttribute('aria-selected', String(m === b)));
+    sec.querySelectorAll('.pane').forEach((p) => { p.hidden = p.dataset.pane !== b.dataset.pane; });
+  }));
+
   const changeSets = [];
   const renderChanges = () => {
     const box = $('changes');
@@ -663,6 +802,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     root.classList.toggle('t-family', tab === 'family');
     root.classList.toggle('t-stock', tab === 'stock');
     root.classList.toggle('t-code', tab === 'code');
+    root.classList.toggle('t-test', tab === 'test');
     root.classList.toggle('solo', faces.length === 1);
     root.classList.toggle('overlay', view === 'overlay');
     root.classList.toggle('axes-on', faces.includes('nd') || faces.includes('ns'));
@@ -672,12 +812,14 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     document.querySelectorAll('[data-view]').forEach((n) => n.setAttribute('aria-pressed', String(n.dataset.view === view)));
     const lg = $('legend');
     lg.textContent = '';
+    lg.append(Object.assign(document.createElement('span'), { className: 'lab', textContent: 'Key' }));
     for (const k of faces) {
       const sp = document.createElement('span'); const i = document.createElement('i');
       i.style.background = FACES[k].c; sp.append(i, FACES[k].name); lg.append(sp);
     }
     renderChanges();
     renderChars();
+    renderWaterfall();
     [...sets, ...changeSets].forEach(fill);
     history.replaceState(null, '', '#' + tab + '/' + [...on[tab]].map((k) => FACES[k].hash).join(','));
   };
@@ -685,7 +827,10 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   document.querySelectorAll('[data-face]').forEach((n) => n.addEventListener('click', () => {
     const k = n.dataset.face, set_ = on[tab];
     if (!set_.has(k)) set_.add(k);
-    else if (set_.size > 1) set_.delete(k);
+    else if (set_.size > 1) {
+      set_.delete(k);
+      if (!sampleFaces().length) set_.add(k);  // keep a font for the samples
+    }
     update();
   }));
   document.querySelectorAll('[data-tab][role=tab]').forEach((n) => n.addEventListener('click', () => { tab = n.dataset.tab; update(); }));

@@ -70,14 +70,18 @@ cd sources && PATH=../.venv/bin:$PATH sh build.sh && cd ..   # fonts/variable/
 ```
 
 The proof is one page for all three families (`proof/template.html`, built
-by `proof/make_proof.py` into `docs/index.html`). Three tabs: **Family**
-compares the families with each other; **Stock** compares each family with
-its stock font (Nunuïko and Nunuïkode with Nunito, Display with Nunito Sans)
-and lists every change from it; **Code** compares Nunuïkode with Nunuïko and
-Cascadia Code. In each tab, toggle buttons switch each font on or off
+by `proof/make_proof.py` into `docs/index.html`). Four tabs: **Family**
+compares the families with each other; **Stock** compares Nunuïko and
+Display with their stock fonts (Nunito and Nunito Sans) and lists every
+change from them (Nunuïkode is derived from Nunuïko, so it has no toggle there); **Code** compares Nunuïkode with Cascadia Code
+in the samples, and with Nunuïko too in the character grid. **Test** holds only the
+"Try your own" text box, in any of the six fonts (the three families, Nunito,
+Nunito Sans, Cascadia Code). In each tab, toggle buttons switch each font on or off
 independently. Every sample is set once
 per font shown, stacked one above the next (or overlaid), and a character
-grid stacks them inside each character's cell. In the Family tab that grid
+grid stacks them inside each character's cell. The grid draws grey guides at each
+font's baseline and cap height, and for the monospaced fonts (Nunuïkode,
+Cascadia Code) at the left and right edges of the advance. In the Family and Stock tabs that grid
 marks non-stock characters, those a family draws differently from its stock
 font: `proof/changed.py` compares the .glyphs sources with the stock ones in
 git history, and for Nunuïkode adds the characters its code edits changed,
@@ -85,7 +89,8 @@ which its build writes to `nunuikode/sources/edited-characters.txt`. It embeds e
 disk or the web. After a build of any family, regenerate it. The URL hash
 holds the tab and the fonts on: `#stock/nunuiko`, `#family/nunuiko,nunuikode`,
 `#code/nunuikode,cascadia` (also `nunuiko-display`). When a glyph edit lands, add it
-to that family's list in the template's `CHANGES`.
+to that family's list in the template's `CHANGES`: title, caption, sample, and the
+characters of the grid it changes (hovering a tinted cell shows the changes that list it).
 
 ## Italics
 
