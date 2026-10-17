@@ -143,6 +143,7 @@
     display: grid; justify-items: center; align-content: start; }
   .chars .u { font-size: 9px; color: var(--muted); font-family: 'NK', sans-serif; font-style: normal; justify-self: start; }
   .chars .g { font-size: calc(var(--size) * 2); line-height: 1.25; color: var(--c); }
+  .chars .g.tnum { font-feature-settings: "tnum" 1; }
   :root.solo .chars .g { color: var(--ink); }
   :root.overlay .chars .g { grid-area: 2 / 1; }
   /* non-stock marks (Family tab): the cell is tinted and each changed glyph gets a dot */
@@ -247,6 +248,11 @@ const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
       each family that changed them. Nunuïkode counts Nunuïko’s changes and its own code edits, not
       the moving and condensing every glyph gets to fit the cell.</p>
     <div class="chars" id="chars"></div>
+    <h3 class="group">Tabular figures</h3>
+    <p class="note">Figures and the signs set with them, with tabular figures on (<b>tnum</b>), as in
+      tables and columns of numbers. Nunuïko and Display give the footed 1 here; Nunuïkode’s figures
+      are all one width anyway. No non-stock marks: these are separate glyphs.</p>
+    <div class="chars" id="chars-tnum"></div>
   </section>
 
   <section data-in="stock">
@@ -502,18 +508,23 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     ...'.,:;!?¡¿\'"‘’“”«»‹›()[]{}<>/\\|¦-–—_+=×÷±~^*&@#$%€£¥¢°§¶©®™…·•',
     ...'ÀÁÂÄÃÅÆÇÈÉÊËÌÍÎÏÑÒÓÔÖÕØŒÙÚÛÜÝŸŠŽŁ',
     ...'àáâäãåæçèéêëìíîïñòóôöõøœùúûüýÿšžłßı'];
+  const TNUM = [...'0123456789.,:+−-×÷=%$€£¥#()'];
   const renderChars = () => {
-    const box = $('chars');
+    gridOf($('chars'), CHARS, false);
+    gridOf($('chars-tnum'), TNUM, true);
+  };
+  const gridOf = (box, list, tnum) => {
     box.textContent = '';
     const faces = shown();
-    for (const ch of CHARS) {
+    for (const ch of list) {
       const cell = document.createElement('div');
       const u = document.createElement('span'); u.className = 'u';
       u.textContent = ch.codePointAt(0).toString(16).toUpperCase().padStart(4, '0');
       cell.append(u);
       for (const k of faces) {
         const g = document.createElement('span'); g.className = 's g'; g.textContent = ch;
-        if (tab === 'family' && NONSTOCK[k] && NONSTOCK[k].includes(ch)) {
+        if (tnum) g.classList.add('tnum');
+        else if (tab === 'family' && NONSTOCK[k] && NONSTOCK[k].includes(ch)) {
           g.classList.add('mod'); cell.classList.add('has-mod');
           g.title = FACES[k].name + ' (non-stock)';
         }
