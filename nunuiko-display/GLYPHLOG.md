@@ -1215,6 +1215,44 @@ Nodes and types unchanged.
 
 ---
 
+## 25. G — a straight drop under the bar; the round G becomes G.ss03 ◐ (2026-10-17)
+
+**Intent (user):** two G's in all three fonts, one primary and one alternate
+(as with the l), picked after seeing them side by side. The second: in Bryant's
+G (the user's screenshot), before the bar turns left, the right side drops
+straight down about half the way to the baseline.
+
+**Script:** `sources/edits/25_G_spur.py`, the same file in Nunuïko
+and Display, run once per source after edit 18.
+
+**Operation:**
+- **Picked (user, same day):** both were drawn as G (round, edit 18) and
+  G.ss03 (this shape) and compared side by side; the user made this one the
+  default and kept the round one as the alternate. So edit 18's G is copied
+  to G.ss03 first and G itself is reshaped.
+- **Copies:** the round G → `G.ss03` (no Unicode) and the composites built on G →
+  `Gbreve.ss03`, `Gcaron.ss03`, `Gcircumflex.ss03`, `Gcommaaccent.ss03`,
+  `Gdotaccent.ss03`, `Gmacron.ss03`, pointing at G.ss03; kerning groups come
+  with the copies. A new stylistic set **ss03** ("Alternate G") swaps all seven
+  in. ss01 (single-storey a) and ss02 (the l) are unchanged.
+- **Shape, per master** (unslanted in the italic), starting from edit 18's G
+  (as wide as the O, upstroke evened): the right side is straight from the bar
+  down to J = `DROP` (0.5) × the bar's top height, outside and inside, at the
+  x edit 18 gave it; the bottom curves join it there, vertical, with the O's
+  tensions. 29 → 30 nodes.
+
+**Result:** straight side from the bar's top down to 178 / 190 / 203
+(ExtraLight / Bold / ExtraBlack).
+
+**To swap back:** reshape G.ss03 instead of G in the script's last step.
+
+### Checks
+- [x] All masters compatible; no existing glyph changed; build clean; ss03
+      maps G → G.ss03 in the built fonts
+- [x] Primary picked by the user in the proof's "G variants"
+
+---
+
 ## Replay procedure (Nunito Sans → Nunuïko Display)
 
 1. For each glyph above, read the **Operation / rule** — apply the rule to

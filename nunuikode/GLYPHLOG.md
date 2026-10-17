@@ -266,3 +266,10 @@ tail on the 6 (24). The monospace step fits them into the cell as usual.
   Nunuïko's even stroke the ring thickness is now the same all round
   (42 / 102 at ExtraLight / Bold).
 
+## 13. G with a straight drop; round G in ss03, from Nunuïko ◐ (2026-10-17)
+
+Snapshot re-copied after Nunuïko's edit 25: the G with a straight drop under
+the bar is the default, the round G is `G.ss03` (with the composites built on
+it and the ss03 feature); the monospace step fits them
+like any other glyph. The built fonts map G → G.ss03 under ss03.
+

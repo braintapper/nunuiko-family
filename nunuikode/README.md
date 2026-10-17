@@ -20,7 +20,7 @@ derived from Nunito.
   with the same flag; an r arched like the n; wider t and f bars and an f whose top
   arches down; an I with equal top and bottom bars; dots on ï that clear the stem;
   brackets and bars centred on the capitals; round %
-  rings; a lower middle on W; and round © and ® and an @ centred on the capitals. From Nunuïko it takes, among others, a G whose bottom-right follows the O's bowl, a $ that is a full-size S with a stroke through it, a straight-legged R and a shorter tail on the 6.
+  rings; a lower middle on W; and round © and ® and an @ centred on the capitals. From Nunuïko it takes, among others, a G with a straight drop under the bar (the round G in ss03), a $ that is a full-size S with a stroke through it, a straight-legged R and a shorter tail on the 6.
 
 ## Building
 
