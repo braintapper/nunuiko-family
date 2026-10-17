@@ -10,6 +10,5 @@ build.ninja
 /*/sources/build/
 /*/sources/instance_ufos/
 /*/sources/master_ufo/
-# proofs are committed (docs/, served by GitHub Pages); only the font cache is not
-/*/sources/proof/.cache/
-/*/sources/proof/*-proof.html
+# the proof is committed (docs/, served by GitHub Pages); its font cache is not
+/proof/.cache/

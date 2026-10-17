@@ -11,9 +11,8 @@ hand-edit generated files.
 - **The l stays disambiguated.** It keeps Nunuïko's tail and gets the i's
   top-left flag (edit 3). The default l must never be a bare stem, which
   reads as I or |; the plain l stays opt-in through ss02.
-- **Proof:** sets Nunuïkode beside Nunuïko (`../nunuiko/fonts/`), with texture
-  healing off, or beside Cascadia Code (downloaded once into
-  `sources/proof/.cache/`, gitignored).
+- **Proof:** the family proof (`../proof/`) has Nunuïkode-only sections:
+  texture healing (on and off) and a column grid.
 
 ## How the build works
 

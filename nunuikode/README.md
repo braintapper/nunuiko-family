@@ -3,7 +3,7 @@
 A monospaced cut of [Nunuïko](../nunuiko/) for code,
 derived from Nunito.
 
-**Proof:** [https://braintapper.github.io/nunuiko-family/nunuikode/](https://braintapper.github.io/nunuiko-family/nunuikode/) (beside Nunuïko or Cascadia Code)
+**Proof:** [https://braintapper.github.io/nunuiko-family/#nunuikode](https://braintapper.github.io/nunuiko-family/#nunuikode) (beside Nunuïko or Cascadia Code)
 
 - Variable weight 200–1000, Roman and Italic
   (`fonts/variable/Nunuikode[wght].ttf`, `Nunuikode-Italic[wght].ttf`).
@@ -27,7 +27,7 @@ derived from Nunito.
 ```sh
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 cd sources && PATH=../.venv/bin:$PATH sh build.sh
-cd .. && .venv/bin/python sources/proof/make_proof.py   # proof page
+cd .. && .venv/bin/python ../proof/make_proof.py   # the family proof, docs/index.html
 ```
 
 The glyph source is a snapshot of Nunuïko's (`sources/upstream/`); see

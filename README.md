@@ -7,16 +7,15 @@ changes stay consistent across them:
 - **[Nunuïko Display](nunuiko-display/)**: derived from Nunito Sans.
 - **[Nunuïkode](nunuikode/)**: Nunuïko made monospaced for code.
 
-Each folder has its own build, proof, glyph change log and license files.
+Each folder has its own build, glyph change log and license files.
 
-## Proofs
+## Proof
 
-Regenerated with each font build and published with GitHub Pages:
-
-- [All proofs](https://braintapper.github.io/nunuiko-family/)
-- [Nunuïko](https://braintapper.github.io/nunuiko-family/nunuiko/), compared with the original Nunito
-- [Nunuïko Display](https://braintapper.github.io/nunuiko-family/nunuiko-display/), compared with the original Nunito Sans
-- [Nunuïkode](https://braintapper.github.io/nunuiko-family/nunuikode/), beside Nunuïko or Cascadia Code
+One page for all three families, regenerated with each font build and published
+with GitHub Pages: **[https://braintapper.github.io/nunuiko-family/](https://braintapper.github.io/nunuiko-family/)**. A segmented button picks the font; compare
+it with its source, another family or Cascadia Code, side by side or overlaid.
+Open it on one font: [Nunuïko](https://braintapper.github.io/nunuiko-family/#nunuiko), [Nunuïko Display](https://braintapper.github.io/nunuiko-family/#nunuiko-display),
+[Nunuïkode](https://braintapper.github.io/nunuiko-family/#nunuikode).
 
 ## Credits
 

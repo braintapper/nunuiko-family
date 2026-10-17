@@ -43,7 +43,6 @@ Every family folder has the same shape:
   sources/
     build.sh  config.yaml  display_name.py the build
     edits/                                 glyph edits (NN_name.py)
-    proof/  make_proof.py  template.html   the proof; writes ../docs/<family>/index.html
   archive/                                 kept for reference, not built
 ```
 
@@ -51,7 +50,7 @@ plus what only some families have: `fonts/ttf/` (Display's static
 instances), `penpot-uploads/` and `sources/penpot/` (static font files
 for Penpot), and Nunuïkode's `sources/build.py` and `sources/upstream/`.
 
-At the repo root: `docs/`, the published proofs (below); `PLAYBOOK.md` (build process and troubleshooting) and
+At the repo root: `proof/`, the one proof for all three families, and `docs/`, where it is published (below); `PLAYBOOK.md` (build process and troubleshooting) and
 `fonts.md` (design intent), shared by Nunuïko and Display, and `OFL.txt` with
 every family's copyright lines.
 
@@ -67,10 +66,17 @@ Then, from the family folder:
 
 ```sh
 cd sources && PATH=../.venv/bin:$PATH sh build.sh && cd ..   # fonts/variable/
-.venv/bin/python sources/proof/make_proof.py                  # ../docs/<family>/index.html
+.venv/bin/python ../proof/make_proof.py                       # ../docs/index.html
 ```
 
-Each proof embeds its fonts, so it opens anywhere, from disk or the web.
+The proof is one page for all three families (`proof/template.html`, built
+by `proof/make_proof.py` into `docs/index.html`): a segmented button picks the
+font, and a comparison column shows its source (Nunito, Nunito Sans, or
+Nunuïko for Nunuïkode), another family, or Cascadia Code, side by side or
+overlaid. It embeds every font, so it opens anywhere, from disk or the web.
+After a build of any family, regenerate it. `#nunuiko`, `#nunuiko-display` or
+`#nunuikode` in the URL opens it on that font. When a glyph edit lands, add it
+to that family's list in the template's `CHANGES`.
 
 ## Italics
 
@@ -88,7 +94,7 @@ The repo was created on 2026-10-17 by importing the three old repos with
 their full histories (`braintapper/nunuiko`, `nunuiko-sans`, `nunuikode`,
 left as they were). Next, in order:
 
-1. One proof for all three families, with a family switcher and side by side.
+1. ~~One proof for all three families~~ (done 2026-10-17: `proof/`).
 2. Shared edits: each edit that exists in both Nunuïko and Display (l tail,
    f terminal, Q slash, J hook, ff ligatures, K leg, a bowl, footless and
    proportional 1, and `lib.py`) merged into one rule that runs on both, with
@@ -107,7 +113,6 @@ name (e.g. in `@font-face`) and size text against the current metrics.
 
 ## Publishing the proofs
 
-The proofs are generated locally, not in CI, and committed: `docs/` is
-served by GitHub Pages (from `main`, folder `/docs`). `docs/index.html` is the
-landing page, linking each family's `docs/<family>/index.html`. Commit the
-regenerated proof together with the font build it shows.
+The proof is generated locally, not in CI, and committed: `docs/` is
+served by GitHub Pages (from `main`, folder `/docs`). Commit the regenerated
+proof together with the font build it shows.

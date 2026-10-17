@@ -11,6 +11,4 @@ rules, layout, build and proof commands hold here.
 - **Axes:** YTLC, opsz, wdth and wght, so the variable fonts are named
   `NunuikoDisplay[YTLC,opsz,wdth,wght].ttf`. The build also writes static
   instances to `fonts/ttf/`.
-- **Proof:** compares the build with the original Nunito Sans, read from git
-  history (`ORIG_COMMIT` in `sources/proof/make_proof.py`).
 - **Sister family:** Nunuïko (`../nunuiko/`). Most changes apply to both.

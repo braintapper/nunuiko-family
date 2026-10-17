@@ -2,7 +2,7 @@
 
 A rounded sans derived from [Nunito](https://github.com/googlefonts/nunito).
 
-**Proof:** [https://braintapper.github.io/nunuiko-family/nunuiko/](https://braintapper.github.io/nunuiko-family/nunuiko/) (compared with the original Nunito)
+**Proof:** [https://braintapper.github.io/nunuiko-family/#nunuiko](https://braintapper.github.io/nunuiko-family/#nunuiko) (compared with the original Nunito)
 
 - Variable weight 200–1000, Roman and Italic
   (`fonts/variable/Nunuiko[wght].ttf`, `Nunuiko-Italic[wght].ttf`).
@@ -17,7 +17,7 @@ A rounded sans derived from [Nunito](https://github.com/googlefonts/nunito).
 ```sh
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 cd sources && PATH=../.venv/bin:$PATH sh build.sh
-cd .. && .venv/bin/python sources/proof/make_proof.py   # proof page
+cd .. && .venv/bin/python ../proof/make_proof.py   # the family proof, docs/index.html
 ```
 
 ## License

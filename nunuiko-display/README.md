@@ -3,7 +3,7 @@
 A sans derived from [Nunito Sans](https://github.com/Fonthausen/NunitoSans),
 the plain-terminal sister of [Nunuïko](../nunuiko/).
 
-**Proof:** [https://braintapper.github.io/nunuiko-family/nunuiko-display/](https://braintapper.github.io/nunuiko-family/nunuiko-display/) (compared with the original Nunito Sans)
+**Proof:** [https://braintapper.github.io/nunuiko-family/#nunuiko-display](https://braintapper.github.io/nunuiko-family/#nunuiko-display) (compared with the original Nunito Sans)
 
 - Variable, Roman and Italic, with Nunito Sans's axes: weight, width,
   optical size and lowercase height
@@ -21,7 +21,7 @@ the plain-terminal sister of [Nunuïko](../nunuiko/).
 ```sh
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 cd sources && PATH=../.venv/bin:$PATH sh build.sh
-cd .. && .venv/bin/python sources/proof/make_proof.py   # proof page
+cd .. && .venv/bin/python ../proof/make_proof.py   # the family proof, docs/index.html
 ```
 
 ## License
