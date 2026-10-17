@@ -7,6 +7,11 @@
   /* Nunuïko (proportional), for the side-by-side comparison */
   @font-face { font-family: 'NUN'; src: url(data:font/woff2;base64,%%PR%%) format('woff2'); font-weight: 200 1000; font-style: normal; }
   @font-face { font-family: 'NUN'; src: url(data:font/woff2;base64,%%PI%%) format('woff2'); font-weight: 200 1000; font-style: italic; }
+  /* Cascadia Code (Latin + Latin Extended, as two families in a stack) */
+  @font-face { font-family: 'CAS'; src: url(data:font/woff2;base64,%%CR%%) format('woff2'); font-weight: 200 700; font-style: normal; }
+  @font-face { font-family: 'CAS'; src: url(data:font/woff2;base64,%%CI%%) format('woff2'); font-weight: 200 700; font-style: italic; }
+  @font-face { font-family: 'CASX'; src: url(data:font/woff2;base64,%%CXR%%) format('woff2'); font-weight: 200 700; font-style: normal; }
+  @font-face { font-family: 'CASX'; src: url(data:font/woff2;base64,%%CXI%%) format('woff2'); font-weight: 200 700; font-style: italic; }
 
   /* Single light theme, like the Nunuïko proofs: a proofing sheet. */
   :root {
@@ -58,6 +63,8 @@
 
   .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; overflow-x: auto; }
   pre { margin: 0; line-height: 1.55; tab-size: 4; white-space: pre; }
+  pre[contenteditable] { outline: none; caret-color: var(--accent); }
+  .panel:focus-within { border-color: var(--accent); }
   textarea.kode { width: 100%; min-height: 9em; resize: vertical; line-height: 1.55; color: var(--ink);
     background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; white-space: pre; }
 
@@ -87,6 +94,7 @@
   .col-lab { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
   :root.cmp-nun .alt .kode { font-family: 'NUN', sans-serif; }
   :root.cmp-calt .alt .kode { font-feature-settings: 'calt' 0; }
+  :root.cmp-cas .alt .kode { font-family: 'CAS', 'CASX', monospace; }
   @media (max-width: 720px) { :root.cmp .pair { grid-template-columns: minmax(0, 1fr); } }
 </style>
 
@@ -95,8 +103,8 @@
   <h1 class="kode">Nunuïkode</h1>
   <p class="sub">Every glyph sits in a 600-unit cell. Narrow letters are moved, not
     reshaped; wide ones (m w M W, ligatures) are condensed with their stems
-    thickened back so their weight holds. No kerning, no f-ligatures. First
-    character change: a dotted zero.</p>
+    thickened back so their weight holds. No kerning, no f-ligatures. Code
+    changes are logged in GLYPHLOG.md. Click any code sample to edit it.</p>
 
   <div class="controls" role="group" aria-label="Proof controls">
     <div class="ctl">
@@ -120,6 +128,7 @@
         <button type="button" data-cmp="" aria-pressed="true">Off</button>
         <button type="button" data-cmp="nun" aria-pressed="false">Nunuïko</button>
         <button type="button" data-cmp="calt" aria-pressed="false">Healing off</button>
+        <button type="button" data-cmp="cas" aria-pressed="false">Cascadia Code</button>
       </div>
     </div>
   </div>
@@ -134,8 +143,8 @@ if (rn != m && cl != d) return "fine";</textarea>
   <section>
     <h2>Confusables</h2>
     <p class="note">The pairs code fonts have to keep apart. <b>0 / O</b> is the
-      first change (dotted zero). The l keeps Nunuïko's tail, so <b>Il1|</b>
-      stays distinct.</p>
+      first change (dotted zero). The i has a foot and a top-left flag, the tailed l
+      the same flag, the I equal top and bottom bars and the 1 a foot, so <b>Il1|</b> stays distinct.</p>
     <div class="conf kode">
       <div><div class="big">0O0o</div><div class="cap">zero · O · o</div></div>
       <div><div class="big">Il1|</div><div class="cap">I · l · one · bar</div></div>
@@ -289,8 +298,14 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   for (let c = 33; c < 127; c++) ascii += String.fromCharCode(c);
   $('ascii').textContent = ascii;
 
+  // every code sample is editable in place (highlighting stays on the text
+  // that isn't retyped); its side-by-side copy follows what is typed
+  const editable = document.querySelectorAll('.wrap section > .panel > pre.kode');
+  editable.forEach((pre) => { pre.contentEditable = 'plaintext-only'; pre.spellcheck = false; });
+
   // side by side: pair every sample with a copy (built once, shown by CSS)
-  const ALT = { nun: 'Nunuïko (proportional)', calt: 'Nunuïkode, healing off' };
+  const ALT = { nun: 'Nunuïko (proportional)', calt: 'Nunuïkode, healing off',
+    cas: 'Cascadia Code (weights 200–700)' };
   const altLabs = [];
   const pairUp = (el, copy) => {
     const pair = document.createElement('div'); pair.className = 'pair';
@@ -309,6 +324,12 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     const copy = el.cloneNode(true);
     copy.removeAttribute('id');
     copy.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
+    const pre = el.querySelector(':scope > pre[contenteditable]');
+    if (pre) {
+      const twin = copy.querySelector(':scope > pre');
+      twin.removeAttribute('contenteditable');
+      pre.addEventListener('input', () => { twin.innerHTML = pre.innerHTML; });
+    }
     pairUp(el, copy);
   }
   // the editable box: the copy mirrors what is typed
@@ -321,6 +342,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     root.classList.toggle('cmp', !!mode);
     root.classList.toggle('cmp-nun', mode === 'nun');
     root.classList.toggle('cmp-calt', mode === 'calt');
+    root.classList.toggle('cmp-cas', mode === 'cas');
     for (const lab of altLabs) lab.textContent = ALT[mode] || '';
     document.querySelectorAll('[data-cmp]').forEach((b) =>
       b.setAttribute('aria-pressed', String(b.dataset.cmp === mode)));

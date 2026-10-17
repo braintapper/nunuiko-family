@@ -20,8 +20,9 @@ hand-edit generated files.
    on all six masters, worked in unslanted space (x − y·tan(angle)) so it holds
    on the italic masters, the way the existing pipeline and edits do.
 
-4. **The l stays disambiguated** (tailed, as in Nunuïko). Only Nunuïko Display
-   uses the plain I-like l.
+4. **The l stays disambiguated.** It keeps Nunuïko's tail and gets the i's
+   top-left flag (edit 3). The default l must never be a bare stem, which
+   reads as I or |; the plain l stays opt-in through ss02.
 
 ## How the build works
 
