@@ -26,7 +26,7 @@ hand-edit generated files.
 
 ## How the build works
 
-- `sources/upstream/Nunuiko.glyphs` is a snapshot of `../nunuiko`'s source; the
+- `sources/upstream/Nunuiko.glyphs` is a snapshot of `../nunuiko/sources/Nunuiko.glyphs`; the
   commit it came from is in `sources/upstream/NUNUIKO_COMMIT`. To pick up later
   Nunuïko changes, copy the new file in, update the commit, rebuild.
 - `sources/build.py` derives the UFO masters + designspace in `sources/build/`
@@ -48,14 +48,15 @@ owner specifically asks for one.
 
 ## Workspace
 
-This repo is one of several sibling projects in the owner's development
-workspace (one folder per repo, side by side). The workspace map, with every
-project and how they depend on each other, is in `../CLAUDE.md`. Read it when a
-task reaches outside this repo.
+This folder is one family in the Nunuiko Family repo (`nunuiko-family`):
+Nunuiko in `../nunuiko/`, Nunuiko Display in `../nunuiko-display/`. Rules that
+hold for every family are in the repo's top-level `AGENTS.md`; read it first.
+The workspace map, with every project and how they depend on each other, is in
+`../../CLAUDE.md`.
 
-- **Upstream:** `../nunuiko` (Nunuïko), vendored as a snapshot — nothing reads
-  that folder at build time. Do not edit a sibling repo from a session in this
-  project without asking the owner first.
-- **Consumers:** none yet. Like the other font repos, consumers would copy the
+- **Upstream:** `../nunuiko/` (Nunuïko), vendored as a snapshot — nothing reads
+  that folder at build time except the proof, which embeds its built fonts for
+  the side-by-side.
+- **Consumers:** none yet. Like the other families, consumers would copy the
   built font files; say so when a release changes file names, family names or
   metrics.

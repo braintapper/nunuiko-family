@@ -2,7 +2,7 @@
 
 Embeds the current Roman and Italic variable fonts as base64 woff2 into
 template.html, plus, for the side-by-side comparison, Nunuïko's (read
-from the sibling ../nunuiko checkout) and Cascadia Code's (Latin and Latin
+from ../nunuiko in this repo) and Cascadia Code's (Latin and Latin
 Extended woff2 from the pinned fontsource package, OFL; downloaded once
 into sources/proof/.cache/, gitignored). Run from the repo root after every build:
   .venv/bin/python sources/proof/make_proof.py
