@@ -1,6 +1,6 @@
 # Nunuïkode
 
-A monospaced cut of [Nunuïko](https://github.com/braintapper/nunuiko) for code,
+A monospaced cut of [Nunuïko](../nunuiko/) for code,
 derived from Nunito.
 
 - Variable weight 200–1000, Roman and Italic

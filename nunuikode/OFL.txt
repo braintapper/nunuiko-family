@@ -1,4 +1,4 @@
-Copyright 2026 Steven Ng (https://github.com/braintapper/nunuikode), with Reserved Font Name "Nunuiko".
+Copyright 2026 Steven Ng (https://github.com/braintapper/nunuiko-family), with Reserved Font Name "Nunuiko".
 Nunuikode is derived from Nunuiko, which is derived from Nunito.
 Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)
 
