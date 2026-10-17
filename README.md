@@ -13,7 +13,7 @@ Each folder has its own build, glyph change log and license files.
 
 One page for all three families, regenerated with each font build and published
 with GitHub Pages: **[https://braintapper.github.io/nunuiko-family/](https://braintapper.github.io/nunuiko-family/)**. Switch any of the three fonts on to see
-them side by side or overlaid, and compare them with Nunito, Nunito Sans or
+them stacked one above the next or overlaid, and compare them with Nunito, Nunito Sans or
 Cascadia Code. Open it on one font: [Nunuïko](https://braintapper.github.io/nunuiko-family/#nunuiko),
 [Nunuïko Display](https://braintapper.github.io/nunuiko-family/#nunuiko-display), [Nunuïkode](https://braintapper.github.io/nunuiko-family/#nunuikode).
 

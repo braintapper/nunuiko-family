@@ -49,7 +49,6 @@
   body { background: var(--bg); color: var(--ink); margin: 0; color-scheme: light;
     font-family: 'NK', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 40px 16px 90px; }
-  :root:not(.solo) .wrap { max-width: 1840px; }
 
   /* every sample is set once per font switched on, each column with its own --f */
   .s { font-family: var(--f), sans-serif; font-style: var(--fstyle); font-size: var(--size);
@@ -106,19 +105,17 @@
   .rows > div { display: flex; gap: 18px; align-items: baseline; border-bottom: 1px solid var(--line); padding: 6px 0; }
   .rows > div:last-child { border-bottom: 0; }
   .rows .k { width: 44px; flex: none; font-size: 11px; color: var(--muted); font-family: 'NK', sans-serif; font-style: normal; }
-  .charset { word-break: break-all; white-space: normal; line-height: 1.7; margin: 0; }
 
   /* sections for one family only */
   [data-only] { display: none; }
   :root.f-nk [data-only~="nk"], :root.f-nd [data-only~="nd"], :root.f-kd [data-only~="kd"] { display: block; }
 
-  /* one column per font switched on */
-  .set { display: grid; gap: 12px; grid-template-columns: repeat(var(--n, 1), minmax(0, 1fr)); }
+  /* one row per font switched on, stacked so each font sits above the next */
+  .set { display: grid; gap: 10px; grid-template-columns: minmax(0, 1fr); }
   .col-lab { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
   .col-lab i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; background: var(--c); }
   :root.solo .col-lab { display: none; }
   /* overlay: all columns in one cell, each in its colour, so differences show as fringing */
-  :root.overlay .set { grid-template-columns: minmax(0, 1fr); }
   :root.overlay .set > div { grid-area: 1 / 1; }
   :root.overlay .set .col-lab { display: none; }
   :root.overlay .set > div + div { pointer-events: none; }
@@ -130,7 +127,16 @@
   :root.overlay:not(.solo) .legend { display: flex; }
   .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
   .group { margin: 24px 0 10px; font-size: 15px; font-weight: 800; font-variation-settings: "wght" 800; }
-  @media (max-width: 760px) { .set { grid-template-columns: minmax(0, 1fr); } }
+  /* characters: one cell per character, the fonts on stacked inside it */
+  .chars { display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(var(--size) * 3.2), 1fr));
+    border-top: 1px solid var(--line); border-left: 1px solid var(--line); background: var(--surface); }
+  .chars > div { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 4px 4px 6px;
+    display: grid; justify-items: center; align-content: start; }
+  .chars .u { font-size: 9px; color: var(--muted); font-family: 'NK', sans-serif; font-style: normal; justify-self: start; }
+  .chars .g { font-size: calc(var(--size) * 2); line-height: 1.25; color: var(--c); }
+  :root.solo .chars .g { color: var(--ink); }
+  :root.overlay .chars .g { grid-area: 2 / 1; }
+  :root.overlay .chars .g + .g { mix-blend-mode: multiply; }
 </style>
 
 <div class="wrap">
@@ -201,6 +207,13 @@
     <textarea class="s" id="play" spellcheck="false" aria-label="Sample text">Il1 0O fluff Quiz Jump fjord — kayak banana 2011
 The quick brown fox jumps over the lazy dog.
 const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
+  </section>
+
+  <section>
+    <h2>Characters</h2>
+    <p class="note">The most used characters, one cell each. With more than one font on, each cell
+      stacks them in the order of the buttons, in the colours of the key (overlaid in Overlay).</p>
+    <div class="chars" id="chars"></div>
   </section>
 
   <section>
@@ -344,10 +357,6 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     <div class="panel rows" id="ramp"></div>
   </section>
 
-  <section>
-    <h2>Character set</h2>
-    <div class="panel"><p class="s charset" id="ascii"></p></div>
-  </section>
 </div>
 
 <script>
@@ -435,10 +444,29 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     t.textContent = 'Quiz Jump fjord Il1 0O {x} if (a != b) return items.map((m) => m.id * 2);';
     row.append(k, t); $('ramp').append(row);
   }
-  let chars = '';
-  for (let c = 33; c < 127; c++) chars += String.fromCharCode(c);
-  chars += ' ¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ ŁłŒœŠšŸŽžƒ ‘’“”•–—…‰€™';
-  $('ascii').textContent = chars;
+  // the most used characters: Basic Latin, then common accents and symbols
+  const CHARS = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
+    ...'.,:;!?¡¿\'"‘’“”«»‹›()[]{}<>/\\|¦-–—_+=×÷±~^*&@#$%€£¥¢°§¶©®™…·•',
+    ...'ÀÁÂÄÃÅÆÇÈÉÊËÌÍÎÏÑÒÓÔÖÕØŒÙÚÛÜÝŸŠŽŁ',
+    ...'àáâäãåæçèéêëìíîïñòóôöõøœùúûüýÿšžłßı'];
+  const renderChars = () => {
+    const box = $('chars');
+    box.textContent = '';
+    const faces = shown();
+    for (const ch of CHARS) {
+      const cell = document.createElement('div');
+      const u = document.createElement('span'); u.className = 'u';
+      u.textContent = ch.codePointAt(0).toString(16).toUpperCase().padStart(4, '0');
+      cell.append(u);
+      for (const k of faces) {
+        const g = document.createElement('span'); g.className = 's g'; g.textContent = ch;
+        g.style.setProperty('--f', FACES[k].fam); g.style.setProperty('--c', FACES[k].c);
+        g.title = FACES[k].name;
+        cell.append(g);
+      }
+      box.append(cell);
+    }
+  };
   document.querySelectorAll('.wrap section > .panel > pre.s').forEach((pre) => {
     pre.contentEditable = 'plaintext-only'; pre.spellcheck = false;
   });
@@ -456,7 +484,6 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   const fill = (it) => {
     const faces = shown();
     it.box.textContent = '';
-    it.box.style.setProperty('--n', faces.length);
     const nodes = [];
     for (const k of faces) {
       const col = document.createElement('div');
@@ -533,6 +560,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       i.style.background = FACES[k].c; sp.append(i, FACES[k].name); lg.append(sp);
     }
     renderChanges();
+    renderChars();
     [...sets, ...changeSets].forEach(fill);
     history.replaceState(null, '', '#' + faces.map((k) => FACES[k].hash).join(','));
   };
