@@ -303,6 +303,28 @@ def monospace(ufo, stem, tan, base_of, zero_width, heal):
         g.width = CELL
 
 
+def signature(glyph):
+    """A glyph's outline and components, to tell whether an edit touched it."""
+    return (tuple(tuple((round(p.x, 2), round(p.y, 2), p.segmentType) for p in c) for c in glyph),
+            tuple((c.baseGlyph, tuple(round(v, 4) for v in c.transformation)) for c in glyph.components),
+            round(glyph.width, 2))
+
+
+def edited_characters(ufo, edited):
+    """Characters whose glyph an edit changed, directly or through a
+    component, for the proof's non-stock marks."""
+    memo = {}
+
+    def hit(name):
+        if name not in memo:
+            memo[name] = False
+            g = ufo[name]
+            memo[name] = name in edited or any(hit(c.baseGlyph) for c in g.components if c.baseGlyph in ufo)
+        return memo[name]
+
+    return {chr(u) for g in ufo for u in g.unicodes if hit(g.name)}
+
+
 def heal_sets(font, mid):
     """Letter glyphs that may heal: narrow ones by their proportional
     advance (first master); wide ones are picked later, by how much the
@@ -498,6 +520,7 @@ def main():
     # the glyphs built from them keep their shapes
     skip = {g.name for g in font.glyphs if not g.export}
     letters, narrow, upper = heal_sets(font, mid)
+    chars = set()
     heal = {"letters": letters, "narrow": narrow, "upper": upper}
 
     ds = glyphsLib.to_designspace(font, minimize_glyphs_diffs=False)
@@ -509,8 +532,11 @@ def main():
         stem = src.location["Weight"]
         angle = -(ufo.info.italicAngle or 0)  # UFO: negative = slanted right
         tan = math.tan(math.radians(angle))
+        before = {g.name: signature(g) for g in ufo}
         for e in edits:
             e.apply(ufo, stem=stem, tan=tan)
+        edited = {g.name for g in ufo if before.get(g.name) != signature(g)}
+        chars |= edited_characters(ufo, edited)
         DecomposeComponentsFilter()(ufo)
         for name in skip & set(ufo.keys()):
             del ufo[name]
@@ -543,6 +569,10 @@ def main():
           " ".join(n for n in heal["wide"] if len(n) == 1), "/",
           " ".join(n for n in heal["narrow"] if len(n) == 1))
     ds.write(os.path.join(OUT, f"{FAMILY}.designspace"))
+    # characters the code edits changed (any master): read by the family proof
+    with open("edited-characters.txt", "w") as f:
+        f.write("".join(sorted(chars)) + "\n")
+    print(f"edited characters: {len(chars)}")
     print("written", os.path.join(OUT, f"{FAMILY}.designspace"))
 
 

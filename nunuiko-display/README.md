@@ -10,8 +10,7 @@ the plain-terminal sister of [Nunuïko](../nunuiko/).
   (`fonts/variable/NunuikoDisplay[YTLC,opsz,wdth,wght].ttf` and the Italic).
   Static instances are in `fonts/ttf/`.
 - Changes from Nunito Sans so far: a plain l like I by default (the tailed l
-  is in ss02); a downturned f terminal; a G built on the O's bowl; a J with an
-  upturned hooked foot; a Jost-style Q slash; ff / ffi / ffl ligatures with a
+  is in ss02); a downturned f terminal; a J with an upturned hooked foot; a Jost-style Q slash; ff / ffi / ffl ligatures with a
   joined crossbar; a K and k whose leg grows out of the arm; round dots; a
   rounder a; and a footless 1, proportional by default. Every change is logged
   per master in `GLYPHLOG.md`.

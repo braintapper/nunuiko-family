@@ -77,7 +77,11 @@ and lists every change from it; **Code** compares Nunuïkode with Nunuïko and
 Cascadia Code. In each tab, toggle buttons switch each font on or off
 independently. Every sample is set once
 per font shown, stacked one above the next (or overlaid), and a character
-grid stacks them inside each character's cell. It embeds every font, so it opens anywhere, from
+grid stacks them inside each character's cell. In the Family tab that grid
+marks non-stock characters, those a family draws differently from its stock
+font: `proof/changed.py` compares the .glyphs sources with the stock ones in
+git history, and for Nunuïkode adds the characters its code edits changed,
+which its build writes to `nunuikode/sources/edited-characters.txt`. It embeds every font, so it opens anywhere, from
 disk or the web. After a build of any family, regenerate it. The URL hash
 holds the tab and the fonts on: `#stock/nunuiko`, `#family/nunuiko,nunuikode`,
 `#code/nunuikode,cascadia` (also `nunuiko-display`). When a glyph edit lands, add it

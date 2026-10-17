@@ -145,6 +145,14 @@
   .chars .g { font-size: calc(var(--size) * 2); line-height: 1.25; color: var(--c); }
   :root.solo .chars .g { color: var(--ink); }
   :root.overlay .chars .g { grid-area: 2 / 1; }
+  /* non-stock marks (Family tab): the cell is tinted and each changed glyph gets a dot */
+  .chars > div.has-mod { background: #FFF5DA; }
+  .chars .g.mod { position: relative; }
+  .chars .g.mod::after { content: ""; position: absolute; top: .2em; right: -.35em; width: 6px; height: 6px;
+    border-radius: 50%; background: var(--c); }
+  :root.solo .chars .g.mod::after { background: var(--accent); }
+  .mark-key { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+    vertical-align: middle; margin: 0 2px; }
   :root.overlay .chars .g + .g { mix-blend-mode: multiply; }
 </style>
 
@@ -234,6 +242,10 @@ const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
     <h2>Characters</h2>
     <p class="note">The most used characters, one cell each. With more than one font on, each cell
       stacks them in the order of the buttons, in the colours of the key (overlaid in Overlay).</p>
+    <p class="note" data-in="family">Non-stock characters, drawn differently from the stock font
+      (Nunito, or Nunito Sans for Display), have a tinted cell and a dot <i class="mark-key"></i> by
+      each family that changed them. Nunuïkode counts Nunuïko’s changes and its own code edits, not
+      the moving and condensing every glyph gets to fit the cell.</p>
     <div class="chars" id="chars"></div>
   </section>
 
@@ -394,6 +406,8 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     cas: { fam: "'CAS', 'CASX'", name: 'Cascadia Code (200–700)', c: '#6B6B70', hash: 'cascadia' },
   };
   const FAMILIES = ['nk', 'nd', 'kd'];
+  // characters each family draws differently from its stock font (make_proof.py)
+  const NONSTOCK = {"nk": "1JKQafkl¹¼½àáâãäåāăĲĴĶķĸĺļľŀłǇǉǊǎǩǻȁȃȧЈаӑӓԚḷḻạảấầẩẫậắằẳẵặ₁ﬀﬁﬂﬃﬄ", "nd": "!.1:;?JKQafijkl¡¨·¹¼½¿ÄËÏÖÜàáâãäåëïö÷üÿāăąĊċĖėĠġįİĲĳĴĶķĸĺļľĿŀłŸŻżǇǈǉǊǋǌǎǩǻȁȃȦȧȪȫȰȱ˙̣̤̇̈ЁЇЈаёіїјӏӑӒӓӚӛӜӝӞӟӤӥӦӧӪӫӬӭӰӱӴӵӸӹԚḌḍḤḥḮḯḶḷḻṂṃṄṅṆṇṎṏṚṛṠṡṢṣṤṥṦṧṨṩṬṭṺṻẄẅẎẏẒẓẗẠạảấầẩẫẬậắằẳẵẶặẸẹỆệỊịỌọỘộỢợỤụỰựỴỵ…⁒₁∙ﬀﬁﬂﬃﬄ", "kd": "$%()01@IJKQW[]afiklrt{|}¦¹¼½ÌÍÎÏàáâãäåìíîïāăĨĩĪīĬĭİıĲĴĶķĸĺļľŀłŕŗřţťŧŴǇǉǊǎǩǻȁȃȈȉȊȋȑȓțȧІЇЈаіїӀӑӓԚԜḮḯḷḻṛṟṭṯẀẂẄẗạảấầẩẫậắằẳẵặỈỉỊị⁰₀₁ﬀﬁﬂﬃﬄ"};
   const STOCK = { nk: 'no', nd: 'ns', kd: 'no' };
   const CHANGES_FROM = { nk: 'changes from Nunito', nd: 'changes from Nunito Sans',
     kd: 'its own changes, on top of Nunuïko’s' };
@@ -413,7 +427,6 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     nd: [
       ['14 · l', 'A plain stem like I by default; the tailed l (edit 01) is in ss02. Composites follow.', 'l fl lá ľ ŀl ł Il1'],
       ['02 · f', 'Top terminal rotated 10° into a downturn. fi is edited too; fl follows.', 'f fi fl ff ffi ffl fjord'],
-      ['03 · G', 'Rebuilt on the O’s round bowl.', 'G Go GG Ğ Ģ GOOD'],
       ['04 · Q', 'Jost-style straight slash with round caps, crossing the bottom-right of the ring.', 'Q QU Query IQ'],
       ['05 · J', 'U-hook foot, widened to 0.66 × the U, ending in a flat cut. IJ, NJ and Ĵ follow.', 'J Jump IJ NJ Ĵ'],
       ['08 · ff', 'ff, ffi and ffl ligatures with a joined crossbar.', 'ff ffi ffl offline affix baffle'],
@@ -500,8 +513,12 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       cell.append(u);
       for (const k of faces) {
         const g = document.createElement('span'); g.className = 's g'; g.textContent = ch;
+        if (tab === 'family' && NONSTOCK[k] && NONSTOCK[k].includes(ch)) {
+          g.classList.add('mod'); cell.classList.add('has-mod');
+          g.title = FACES[k].name + ' (non-stock)';
+        }
         g.style.setProperty('--f', FACES[k].fam); g.style.setProperty('--c', FACES[k].c);
-        g.title = FACES[k].name;
+        if (!g.title) g.title = FACES[k].name;
         cell.append(g);
       }
       box.append(cell);

@@ -7,7 +7,9 @@ Embeds as base64 woff2 into template.html:
   - the sources as they were before any edit, Nunito and Nunito Sans, read
     from git history (ORIGINALS), so they never drift;
   - Cascadia Code (Latin and Latin Extended woff2 from the pinned fontsource
-    package, OFL), downloaded once into proof/.cache/ (gitignored).
+    package, OFL), downloaded once into proof/.cache/ (gitignored);
+and, for the non-stock marks, which characters each family draws
+differently from its stock font (changed.py).
 
 Run from the repo root with any family's venv (it needs fontTools and
 brotli), after every build:
@@ -15,12 +17,15 @@ brotli), after every build:
 Output: docs/index.html, committed and served by GitHub Pages.
 """
 import base64
+import json
 import pathlib
 import subprocess
 import tempfile
 import urllib.request
 
 from fontTools.ttLib.woff2 import compress
+
+import changed
 
 HERE = pathlib.Path(__file__).parent
 ROOT = HERE.parent
@@ -50,6 +55,15 @@ REMOTE = {
     "%%CASX_I%%": "cascadia-code-latin-ext-wght-italic.woff2",
 }
 CACHE = HERE / ".cache"
+# stock and our .glyphs sources, for the non-stock marks
+SOURCES = {
+    "nk": [(("7539f1e9", "nunuiko/sources/Nunito.glyphs"), "nunuiko/sources/Nunuiko.glyphs")],
+    "nd": [(("0bac6f5d", "nunuiko-display/sources/NunitoSans.glyphs"),
+            "nunuiko-display/sources/NunuikoDisplay.glyphs"),
+           (("0bac6f5d", "nunuiko-display/sources/NunitoSans-Italic.glyphs"),
+            "nunuiko-display/sources/NunuikoDisplay-Italic.glyphs")],
+}
+KODE_EDITED = "nunuikode/sources/edited-characters.txt"
 
 
 def woff2_b64(ttf_bytes):
@@ -74,8 +88,23 @@ def remote_b64(name):
     return base64.b64encode(path.read_bytes()).decode()
 
 
+def non_stock():
+    out = {}
+    with tempfile.TemporaryDirectory() as tmp:
+        for fam, pairs in SOURCES.items():
+            chars = set()
+            for (commit, stock), ours in pairs:
+                dest = pathlib.Path(tmp, pathlib.Path(stock).name)
+                changed.from_history(ROOT, commit, stock, dest)
+                chars |= changed.source_changes(str(dest), str(ROOT / ours))
+            out[fam] = chars
+    out["kd"] = out["nk"] | set((ROOT / KODE_EDITED).read_text().strip())
+    return {k: "".join(sorted(v)) for k, v in out.items()}
+
+
 def main():
     html = (HERE / "template.html").read_text()
+    html = html.replace("%%NONSTOCK%%", json.dumps(non_stock(), ensure_ascii=False))
     for token, path in BUILT.items():
         html = html.replace(token, woff2_b64((ROOT / path).read_bytes()))
     for token, (commit, path) in ORIGINALS.items():
