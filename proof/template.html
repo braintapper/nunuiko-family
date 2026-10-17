@@ -112,7 +112,7 @@
     padding: 8px 14px 9px; margin-bottom: -1px; cursor: pointer; }
   .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
   .tab-note { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
-  :root:not(.t-family) [data-tab="family"], :root:not(.t-stock) [data-tab="stock"] { display: none !important; }
+  :root:not(.t-family) [data-in="family"], :root:not(.t-stock) [data-in="stock"] { display: none !important; }
 
   /* sections for one family only */
   [data-only] { display: none; }
@@ -158,9 +158,9 @@
     <button role="tab" data-tab="family" aria-selected="true">Family</button>
     <button role="tab" data-tab="stock" aria-selected="false">Stock</button>
   </div>
-  <p class="tab-note" data-tab="family">Compare the families with each other. Switch any of them
+  <p class="tab-note" data-in="family">Compare the families with each other. Switch any of them
     on; every sample shows them one above the next.</p>
-  <p class="tab-note" data-tab="stock">Compare each family with the stock font it is derived from:
+  <p class="tab-note" data-in="stock">Compare each family with the stock font it is derived from:
     Nunuïko and Nunuïkode with Nunito, Nunuïko Display with Nunito Sans. Each family sits right above
     its stock font.</p>
 
@@ -173,7 +173,7 @@
         <button data-face="kd" aria-pressed="true">Nunuïkode</button>
       </div>
     </div>
-    <div class="ctl" data-tab="family">
+    <div class="ctl" data-in="family">
       <span class="lab" id="ref-lab">Also show</span>
       <div class="seg" role="group" aria-labelledby="ref-lab">
         <button data-face="cas" aria-pressed="false">Cascadia Code</button>
@@ -231,7 +231,7 @@ const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
     <div class="chars" id="chars"></div>
   </section>
 
-  <section data-tab="stock">
+  <section data-in="stock">
     <h2>What changed</h2>
     <p class="note">Every change from the stock font, newest last, for each family switched on;
       the full record is in each family’s GLYPHLOG.md.</p>
