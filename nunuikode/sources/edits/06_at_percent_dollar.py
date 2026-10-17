@@ -1,7 +1,9 @@
-"""Code edit 6: % gets smaller round rings; $ is no taller than the S.
-(The @ is done by edit 8, with the © and ®.)
+"""Code edit 6: % gets smaller round rings.
+(The @ is done by edit 8, with the © and ®. The $ used to be shrunk here to
+the S's height; since Nunuiko's edit 19 it is a full-size S with a stroke
+through it, which Nunuikode takes as it is.)
 
-scale_kept, used here and by edit 8, scales an outline while keeping its
+scale_kept, used by edit 8, scales an outline while keeping its
 stroke weight: scaling down would thin every stroke, so each on-curve
 point moves out along its normal by half the lost thickness, handles
 following their on-curve point (as build.py does across x when
@@ -15,13 +17,6 @@ condensing).
    made WIDTH wide around the slash's centre, which is left as it was, so
    it fits the cell without condensing. Heavy's thick strokes are capped
    at MAXT x the radius so a counter stays. ‰ keeps its rings.
-
-$: Nunuiko's $ is an S with the bar sticking out above and below it
-   (-121..826 at ExtraLight). It is scaled down uniformly until its full
-   height, bar ends included, is the S's own, so the S in it is smaller
-   than a regular S. Stroke weight is kept (scale_kept). Since Nunuiko's
-   edit 16 its $ already has the S's height, so this is a no-op on a
-   snapshot taken after that.
 """
 import math
 
@@ -68,16 +63,6 @@ def scale_kept(g, s, sy, ox, oy, nx, ny, stem, tan):
             y = ny + (un[k][1] - oy) * sy + d[k][1]
             p.x = nx + (un[k][0] - ox) * s + d[k][0] + y * tan
             p.y = y
-
-
-def shrink_dollar(g, ref, stem, tan):
-    """$: uniformly, so its full height (bar ends) is the S's."""
-    x0, y0, x1, y1 = bounds(g, tan)
-    _, lo, _, hi = bounds(ref, tan)
-    s = (hi - lo - stem) / (y1 - y0 - stem)
-    cx = (x0 + x1) / 2
-    scale_kept(g, s, s, cx, y0, cx, lo + (1 - s) * stem / 2, stem, tan)
-    return s
 
 
 def ring(pen, sl, cx, cy, rx, ry, ccw):
@@ -133,9 +118,8 @@ def redo_percent(ufo, lo, hi, tan):
 
 def apply(ufo, stem, tan):
     for name in ufo.keys():
-        assert not any(c.baseGlyph in ("percent", "dollar")
+        assert not any(c.baseGlyph == "percent"
                        for c in ufo[name].components), name
     lo, hi = o_bounds(ufo)
     tx, ty = redo_percent(ufo, lo, hi, tan)
-    sd = shrink_dollar(ufo["dollar"], ufo["S"], stem, tan)
-    print(f"  % rings {RING * ufo.info.capHeight:.0f}, thickness {tx:.0f}/{ty:.0f}; $ scaled {sd:.2f}")
+    print(f"  % rings {RING * ufo.info.capHeight:.0f}, thickness {tx:.0f}/{ty:.0f}")

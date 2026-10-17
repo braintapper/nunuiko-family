@@ -595,7 +595,10 @@ Same as Display:
 
 ---
 
-## 16. $ — no taller than the S ◐ (2026-10-17)
+## 16. $ — no taller than the S ❌ SUPERSEDED by edit 19 (2026-10-17)
+
+*Replaced the same day: the $ is now a full-size S with a stroke through it
+(edit 19). Kept for the record.*
 
 **Intent (user):** the $ gets the same treatment as in Nunuïkode: shrunk to
 fit between the baseline and the cap height.
@@ -615,6 +618,188 @@ Done unslanted in the italic. No composite uses the $.
 Heavy; italics 0.755 / 0.728 / 0.695.
 
 ### Checks
+- [x] All masters compatible; build clean
+- [ ] Visual check (user)
+
+---
+
+## 18. G — the bottom-right follows the O's bowl up to the bar ◐ (2026-10-17)
+
+**Intent (user):** the bottom curve comes up the right side before the
+straight stroke starts, keeping the shape of Nunito's G. References: Bryant
+(the user's screenshot) and Proxima Nova.
+
+**Script:** `sources/edits/18_G_rounder_bottom.py`, run once. Nunuïko first;
+Display's G is back to stock until this one is right.
+
+**How it got here (all 2026-10-17):** four versions kept the stock stem's x
+and only reshaped the curve into it: the stem starting halfway up with the
+O's tension; then at ~0.7 of the bar height (the top arc's proportions);
+then 0.08 fuller; then the stem 20 units right of the terminal with the arc
+rising to the bar. The user found each still off, and sent Bryant's G next to
+ours. Measured, the difference is width: Bryant's G is an O with a gap at the
+upper right, while Nunito's stem stands 55 units (ExtraLight) inside the O's
+right side, so any curve into it is squeezed.
+
+**Operation, per master** (unslanted in the italic): the G's bottom-right is
+redrawn on the O's. Nunito's G already shares the O's skeleton on the left,
+top and bottom (see edit 5's log).
+- **Outer:** a curve from the G's outer bottom point to the O's rightmost
+  point (its x and height, vertical there), with the tensions of the O's own
+  bottom-right quarter, cut where it reaches the stem's top node L (where the
+  bar's top-right corner starts; the O's widest point is just above, at the
+  bar's top). L moves to the cut; the bar's corner moves across with it.
+- **Inner:** the same on the O's inner contour, from the G's inner bottom
+  point, cut at the bar's underside. The stock inner stem and its notch (a
+  hidden overlap) go.
+- **Even upstroke** (user: "the thickness needs to be a little more
+  consistent on the upstroke", subtly): the O's sides are heavier than its
+  bottom, so the stroke thickened toward the bar (Bold: 110 at the bottom, 132
+  just under the bar, 144 at the corner). The inner rightmost point moves out
+  so the side keeps only `SIDE` (0.5) of the O's extra side weight: Bold now
+  110 → 121, 133 at the corner; ExtraLight 41 → 43 (was 45).
+- **Advance** := the O's, as for Ğ Ǧ Ĝ Ģ Ġ Ḡ; top and bottom anchors := the O's.
+- 44 → 38 nodes, the same in every master.
+
+**Result:** right side 628 → 684 / 665 → 731 / 701 → 778 (ExtraLight / Bold /
+Heavy), italic 590 → 636 / 628 → 682 / 666 → 729 (unslanted); advance 718 →
+751 / 736 → 785 / 754 → 820. The bar, the arm and terminal, the left side and
+the bottom point are unchanged. This is close to edit 5's July construction
+(also on the O's bowl), which was reverted for unrelated reasons (an SFD
+reshape that couldn't be reproduced), not for the shape.
+
+### Checks
+- [x] All masters compatible; build clean
+- [ ] Visual check (user), then derive Nunuïkode from Nunuïko
+
+---
+
+## 19. $ — a full-size S with a stroke right through it ◐ (2026-10-17)
+
+**Intent (user):** the $ is a full-size S with a full vertical stroke going
+through it (replaces edit 16).
+
+**Script:** `sources/edits/19_dollar_full_s.py`, the same file in Nunuïko and
+Display, run once per source.
+
+**Operation, per master:** the $ is rebuilt as
+- the **S as a component**, at full size and with the S's advance (600 / 631 /
+  663 at ExtraLight / Bold / Heavy; the stock $ was 600 in every master), so
+  later changes to the S reach the $;
+- **one straight stroke** as its own contour, overlapping the S: as thick as
+  the stock bar (40 / 100 / 160) and reaching as far as it did (−121..826 at ExtraLight),
+  centred across on the S's outline. Its ends are round, half-circles like the stock stub ends. It follows the slant
+  in the italic and runs in the same direction as the S's outer contour, so
+  the overlap fills.
+
+The thickness and reach are read per master from the stock $ in git history.
+
+### Checks
+- [x] All masters compatible; build clean
+- [ ] Visual check (user)
+
+---
+
+## 20. % — round rings ◐ (2026-10-17)
+
+**Intent (user):** the % rings become symmetric circles instead of o-like
+ovals.
+
+**Script:** `sources/edits/20_percent_round_rings.py`, the same file in Nunuïko
+and Display, run once per source.
+
+**Operation, per master:** each ring (326 × 431 at ExtraLight) becomes a
+circle as wide as it was, with an even stroke all round (the old ring's side
+thickness), so the counter is a circle too. The upper ring keeps its top, the
+lower ring its bottom, both keep their centre across. Each ring keeps its 12
+nodes in the same order and direction, each redrawn on the circle by its role
+(right, top, left, bottom). The stroke is capped so the counter is at least
+0.35 × the radius (Heavy: 126 instead of the stock side thickness). The slash,
+the advance and ‰ are unchanged. In the italic the circles are drawn unslanted
+and then slanted.
+
+**Result:** rings 326 / 356 / 388 across (ExtraLight / Bold / Heavy), stroke
+42 / 102 / 126; italic 322 / 346 / 369.
+
+### Checks
+- [x] All masters compatible; build clean
+- [ ] Visual check (user)
+
+---
+
+## 21. ¢ — one stroke right through it ◐ (2026-10-17)
+
+**Intent (user):** the cent sign gets a full vertical stroke, like the $.
+
+**Script:** `sources/edits/21_cent_full_stroke.py` (shared), run once per
+source.
+
+**Operation, per master:** a straight stroke is added as its own contour,
+overlapping the c: exactly the stock stubs' thickness and reach (40 / 100 /
+160 thick; −121..610 at ExtraLight), so the outline is unchanged outside the
+c and the stroke now runs on through the counter. Round ends (half-circles), as the stubs have. It follows
+the slant in the italic and runs in the outer contour's direction so the
+overlap fills. The stubs are the on-curve nodes above x-height + 30.
+(`signed_area` in edit 19, used for the direction, now uses the control
+polygon: on-curve points alone can get the sign wrong.)
+
+---
+
+## 22. & — the arm stops a little past the diagonal ◐ (2026-10-17)
+
+**Intent (user):** shorten the &'s right arm (the one rising from the bowl to
+near the x-height) so it ends only a little past where it crosses the diagonal.
+
+**Script:** `sources/edits/22_ampersand_short_arm.py` (shared), run once per
+source.
+
+**Operation, per master:** the arm's outer edge is cut at
+y = junction + `TAIL` (0.3) × (old end − junction), the junction being the node
+where the arm's inner edge meets the diagonal; the inner edge is cut where the
+perpendicular to the stroke through that point crosses it. The round end is rebuilt as a half-circle across the stroke.
+Nodes and types unchanged.
+
+**Result:** outer end 387 → 229 / 375 → 261 / 362 → 293 (ExtraLight / Bold / Heavy);
+junction 161 / 212 / 263.
+
+---
+
+## 23. R — straight leg, no transition into the bowl ◐ (2026-10-17)
+
+**Intent (user):** no curved transition into the R's slanted leg; reference
+Proxima Nova's R.
+
+**Script:** `sources/edits/23_R_straight_leg.py` (shared), run once per source.
+
+**Operation, per master:** both edges of the leg run straight until they meet:
+the inner edge's straight part is extended up to the crotch line under the
+bowl (the line's end node moves there, a sharp corner; the curve between goes),
+and the outer edge's straight part is extended until it crosses the bowl's
+outer curve (a sharp corner there; the bowl curve is split and its upper part
+kept; the curve into the bowl and the hidden notch go). 35 → 27 nodes.
+Composites follow. `lib.apply_edit` gained a `path` option so `replace_nodes`
+can rewrite one path of a multi-path glyph.
+
+**Result:** crotch at x 404 / 374 / 344 (was 295 / 300 / 305), leg meets the
+bowl at (442, 326) / (502, 305) / (561, 285) (upright ExtraLight / Bold / Heavy).
+
+---
+
+## 24. 6 — a shorter tail ◐ (2026-10-17)
+
+**Intent (user):** shorten the tail on the 6.
+
+**Script:** `sources/edits/24_six_short_tail.py` (shared), run once per source,
+on six, six.tosf and six.dnom (numerators, superiors and inferiors follow).
+
+**Operation, per master:** the hook's outer edge is cut so it reaches `KEEP`
+(0.7, after a first try at 0.6) as far right of the top point as before; the inner edge is cut on the
+perpendicular through that point. The round end is redrawn as a half-circle (handles 4/3 × the radius).
+Nodes and types unchanged.
+
+**Result:** outer end at ExtraLight (529, 630) → (473, 676). The 9 is unchanged.
+
+### Checks (21–24)
 - [x] All masters compatible; build clean
 - [ ] Visual check (user)
 

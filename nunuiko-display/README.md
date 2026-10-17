@@ -12,7 +12,7 @@ the plain-terminal sister of [Nunuïko](../nunuiko/).
 - Changes from Nunito Sans so far: a plain l like I by default (the tailed l
   is in ss02); a downturned f terminal; a J with an upturned hooked foot, rising as high as Nunuïko's; a Jost-style Q slash; ff / ffi / ffl ligatures with a
   joined crossbar; a K and k whose leg grows out of the arm; round dots, and
-  round heads on commas and quotes; a rounder a; a $ no taller than the S; and a footless 1, proportional by default. Every change is logged
+  round heads on commas and quotes; a rounder a; a $ that is a full-size S with a stroke through it; a G whose bottom-right follows the O's bowl up to the bar; a % with round rings; a ¢ with a full stroke; a shorter & arm; an R whose leg leaves the bowl straight; a shorter tail on the 6; and a footless 1, proportional by default. Every change is logged
   per master in `GLYPHLOG.md`.
 
 ## Building

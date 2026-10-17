@@ -248,3 +248,21 @@ in Cascadia Code. So mirror, array, remove and remote set with holes.
   62..643 at ExtraLight, 81..624 at Heavy. It no longer drops below the
   baseline and is no longer condensed. The edit would also cap the height at
   the O's; the @ doesn't need it.
+
+## 12. Snapshot re-synced: Nunuïko's G, $, %, ¢, &, R and 6 ◐ (2026-10-17)
+
+`sources/upstream/Nunuiko.glyphs` re-copied from `../nunuiko/sources/` with
+Nunuïko's edits 16–24 (in the same commit as Nunuïko's own source, so
+`NUNUIKO_COMMIT` now just says so). Nunuïkode now has, as drawn there:
+the G whose bottom-right follows the O's bowl up to the bar (18),
+the $ as a full-size S with a stroke through it (19), the ¢ with a full stroke
+(21), the shorter & arm (22), the R with a straight leg (23) and the shorter
+tail on the 6 (24). The monospace step fits them into the cell as usual.
+
+- **$:** code edit 6 no longer shrinks the $ to the S's height (§8): it takes
+  Nunuïko's full-size S with its stroke as it is.
+- **%:** code edit 6 still redraws the rings as circles 0.4 × the cap height,
+  smaller than Nunuïko's round rings (edit 20), so the % fits the cell; with
+  Nunuïko's even stroke the ring thickness is now the same all round
+  (42 / 102 at ExtraLight / Bold).
+

@@ -27,8 +27,10 @@ def apply_edit(glyphs_path, glyph_name, edit_fn):
     edit_fn(master_name, layer, nodes) -> dict with optional keys:
       'nodes':   {global_node_index: (new_x, new_y)}  (index across all
                  paths, concatenated in order)
-      'replace_nodes': full replacement outline for a SINGLE-path glyph:
+      'replace_nodes': full replacement outline for a SINGLE-path glyph,
+                 or for path number 'path' of any glyph:
                  list of (x, y, type, smooth) tuples — may change count
+      'path':    with 'replace_nodes', which path (index) it replaces
       'width':   new advance width (int)
       'anchors': {anchor_name: (new_x, new_y)}
     Coordinates are rounded to int. Returns True if the file changed.
@@ -57,9 +59,14 @@ def apply_edit(glyphs_path, glyph_name, edit_fn):
         region = block[lstart : wmatch.end()]
 
         if result.get("replace_nodes") is not None:
-            assert len(layer.paths) == 1, (mname, "replace_nodes needs 1 path")
-            assert region.count("nodes = (") == 1, mname
-            ns = region.index("nodes = (")
+            pi = result.get("path")
+            if pi is None:
+                assert len(layer.paths) == 1, (mname, "replace_nodes needs 1 path or 'path'")
+                pi = 0
+            assert region.count("nodes = (") == len(layer.paths), mname
+            ns = -1
+            for _ in range(pi + 1):
+                ns = region.index("nodes = (", ns + 1)
             ne = region.index(");", ns) + 2
             lines = ",\n".join(
                 fmt_node(round(x), round(y), t, sm)

@@ -169,6 +169,8 @@
     border-top: 1px solid #C8C8CC; border-bottom: 1px solid #C8C8CC; }
   :root.solo .chars .g { color: var(--ink); }
   :root.overlay .chars .g { grid-area: 2 / 1; }
+  /* Nunuïkode: grey verticals on its cell's left and right edges (the 600-unit advance) */
+  .chars .g.cell { box-shadow: inset 1px 0 #C8C8CC, inset -1px 0 #C8C8CC; }
   /* non-stock marks (Family tab): the cell is tinted */
   .chars > div.has-mod { background: #FFF5DA; }
   :root.overlay .chars .g + .g { mix-blend-mode: multiply; }
@@ -440,7 +442,13 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       ['10 · dots', 'Every square dot becomes a circle of equal area.', 'i j ä Ö ż ŀ ! ? ¡ ¿ . : ; … · ÷'],
       ['11 · a', 'Bowl 10% taller, curves borrowed from the o, its top arching down into the stem.', 'a aa ao ad á ä ą banana'],
       ['12–13 · 1', 'No foot, proportional by default; tabular figures and ss01 give the footed 1.', '1 11 2011 1,111 Il1 ¹ ₁ ½ ¼'],
-      ['16 · $', 'Shrunk uniformly to the S’s height, between the baseline and the cap height.', '$ $5 $PATH S$S US$100'],
+      ['19 · $', 'A full-size S with one straight stroke right through it.', '$ $5 $PATH S$S US$100'],
+      ['20 · %', 'Round rings, as wide as before, with an even stroke.', '% 50% 100% ‰ 0%'],
+      ['21 · ¢', 'One straight stroke right through the c.', '¢ 50¢ 99¢ c¢c'],
+      ['22 · &', 'The right arm stops a little past the diagonal.', '& R&D AT&T Q&A rock&roll'],
+      ['23 · R', 'The leg leaves the bowl straight, with no curved transition (after Proxima Nova).', 'R RR Run RARE Ŕ Ř'],
+      ['24 · 6', 'A shorter tail.', '6 66 1960 ⁶ ₆ 6/6'],
+      ['18 · G', 'The bottom-right follows the O’s bowl up to the bar (after Bryant): the G is now as wide as the O.', 'G GG Gag GOOGLE Ğ Ģ OGC'],
     ],
     nd: [
       ['14 · l', 'A plain stem like I by default; the tailed l (edit 01) is in ss02. Composites follow.', 'l fl lá ľ ŀl ł Il1'],
@@ -453,8 +461,14 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       ['11 · a', 'Rounder bowl whose top arches down into the stem; curves borrowed from the o.', 'a aa ao ad á ä ą banana'],
       ['12–13 · 1', 'No foot, proportional by default; tabular figures and ss01 give the footed 1.', '1 11 2011 1,111 Il1 ¹ ₁ ½ ¼'],
       ['15 · , ’', 'Commas, quotes and comma accents get a round head, sized like the round dots.', ', ; ‘quote’ “quote” „low“ it’s ș ț ģ ķ ļ'],
-      ['16 · $', 'Shrunk uniformly to the S’s height, between the baseline and the cap height.', '$ $5 $PATH S$S US$100'],
+      ['19 · $', 'A full-size S with one straight stroke right through it.', '$ $5 $PATH S$S US$100'],
+      ['20 · %', 'Round rings, as wide as before, with an even stroke.', '% 50% 100% ‰ 0%'],
+      ['21 · ¢', 'One straight stroke right through the c.', '¢ 50¢ 99¢ c¢c'],
+      ['22 · &', 'The right arm stops a little past the diagonal.', '& R&D AT&T Q&A rock&roll'],
+      ['23 · R', 'The leg leaves the bowl straight, with no curved transition (after Proxima Nova).', 'R RR Run RARE Ŕ Ř'],
+      ['24 · 6', 'A shorter tail.', '6 66 1960 ⁶ ₆ 6/6'],
       ['17 · J', 'The hook rises as high as Nunuïko’s, half the hook weight higher.', 'J Jump IJ NJ Ĵ JUJU'],
+      ['18 · G', 'The bottom-right follows the O’s bowl up to the bar (after Bryant): the G is now as wide as the O.', 'G GG Gag GOOGLE Ğ Ģ OGC'],
     ],
     kd: [
       ['01 · 0', 'Dotted zero.', '0O0o 1000 0x0F 0.05'],
@@ -463,7 +477,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       ['03 · r', 'Drawn from the n’s arch, cut partway down with a round end, and placed exactly like the n.', 'r rn m mirror array error minnow'],
       ['04 · brackets', 'Brackets, braces, parentheses and bars centred on the capitals.', '(x) [0] {} |x| f(a[i]) H(I)'],
       ['05 · W', 'Middle peak lowered by 0.3 × the cap height.', 'W WWW Wiki WAVE w'],
-      ['06 · % $', '% with smaller round rings; $ no taller than the S.', '50% $5 $PATH S$S'],
+      ['06 · %', '% with smaller round rings, to fit the cell.', '50% 100% 0.5%'],
       ['07 · t f', 'Wider crossbars; the f’s top redrawn as the n’s arch.', 't f ft tft fifty after offset'],
       ['08 · © ® @', 'Scaled down to keep their shape in the cell, and centred on the capitals.', '© ® @ ©2026 H®H @user user@host'],
       ['spacing', 'Capitals keep 60 units each side; lowercase letters that sit in too much white widen a little, and open-sided ones sit toward their open side.', 'FROM WHERE JOIN HAVING remove remote'],
@@ -540,6 +554,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       for (const k of faces) {
         const g = document.createElement('span'); g.className = 's g'; g.textContent = ch;
         g.append(Object.assign(document.createElement('i'), { className: 'gl' }));
+        if (k === 'kd') g.classList.add('cell');
         if (tnum) g.classList.add('tnum');
         else if (tab === 'family' && NONSTOCK[k] && NONSTOCK[k].includes(ch)) {
           cell.classList.add('has-mod');

@@ -3,7 +3,8 @@
 __pycache__/
 .DS_Store
 *(Autosaved)*
-Screenshot_*.png
+# screenshots and other images dropped in while working (tracked ones stay tracked)
+*.png
 # build scratch
 build.ninja
 *.ninja_log
