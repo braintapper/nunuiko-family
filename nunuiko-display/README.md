@@ -3,7 +3,7 @@
 A sans derived from [Nunito Sans](https://github.com/Fonthausen/NunitoSans),
 the plain-terminal sister of [Nunuïko](../nunuiko/).
 
-**Proof:** [https://braintapper.github.io/nunuiko-family/#nunuiko-display](https://braintapper.github.io/nunuiko-family/#nunuiko-display) (compared with the original Nunito Sans)
+**Proof:** [https://braintapper.github.io/nunuiko-family/#nunuiko-display,nunito-sans](https://braintapper.github.io/nunuiko-family/#nunuiko-display,nunito-sans) (compared with the original Nunito Sans)
 
 - Variable, Roman and Italic, with Nunito Sans's axes: weight, width,
   optical size and lowercase height

@@ -30,15 +30,12 @@
     --muted: #6B6B70;
     --line: #E6E6E4;
     --accent: #C63A38;
-    --c-a: #C63A38;     /* overlay: the font being proofed */
-    --c-b: #2F62A6;     /* overlay: the comparison */
     --kw: #8A3FB5;      /* keyword */
     --str: #2F7D4F;     /* string */
     --num: #B3561D;     /* number */
     --com: #7A7A80;     /* comment */
     --fn: #2F62A6;      /* function / type */
-    --fa: 'NK';
-    --fb: 'NO';
+    --f: 'NK';
     --wght: 400;
     --wdth: 100;
     --opsz: 12;
@@ -52,12 +49,11 @@
   body { background: var(--bg); color: var(--ink); margin: 0; color-scheme: light;
     font-family: 'NK', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
   .wrap { max-width: 1120px; margin: 0 auto; padding: 40px 16px 90px; }
-  :root.cmp .wrap { max-width: 1680px; }
+  :root:not(.solo) .wrap { max-width: 1840px; }
 
-  /* every sample: the proofed font in the main column, the comparison in .alt */
-  .s { font-family: var(--fa), sans-serif; font-style: var(--fstyle); font-size: var(--size);
+  /* every sample is set once per font switched on, each column with its own --f */
+  .s { font-family: var(--f), sans-serif; font-style: var(--fstyle); font-size: var(--size);
     font-variation-settings: "wght" var(--w, var(--wght)), "wdth" var(--wdth), "opsz" var(--opsz), "YTLC" var(--ytlc); }
-  .alt .s { font-family: var(--fb), sans-serif; }
 
   .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
   h1 { font-size: clamp(44px, 8vw, 88px); line-height: 1; margin: 0 0 12px; letter-spacing: -.01em;
@@ -116,45 +112,51 @@
   [data-only] { display: none; }
   :root.f-nk [data-only~="nk"], :root.f-nd [data-only~="nd"], :root.f-kd [data-only~="kd"] { display: block; }
 
-  /* comparison: each sample is paired with a copy set in the comparison font */
-  .pair { display: grid; gap: 12px; }
-  :root.cmp .pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .pair > .alt, .col-lab { display: none; }
-  :root.cmp .pair > .alt, :root.cmp .col-lab { display: block; }
+  /* one column per font switched on */
+  .set { display: grid; gap: 12px; grid-template-columns: repeat(var(--n, 1), minmax(0, 1fr)); }
   .col-lab { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
-  /* overlay: both in one cell, coloured, so any difference shows as fringing */
-  :root.cmp.overlay .pair { grid-template-columns: minmax(0, 1fr); }
-  :root.cmp.overlay .pair > div { grid-area: 1 / 1; }
-  :root.cmp.overlay .pair .col-lab { display: none; }
-  :root.cmp.overlay .pair > div:first-child .s { color: var(--c-a); }
-  :root.cmp.overlay .pair > .alt { pointer-events: none; }
-  :root.cmp.overlay .pair > .alt .s { color: var(--c-b); mix-blend-mode: multiply; }
-  :root.cmp.overlay .pair > .alt .panel, :root.cmp.overlay .pair > .alt .conf > div,
-  :root.cmp.overlay .pair > .alt textarea { background: transparent; border-color: transparent; }
-  :root.cmp.overlay .pair > .alt [class*="kw"], :root.cmp.overlay .pair > .alt span { color: inherit; }
-  .legend { display: none; gap: 18px; font-size: 13px; color: var(--muted); margin-top: 10px; }
-  :root.cmp.overlay .legend { display: flex; }
-  .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
-  @media (max-width: 760px) { :root.cmp .pair { grid-template-columns: minmax(0, 1fr); } }
+  .col-lab i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 6px; background: var(--c); }
+  :root.solo .col-lab { display: none; }
+  /* overlay: all columns in one cell, each in its colour, so differences show as fringing */
+  :root.overlay .set { grid-template-columns: minmax(0, 1fr); }
+  :root.overlay .set > div { grid-area: 1 / 1; }
+  :root.overlay .set .col-lab { display: none; }
+  :root.overlay .set > div + div { pointer-events: none; }
+  :root.overlay:not(.solo) .set .s, :root.overlay:not(.solo) .set .s span { color: var(--c) !important; }
+  :root.overlay .set > div + div .s { mix-blend-mode: multiply; }
+  :root.overlay .set > div + div .panel, :root.overlay .set > div + div .conf > div,
+  :root.overlay .set > div + div textarea { background: transparent; border-color: transparent; }
+  .legend { display: none; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-top: 10px; }
+  :root.overlay:not(.solo) .legend { display: flex; }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
+  .group { margin: 24px 0 10px; font-size: 15px; font-weight: 800; font-variation-settings: "wght" 800; }
+  @media (max-width: 760px) { .set { grid-template-columns: minmax(0, 1fr); } }
 </style>
 
 <div class="wrap">
   <p class="eyebrow">Proof · Nunuïko Family</p>
-  <h1 id="title">Nunuïko</h1>
-  <p class="sub" id="blurb"></p>
+  <h1>Nunuïko Family</h1>
+  <p class="sub">Three families built on Nunito: <b>Nunuïko</b>, a rounded sans from Nunito;
+    <b>Nunuïko Display</b>, from Nunito Sans, with width, optical size and x-height axes; and
+    <b>Nunuïkode</b>, Nunuïko made monospaced for code. Switch any of them on to set every sample
+    in each, side by side or overlaid, and compare them with the sources or Cascadia Code.</p>
 
   <div class="controls" role="group" aria-label="Proof controls">
     <div class="ctl">
-      <span class="lab" id="font-lab">Font</span>
+      <span class="lab" id="font-lab">Fonts</span>
       <div class="seg" role="group" aria-labelledby="font-lab">
-        <button data-font="nk" aria-pressed="true">Nunuïko</button>
-        <button data-font="nd" aria-pressed="false">Nunuïko Display</button>
-        <button data-font="kd" aria-pressed="false">Nunuïkode</button>
+        <button data-face="nk" aria-pressed="true">Nunuïko</button>
+        <button data-face="nd" aria-pressed="true">Nunuïko Display</button>
+        <button data-face="kd" aria-pressed="true">Nunuïkode</button>
       </div>
     </div>
     <div class="ctl">
-      <label for="cmp">Compare with</label>
-      <select id="cmp"></select>
+      <span class="lab" id="ref-lab">Compare with</span>
+      <div class="seg" role="group" aria-labelledby="ref-lab">
+        <button data-face="no" aria-pressed="false">Nunito</button>
+        <button data-face="ns" aria-pressed="false">Nunito Sans</button>
+        <button data-face="cas" aria-pressed="false">Cascadia Code</button>
+      </div>
     </div>
     <div class="ctl">
       <span class="lab" id="view-lab">View</span>
@@ -191,8 +193,7 @@
       <input type="range" id="yt" min="440" max="540" value="500">
     </div>
   </div>
-  <div class="legend"><span><i class="sw" style="background: var(--c-a)"></i><span id="lg-a"></span></span>
-    <span><i class="sw" style="background: var(--c-b)"></i><span id="lg-b"></span></span></div>
+  <div class="legend" id="legend"></div>
 
   <section>
     <h2>Try your own</h2>
@@ -204,7 +205,8 @@ const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
 
   <section>
     <h2>What changed</h2>
-    <p class="note" id="changes-note"></p>
+    <p class="note">Every change from the source, newest last, for each family switched on. The
+      full record is in each family’s GLYPHLOG.md; switch the source on to compare.</p>
     <div id="changes"></div>
   </section>
 
@@ -352,20 +354,17 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   const $ = (id) => document.getElementById(id);
   const root = document.documentElement;
 
+  // every face the page can show; the first three are the families
   const FACES = {
-    nk: { fam: "'NK'", name: 'Nunuïko' },
-    nd: { fam: "'ND'", name: 'Nunuïko Display' },
-    kd: { fam: "'KD'", name: 'Nunuïkode' },
-    no: { fam: "'NO'", name: 'Nunito' },
-    ns: { fam: "'NS'", name: 'Nunito Sans' },
-    cas: { fam: "'CAS', 'CASX'", name: 'Cascadia Code (200–700)' },
+    nk: { fam: "'NK'", name: 'Nunuïko', c: '#C63A38', hash: 'nunuiko' },
+    nd: { fam: "'ND'", name: 'Nunuïko Display', c: '#2F62A6', hash: 'nunuiko-display' },
+    kd: { fam: "'KD'", name: 'Nunuïkode', c: '#2F7D4F', hash: 'nunuikode' },
+    no: { fam: "'NO'", name: 'Nunito', c: '#B3561D', hash: 'nunito' },
+    ns: { fam: "'NS'", name: 'Nunito Sans', c: '#8A3FB5', hash: 'nunito-sans' },
+    cas: { fam: "'CAS', 'CASX'", name: 'Cascadia Code (200–700)', c: '#6B6B70', hash: 'cascadia' },
   };
+  const FAMILIES = ['nk', 'nd', 'kd'];
   const SOURCE = { nk: 'no', nd: 'ns', kd: 'nk' };
-  const BLURB = {
-    nk: 'A rounded sans derived from Nunito. Compare it with the original Nunito to see every change.',
-    nd: 'Derived from Nunito Sans, the plain-terminal sister of Nunuïko, with width, optical size and x-height axes.',
-    kd: 'Nunuïko made monospaced for code: every glyph in a 600-unit cell, with code-specific letterforms.',
-  };
   // [title, caption, sample] per family, newest edits last (from each GLYPHLOG.md)
   const CHANGES = {
     nk: [
@@ -404,11 +403,14 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     ],
   };
 
-  // the URL hash names the font, so links can open the page on one
-  const HASH = { nk: 'nunuiko', nd: 'nunuiko-display', kd: 'nunuikode' };
-  const fromHash = Object.keys(HASH).find((k) => '#' + HASH[k] === location.hash);
-  const st = { font: fromHash || 'nk', cmp: 'src', view: 'side' };
-  const cmpFace = () => (st.cmp === 'src' ? SOURCE[st.font] : st.cmp === 'none' ? null : st.cmp);
+  // which faces are on: each button is its own true/false; the URL hash
+  // lists them (#nunuiko,nunuikode), so links can open the page on a set
+  const on = new Set(['nk', 'nd', 'kd']);
+  const fromHash = location.hash.slice(1).split(',')
+    .map((h) => Object.keys(FACES).find((k) => FACES[k].hash === h)).filter(Boolean);
+  if (fromHash.length) { on.clear(); fromHash.forEach((k) => on.add(k)); }
+  let view = 'side';
+  const shown = () => Object.keys(FACES).filter((k) => on.has(k));
 
   const set = (k, v) => root.style.setProperty(k, v);
   const sliders = [['w', '--wght', ''], ['sz', '--size', 'px'], ['wd', '--wdth', ''], ['op', '--opsz', ''], ['yt', '--ytlc', '']];
@@ -417,36 +419,6 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     const go = () => { set(prop, $(id).value + unit); out.textContent = $(id).value + unit; };
     $(id).addEventListener('input', go); go();
   }
-
-  // pair every sample with a copy for the comparison (built when needed)
-  const altLabs = [];
-  const pairUp = (el) => {
-    const copy = el.cloneNode(true);
-    copy.removeAttribute('id');
-    copy.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
-    const pair = document.createElement('div'); pair.className = 'pair';
-    el.replaceWith(pair);
-    for (const [node, main] of [[el, true], [copy, false]]) {
-      const col = document.createElement('div');
-      if (!main) col.className = 'alt';
-      const lab = document.createElement('p'); lab.className = 'col-lab';
-      col.append(lab, node); pair.append(col);
-      altLabs.push([lab, main]);
-    }
-    // editable samples: the copy follows what is typed
-    if (el.tagName === 'TEXTAREA') {
-      copy.readOnly = true; copy.tabIndex = -1; copy.setAttribute('aria-hidden', 'true');
-      el.addEventListener('input', () => { copy.value = el.value; });
-      el.addEventListener('scroll', () => { copy.scrollTop = el.scrollTop; });
-    }
-    const pre = el.querySelector(':scope > pre[contenteditable]');
-    if (pre) {
-      const twin = copy.querySelector(':scope > pre');
-      twin.removeAttribute('contenteditable');
-      pre.addEventListener('input', () => { twin.innerHTML = pre.innerHTML; });
-    }
-    return pair;
-  };
 
   // generated content
   const line = 'Il1 fluff Quiz Jump fjord · kayak banana · 0O 2011 · {x}';
@@ -467,72 +439,114 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   for (let c = 33; c < 127; c++) chars += String.fromCharCode(c);
   chars += ' ¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ ŁłŒœŠšŸŽžƒ ‘’“”•–—…‰€™';
   $('ascii').textContent = chars;
-
   document.querySelectorAll('.wrap section > .panel > pre.s').forEach((pre) => {
     pre.contentEditable = 'plaintext-only'; pre.spellcheck = false;
   });
-  for (const el of document.querySelectorAll('.wrap section > .panel, .wrap section > .conf, .wrap section > textarea')) pairUp(el);
 
+  // each sample becomes a set: one column per face on, cloned from the
+  // sample; what is typed in any column is kept and shown in all of them
+  const sets = [];
+  const makeSet = (el) => {
+    const box = document.createElement('div'); box.className = 'set';
+    el.replaceWith(box);
+    const it = { box, master: el, text: el.tagName === 'TEXTAREA' ? el.value : null, html: null };
+    sets.push(it);
+    return it;
+  };
+  const fill = (it) => {
+    const faces = shown();
+    it.box.textContent = '';
+    it.box.style.setProperty('--n', faces.length);
+    const nodes = [];
+    for (const k of faces) {
+      const col = document.createElement('div');
+      col.style.setProperty('--f', FACES[k].fam);
+      col.style.setProperty('--c', FACES[k].c);
+      const lab = document.createElement('p'); lab.className = 'col-lab';
+      const sw = document.createElement('i');
+      lab.append(sw, FACES[k].name);
+      const node = it.master.cloneNode(true);
+      node.removeAttribute('id');
+      node.querySelectorAll('[id]').forEach((n) => n.removeAttribute('id'));
+      col.append(lab, node); it.box.append(col); nodes.push(node);
+    }
+    nodes.forEach((node, i) => {
+      if (node.tagName === 'TEXTAREA') {
+        node.value = it.text;
+        node.addEventListener('input', () => {
+          it.text = node.value;
+          nodes.forEach((m) => { if (m !== node) m.value = it.text; });
+        });
+        node.addEventListener('scroll', () => nodes.forEach((m) => { if (m !== node) m.scrollTop = node.scrollTop; }));
+      }
+      const pre = node.querySelector(':scope > pre[contenteditable]');
+      if (pre) {
+        if (it.html !== null) pre.innerHTML = it.html;
+        if (view === 'overlay' && i > 0) pre.removeAttribute('contenteditable');
+        pre.addEventListener('input', () => {
+          it.html = pre.innerHTML;
+          nodes.forEach((m) => { const p = m.querySelector(':scope > pre'); if (p !== pre) p.innerHTML = it.html; });
+        });
+      }
+    });
+  };
+  for (const el of document.querySelectorAll('.wrap section > .panel, .wrap section > .conf, .wrap section > textarea')) makeSet(el);
+
+  // what changed: a group per family on, each change set in every face on
+  const changeSets = [];
   const renderChanges = () => {
     const box = $('changes');
     box.textContent = '';
-    for (const [title, cap, sample] of CHANGES[st.font]) {
-      const row = document.createElement('div'); row.className = 'change';
-      const p = document.createElement('p');
-      const b = document.createElement('b'); b.textContent = title;
-      p.append(b, ' — ' + cap);
-      const panel = document.createElement('div'); panel.className = 'panel';
-      const s = document.createElement('div'); s.className = 's big'; s.textContent = sample;
-      panel.append(s); row.append(p, panel); box.append(row);
-      pairUp(panel);
+    changeSets.length = 0;
+    for (const f of FAMILIES.filter((k) => on.has(k))) {
+      const h = document.createElement('h3'); h.className = 'group';
+      h.textContent = FACES[f].name + ' — changes from ' + FACES[SOURCE[f]].name;
+      box.append(h);
+      for (const [title, cap, sample] of CHANGES[f]) {
+        const row = document.createElement('div'); row.className = 'change';
+        const p = document.createElement('p');
+        const b = document.createElement('b'); b.textContent = title;
+        p.append(b, ' — ' + cap);
+        const panel = document.createElement('div'); panel.className = 'panel';
+        const s = document.createElement('div'); s.className = 's big'; s.textContent = sample;
+        panel.append(s); row.append(p, panel); box.append(row);
+        const box2 = document.createElement('div'); box2.className = 'set';
+        panel.replaceWith(box2);
+        changeSets.push({ box: box2, master: panel, text: null, html: null });
+      }
     }
-    $('changes-note').textContent = 'Every change from ' + FACES[SOURCE[st.font]].name +
-      ', newest last; the full record is in the family’s GLYPHLOG.md.';
   };
 
   const update = () => {
-    const b = cmpFace();
-    root.classList.remove('f-nk', 'f-nd', 'f-kd');
-    root.classList.add('f-' + st.font);
-    root.classList.toggle('cmp', !!b);
-    root.classList.toggle('overlay', st.view === 'overlay');
-    root.classList.toggle('axes-on', st.font === 'nd' || b === 'nd' || b === 'ns');
-    set('--fa', FACES[st.font].fam);
-    if (b) set('--fb', FACES[b].fam);
-    $('title').textContent = FACES[st.font].name;
-    $('blurb').textContent = BLURB[st.font];
-    $('lg-a').textContent = FACES[st.font].name;
-    $('lg-b').textContent = b ? FACES[b].name : '';
-    for (const [lab, main] of altLabs) lab.textContent = main ? FACES[st.font].name : (b ? FACES[b].name : '');
-    document.querySelectorAll('[data-font]').forEach((n) => n.setAttribute('aria-pressed', String(n.dataset.font === st.font)));
-    document.querySelectorAll('[data-view]').forEach((n) => n.setAttribute('aria-pressed', String(n.dataset.view === st.view)));
-    // compare options: off, the source, and every other face
-    const sel = $('cmp');
-    sel.textContent = '';
-    const opt = (v, t) => { const o = document.createElement('option'); o.value = v; o.textContent = t; sel.append(o); };
-    opt('none', 'Nothing');
-    opt('src', 'Its source: ' + FACES[SOURCE[st.font]].name);
-    for (const k of Object.keys(FACES)) if (k !== st.font && k !== SOURCE[st.font]) opt(k, FACES[k].name);
-    sel.value = st.cmp;
+    const faces = shown();
+    for (const f of FAMILIES) root.classList.toggle('f-' + f, on.has(f));
+    root.classList.toggle('solo', faces.length === 1);
+    root.classList.toggle('overlay', view === 'overlay');
+    root.classList.toggle('axes-on', on.has('nd') || on.has('ns'));
+    set('--f', FACES[faces[0]].fam);
+    document.querySelectorAll('[data-face]').forEach((n) => n.setAttribute('aria-pressed', String(on.has(n.dataset.face))));
+    document.querySelectorAll('[data-view]').forEach((n) => n.setAttribute('aria-pressed', String(n.dataset.view === view)));
+    const lg = $('legend');
+    lg.textContent = '';
+    for (const k of faces) {
+      const sp = document.createElement('span'); const i = document.createElement('i');
+      i.style.background = FACES[k].c; sp.append(i, FACES[k].name); lg.append(sp);
+    }
+    renderChanges();
+    [...sets, ...changeSets].forEach(fill);
+    history.replaceState(null, '', '#' + faces.map((k) => FACES[k].hash).join(','));
   };
 
-  document.querySelectorAll('[data-font]').forEach((n) => n.addEventListener('click', () => {
-    st.font = n.dataset.font;
-    history.replaceState(null, '', '#' + HASH[st.font]);
-    if (st.cmp === st.font || st.cmp === SOURCE[st.font]) st.cmp = 'src';
-    renderChanges();
-    altLabs.length = 0;
-    document.querySelectorAll('.pair .col-lab').forEach((lab) => altLabs.push([lab, !lab.parentElement.classList.contains('alt')]));
+  document.querySelectorAll('[data-face]').forEach((n) => n.addEventListener('click', () => {
+    const k = n.dataset.face;
+    if (on.has(k)) { if (on.size > 1) on.delete(k); } else on.add(k);
     update();
   }));
-  $('cmp').addEventListener('change', () => { st.cmp = $('cmp').value; update(); });
-  document.querySelectorAll('[data-view]').forEach((n) => n.addEventListener('click', () => { st.view = n.dataset.view; update(); }));
+  document.querySelectorAll('[data-view]').forEach((n) => n.addEventListener('click', () => { view = n.dataset.view; update(); }));
   document.querySelectorAll('[data-style]').forEach((n) => n.addEventListener('click', () => {
-    const it = n.dataset.style === 'italic';
-    root.classList.toggle('italic', it);
+    root.classList.toggle('italic', n.dataset.style === 'italic');
     document.querySelectorAll('[data-style]').forEach((m) => m.setAttribute('aria-pressed', String(m === n)));
   }));
 
-  renderChanges();
   update();
 </script>

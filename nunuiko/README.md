@@ -2,7 +2,7 @@
 
 A rounded sans derived from [Nunito](https://github.com/googlefonts/nunito).
 
-**Proof:** [https://braintapper.github.io/nunuiko-family/#nunuiko](https://braintapper.github.io/nunuiko-family/#nunuiko) (compared with the original Nunito)
+**Proof:** [https://braintapper.github.io/nunuiko-family/#nunuiko,nunito](https://braintapper.github.io/nunuiko-family/#nunuiko,nunito) (compared with the original Nunito)
 
 - Variable weight 200–1000, Roman and Italic
   (`fonts/variable/Nunuiko[wght].ttf`, `Nunuiko-Italic[wght].ttf`).

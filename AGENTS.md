@@ -70,12 +70,13 @@ cd sources && PATH=../.venv/bin:$PATH sh build.sh && cd ..   # fonts/variable/
 ```
 
 The proof is one page for all three families (`proof/template.html`, built
-by `proof/make_proof.py` into `docs/index.html`): a segmented button picks the
-font, and a comparison column shows its source (Nunito, Nunito Sans, or
-Nunuïko for Nunuïkode), another family, or Cascadia Code, side by side or
-overlaid. It embeds every font, so it opens anywhere, from disk or the web.
-After a build of any family, regenerate it. `#nunuiko`, `#nunuiko-display` or
-`#nunuikode` in the URL opens it on that font. When a glyph edit lands, add it
+by `proof/make_proof.py` into `docs/index.html`). Toggle buttons switch each
+font on or off independently: the three families, and for comparison Nunito,
+Nunito Sans and Cascadia Code. Every sample is set once per font switched
+on, side by side or overlaid. It embeds every font, so it opens anywhere, from
+disk or the web. After a build of any family, regenerate it. The URL hash
+lists the fonts on (`#nunuiko,nunito`; also `nunuiko-display`, `nunuikode`,
+`nunito-sans`, `cascadia`). When a glyph edit lands, add it
 to that family's list in the template's `CHANGES`.
 
 ## Italics
