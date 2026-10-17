@@ -112,7 +112,8 @@
     padding: 8px 14px 9px; margin-bottom: -1px; cursor: pointer; }
   .tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
   .tab-note { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
-  :root:not(.t-family) [data-in="family"], :root:not(.t-stock) [data-in="stock"] { display: none !important; }
+  :root.t-family [data-in]:not([data-in~="family"]), :root.t-stock [data-in]:not([data-in~="stock"]),
+  :root.t-code [data-in]:not([data-in~="code"]) { display: none !important; }
 
   /* sections for one family only */
   [data-only] { display: none; }
@@ -157,15 +158,18 @@
   <div class="tabs" role="tablist" aria-label="Comparison">
     <button role="tab" data-tab="family" aria-selected="true">Family</button>
     <button role="tab" data-tab="stock" aria-selected="false">Stock</button>
+    <button role="tab" data-tab="code" aria-selected="false">Code</button>
   </div>
   <p class="tab-note" data-in="family">Compare the families with each other. Switch any of them
     on; every sample shows them one above the next.</p>
+  <p class="tab-note" data-in="code">Compare Nunuïkode with Nunuïko, the font it is built from, and
+    with Cascadia Code, a monospaced font made for code (weights 200–700).</p>
   <p class="tab-note" data-in="stock">Compare each family with the stock font it is derived from:
     Nunuïko and Nunuïkode with Nunito, Nunuïko Display with Nunito Sans. Each family sits right above
     its stock font.</p>
 
   <div class="controls" role="group" aria-label="Proof controls">
-    <div class="ctl">
+    <div class="ctl" data-in="family stock">
       <span class="lab" id="font-lab">Fonts</span>
       <div class="seg" role="group" aria-labelledby="font-lab">
         <button data-face="nk" aria-pressed="true">Nunuïko</button>
@@ -173,10 +177,12 @@
         <button data-face="kd" aria-pressed="true">Nunuïkode</button>
       </div>
     </div>
-    <div class="ctl" data-in="family">
-      <span class="lab" id="ref-lab">Also show</span>
-      <div class="seg" role="group" aria-labelledby="ref-lab">
-        <button data-face="cas" aria-pressed="false">Cascadia Code</button>
+    <div class="ctl" data-in="code">
+      <span class="lab" id="code-lab">Fonts</span>
+      <div class="seg" role="group" aria-labelledby="code-lab">
+        <button data-face="kd" aria-pressed="true">Nunuïkode</button>
+        <button data-face="nk" aria-pressed="true">Nunuïko</button>
+        <button data-face="cas" aria-pressed="true">Cascadia Code</button>
       </div>
     </div>
     <div class="ctl">
@@ -429,29 +435,29 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     ],
   };
 
-  // two tabs, each with its own set of fonts on (each button its own
-  // true/false). Family: the families, plus Cascadia Code if on. Stock: each
-  // family on, followed by its stock font. The URL hash holds the tab and
-  // the fonts on (#family/nunuiko,nunuikode or #stock/nunuiko).
+  // three tabs, each with its own set of fonts on (each button its own
+  // true/false). Family: the families. Stock: each family on, followed by
+  // its stock font. Code: Nunuïkode, Nunuïko and Cascadia Code. The URL hash
+  // holds the tab and the fonts on (#stock/nunuiko, #code/nunuikode,cascadia).
   let tab = 'family';
-  const on = { family: new Set(['nk', 'nd', 'kd']), stock: new Set(['nk']) };
+  const on = { family: new Set(['nk', 'nd', 'kd']), stock: new Set(['nk']), code: new Set(['kd', 'nk', 'cas']) };
+  const CODE_ORDER = ['kd', 'nk', 'cas'];
   {
     const [t, list] = location.hash.slice(1).split('/');
     const keys = (list || '').split(',')
       .map((h) => Object.keys(FACES).find((k) => FACES[k].hash === h)).filter(Boolean);
-    if (t === 'family' || t === 'stock') tab = t;
-    const fams = keys.filter((k) => FAMILIES.includes(k));
-    if (fams.length) { on[tab].clear(); keys.forEach((k) => on[tab].add(k)); }
+    if (t in on) tab = t;
+    if (keys.length) { on[tab].clear(); keys.forEach((k) => on[tab].add(k)); }
   }
   let view = 'side';
   const shown = () => {
+    if (tab === 'code') return CODE_ORDER.filter((k) => on.code.has(k));
     const out = [];
     for (const f of FAMILIES) {
       if (!on[tab].has(f)) continue;
       out.push(f);
       if (tab === 'stock' && !out.includes(STOCK[f])) out.push(STOCK[f]);
     }
-    if (tab === 'family' && on.family.has('cas')) out.push('cas');
     return out;
   };
 
@@ -584,6 +590,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     for (const f of FAMILIES) root.classList.toggle('f-' + f, faces.includes(f));
     root.classList.toggle('t-family', tab === 'family');
     root.classList.toggle('t-stock', tab === 'stock');
+    root.classList.toggle('t-code', tab === 'code');
     root.classList.toggle('solo', faces.length === 1);
     root.classList.toggle('overlay', view === 'overlay');
     root.classList.toggle('axes-on', faces.includes('nd') || faces.includes('ns'));
@@ -606,7 +613,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   document.querySelectorAll('[data-face]').forEach((n) => n.addEventListener('click', () => {
     const k = n.dataset.face, set_ = on[tab];
     if (!set_.has(k)) set_.add(k);
-    else if (!FAMILIES.includes(k) || [...set_].filter((f) => FAMILIES.includes(f)).length > 1) set_.delete(k);
+    else if (set_.size > 1) set_.delete(k);
     update();
   }));
   document.querySelectorAll('[data-tab][role=tab]').forEach((n) => n.addEventListener('click', () => { tab = n.dataset.tab; update(); }));

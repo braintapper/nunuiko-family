@@ -3,7 +3,7 @@
 A monospaced cut of [Nunuïko](../nunuiko/) for code,
 derived from Nunito.
 
-**Proof:** [https://braintapper.github.io/nunuiko-family/#family/nunuikode,nunuiko](https://braintapper.github.io/nunuiko-family/#family/nunuikode,nunuiko) (Family tab, above Nunuïko; switch Cascadia Code on to compare)
+**Proof:** [https://braintapper.github.io/nunuiko-family/#code](https://braintapper.github.io/nunuiko-family/#code) (Code tab: above Nunuïko and Cascadia Code)
 
 - Variable weight 200–1000, Roman and Italic
   (`fonts/variable/Nunuikode[wght].ttf`, `Nunuikode-Italic[wght].ttf`).
