@@ -16,11 +16,6 @@
   @font-face { font-family: 'NO'; src: url(data:font/woff2;base64,%%NO_I%%) format('woff2'); font-weight: 200 1000; font-style: italic; }
   @font-face { font-family: 'NS'; src: url(data:font/woff2;base64,%%NS_R%%) format('woff2'); font-weight: 200 1000; font-stretch: 75% 125%; font-style: normal; }
   @font-face { font-family: 'NS'; src: url(data:font/woff2;base64,%%NS_I%%) format('woff2'); font-weight: 200 1000; font-stretch: 75% 125%; font-style: italic; }
-  /* Cascadia Code (Latin + Latin Extended, as two families in a stack) */
-  @font-face { font-family: 'CAS'; src: url(data:font/woff2;base64,%%CAS_R%%) format('woff2'); font-weight: 200 700; font-style: normal; }
-  @font-face { font-family: 'CAS'; src: url(data:font/woff2;base64,%%CAS_I%%) format('woff2'); font-weight: 200 700; font-style: italic; }
-  @font-face { font-family: 'CASX'; src: url(data:font/woff2;base64,%%CASX_R%%) format('woff2'); font-weight: 200 700; font-style: normal; }
-  @font-face { font-family: 'CASX'; src: url(data:font/woff2;base64,%%CASX_I%%) format('woff2'); font-weight: 200 700; font-style: italic; }
 
   /* A single light theme: a proofing sheet. */
   :root {
@@ -69,9 +64,6 @@
 
   h1 { align-self: center; font-size: 20px; line-height: 1; margin: 0; white-space: nowrap;
     font-weight: 800; font-variation-settings: "wght" 800; }
-  h1 small { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
-    font-weight: 400; font-variation-settings: "wght" 400; margin-left: 8px; }
-  @media (max-width: 760px) { h1 small { display: none; } }
   section { margin-top: 40px; }
   h2 { font-size: 18px; margin: 0 0 4px; font-weight: 800; font-variation-settings: "wght" 800; }
   .note { font-size: 13.5px; line-height: 1.55; color: var(--muted); margin: 0 0 16px; max-width: 76ch; }
@@ -93,6 +85,9 @@
   .seg.stack button { text-align: left; }
   .seg.stack button + button { border-left: 0; border-top: 1px solid var(--line); }
   .seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+  /* font toggles in each font's key colour: its text when off, its background when on */
+  .seg button[data-face] { color: var(--c); }
+  .seg button[data-face][aria-pressed="true"] { background: var(--c); color: #fff; }
   button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .axes { display: none; }
   :root.axes-on .axes { display: flex; }
@@ -180,6 +175,10 @@
     background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); cursor: pointer; }
   .ptabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
   .pane[hidden] { display: none; }
+  /* the character grid's groups: smaller tabs under the heading */
+  .ptabs.sub { flex-wrap: wrap; gap: 4px 14px; margin: -4px 0 12px; }
+  .ptabs.sub button { font-size: 14px; font-weight: 700; font-variation-settings: "wght" 700; }
+  .ptabs.sub .n { color: var(--muted); font-weight: 400; font-variation-settings: "wght" 400; margin-left: 4px; }
   /* hover explanation for a tinted (non-stock) cell */
   .tip { position: fixed; z-index: 20; max-width: min(46ch, calc(100vw - 16px)); padding: 8px 14px;
     border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink);
@@ -201,6 +200,8 @@
   .chars .u { font-size: 9px; color: var(--muted); font-family: 'NK', sans-serif; font-style: normal; justify-self: start; }
   .chars .g { font-size: calc(var(--size) * 2); line-height: 1.25; color: var(--c); }
   .chars .g.tnum { font-feature-settings: "tnum" 1; }
+  /* a font that lacks the character: an empty line, not another font's glyph */
+  .chars .g.none { height: 1.25em; }
   /* guides: each face's baseline and cap height, drawn in grey across the cell, under the glyph.
      The guide is an empty inline-block on the baseline, 1cap tall in the face's own font. */
   .chars > div { overflow: hidden; }
@@ -210,18 +211,18 @@
     border-top: 1px solid #C8C8CC; border-bottom: 1px solid #C8C8CC; }
   :root.solo .chars .g { color: var(--ink); }
   :root.overlay .chars .g { grid-area: 2 / 1; }
-  /* the monospaced fonts (Nunuïkode, Cascadia Code): grey verticals on the left and right edges of the advance */
+  /* the monospaced font (Nunuïkode): grey verticals on the left and right edges of the advance */
   .chars .g.cell { box-shadow: inset 1px 0 #C8C8CC, inset -1px 0 #C8C8CC; }
-  /* non-stock marks (Family and Stock tabs): the cell is tinted */
+  /* non-stock marks (Family and Nunito tabs): the cell is tinted */
   .chars > div.has-mod { background: #FFF5DA; }
   :root.overlay .chars .g + .g { mix-blend-mode: multiply; }
 </style>
 
 <header class="top">
-  <h1>Nunuïko Family<small>Proof</small></h1>
+  <h1>Nunuïko Family</h1>
   <div class="tabs" role="tablist" aria-label="Comparison">
     <button role="tab" data-tab="family" aria-selected="true">Family</button>
-    <button role="tab" data-tab="stock" aria-selected="false">Stock</button>
+    <button role="tab" data-tab="stock" aria-selected="false">Nunito</button>
     <button role="tab" data-tab="code" aria-selected="false">Code</button>
     <button role="tab" data-tab="test" aria-selected="false">Test</button>
   </div>
@@ -243,7 +244,6 @@
       <div class="seg stack" role="group" aria-labelledby="code-lab">
         <button data-face="kd" aria-pressed="true">Nunuïkode</button>
         <button data-face="nk" aria-pressed="true">Nunuïko</button>
-        <button data-face="cas" aria-pressed="true">Cascadia Code</button>
       </div>
     </div>
     <div class="ctl" data-in="test">
@@ -254,7 +254,6 @@
         <button data-face="kd" aria-pressed="true">Nunuïkode</button>
         <button data-face="no" aria-pressed="false">Nunito</button>
         <button data-face="ns" aria-pressed="false">Nunito Sans</button>
-        <button data-face="cas" aria-pressed="false">Cascadia Code</button>
       </div>
     </div>
     <div class="ctl">
@@ -300,25 +299,24 @@
     <div class="head"><h2>Characters</h2>
       <button class="info" popovertarget="info-chars" aria-label="About the characters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><rect x="11" y="10.5" width="2" height="6.5" rx=".5" fill="currentColor" stroke="none"/></svg></button></div>
     <div class="pop" id="info-chars" popover>
-      <p>The most used characters, one cell each. With more than one font on, each cell
+      <p><b>Core</b> holds the most used characters; the other tabs hold the rest of what
+        the families map, by group (alternates, ligatures and other glyphs with no character of
+        their own are not shown). One cell each. With more than one font on, each cell
         stacks them in the order of the buttons (in the Code tab, Nunuïko first), in the colours of
         the key (overlaid in Overlay). Grey guides mark each font’s baseline and cap height, and the
-        edges of the advance for the monospaced fonts.</p>
+        edges of the advance for the monospaced fonts. A font that lacks a character
+        leaves its line in the cell empty. Accents are shown on a no-break space.</p>
+      <p><b>Tabular figures</b>: figures and the signs set with them, with tabular figures on
+        (<b>tnum</b>), as in tables and columns of numbers. Nunuïko and Display give the footed 1 here;
+        Nunuïkode’s figures are all one width anyway. No non-stock tint: these are separate glyphs.</p>
       <p data-in="family stock">Non-stock characters, drawn differently from the stock font
         (Nunito, or Nunito Sans for Display), have a tinted cell; hover
         one to see what each family changed. Nunuïkode counts Nunuïko’s changes and its own code edits, not
         the moving and condensing every glyph gets to fit the cell.</p>
     </div>
+    <div class="ptabs sub" role="tablist" aria-label="Character groups" id="groups"></div>
     <div class="chars" id="chars"></div>
     <div class="tip" id="tip" role="tooltip" hidden></div>
-    <div class="head"><h3 class="group">Tabular figures</h3>
-      <button class="info" popovertarget="info-tnum" aria-label="About the tabular figures"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01"/><rect x="11" y="10.5" width="2" height="6.5" rx=".5" fill="currentColor" stroke="none"/></svg></button></div>
-    <div class="pop" id="info-tnum" popover>
-      <p>Figures and the signs set with them, with tabular figures on (<b>tnum</b>), as in
-        tables and columns of numbers. Nunuïko and Display give the footed 1 here; Nunuïkode’s figures
-        are all one width anyway. No non-stock tint: these are separate glyphs.</p>
-    </div>
-    <div class="chars" id="chars-tnum"></div>
   </section>
 
   <section>
@@ -393,11 +391,118 @@ const O0 = { id: 0x0F, list: [1, l, I, |] };</textarea>
   </section>
 
   <section data-in="code stock">
-    <h2>Operators</h2>
-    <p class="note">Nunuïkode has no ligatures: each operator is its own characters, one per cell.</p>
-    <div class="panel"><pre class="s">-&gt;  =&gt;  ==  ===  !=  !==  &lt;=  &gt;=  &lt;&gt;  &lt;=&gt;  &amp;&amp;  ||  ??  ?.  ::
+    <div class="head"><div class="ptabs" role="tablist" aria-label="Code samples">
+        <button role="tab" data-pane="ops" aria-selected="true">Operators</button>
+        <button role="tab" data-pane="ts" aria-selected="false">TypeScript</button>
+        <button role="tab" data-pane="py" aria-selected="false">Python</button>
+        <button role="tab" data-pane="sh" aria-selected="false">Shell</button>
+        <button role="tab" data-pane="css" aria-selected="false">CSS</button>
+        <button role="tab" data-pane="json" aria-selected="false">JSON</button>
+        <button role="tab" data-pane="sql" aria-selected="false">SQL</button>
+        <button role="tab" data-pane="vue" aria-selected="false">Vue</button>
+      </div></div>
+    <div class="pane" data-pane="ops">
+      <p class="note">Nunuïkode has no ligatures: each operator is its own characters, one per cell.</p>
+      <div class="panel"><pre class="s">-&gt;  =&gt;  ==  ===  !=  !==  &lt;=  &gt;=  &lt;&gt;  &lt;=&gt;  &amp;&amp;  ||  ??  ?.  ::
 ++  --  **  //  /*  */  &lt;!--  --&gt;  |&gt;  &lt;|  ...  ..=  :=  +=  -=  %=  ^=
 #{}  ${}  @()  [::]  &lt;/&gt;  0x1F  0b1010  0o777  1_000_000  3.14e-10  #FF00AA</pre></div>
+    </div>
+    <div class="pane" data-pane="ts" hidden>
+      <div class="panel"><pre class="s"><span class="kw">import</span> { readFile } <span class="kw">from</span> <span class="str">"node:fs/promises"</span>;
+
+<span class="com">// Parse a config file; fall back to defaults on any error.</span>
+<span class="kw">export async function</span> <span class="fn">loadConfig</span>(path: <span class="fn">string</span>): <span class="fn">Promise</span>&lt;<span class="fn">Config</span>&gt; {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> raw = <span class="kw">await</span> <span class="fn">readFile</span>(path, <span class="str">"utf8"</span>);
+    <span class="kw">const</span> cfg = <span class="fn">JSON</span>.<span class="fn">parse</span>(raw) <span class="kw">as</span> <span class="fn">Partial</span>&lt;<span class="fn">Config</span>&gt;;
+    <span class="kw">return</span> { ...defaults, ...cfg, retries: cfg.retries ?? <span class="num">3</span> };
+  } <span class="kw">catch</span> (err) {
+    console.<span class="fn">warn</span>(<span class="str">`config: ${</span>path<span class="str">} unreadable (${</span>err<span class="str">})`</span>);
+    <span class="kw">return</span> defaults;
+  }
+}</pre></div>
+    </div>
+    <div class="pane" data-pane="py" hidden>
+      <div class="panel"><pre class="s"><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
+
+
+<span class="kw">@</span><span class="fn">dataclass</span>(frozen=<span class="kw">True</span>)
+<span class="kw">class</span> <span class="fn">Reading</span>:
+    sensor: <span class="fn">str</span>
+    value: <span class="fn">float</span>
+    ok: <span class="fn">bool</span> = <span class="kw">True</span>
+
+
+<span class="kw">def</span> <span class="fn">average</span>(readings: <span class="fn">list</span>[<span class="fn">Reading</span>], floor: <span class="fn">float</span> = <span class="num">0.0</span>) -&gt; <span class="fn">float</span> | <span class="kw">None</span>:
+    <span class="str">"""Mean of the good readings at or above floor, or None."""</span>
+    good = [r.value <span class="kw">for</span> r <span class="kw">in</span> readings <span class="kw">if</span> r.ok <span class="kw">and</span> r.value &gt;= floor]
+    <span class="kw">return</span> <span class="fn">sum</span>(good) / <span class="fn">len</span>(good) <span class="kw">if</span> good <span class="kw">else</span> <span class="kw">None</span>  <span class="com"># 0 readings -&gt; None</span></pre></div>
+    </div>
+    <div class="pane" data-pane="sh" hidden>
+      <div class="panel"><pre class="s"><span class="com"># rebuild, then copy the fonts into every consumer</span>
+<span class="kw">set</span> -euo pipefail
+<span class="kw">for</span> app <span class="kw">in</span> web docs admin; <span class="kw">do</span>
+  cp -v fonts/variable/*.ttf <span class="str">"../$app/public/fonts/"</span> &amp;&amp; echo <span class="str">"ok: $app"</span> || echo <span class="str">"FAILED: $app"</span> &gt;&amp;<span class="num">2</span>
+<span class="kw">done</span>
+git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[0-9a-f]{7,} (fix|feat):'</span></pre></div>
+    </div>
+    <div class="pane" data-pane="css" hidden>
+      <div class="panel"><pre class="s"><span class="com">/* buttons: one size, three looks */</span>
+:root { --ink: <span class="num">#1C1C1E</span>; --accent: <span class="num">#2F62A6</span>; --radius: <span class="num">8px</span>; }
+
+.btn { display: inline-flex; gap: <span class="num">0.5rem</span>; padding: <span class="num">0.5rem</span> <span class="num">1rem</span>; border-radius: var(--radius); }
+.btn:hover, .btn:focus-visible { color: var(--ink); outline: <span class="num">2px</span> solid <span class="fn">rgb</span>(<span class="num">47</span> <span class="num">98</span> <span class="num">166</span> / <span class="num">.4</span>); }
+.btn[aria-pressed=<span class="str">"true"</span>] &gt; svg { transform: <span class="fn">rotate</span>(<span class="num">-90deg</span>); }
+
+<span class="kw">@media</span> (max-width: <span class="num">640px</span>) { .btn { width: <span class="fn">calc</span>(<span class="num">100%</span> - <span class="num">2</span> * <span class="num">16px</span>); } }</pre></div>
+    </div>
+    <div class="pane" data-pane="json" hidden>
+      <div class="panel"><pre class="s">{
+  <span class="str">"id"</span>: <span class="num">1001</span>,
+  <span class="str">"name"</span>: <span class="str">"O'Neil"</span>,
+  <span class="str">"tags"</span>: [<span class="str">"0O"</span>, <span class="str">"Il1"</span>, <span class="str">"rn/m"</span>],
+  <span class="str">"active"</span>: <span class="kw">true</span>,
+  <span class="str">"ratio"</span>: <span class="num">0.01</span>,
+  <span class="str">"parent"</span>: <span class="kw">null</span>,
+  <span class="str">"limits"</span>: { <span class="str">"min"</span>: <span class="num">-1</span>, <span class="str">"max"</span>: <span class="num">1e6</span>, <span class="str">"path"</span>: <span class="str">"C:\\Users\\jill\\{id}.json"</span> }
+}</pre></div>
+    </div>
+    <div class="pane" data-pane="sql" hidden>
+      <div class="panel"><pre class="s"><span class="com">-- users with at least one order this year, busiest first</span>
+<span class="kw">SELECT</span> u.id, u.email, <span class="fn">COUNT</span>(o.id) <span class="kw">AS</span> orders, <span class="fn">SUM</span>(o.total) <span class="kw">AS</span> spent
+<span class="kw">FROM</span> users u
+<span class="kw">LEFT JOIN</span> orders o <span class="kw">ON</span> o.user_id = u.id <span class="kw">AND</span> o.status &lt;&gt; <span class="str">'void'</span>
+<span class="kw">WHERE</span> u.created_at &gt;= <span class="str">'2026-01-01'</span> <span class="kw">AND</span> u.email <span class="kw">LIKE</span> <span class="str">'%@example.com'</span>
+<span class="kw">GROUP BY</span> u.id, u.email
+<span class="kw">HAVING</span> <span class="fn">COUNT</span>(o.id) &gt; <span class="num">0</span>
+<span class="kw">ORDER BY</span> spent <span class="kw">DESC</span>
+<span class="kw">LIMIT</span> <span class="num">10</span>;</pre></div>
+    </div>
+    <div class="pane" data-pane="vue" hidden>
+      <div class="panel"><pre class="s">&lt;<span class="kw">template</span>&gt;
+  &lt;<span class="kw">ul</span> <span class="fn">class</span>=<span class="str">"list"</span>&gt;
+    &lt;<span class="kw">li</span> <span class="fn">v-for</span>=<span class="str">"item in visible"</span> <span class="fn">:key</span>=<span class="str">"item.id"</span> <span class="fn">:class</span>=<span class="str">"{ done: item.done }"</span>&gt;
+      &lt;<span class="kw">input</span> <span class="fn">type</span>=<span class="str">"checkbox"</span> <span class="fn">v-model</span>=<span class="str">"item.done"</span> /&gt;
+      {{ item.title }} &lt;<span class="kw">small</span> <span class="fn">v-if</span>=<span class="str">"item.due"</span>&gt;{{ <span class="fn">formatDate</span>(item.due) }}&lt;/<span class="kw">small</span>&gt;
+    &lt;/<span class="kw">li</span>&gt;
+  &lt;/<span class="kw">ul</span>&gt;
+  &lt;<span class="kw">button</span> <span class="fn">@click</span>=<span class="str">"showAll = !showAll"</span>&gt;{{ showAll ? <span class="str">'Hide done'</span> : <span class="str">'Show all'</span> }}&lt;/<span class="kw">button</span>&gt;
+&lt;/<span class="kw">template</span>&gt;
+
+&lt;<span class="kw">script</span> <span class="fn">setup</span>&gt;
+<span class="kw">import</span> { ref, computed } <span class="kw">from</span> <span class="str">'vue'</span>;
+
+<span class="kw">const</span> props = <span class="fn">defineProps</span>({ items: { type: <span class="fn">Array</span>, required: <span class="kw">true</span> } });
+<span class="kw">const</span> showAll = <span class="fn">ref</span>(<span class="kw">false</span>);
+<span class="kw">const</span> visible = <span class="fn">computed</span>(() =&gt; props.items.<span class="fn">filter</span>((i) =&gt; showAll.value || !i.done));
+<span class="kw">const</span> <span class="fn">formatDate</span> = (d) =&gt; <span class="kw">new</span> <span class="fn">Date</span>(d).<span class="fn">toLocaleDateString</span>(<span class="str">'en-CA'</span>);
+&lt;/<span class="kw">script</span>&gt;
+
+&lt;<span class="kw">style</span> <span class="fn">scoped</span>&gt;
+.list { display: grid; gap: <span class="num">4px</span>; padding: <span class="num">0</span>; list-style: none; }
+.done { color: <span class="num">#8E8E93</span>; text-decoration: line-through; }
+&lt;/<span class="kw">style</span>&gt;</pre></div>
+    </div>
   </section>
 
   <section data-only="kd" data-in="code">
@@ -427,62 +532,6 @@ rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr|
 ÀÉÎÕÜàéîõüçñßøæœ ŁłŚśŹźŻżĞğİı|</pre></div>
   </section>
 
-  <section data-in="code stock">
-    <h2>TypeScript</h2>
-    <div class="panel"><pre class="s"><span class="kw">import</span> { readFile } <span class="kw">from</span> <span class="str">"node:fs/promises"</span>;
-
-<span class="com">// Parse a config file; fall back to defaults on any error.</span>
-<span class="kw">export async function</span> <span class="fn">loadConfig</span>(path: <span class="fn">string</span>): <span class="fn">Promise</span>&lt;<span class="fn">Config</span>&gt; {
-  <span class="kw">try</span> {
-    <span class="kw">const</span> raw = <span class="kw">await</span> <span class="fn">readFile</span>(path, <span class="str">"utf8"</span>);
-    <span class="kw">const</span> cfg = <span class="fn">JSON</span>.<span class="fn">parse</span>(raw) <span class="kw">as</span> <span class="fn">Partial</span>&lt;<span class="fn">Config</span>&gt;;
-    <span class="kw">return</span> { ...defaults, ...cfg, retries: cfg.retries ?? <span class="num">3</span> };
-  } <span class="kw">catch</span> (err) {
-    console.<span class="fn">warn</span>(<span class="str">`config: ${</span>path<span class="str">} unreadable (${</span>err<span class="str">})`</span>);
-    <span class="kw">return</span> defaults;
-  }
-}</pre></div>
-  </section>
-
-  <section data-in="code stock">
-    <h2>Python</h2>
-    <div class="panel"><pre class="s"><span class="kw">from</span> dataclasses <span class="kw">import</span> dataclass
-
-
-<span class="kw">@</span><span class="fn">dataclass</span>(frozen=<span class="kw">True</span>)
-<span class="kw">class</span> <span class="fn">Reading</span>:
-    sensor: <span class="fn">str</span>
-    value: <span class="fn">float</span>
-    ok: <span class="fn">bool</span> = <span class="kw">True</span>
-
-
-<span class="kw">def</span> <span class="fn">average</span>(readings: <span class="fn">list</span>[<span class="fn">Reading</span>], floor: <span class="fn">float</span> = <span class="num">0.0</span>) -&gt; <span class="fn">float</span> | <span class="kw">None</span>:
-    <span class="str">"""Mean of the good readings at or above floor, or None."""</span>
-    good = [r.value <span class="kw">for</span> r <span class="kw">in</span> readings <span class="kw">if</span> r.ok <span class="kw">and</span> r.value &gt;= floor]
-    <span class="kw">return</span> <span class="fn">sum</span>(good) / <span class="fn">len</span>(good) <span class="kw">if</span> good <span class="kw">else</span> <span class="kw">None</span>  <span class="com"># 0 readings -&gt; None</span></pre></div>
-  </section>
-
-  <section data-in="code stock">
-    <h2>Shell</h2>
-    <div class="panel"><pre class="s"><span class="com"># rebuild, then copy the fonts into every consumer</span>
-<span class="kw">set</span> -euo pipefail
-<span class="kw">for</span> app <span class="kw">in</span> web docs admin; <span class="kw">do</span>
-  cp -v fonts/variable/*.ttf <span class="str">"../$app/public/fonts/"</span> &amp;&amp; echo <span class="str">"ok: $app"</span> || echo <span class="str">"FAILED: $app"</span> &gt;&amp;<span class="num">2</span>
-<span class="kw">done</span>
-git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[0-9a-f]{7,} (fix|feat):'</span></pre></div>
-  </section>
-
-  <section data-in="code stock">
-    <h2>CSS, JSON, SQL</h2>
-    <div class="panel"><pre class="s">.btn:hover { color: <span class="num">#1C1C1E</span>; padding: <span class="num">0.5rem</span> <span class="num">1rem</span>; border-radius: <span class="num">8px</span>; }
-
-{ <span class="str">"id"</span>: <span class="num">1001</span>, <span class="str">"name"</span>: <span class="str">"O'Neil"</span>, <span class="str">"tags"</span>: [<span class="str">"0O"</span>, <span class="str">"Il1"</span>], <span class="str">"active"</span>: <span class="kw">true</span>, <span class="str">"ratio"</span>: <span class="num">0.01</span> }
-
-<span class="kw">SELECT</span> u.id, <span class="fn">COUNT</span>(o.id) <span class="kw">AS</span> orders
-<span class="kw">FROM</span> users u <span class="kw">LEFT JOIN</span> orders o <span class="kw">ON</span> o.user_id = u.id
-<span class="kw">WHERE</span> u.created_at &gt;= <span class="str">'2026-01-01'</span> <span class="kw">GROUP BY</span> u.id <span class="kw">HAVING</span> <span class="fn">COUNT</span>(o.id) &gt; <span class="num">0</span>;</pre></div>
-  </section>
-
 
 </main>
 </div>
@@ -498,9 +547,9 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     kd: { fam: "'KD'", name: 'Nunuïkode', c: '#2F7D4F', hash: 'nunuikode' },
     no: { fam: "'NO'", name: 'Nunito', c: '#B3561D', hash: 'nunito' },
     ns: { fam: "'NS'", name: 'Nunito Sans', c: '#8A3FB5', hash: 'nunito-sans' },
-    cas: { fam: "'CAS', 'CASX'", name: 'Cascadia Code (200–700)', c: '#6B6B70', hash: 'cascadia' },
   };
   const FAMILIES = ['nk', 'nd', 'kd'];
+  document.querySelectorAll('[data-face]').forEach((b) => b.style.setProperty('--c', FACES[b.dataset.face].c));
   // characters each family draws differently from its stock font (make_proof.py)
   const NONSTOCK = %%NONSTOCK%%;
   const STOCK = { nk: 'no', nd: 'ns', kd: 'no' };
@@ -559,6 +608,12 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       ['06 · %', '% with smaller round rings, to fit the cell.', '50% 100% 0.5%', '%'],
       ['07 · t f', 'Wider crossbars; the f’s top redrawn as the n’s arch.', 't f ft tft fifty after offset', 'tf'],
       ['08 · © ® @', 'Scaled down to keep their shape in the cell, and centred on the capitals.', '© ® @ ©2026 H®H @user user@host', '©®@'],
+      ['09 · j l', 'The j gets the i’s flag and a hook redrawn as half a u’s bowl, curling up on the left; the end of the l’s tail turns up.', 'j jj jump ij ĵ l ll ill all', 'jlĵł'],
+      ['10 · O', 'Boxier O: straighter sides and tighter corners, a touch heavier there so the stroke looks even. Q, Ø and the accented O’s follow.', 'O OO Q QO OQO ÖØ', 'OQÒÓÔÖÕØ'],
+      ['11 · t', 'The tail reaches 1.3 × as far.', 't tt ttt butter street', 't'],
+      ['12 · f t', 'The f’s top eases from the stem to the r’s arch weight and keeps it to the end; the t’s crossbar reaches 1.6 × as far.', 'f ff fit after t tt ft', 'ft'],
+      ['13 · r c e a', 'The r’s arm stretches into the room on its right; c, e and a are as wide as the o.', 'r rr error c e a ace occur oca', 'rcçeaàáâäãåèéêë'],
+      ['14 · i l', 'The i’s foot is 1.25 × the 1’s; the l’s tail reaches further right.', 'i ii il li ll lil fill', 'iìíîïılł'],
       ['spacing', 'Capitals keep 60 units each side; lowercase letters that sit in too much white widen a little, and open-sided ones sit toward their open side.', 'FROM WHERE JOIN HAVING remove remote', ''],
     ],
   };
@@ -566,14 +621,14 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   // four tabs, each with its own set of fonts on (each button its own
   // true/false). Family: the families. Stock: each family on, followed by
   // its stock font (not Nunuïkode: it is derived from Nunuïko). Code:
-  // Nunuïkode and Cascadia Code (Nunuïko too in the character grid). Test:
-  // only the text box, in any of the six fonts. The URL hash holds the tab
-  // and the fonts on (#stock/nunuiko, #code/nunuikode,cascadia).
+  // Nunuïkode (Nunuïko too in the character grid). Test: only the text
+  // box, in any of the five fonts. The URL hash holds the tab and the fonts
+  // on (#stock/nunuiko, #code/nunuikode,nunuiko).
   let tab = 'family';
-  const on = { family: new Set(['nk', 'nd', 'kd']), stock: new Set(['nk']), code: new Set(['kd', 'nk', 'cas']),
+  const on = { family: new Set(['nk', 'nd', 'kd']), stock: new Set(['nk']), code: new Set(['kd', 'nk']),
     test: new Set(['nk', 'nd', 'kd']) };
-  const CODE_ORDER = ['kd', 'nk', 'cas'];
-  const TEST_ORDER = ['nk', 'nd', 'kd', 'no', 'ns', 'cas'];
+  const CODE_ORDER = ['kd', 'nk'];
+  const TEST_ORDER = ['nk', 'nd', 'kd', 'no', 'ns'];
   {
     const [t, list] = location.hash.slice(1).split('/');
     const keys = (list || '').split(',')
@@ -639,30 +694,63 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     ...'.,:;!?¡¿\'"‘’“”«»‹›()[]{}<>/\\|¦-–—_+=×÷±~^*&@#$%€£¥¢°§¶©®™…·•',
     ...'ÀÁÂÄÃÅÆÇÈÉÊËÌÍÎÏÑÒÓÔÖÕØŒÙÚÛÜÝŸŠŽŁ',
     ...'àáâäãåæçèéêëìíîïñòóôöõøœùúûüýÿšžłßı'];
+  // the other tabs: every other character the families map (make_proof.py),
+  // and the characters each font lacks
+  const GROUPS_ALL = %%GROUPS%%;
+  const MISSING = %%MISSING%%;
+  const MAIN = new Set(CHARS);
   const TNUM = [...'0123456789.,:+−-×÷=%$€£¥#()'];
+  const GROUPS = [['core', 'Core', CHARS], ['tnum', 'Tabular figures', TNUM], ['latin', 'Latin Extended'], ['cyrillic', 'Cyrillic'],
+    ['symbols', 'Symbols'], ['marks', 'Accents'], ['greek', 'Greek']]
+    .map(([k, label, list]) => [k, label, list || [...(GROUPS_ALL[k] || '')].filter((c) => !MAIN.has(c))])
+    .filter(([, , list]) => list.length);
+  let group = 'core';
+  {
+    const box = $('groups');
+    for (const [k, label, list] of GROUPS) {
+      const b = document.createElement('button');
+      b.setAttribute('role', 'tab'); b.dataset.group = k;
+      b.setAttribute('aria-selected', String(k === group));
+      b.append(label, Object.assign(document.createElement('span'), { className: 'n', textContent: list.length }));
+      b.addEventListener('click', () => {
+        group = k;
+        box.querySelectorAll('button').forEach((m) => m.setAttribute('aria-selected', String(m === b)));
+        tip.hidden = true;
+        gridOf($('chars'), list, k === 'tnum');
+      });
+      box.append(b);
+    }
+  }
   const renderChars = () => {
-    gridOf($('chars'), CHARS, false);
-    gridOf($('chars-tnum'), TNUM, true);
+    gridOf($('chars'), GROUPS.find(([k]) => k === group)[2], group === 'tnum');
   };
   const gridOf = (box, list, tnum) => {
     box.textContent = '';
     // in the Code tab the grid puts Nunuïko first, above the two code fonts
-    const faces = tab === 'code' ? ['nk', 'kd', 'cas'].filter((k) => on.code.has(k)) : shown();
+    const faces = tab === 'code' ? ['nk', 'kd'].filter((k) => on.code.has(k)) : shown();
     for (const ch of list) {
       const cell = document.createElement('div');
+      cell.ch = ch;
+      const mark = /\p{M}/u.test(ch);
       const u = document.createElement('span'); u.className = 'u';
       u.textContent = ch.codePointAt(0).toString(16).toUpperCase().padStart(4, '0');
       cell.append(u);
       for (const k of faces) {
-        const g = document.createElement('span'); g.className = 's g'; g.textContent = ch;
+        const g = document.createElement('span'); g.className = 's g';
+        g.style.setProperty('--f', FACES[k].fam); g.style.setProperty('--c', FACES[k].c);
+        if (MISSING[k] && MISSING[k].includes(ch)) {
+          g.classList.add('none'); g.title = 'Not in ' + FACES[k].name;
+          cell.append(g);
+          continue;
+        }
+        g.textContent = mark ? '\u00A0' + ch : ch;
         g.append(Object.assign(document.createElement('i'), { className: 'gl' }));
-        if (k === 'kd' || k === 'cas') g.classList.add('cell');
+        if (k === 'kd') g.classList.add('cell');
         if (tnum) g.classList.add('tnum');
         else if ((tab === 'family' || tab === 'stock') && NONSTOCK[k] && NONSTOCK[k].includes(ch)) {
           cell.classList.add('has-mod');
           (cell.mods ||= []).push(k);
         }
-        g.style.setProperty('--f', FACES[k].fam); g.style.setProperty('--c', FACES[k].c);
         if (!cell.mods || !cell.mods.includes(k)) g.title = FACES[k].name;
         cell.append(g);
       }
@@ -681,7 +769,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     return CHANGES.nk.filter((c) => c[3].includes(ch)).map((c) => ['Nunuïko ' + c[0], c[1]]);
   };
   const showTip = (cell) => {
-    const ch = cell.querySelector('.g').firstChild.textContent;
+    const ch = cell.ch;
     tip.textContent = '';
     for (const k of cell.mods) {
       const h = document.createElement('p'); h.className = 'tip-f';
@@ -702,7 +790,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
     tip.style.left = x + 'px';
     tip.style.top = (below ? r.bottom + 6 : Math.max(8, r.top - 6 - t.height)) + 'px';
   };
-  for (const box of [$('chars'), $('chars-tnum')]) {
+  for (const box of [$('chars')]) {
     box.addEventListener('pointerover', (e) => {
       const cell = e.target.closest('.has-mod');
       if (cell && cell.mods) showTip(cell); else tip.hidden = true;
@@ -711,7 +799,7 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
   }
   addEventListener('scroll', () => { tip.hidden = true; }, { passive: true });
 
-  document.querySelectorAll('.wrap section > .panel > pre.s').forEach((pre) => {
+  document.querySelectorAll('.wrap section > .panel > pre.s, .wrap section > .pane > .panel > pre.s').forEach((pre) => {
     pre.contentEditable = 'plaintext-only'; pre.spellcheck = false;
   });
 
@@ -761,10 +849,10 @@ git log --oneline -n <span class="num">10</span> | grep -E <span class="str">'^[
       }
     });
   };
-  for (const el of document.querySelectorAll('.wrap section > .panel, .wrap section > .conf, .wrap section > textarea')) makeSet(el);
+  for (const el of document.querySelectorAll('.wrap section > .panel, .wrap section > .pane > .panel:not(.wf), .wrap section > .conf, .wrap section > textarea')) makeSet(el);
 
   // what changed: a group per family on, each change set in every face on
-  // tabs inside a section (Waterfall / Weight ramp): one pane shown at a time
+  // tabs inside a section (Waterfall / Weight ramp, the code samples): one pane shown at a time
   document.querySelectorAll('.ptabs [data-pane]').forEach((b) => b.addEventListener('click', () => {
     const sec = b.closest('section');
     sec.querySelectorAll('.ptabs [data-pane]').forEach((m) => m.setAttribute('aria-selected', String(m === b)));

@@ -44,11 +44,11 @@ Every family folder has the same shape:
     build.sh  config.yaml  display_name.py the build
     edits/                                 glyph edits (NN_name.py)
   archive/                                 kept for reference, not built
+  penpot/                                  static .ttf, .otf and .woff for Penpot (sources/penpot/README.md)
 ```
 
 plus what only some families have: `fonts/ttf/` (Display's static
-instances), `penpot-uploads/` and `sources/penpot/` (static font files
-for Penpot), and Nunuïkode's `sources/build.py` and `sources/upstream/`.
+instances) and Nunuïkode's `sources/build.py` and `sources/upstream/`.
 
 At the repo root: `proof/`, the one proof for all three families, and `docs/`, where it is published (below); `PLAYBOOK.md` (build process and troubleshooting) and
 `fonts.md` (design intent), shared by Nunuïko and Display, and `OFL.txt` with
@@ -71,24 +71,28 @@ cd sources && PATH=../.venv/bin:$PATH sh build.sh && cd ..   # fonts/variable/
 
 The proof is one page for all three families (`proof/template.html`, built
 by `proof/make_proof.py` into `docs/index.html`). Four tabs: **Family**
-compares the families with each other; **Stock** compares Nunuïko and
+compares the families with each other; **Nunito** (`#stock` in the URL) compares Nunuïko and
 Display with their stock fonts (Nunito and Nunito Sans) and lists every
-change from them (Nunuïkode is derived from Nunuïko, so it has no toggle there); **Code** compares Nunuïkode with Cascadia Code
-in the samples, and with Nunuïko too in the character grid. **Test** holds only the
-"Try your own" text box, in any of the six fonts (the three families, Nunito,
-Nunito Sans, Cascadia Code). In each tab, toggle buttons switch each font on or off
+change from them (Nunuïkode is derived from Nunuïko, so it has no toggle there); **Code** shows Nunuïkode
+in the samples, and compares it with Nunuïko in the character grid. **Test** holds only the
+"Try your own" text box, in any of the five fonts (the three families, Nunito,
+Nunito Sans). In each tab, toggle buttons switch each font on or off
 independently. Every sample is set once
 per font shown, stacked one above the next (or overlaid), and a character
-grid stacks them inside each character's cell. The grid draws grey guides at each
-font's baseline and cap height, and for the monospaced fonts (Nunuïkode,
-Cascadia Code) at the left and right edges of the advance. In the Family and Stock tabs that grid
+grid stacks them inside each character's cell. The grid's tabs are Core (the
+most used characters, listed in the template), Tabular figures (tnum on)
+and, from the fonts' cmaps at
+proof time, every other character the families map: Latin Extended, Cyrillic,
+Symbols, Accents and Greek; a font that lacks a character gets an empty line
+in its cell. The grid draws grey guides at each
+font's baseline and cap height, and for the monospaced Nunuïkode at the left and right edges of the advance. In the Family and Nunito tabs that grid
 marks non-stock characters, those a family draws differently from its stock
 font: `proof/changed.py` compares the .glyphs sources with the stock ones in
 git history, and for Nunuïkode adds the characters its code edits changed,
 which its build writes to `nunuikode/sources/edited-characters.txt`. It embeds every font, so it opens anywhere, from
 disk or the web. After a build of any family, regenerate it. The URL hash
 holds the tab and the fonts on: `#stock/nunuiko`, `#family/nunuiko,nunuikode`,
-`#code/nunuikode,cascadia` (also `nunuiko-display`). When a glyph edit lands, add it
+`#code/nunuikode,nunuiko` (also `nunuiko-display`). When a glyph edit lands, add it
 to that family's list in the template's `CHANGES`: title, caption, sample, and the
 characters of the grid it changes (hovering a tinted cell shows the changes that list it).
 
@@ -105,8 +109,8 @@ transfer to the slant.
 ## Plan
 
 The repo was created on 2026-10-17 by importing the three old repos with
-their full histories (`braintapper/nunuiko`, `nunuiko-sans`, `nunuikode`,
-left as they were). Next, in order:
+their full histories (`braintapper/nunuiko`, `nunuiko-sans`, `nunuikode`;
+those were deleted from GitHub on 2026-10-18). Next, in order:
 
 1. ~~One proof for all three families~~ (done 2026-10-17: `proof/`).
 2. Shared edits: each edit that exists in both Nunuïko and Display (l tail,

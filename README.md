@@ -12,10 +12,9 @@ Each folder has its own build, glyph change log and license files.
 ## Proof
 
 One page for all three families, regenerated with each font build and published
-with GitHub Pages: **[https://braintapper.github.io/nunuiko-family/](https://braintapper.github.io/nunuiko-family/)**. Three tabs: **Family** compares the
-families with each other, **Stock** compares each with the font it is derived
-from (Nunuïko and Nunuïkode with Nunito, Nunuïko Display with Nunito Sans), and
-**Code** compares Nunuïkode with Nunuïko and Cascadia Code. Switch any font on
+with GitHub Pages: **[https://braintapper.github.io/nunuiko-family/](https://braintapper.github.io/nunuiko-family/)**. Four tabs: **Family** compares the
+families with each other, **Nunito** compares Nunuïko with Nunito and Nunuïko
+Display with Nunito Sans, **Code** compares Nunuïkode with Nunuïko, and **Test** sets your own text in any of them. Switch any font on
 or off; the fonts stack one above the next, or overlay. Open it on
 [Nunuïko vs Nunito](https://braintapper.github.io/nunuiko-family/#stock/nunuiko),
 [Nunuïko Display vs Nunito Sans](https://braintapper.github.io/nunuiko-family/#stock/nunuiko-display),
