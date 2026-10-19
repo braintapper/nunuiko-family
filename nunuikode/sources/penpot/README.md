@@ -4,7 +4,7 @@
 Penpot as a custom font, so the interface designs there use the same typeface as the apps. That
 folder contains font files only, so everything in it can be selected at once in the upload dialog.
 
-Generated 2026-10-19 from `fonts/variable/` (version 0.100), on top of commit `61c76939`.
+Generated 2026-10-19 from `fonts/variable/` (version 0.100), on top of commit `50d0d889`.
 
 ## Why these files exist
 
