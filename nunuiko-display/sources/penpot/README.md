@@ -1,11 +1,11 @@
-# Penpot uploads
+# Penpot fonts
 
-`../../penpot-uploads/` holds the Nunuiko Display font files that were uploaded to a
+`../../penpot/` holds the Nunuiko Display font files that were uploaded to a
 self-hosted Penpot as a custom font, so the interface designs there use the same typeface as the
 apps. That folder contains font files only, so everything in it can be selected at once in the
 upload dialog.
 
-Generated 2026-10-12 from `fonts/ttf/` at commit `c0f05f3`.
+Generated 2026-10-18 from `fonts/ttf/` (version 1.000), on top of commit `50d0d889`.
 
 ## Why these files exist
 
@@ -30,7 +30,7 @@ converted from quadratic to cubic curves. They are for Penpot only; do not ship 
 ## Uploading
 
 1. In the Penpot dashboard (not inside a file), open **Fonts**.
-2. Add fonts, and select **every file in `penpot-uploads/` in one pick**. Penpot groups the three
+2. Add fonts, and select **every file in `penpot/` in one pick**. Penpot groups the three
    formats of a weight into one entry only when they arrive together; a format uploaded by itself
    fails.
 3. Press **Upload all**.
@@ -45,7 +45,7 @@ Do this when the fonts change and the Penpot copy should follow. It needs `fontt
 
 ```bash
 # from the repo root
-python sources/penpot/make_formats.py fonts/ttf penpot-uploads
+python sources/penpot/make_formats.py fonts/ttf penpot
 ```
 
 `make_formats.py` copies each `.ttf` and writes the `.otf` and `.woff` beside it. Then delete the

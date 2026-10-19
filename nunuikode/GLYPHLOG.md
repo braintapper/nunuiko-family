@@ -273,3 +273,101 @@ the bar is the default, the round G is `G.ss03` (with the composites built on
 it and the ss03 feature); the monospace step fits them
 like any other glyph. The built fonts map G → G.ss03 under ss03.
 
+
+## 14. j with the i's flag and a longer hook; the l's tail turns up ◐ (2026-10-17)
+
+`sources/edits/09_j_flag_hook_l_tail.py`.
+
+- **j:** j and ȷ (so ĵ and ј too) get the i's flag (edit 3) in place of the
+  left half of the stem's top cap: same thickness and round end, top flush
+  with the old cap, reaching 0.7 × the foot's reach left of the stem centre
+  (`FLAG`, as the i). The hook is redrawn as half a u's bowl: from the stem
+  down round the descender and up a left arm a stem's width wide, whose round
+  end tops out 0.85 of the way up from the descender to the baseline (`CURL`;
+  −29 at ExtraLight, 4 at Bold). At Heavy the strokes leave no room for that:
+  the arm rises until the bowl's counter is at least 30 tall (`MIN_IN`), to
+  122. The bowl's bottom has the foot's thickness, its curves a tension of 0.6
+  (`BOWL`), and the j's ink spans the i's foot length from the stem's right
+  edge (`HOOK` = 1.0; the i and l span the foot's length too): ExtraLight
+  180–383 in the cell, now 73–447. (First the same day: Nunuïko's hook
+  stretched to that width; the user wanted it to curl up like a u.) ǈ ǉ ǋ ǌ and the
+  Dutch ij forms are frozen first and keep the plain j, since two letters
+  already share the cell.
+- **l:** the end of the tail bends up. Past 0.4 of its reach (`BEND_FROM`),
+  each point turns about the tail's bottom by up to 20° (`TAIL_UP`) on a
+  smoothstep, so the round end turns by the full angle and stays round and the
+  l still stands on the baseline. That part is first stretched by
+  1 / cos 20° so the end still reaches about the foot's reach. The tail's top
+  rises from 33 to 63 at ExtraLight, 157 to 172 at Heavy. Accented l's and
+  lj follow; the fl ligatures keep their frozen unflagged l, and ss02's plain
+  l is unchanged.
+
+## 15. Boxier O ◐ (2026-10-17)
+
+`sources/edits/10_O_squarer.py`. Nunuïko's O is a near-ellipse: each quarter
+is one cubic whose handles run 0.6–0.65 of the way to the corner of its box.
+Every outer handle now goes 0.35 of the rest of the way there (`SQUARE`;
+0.62 → 0.75 at ExtraLight), so the sides run straighter and the corners turn
+on a smaller radius. The counter's handles are then solved so the stroke
+across each corner's diagonal is 1.06 × the mean of the stroke at the
+quarter's two ends (`CORNER`): with the corners only as thick as before, the
+user saw the stroke shrink there, since a boxier O reads thinner at its
+corners and the monospace step's condensing thins them a little more. Built,
+the stroke now runs 41–42 all round at ExtraLight and 110–120 at Bold (corners
+112); at Heavy the counter reaches its limit of 0.85 (`MAX_T`, past which it
+would read as a rectangle) and the corners stay at 172 against 179–193. The corner of each quarter is where its handle lines meet, so the
+italic masters work the same way. Q (O plus its slash part), Ø and the
+accented O's follow; Œ is drawn on its own and is unchanged.
+
+## 16. Longer t tail ◐ (2026-10-17)
+
+`sources/edits/11_t_longer_tail.py`. The tail reaches 1.3 × as far right of
+the stem as it did (`TAIL`, the same factor as the crossbar in edit 7): 185 →
+240 at ExtraLight, 155 → 201 at Heavy. The round end moves out rigidly; points
+between the stem and the tail's lowest point are stretched away from the stem
+in proportion, so the curve keeps its shape. Where the t would no longer fit
+the cell it is cut back (Heavy Italic: 164 → 197). ţ ť ț ŧ follow.
+
+## 17. f top as thick as the stem; longer t crossbar ◐ (2026-10-17)
+
+`sources/edits/07_t_and_f.py`.
+
+- **f:** the user saw the stroke over the f's top narrow and then swell (it
+  came from the n's arch, thin where it leaves the stem and full at the apex).
+  The inner edge is now the outer edge offset inward (a Tiller–Hanson offset
+  with its handles scaled so the midpoint lands exactly): by the stem's width
+  where it leaves the stem, easing to the r's (the n's) arch weight at the apex,
+  and that weight from there to the cut. Bold: 125 at the stem, 98 at the apex,
+  95–98 to the cut; ExtraLight 42 → 39. Where the arch is too tight, the stroke
+  tapers toward the cut, steadily, to at most 0.9 × the arch's reach right of
+  the apex (`END`), so the inner edge never folds back (Heavy: 158 → 125). The
+  terminal is cut square to the stroke. (First the same day: the stem's width
+  all the way over; the user found it too thick and pointed to the r's arch.)
+- **t:** the crossbar reaches 1.6 × as far from the stem (`BAR_T`; the f keeps
+  1.3), cut back where the cell runs out (Heavy 1.34). ExtraLight t spans 67–538.
+
+## 18. r arm stretched; c as wide as the o ◐ (2026-10-17)
+
+- **r** (`03_footed_one_and_i.py`): after the r is drawn from the n, its arm is
+  stretched so the r reaches past the n's right edge by half the room the cell
+  has left there (`R_MORE`, with the n's ink taken as centred): points right of
+  the stem stretch away from it and the round end moves out rigidly.
+  ExtraLight r spans 112–533 (was 112–467; n 112–497), Bold 74–544.
+- **c, e, a** (`build.py`, `WIDE_AS`): each widens to at least the o's ink
+  width (true curve bounds, after the stems are thinned back as for the other
+  widened letters), as far as the cell allows. ExtraLight: c 375 → 433, e 422
+  → 432, a → 432 (o 432); Bold c 492, e and a 500 (o 500). At Heavy the cell
+  is nearly full already (c 487, e 521, a 527; o 540).
+
+## 19. Longer i foot and l tail ◐ (2026-10-17)
+
+`sources/edits/03_footed_one_and_i.py`.
+
+- **i:** the foot is 1.25 × the 1's foot (`FOOT_I`), as far as the cell allows:
+  460 at ExtraLight (was 368), the full 540 from Bold up. The flag still
+  reaches 0.7 × the 1's foot reach, so it doesn't grow with it. ı í ì î ï
+  follow; I keeps the 1's foot length for its bars.
+- **l:** the tail reaches 1.3 × the foot's reach right of the stem centre
+  (`L_TAIL`), as far as the cell allows with 20 units to spare for edit 9's
+  bend (`L_MARGIN`), never shorter than before. ExtraLight l spans 97–513
+  (was 116–477), Bold 53–556.

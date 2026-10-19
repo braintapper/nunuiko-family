@@ -1,10 +1,10 @@
-# Penpot uploads
+# Penpot fonts
 
-`../../penpot-uploads/` holds the Nunuiko font files that were uploaded to the owner's self-hosted
+`../../penpot/` holds the Nunuiko font files that were uploaded to the owner's self-hosted
 Penpot as a custom font, so the interface designs there use the same typeface as the apps. That
 folder contains font files only, so everything in it can be selected at once in the upload dialog.
 
-Generated 2026-10-12 from `fonts/variable/` at commit `93a695c3`.
+Generated 2026-10-18 from `fonts/variable/` (version 1.000), on top of commit `50d0d889`.
 
 ## Why these files exist
 
@@ -28,7 +28,7 @@ only; do not ship them anywhere else.
 ## Uploading
 
 1. In the Penpot dashboard (not inside a file), open **Fonts**.
-2. Add fonts, and select **every file in `penpot-uploads/` in one pick**. Penpot groups the three
+2. Add fonts, and select **every file in `penpot/` in one pick**. Penpot groups the three
    formats of a weight into one entry only when they arrive together; a format uploaded by itself
    fails.
 3. Press **Upload all**.
@@ -44,7 +44,7 @@ Do this when the fonts change and the Penpot copy should follow. It needs `fontt
 ```bash
 # from the repo root
 python sources/penpot/make_statics.py fonts/variable /tmp/nunuiko-static
-python sources/penpot/make_formats.py /tmp/nunuiko-static penpot-uploads
+python sources/penpot/make_formats.py /tmp/nunuiko-static penpot
 ```
 
 `make_statics.py` cuts the 16 static `.ttf` files from the two variable fonts. `make_formats.py`

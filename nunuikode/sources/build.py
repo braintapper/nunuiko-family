@@ -31,6 +31,8 @@ Steps, per master (6 masters: ExtraLight / Bold / Heavy, upright + italic):
          v y x k s z c don't sit in holes. Then it moves BALANCE (75%) of
          the way to equal white each side, so open-sided letters (r c k e)
          sit toward their open side. (r is placed like the n, see ALIGN.)
+         c, e and a widen to at least the o's ink width (WIDE_AS), as
+         far as the cell allows: they set narrower than the o beside it.
        - wider (m w M W, ligatures...): condensed horizontally by s and
          its vertical strokes thickened back by a horizontal stroke offset
          (each point moves d * its outward normal's x direction), so
@@ -65,6 +67,7 @@ from ufo2ft.filters.decomposeComponents import DecomposeComponentsFilter
 SOURCE = "upstream/Nunuiko.glyphs"
 OUT = "build"
 FAMILY = "Nunuikode"
+VERSION = (0, 100)  # font version 0.100 = release 0.1.0
 CELL = 600       # every advance
 SB_MIN = 30      # sidebearing for glyphs condensed to fit
 SB_CAP = 60      # ... for capital letters: at 30, runs of capitals (FROM,
@@ -79,6 +82,7 @@ OPEN = 1.45      # lowercase with more side white than this x n's widen,
 OPEN_MAX = 1.3   # ... by at most this
 OPEN_SKIP = {"i", "j", "l", "idotless", "jdotless", "t", "f"}  # shaped for the cell (edits 3, 7)
 BALANCE = 0.75   # lowercase: share of the left/right white difference evened out
+WIDE_AS = {"c": "o", "e": "o", "a": "o"}  # lowercase widened to at least this letter's ink width
 
 
 def load_edits():
@@ -106,6 +110,12 @@ def unslanted_bounds(ufo, glyph, tan):
     if not xs:
         return None
     return min(xs), max(xs)
+
+
+def ink_width(ufo, glyph, tan):
+    bp = BoundsPen(ufo)
+    glyph.draw(TransformPen(bp, (1, 0, -tan, 1, 0, 0)))
+    return bp.bounds[2] - bp.bounds[0]
 
 
 class FlattenPen(BasePen):
@@ -238,6 +248,13 @@ def monospace(ufo, stem, tan, base_of, zero_width, heal):
         sb = SB_CAP if name in heal["upper"] else SB_MIN
         inner = CELL - 2 * sb
         s, prof = opening(name, g, x0, bw, inner)
+        if prof is not None and name in WIDE_AS:
+            # true ink widths (curves, not their handles); the widened stems
+            # are thinned back by COMP, which takes 2|d| off the ink width:
+            # solve for the width after that
+            ow, cw = ink_width(ufo, ufo[WIDE_AS[name]], tan), ink_width(ufo, g, tan)
+            k = COMP * stem
+            s = max(s, min(inner / bw, (ow - k) / (cw - k)))
         if prof is not None and bw * s <= inner:
             # lowercase: optical centre as below, then moved BALANCE of the
             # way to equal white each side (r's open right, c's, k's ...)
@@ -497,6 +514,9 @@ def strip_features(text):
 def main():
     font = GSFont(SOURCE)
     font.familyName = FAMILY
+    # Nunuikode has its own version, separate from the Nunuiko snapshot's
+    # (the snapshot carries Nunuiko's version, which means nothing here).
+    font.versionMajor, font.versionMinor = VERSION
     # composites whose first component is the base at the origin, with the
     # same advance (accented letters): remember the base before decomposing
     # (Accent composites: first component is the base at the origin and

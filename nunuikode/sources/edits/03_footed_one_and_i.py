@@ -12,8 +12,8 @@ i: the stem (of i and idotless; accented i's are composites of idotless
    and follow) is rebuilt as one contour standing on a foot copied from
    the footed 1 of the same master (worked unslanted):
      thickness  = height of the 1's foot
-     half-length = half the 1's foot length, at most CELL/2 - SB_MIN so
-                   the i is never condensed
+     half-length = FOOT_I (1.25) x half the 1's foot length, at most
+                   CELL/2 - SB_MIN so the i is never condensed
    centred on the stem, ends rounded (radius = half the thickness). The
    stem's rounded bottom is replaced by the foot.
    Flag: an arm runs left from the stem top, same thickness and round end
@@ -29,7 +29,8 @@ l: Nunuiko's tailed l keeps its curved bottom and gets the i's flag (same
    thickness, round end) in place of the left half of its top cap. Like
    the i's foot, the l spans the foot's length centred on its stem: the
    flag reaches FLAG_L x the foot's reach left of the stem centre, and the
-   tail is stretched out to the foot's reach on the right (every point
+   tail is stretched out to L_TAIL (1.3) x the foot's reach on the right, as
+   far as the cell allows (every point
    right of the stem's right edge, below TAIL_Y, moves away from that edge
    in proportion, so the curve keeps its shape). Nunuiko's short tail left
    the l a bare stem in its cell, so "ll", "cl", "el" read far looser
@@ -44,7 +45,9 @@ r: rebuilt from the n of the same master: its stem and arch, the arch
    cut. So the arm arches down like the n's shoulder. Anchors: bottom keeps
    its place under the stem, top goes over the arch (the n's). Nunuiko's
    r is the narrowest lowercase letter and set loose alone in its cell
-   ("mirror", "array"). ŕ ř ŗ follow. (Tried first: the i's foot, too
+   ("mirror", "array"). The arm is then stretched (the round end moved
+   out rigidly) so the r reaches past the n's right edge by R_MORE of the
+   room the cell has left there. ŕ ř ŗ follow. (Tried first: the i's foot, too
    heavy; then the old arm stretched 1.4x.)
 
 I: rebuilt as one contour: the stem with a bar at the bottom (on the
@@ -65,8 +68,12 @@ CELL = 600
 SB_MIN = 30
 FLAG = 0.7  # flag reach / foot reach, both from the stem centre
 FLAG_L = 1.0  # the l's flag reach / foot reach
+L_TAIL = 1.3  # the l's tail reach / foot reach, as far as the cell allows
+L_MARGIN = 20  # ... kept clear of the cell's room (edit 9 bends the tail out a little)
+FOOT_I = 1.25  # the i's foot length / the 1's, as far as the cell allows
 TAIL_Y = 300  # l: tail points lie below this height
 ARCH = 0.55  # r: share of n's arch descent kept (0 top .. 1 stem)
+R_MORE = 0.5  # r: share of the cell's room right of the n's ink its arm reaches into
 SWAP = (("one", "one.ss01"), ("one.tosf", "one.tosf.ss01"))
 FOOTED = ("i", "idotless")
 FLAGGED = ("l",)
@@ -108,7 +115,7 @@ def foot_of_one(ufo, tan):
     return t, max(xs) - min(xs)
 
 
-def add_foot(g, t, half, tan):
+def add_foot(g, t, half, tan, flag_half=None):
     stem = min(g, key=lambda c: min(p.y for p in c))
     pts = list(stem)
     n = len(pts)
@@ -130,7 +137,7 @@ def add_foot(g, t, half, tan):
     a, b = c - half, c + half
     # flag's left end; at least its round end clears the stem (Heavy's
     # thick foot would otherwise end the flag inside the stem)
-    f = min(c - FLAG * half, xl - r - 1)
+    f = min(c - FLAG * (flag_half or half), xl - r - 1)
     sl = lambda x, y: (x + y * tan, y)
     g.contours.remove(stem)
     pen = g.getPen()
@@ -170,8 +177,11 @@ def add_flag(g, t, half, tan):
     xl, xr = ux(ring[6]), ux(ring[0])
     c = (xl + xr) / 2
     tail = [p for p in ring[7:] if p.y < TAIL_Y and ux(p) > xr + 0.5]
-    s = (c + half - xr) / (max(ux(p) for p in tail) - xr)
-    for p in tail:  # stretch right of the stem edge out to c + half
+    # the tail reaches L_TAIL x the foot's reach right of the stem centre,
+    # as far as the cell allows (never short of the foot's reach)
+    reach = max(half, min(L_TAIL * half, CELL - 2 * SB_MIN - FLAG_L * half - L_MARGIN))
+    s = (c + reach - xr) / (max(ux(p) for p in tail) - xr)
+    for p in tail:  # stretch right of the stem edge out to c + reach
         p.x = xr + (ux(p) - xr) * s + p.y * tan
     top = ring[3].y
     r = t / 2
@@ -225,6 +235,21 @@ def r_from_n(ufo, tan):
     new += [(sl(*xy), seg) for xy, seg in cap]
     new += [(sl(*outer[1]), None), (sl(*outer[2]), None)]
     new += [((p.x, p.y), p.segmentType) for p in pts[21:]]
+    # stretch the arm out toward the cell's right side: the r's ink reaches
+    # past the n's right edge by R_MORE of the room the cell has left there
+    # (the n's ink taken as centred in the cell). Points right of the stem
+    # stretch away from it; the round end moves out rigidly.
+    xs_n = [u(p)[0] for p in pts]
+    nl, nr = min(xs_n), max(xs_n)
+    target = nr + R_MORE * ((CELL - SB_MIN) - (CELL + nr - nl) / 2)
+    un = [((xy[0] - xy[1] * tan, xy[1]), seg) for xy, seg in new]
+    xs = u(pts[4])[0]  # the stem's right edge
+    xt = min(pin[0], pout[0])
+    dx = target - max(x for (x, _), _ in un)
+    if dx > 0:
+        k = (xt + dx - xs) / (xt - xs)
+        mapx = lambda x: x if x <= xs else (xs + (x - xs) * k if x < xt else x + dx)
+        new = [(sl(mapx(x), y), seg) for (x, y), seg in un]
     g = ufo["r"]
     assert len(g) == 1, g.name
     # anchors: bottom keeps its place under the stem, top goes over the arch
@@ -285,8 +310,9 @@ def apply(ufo, stem, tan):
         swap(ufo, a, b)
     freeze(ufo, KEEP_PLAIN)
     add_bars(ufo["I"], t, half, ufo.info.capHeight, tan)
+    half_i = min(FOOT_I * length / 2, CELL / 2 - SB_MIN)
     for name in FOOTED:
-        w = add_foot(ufo[name], t, half, tan)
+        w = add_foot(ufo[name], t, half_i, tan, half)
     for name in FLAGGED:
         add_flag(ufo[name], t, half, tan)
     cut = r_from_n(ufo, tan)

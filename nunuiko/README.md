@@ -2,8 +2,9 @@
 
 A rounded sans derived from [Nunito](https://github.com/googlefonts/nunito).
 
-**Proof:** [https://braintapper.github.io/nunuiko-family/#stock/nunuiko](https://braintapper.github.io/nunuiko-family/#stock/nunuiko) (Stock tab: above the original Nunito)
+**Proof:** [https://braintapper.github.io/nunuiko-family/#stock/nunuiko](https://braintapper.github.io/nunuiko-family/#stock/nunuiko) (Nunito tab: above the original Nunito)
 
+- Version 1.0.0 (font version 1.000).
 - Variable weight 200–1000, Roman and Italic
   (`fonts/variable/Nunuiko[wght].ttf`, `Nunuiko-Italic[wght].ttf`).
 - Changes from Nunito so far: a shorter l tail; a downturned f terminal; a J

@@ -385085,6 +385085,6 @@ unitsPerEm = 1000;
 userData = {
 UFOFormat = 2;
 };
-versionMajor = 3;
-versionMinor = 602;
+versionMajor = 1;
+versionMinor = 0;
 }

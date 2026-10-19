@@ -435001,6 +435001,6 @@ name = vStem3;
 }
 );
 unitsPerEm = 1000;
-versionMajor = 3;
-versionMinor = 101;
+versionMajor = 1;
+versionMinor = 0;
 }
